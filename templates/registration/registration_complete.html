@@ -1,0 +1,25 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Profile' %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/signin-pages.scss' %}" />
+  {% endcompress %}
+{% endblock %}
+
+{% block content %}
+<div class="container text-center" style="margin-top: 200px; margin-bottom:200px;">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+			<p>{% trans 'Thanks for registration' %}, {{user.username}}!</p>
+			<a href="/">{% trans 'Back to index' %}</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

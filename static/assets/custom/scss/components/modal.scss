@@ -1,0 +1,304 @@
+.modal-hc {
+  h1, h2, h3, h4 { @extend .hc-text-noshadow; }
+
+  .modal-dialog {
+    max-width: $width-md;
+    margin-left: auto;
+    margin-right: auto;
+
+    .modal-content {
+      padding: 0 0 $base-padding*2.5;
+      border-radius: $base-border-radius;
+    }
+
+    .modal-section {
+      max-width: $width-sm;
+      margin: 0 auto;
+      padding: $base-padding 0;
+    }
+
+    .modal-body { padding: 0 $base-padding; }
+    .modal-header { padding: $base-padding; }
+    .modal-header {
+      @extend .modal-section;
+      border-bottom: unset;
+    }
+
+    .modal-img-bg {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      padding: $base-padding;
+
+      background-color: $color-dark;
+
+      width: 100%;
+      min-height: 225px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      &.img-bg-contain { background-size: contain; }
+      & > * {
+        margin-top: $base-padding;
+        &:first-child { margin-top: 0; }
+      }
+
+      &.img-bg-carousel { padding: 0; }
+    }
+
+    .modal-body {
+      .modal-body-section__sm {
+        max-width: $width-sm;
+      }
+
+      .modal-body-section__md {
+        max-width: $width-md;
+      }
+
+      .modal-body-section__md, .modal-body-section__sm {
+        margin: 0 auto;
+        padding-top: $base-padding;
+
+        p:not(:first-child) { margin-top: $base-padding / 2; }
+        &.modal-body-section__grid { display: flex; }
+      }
+
+      .modal-short-info {
+        .modal-inf {
+          text-align: right;
+
+          min-width: 100px;
+          padding-right: $base-padding/2;
+        }
+
+        .modal-val { }
+      }
+
+      .review-body {
+        padding-left: 10%;
+        padding-right: 10%;
+
+        .review-comment {
+          border: 1px solid;
+          border-radius: 5px;
+          padding: 7px;
+          margin-top: 5px;
+        }
+
+        .subscribed-since {
+          margin-right: 60px;
+        }
+
+        @media (max-width: 414px) {
+          .subscribed-since {
+            margin-right: 0;
+          }
+          .comment-stars {
+            display: block;
+          }
+        }
+
+      }
+    }
+
+    .modal-footer {
+      @extend .modal-section;
+      border-top: unset;
+    }
+
+    .modal-hc-title {
+      h3, p {
+        margin: 0;
+      }
+    }
+  }
+
+  @media (min-width: 768px) { .modal-dialog { width: unset !important; } }
+}
+
+.modal-hc.modal-hc-coffee__regular {
+  .modal-content {
+    border: 5px solid $color-new-secondary;
+  }
+}
+.modal-hc.modal-hc-coffee__special {
+  .modal-content {
+    border: 5px solid $color-new-primary;
+
+		.modal-header {
+      position: relative;
+
+      &::before {
+        @extend .coffee-special-tag;
+
+        top: unset !important;
+        left: $base-padding/2 !important;
+        bottom: -70px;
+      }
+		}
+  }
+}
+.modal-hc.modal-hc-gears {
+  .modal-content {
+    border-top: 15px solid $color-new-secondary;
+    border-bottom: 15px solid $color-new-secondary;
+  }
+}
+
+.modal-hc.modal-form {
+  .modal-dialog {
+    max-width: $width-sm;
+  }
+
+  .modal-header {
+    padding: $base-padding;
+    background-color: $color-new-primary;
+    p.s-h2 { line-height: 40px; }
+  }
+}
+
+.new-order.modal-hc {
+  .dropdown {
+    .dropdown-toggle, .dropdown-menu { width: 100%; }
+    .dropdown-toggle { padding: 5px $base-padding 5px 0; }
+
+    ul.dropdown-menu { min-width: 205px; }
+    ul.dropdown-menu > li > a.dropdown-item, & > button > .dropdown-item {
+      display: flex;
+      justify-content: flex-start;
+      text-align: left;
+      align-items: center;
+      padding: 5px $base-padding/2;
+      color: $color-new-text;
+
+      img {
+        margin-right: $base-padding / 2;
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .panel {
+    border: unset;
+    box-shadow: unset;
+
+    .panel-body { border-top: unset; }
+    .panel-row { padding: unset; }
+  }
+}
+
+#md-orderreview {
+  img.coffee-img {
+    margin-right: $base-padding / 2;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+  }
+}
+
+#cancel-sub-modal.modal-hc {
+  .modal-body {
+    .modal-body-section__sm{
+      &:first-child { padding-top: 0; }
+      p { margin-top: $base-padding / 2; }
+      p.t-h3-bold {
+        margin-top: $base-padding;
+        &:first-child { margin-top: 0; }
+      }
+
+      a:not(.btn) {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .modal-footer {
+    margin-top: $base-padding * 1.5;
+  }
+}
+
+
+/* modal-new-dashboard-presentation */
+.modal--new-dashboard {
+  color: #49241c;
+  background-color: #fbfdff;
+}
+
+.ui-presentation__header,
+.ui-presentation__footer {
+  padding: 10px;
+  font: 35px 'DKSugaryPancake', 'Amatic-Bold', 'Helvetica Neue', Helvetica, Arial, serif;
+  text-transform: uppercase;
+  text-align: center;
+}
+.ui-presentation__header {
+  padding-left: 45px;
+}
+
+.ui-presentation__features {
+  display: flex;
+  margin: 15px -15px;
+  padding: 10px 20px 20px;
+  border-top: 3px solid #e2ab31;
+  border-bottom: 3px solid #e2ab31;
+  background-color: #fff;
+
+  @media only screen and (max-width: 550px) {
+    flex-flow: column wrap;
+  }
+}
+
+.dash-feature {
+  position: relative;
+  flex: 1 1 33%;
+  padding: 100px 10px 0;
+  margin-top: 35px;
+  text-align: center;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -75px;
+    height: 100px;
+    width: 150px;
+    content: '';
+    margin-top: -25px;
+  }
+}
+
+.dash-feature--nav {
+  &::before {
+    background: url('/static/images/new_dashboard_features/dash_feature_nav.png') no-repeat 0px 0px;
+  }
+}
+
+.dash-feature--addr {
+  &::before {
+    background: url('/static/images/new_dashboard_features/dash_feature_addr.png') no-repeat 0px 0px;
+  }
+}
+
+.dash-feature--design {
+  &::before {
+    background: url('/static/images/new_dashboard_features/dash_feature_design.png') no-repeat 0px 0px;
+  }
+}
+
+.dash-feature__name {
+  min-height: 50px;
+  font: 22px 'DKSugaryPancake', 'Amatic-Bold', 'Helvetica Neue', Helvetica, Arial, serif;
+}
+
+.dash-feature__details {
+  padding: 0 15px;
+}
+
+.ui-presentation__footer {
+  font-size: 28px;
+}
+/* end modal-new-dashboard-presentation */

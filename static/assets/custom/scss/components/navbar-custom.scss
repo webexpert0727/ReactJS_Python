@@ -1,0 +1,577 @@
+/* ------------------------------------------------------------------
+Navigation
+------------------------------------------------------------------- */
+
+
+
+/********************************** FIXME - This a temporary solution with difference navbars, code from custom.css *********************************/
+
+
+/********************************** Buttons *********************************/
+
+
+// .btn {
+//   padding: 10px 30px;
+//   font-size: 18px;
+//   font-weight: normal;
+//   color: #fff;
+//   background-color: #d9a52a;
+//   border: none;
+// }
+// .btn:hover, 
+// .btn:active, 
+// .btn:focus {
+//   color: #fff;
+//   text-decoration: none;
+//   background-color: #c9961d !important;
+// }
+.btn_rect {
+  border-radius: 0;
+}
+.btn_nav {
+  margin: 15px 5px 0 10px;
+  padding: 10px 30px !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  color: #fff;
+  background-color: #d9a52a;
+  border: none;
+  border-radius: 10px;
+}
+.btn_nav:hover, 
+.btn_nav:active, 
+.btn_nav:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #c9961d !important;
+}
+@media only screen and (max-width: 767px) {
+  .btn_nav {
+    margin: 10px 10px 0 0;
+    font-size: 14px !important;
+  }
+}
+
+
+
+
+/********************************** Top Navigation Bar *********************************/
+
+.navbar-default {
+  background: none;
+  border: none;
+  transition: unset !important;
+}
+.navbar-fixed-top {
+  background-color: #fff;
+  border-bottom: 1px solid #e7e7e7;
+}
+.navbar-fixed-top .navbar-brand {
+  display: block;
+  padding: 7px 15px;
+}
+/* Crutch that on the solution 768x* fits three links: Coffees ShotPods Brew Guides */
+@media only screen and (device-width: 768px) and (orientation:portrait) {
+  .navbar-fixed-top .container-fluid {
+    margin: 0;
+    padding: 0;
+  }
+}
+/* // Crutch */
+@media only screen and (max-width: 767px) {
+  .navbar-fixed-top {
+    padding: 5px 0;
+  }
+  .navbar-fixed-top .navbar-brand {
+    padding: 0 0 3px 15px;
+    height: auto;
+  }
+}
+.main-navbar-nav > li > a {
+  padding: 28px 7px;
+  font: 14px 'Archer-Medium', serif;
+  color: #000 !important;
+  text-transform: uppercase;
+  transition: unset !important;
+}
+@media only screen and (max-width: 767px) {
+  .main-navbar-nav {
+    width: 100%;
+    margin: 10px 5px 0;
+    clear: both;
+  }
+  .main-navbar-nav:last-child{
+    margin-bottom: 10px;
+  }
+  .main-navbar-nav.pull-right {
+    float: none !important;
+  }
+  .main-navbar-nav > li > a {
+    padding: 8px 0px;
+    font-size: 12px;
+    font-family: 'Arvo', serif;
+    text-transform: uppercase;
+  }
+}
+.main-navbar-nav > li > a:hover {
+  color: #d9a52a !important;
+}
+.main-navbar-nav > li > a.btn,
+.main-navbar-nav > li > a.btn:hover {
+  color: #fff !important; 
+}
+@media only screen and (min-width: 990px) and (max-width: 1024px) {
+  .main-navbar-nav li:nth-child(7) {
+    display: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 990px) {
+  .main-navbar-nav li:nth-child(4),
+  .main-navbar-nav li:nth-child(5),
+  .main-navbar-nav li:nth-child(6),
+  .main-navbar-nav li:nth-child(7) {
+    display: none;
+  }
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+  background: none;
+  color: #333;
+  transition: unset !important;
+}
+.main-navbar-nav > .open > a, 
+.main-navbar-nav > .open > a:hover, 
+.main-navbar-nav > .open > a:focus {
+  background: none !important;
+  color: #d9a52a !important;
+}
+.main-navbar-nav > .dropdown > a .caret {
+  border-top-color: #000 !important;
+  border-bottom-color: #000 !important;
+}
+.main-navbar-nav > .dropdown > a:hover .caret,
+.main-navbar-nav > .dropdown > a:focus .caret,
+.main-navbar-nav > .open > a .caret, 
+.main-navbar-nav > .open > a:hover .caret, 
+.main-navbar-nav > .open > a:focus .caret {
+  border-top-color: #d9a52a !important;
+  border-bottom-color: #d9a52a !important;
+}
+.main-navbar-nav > .dropdown > .dropdown-menu {
+  margin-top: -20px;
+}
+.main-navbar-nav > .dropdown > .dropdown-menu > li > a {
+  font: 14px 'Archer-Medium', serif;
+  text-transform: uppercase;
+  transition: unset !important;
+}
+.main-navbar-nav > .dropdown > .dropdown-menu > li > a:hover, 
+.main-navbar-nav > .dropdown > .dropdown-menu > li > a:focus {
+  color: #fff !important;
+  background-color: #d9a52a !important;
+}
+.main-navbar-nav > .dropdown > .dropdown-menu > .active > a {
+  background-color: rgba(217, 165, 42, 0.7);
+}
+@media only screen and (max-width: 767px) {
+  .main-navbar-nav > .dropdown > .dropdown-menu > li > a {
+    padding: 8px 16px;
+    color: #000 !important;
+    font: 12px 'Arvo', serif;
+  }
+  .main-navbar-nav > .dropdown > .dropdown-menu > li > a:hover, 
+  .main-navbar-nav > .dropdown > .dropdown-menu > li > a:focus {
+    color: #d9a52a !important;
+    background-color: transparent !important;
+  }
+  .main-navbar-nav > .dropdown > .dropdown-menu > .active > a {
+    color: #000 !important;
+    background-color: transparent !important;
+  }
+  .main-navbar-nav .dropdown.open .dropdown-toggle {
+    margin-bottom: 15px;
+  }
+}
+.navbar-toggle {
+    /*background-color: #d9a52a;*/
+  border: none;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #000;
+}
+.navbar-toggle:hover, 
+.navbar-toggle:active, 
+.navbar-toggle:focus {
+  background-color: unset !important;
+  /*background-color: #c5941f !important;*/
+  /*border: 1px solid #ddd;*/
+}
+.navbar-default .navbar-collapse, 
+.navbar-default .navbar-form {
+  border-color: #999;
+}
+@media (max-width: 767px) {
+  .navbar-collapse {
+    max-height: 405px;
+    background: transparent;
+  }
+}
+
+.nav-tabs {
+  border: none;
+  text-align: center;
+  display: block;
+}
+.nav-tabs>li {
+  float: none;
+  display: inline-block;
+  text-align: center;
+}
+.nav-tabs>li>a {
+  text-transform: uppercase;
+  padding: 0;
+  opacity: 0.5;
+  margin: 0 13px;
+  position: relative;
+  border: none;
+  background: none !important;
+}
+.nav-tabs>li>a>img {
+  width: 90px;
+  height: 90px;
+}
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:hover, 
+.nav-tabs>li.active>a:focus {
+  border: 0;
+  /*border: 5px solid red !important;*/
+  opacity: 1;
+  background: none !important;
+}
+.nav-tabs li a i {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  font-size: 20px;
+  bottom: -6px;
+}
+.nav-tabs li.active a i {
+  display: block;
+}
+.nav-tabs li a:hover, 
+.nav-tabs li a:active, 
+.nav-tabs li a:focus {
+  color: #055EA0;
+}
+
+.change-lang-link:hover, 
+.change-lang-link:active, 
+.change-lang-link:focus {
+  background-color: transparent !important;
+}
+
+
+/*  TOP BAR  */
+
+.navbar.navbar-default.navbar-fixed-top {
+  // margin-top: 35px;
+}
+
+.news-bar {
+  position: fixed;
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #da3232;
+  z-index: 2;
+}
+.news-bar__link {
+  display: inline-block;
+  padding-top: 5px;
+  width: 100%;
+  color: #fff;
+  font: 24px 'DKSugaryPancake', 'Arvo', serif;
+  text-align: center;
+  text-transform: uppercase;
+}
+.news-bar__link:hover,
+.news-bar__link:active,
+.news-bar__link:focus {
+  color: #fff;
+  text-decoration: none;
+}
+@media (max-width: 500px) {
+  .news-bar__link {
+    font-size: 16px;
+  }
+}
+
+/*  END TOP BAR  */
+
+/********************************** //FIXME - This a temporary solution with difference navbars *********************************/
+
+
+.navbar-default-profile {
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+}
+.navbar-default-profile .navbar-toggle {
+  border: 1px solid #ddd;
+}
+.navbar-default-profile .navbar-toggle:hover, 
+.navbar-default-profile .navbar-toggle:active, 
+.navbar-default-profile .navbar-toggle:focus {
+  background-color: #ddd !important;
+  border: 1px solid #ddd;
+}
+.navbar-default-profile .navbar-toggle .icon-bar {
+  background-color: #888;  
+}
+
+/* ------------------------------------------------------------------
+Overriding bootstrap nav hover and focus
+------------------------------------------------------------------- */
+// .nav > li > a:not(.btn):hover,
+// .nav > li > a:not(.btn):focus, {
+//   background-color: transparent;
+
+//   .navbar-white & {
+//     //color: $color-forest !important;
+//     color: white !important;
+//   }
+
+//   .navbar-custom:not(.navbar-white) & {
+//     color: white !important;
+//     //color: RGB(114, 81, 73) !important;
+//   }
+// }
+
+// .nav > li > a.btn:hover,
+// .nav > li > a.btn:focus, {
+//   background-color: $color-warm !important;
+// }
+
+/* ------------------------------------------------------------------
+Drop down and animations
+------------------------------------------------------------------- */
+.navbar-custom .navbar-toggle .icon-bar {
+  background: #111;
+}
+
+// #btn-nav {
+//   padding: 5px;
+//   margin-top: 8px;
+//   margin-bottom: 8px;
+//   font-size: 14px;
+//   border-radius: 10px;
+// }
+
+.navbar-custom, li a {
+  -webkit-transition: background-color 0.3s ease-out, color 0.2s ease-out;
+     -moz-transition: background-color 0.3s ease-out, color 0.2s ease-out;
+       -o-transition: background-color 0.3s ease-out, color 0.2s ease-out;
+          transition: background-color 0.3s ease-out, color 0.2s ease-out;
+}
+
+.navbar-custom {
+  padding: 0;
+  border: 0;
+  text-transform: uppercase;
+  font-family: "Archer-Bold", sans-serif;
+  letter-spacing: 1px;
+  font-size: 13px;
+  webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+         box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+
+  .navbar-brand {
+    float: none;
+    height: 60px;
+    display: table-cell;
+    vertical-align: middle;
+    padding-top: 0;
+    letter-spacing: 4px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #111;
+  }
+}
+
+.news {
+  text-align: center;
+  color: white;
+  padding: 8px;
+  //margin-bottom: 10px;
+}
+
+
+/* ------------------------------------------------------------------
+Background and font colors
+------------------------------------------------------------------- */
+
+.navbar-transparent {
+  background-color: transparent !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+
+  li a:not(.btn) {
+    //color: $color-forest !important;
+    color: RGB(114, 81, 73) !important;
+  }
+}
+
+.navbar-white {
+  //background-color: white !important;
+  background-color: $color-forest !important;
+
+  li a:not(.btn) {
+    //color: $color-forest !important;
+    color: white !important;
+  }
+
+}
+
+.navbar-transparent.news,
+.navbar-white.news {
+  background-color: $color-forest !important;
+}
+
+.navbar-custom.navbar-transparent
+{
+
+  .news {
+    background-color: $color-forest;
+  }
+
+  .dark-logo {
+    display: none !important;
+  }
+
+  .light-logo {
+    display: none !important;
+  }
+}
+
+.navbar-custom.navbar-white {
+   .news {
+    background-color: $color-forest;
+  }
+
+  .dark-logo {
+    display: none !important;
+  }
+
+  .light-logo {
+    display: block !important;
+  }
+}
+
+
+.navbar-custom:not(.navbar-transparent):not(.navbar-white) {
+  color: white;
+  background-color: $color-forest;
+
+  .dark-logo {
+    display: none !important;
+  }
+
+  .light-logo {
+    display: block !important;
+  }
+
+  .news {
+    background-color: black;
+  }
+}
+
+/* ------------------------------------------------------------------
+Background and font colors
+------------------------------------------------------------------- */
+
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+
+  .sidebar-nav{
+    text-transform: uppercase;
+    font-family: "Archer-Bold", sans-serif;
+    letter-spacing: 1px;
+    font-size: 13px;
+  }
+
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  #sidebar.navbar-default {
+      font-size: 14px;
+      background-color: rgba(252, 252, 252, 1);
+      border-width: 1px;
+      border-radius: 10px;
+  }
+  #sidebar.navbar-default .navbar-nav>li>a {
+      color: rgba(122, 122, 122, 1);
+      background-color: rgba(252, 252, 252, 1);
+  }
+  #sidebar.navbar-default .navbar-nav>li>a:hover,
+  #sidebar.navbar-default .navbar-nav>li>a:focus {
+      color: rgba(51, 51, 51, 1);
+      background-color: rgba(248, 248, 248, 0);
+  }
+  #sidebar.navbar-default .navbar-nav>.active>a,
+  #sidebar.navbar-default .navbar-nav>.active>a:hover,
+  #sidebar.navbar-default .navbar-nav>.active>a:focus {
+      color: rgba(255, 255, 255, 1);
+      background-color: $color-forest !important;
+  }
+  #sidebar.navbar-default .navbar-toggle {
+      border-color: #1e434c;
+  }
+  #sidebar.navbar-default .navbar-toggle:hover,
+  #sidebar.navbar-default .navbar-toggle:focus {
+      background-color: #1e434c;
+  }
+  #sidebar.navbar-default .navbar-toggle .icon-bar {
+      background-color: #1e434c;
+  }
+  #sidebar.navbar-default .navbar-toggle:hover .icon-bar,
+  #sidebar.navbar-default .navbar-toggle:focus .icon-bar {
+      background-color: #fcfcfc;
+  }
+
+  // .sidebar-nav .navbar-nav > .active > a::after , .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+  //   color: #555;
+  //   background-color: #1E434C;
+  // }
+}
+
+
+#navbar {
+  padding-top: 0;
+
+  .row {
+    margin-top: 10px;
+  }
+}

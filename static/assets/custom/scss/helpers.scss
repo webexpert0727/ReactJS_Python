@@ -1,0 +1,35 @@
+@mixin center-children($pos: absolute, $top: 0px, $left: 0px) {
+  position: $pos;
+  top: $top;
+  left: $left;
+  transform: translate(-$top, -$left);
+  text-decoration: underline;
+}
+
+.flex-start-center {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-end-between {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin moz-only ($attr, $val) {
+  @-moz-document url-prefix() {
+    #{$attr}: $val;
+  }
+}
+
+.no-margin {
+  margin: 0 !important;
+}

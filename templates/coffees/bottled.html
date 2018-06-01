@@ -1,0 +1,674 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load coffees_extras %}
+
+{% block title %}— {% trans 'Our Coffees' %}{% endblock %}
+
+{% block meta-description %}
+    "Sustainably grown and ethically produced, lovingly roasted and caringly packed, then sent to your doorstep within a week of roasting. Hook Drip Bag, V60 Dripper, French Press, Stovetop, Aeropress, Espresso, Cold Brew"
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}{% url 'coffees' %}" />
+
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+    <link href="{% static 'assets/custom/scss/pages/bottled.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+  <script>
+    Stripe.setPublishableKey("{{ stripe_key }}");
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{% include "coffees/subnav.html" %}
+
+<section id="bottled__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-sm text-center">
+      <br/><br/>
+      <h1>{% trans 'COLD BREW' %}</h1>
+      <br/><br/>
+      <h4>{% trans 'Freshly Brewed to order, get your favourite Hook Coffees now conveniently brewed, bottled and delivered to you chilled. The perfect way to beat the SG heat.' %}</h4>
+      <br/><br/>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-row row-lg">
+    <h4>{% trans 'Cold Brew Coffees are delivered chilled to you in a 6 pack carrier.' %}</h4>
+    <h4>{% trans '6 x (330ml) bottles pack' %}</h4>
+  </div>
+</section>
+
+<section class="section">
+<div class="section-row row-lg">
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="one">
+    <div class="isotope">
+      <div class="section-row row-lg row-grid">
+
+      {% for c in coffee_list %}
+        <div class="col-xs-12 col-sm-6 col-md-4 element-item
+          {% for pc in c.brew_method.all %}
+            {{ pc.name.split|join:'_' }}
+          {% endfor %}" data-category="">
+
+          <div class="coffee-box">
+            <div class="cb-info cb-header">
+              <h4>{{ c.name }}</h4>
+              <small>
+                <i class="fa fa-map-marker"></i>
+                {{ c.region }}, {{ c.get_country_display }}
+              </small>
+            </div>
+
+            <div class="cb-img"
+              style='background-image: url({{c.img.url}})'>
+            </div>
+
+            <div class="cb-info">
+              <p class="c-taste">
+                <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+              </p>
+              <p class="c-bdisplay"><em>Roast profile:</em> {{ c.get_body_display }}</p>
+              <p class="c-bdisplay"><em>Acidity: {{ c.acidity }}</em></p>
+
+              <table>
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Freshly brewed on' %}</td>
+                  <td><p>{{ c.roasted_on }}</p></td>
+                </tr>
+
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Upcoming brew' %}</td>
+                  <td><p>{{ c.shipping_till }}</p></td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="cb-info cb-footer">
+              <div class="c-price">
+                <p class="s-h2">From S${{ c.amount|floatformat:2 }}</p>
+                <p><small>(Free P&P)</small></p>
+              </div>
+
+              <button name="btn"
+                class="btn btnx btn-primary btn-hc btn-hc-sm"
+                data-toggle="modal"
+                data-target="#moreinfo-modal{{c.id}}"
+                style="display: block;">
+                {% trans 'More Info' %}
+              </button>
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="section bg-d info-bar">
+  <div class="section-row row-lg">
+    <h4 class="clr-me-p">{% trans 'Looking for coffees for the office?' %}</h4>
+    <a href="{% url 'wholesale' %}"
+      class="btn btn-primary btn-hc btn-hc-sm">
+      {% trans 'Find out more here' %}
+    </a>
+  </div>
+</section>
+
+<!-- Modal windows -->
+
+<!-- Modal for coffee details -->
+{% for c in coffee_list %}
+
+<!-- Modal -->
+<div id="moreinfo-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__regular fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{c.name}}</h3>
+          <p>{{c.maker}}</p>
+        </div>
+      </div>
+
+      <!-- Subcsriptions are available for Singapore only -->
+      <div class="modal-img-bg"
+      {% if c.img_moreinfo %}
+        style="background-image: url(&quot;{{ c.img_moreinfo.url }}&quot;)">
+      {% else %}
+        style="background-image: url(&quot;{{ c.img.url }}&quot;)">
+      {% endif %}
+
+      {% if not is_worldwide %}
+        <br/><br/>
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Subscribe and Save' %}</p>
+
+          <div>
+            <p class="s-h2">S${{ c.amount|floatformat:2 }}</p>
+            <p>Free delivery</p>
+            <p class="red"><small>Save 25%</small></p>
+          </div>
+
+          <!--
+          User who has been registered without credit card but with credits by a friend
+          goes out of credits and should provide credit card details
+          -->
+          {% if out_of_credits %}
+            <a data-toggle="modal" data-target="#enter_credit_card" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+          {% else %}
+            {% if user.is_authenticated %}
+              <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=False isBottled=True %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% else %}
+              <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=False isBottled=True %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% endif %}
+          {% endif %}
+        </div>
+        <br/><br/>
+
+      {% else %}
+        </br></br></br></br>
+      {% endif %}
+
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Order a One-off' %}</p>
+          <p>{% trans '6 x (330ml) bottles pack' %}</p>
+          <div class="purchase-box__price">
+            <div>
+              <p class="s-h2">S${{ c.amount_one_off|floatformat:2}}</p>
+            </div>
+            <div id="pbox-oneoff-quantity__{{c.id}}" class="plus-minus" data-id="{{ c.id }}">will be replaced with React</div>
+          </div>
+            <p><small>+ Delivery fee (S$10)</small></p>
+          <div class="btn-add-bottled-placement" data-id="{{ c.id }}"></div>
+        </div>
+
+        {% if is_worldwide %}
+          </br></br></br></br>
+        {% endif %}
+
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <table class="modal-short-info">
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Country' %}</td>
+              <td class="modal-val">{{c.get_country_display}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Producer' %}</td>
+              <td class="modal-val">{{c.maker}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Altitude' %}</td>
+              <td class="modal-val">{{c.altitude}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Varietal' %}</td>
+              <td class="modal-val">{{c.varietal}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Processes' %}</td>
+              <td class="modal-val">{{c.process}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="modal-body-section__sm">
+          <h4>{% trans 'How this coffee will taste like?' %}</h4>
+          <p>{{c.more_taste}}</p>
+        </div>
+
+        {% farm c as farm_photos %}
+        {% if farm_photos %}
+          <div class="modal-body-section__sm">
+            <h4>{% trans 'More information about the farm' %}</h4>
+          </div>
+        </div>
+
+        <div id="cof__carousel{{c.id}}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for x in farm_photos %}
+              <li
+                data-target="#cof__carousel{{c.id}}"
+                data-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.counter0 == 0 %}
+                  class="active"
+                {% endif %}
+              ></li>
+            {% endfor %}
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            {% for x in farm_photos %}
+              <div
+                class="
+                  item
+                  {% if forloop.counter0 == 0 %}
+                  active
+                  {% endif %}
+                ">
+                <img src="{{ x }}" alt="">
+              </div>
+            {% endfor %}
+          </div>
+
+          <a class="left carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Previous' %}</span>
+          </a>
+
+          <a class="right carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Next' %}</span>
+          </a>
+        </div>
+      {% else %}
+        </div>
+      {% endif %}
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <h4>{% blocktrans %}More info about the coffee's origins{% endblocktrans %}</h4>
+          <p>{{c.description|linebreaks}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+<!-- Enter credit card Modal -->
+<div id="enter_credit_card" class="modal modal-hc modal-form fade" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="s-h2"><b>{% trans 'Credit Card Details' %}</b></p>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body">
+          <div class="modal-body-section__sm">
+            <div class="alert alert-info">
+              {% trans 'Almost there! Please enter your credit card details' %}
+            </div>
+
+            <form id="payment-form" method="POST" action="{% url 'set_stripe_credits' %}">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <label>{% trans 'Card Number' %}</label>
+                <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+              </div>
+
+              <div class="other-card-info">
+                <div class="form-group">
+                  <label for="card__cvc">{% trans 'CVC' %}</label>
+                  <input id="card__cvc"
+                    type="text"
+                    size="4"
+                    data-stripe="cvc"
+                    class="form-control"
+                    value=""/>
+                </div>
+
+                <div class="form-group">
+                  <label for="card__exp">{% trans 'Expiration (MM/YYYY)' %}</label>
+                  <div class="form-inline">
+                    <input id="card__exp"
+                      class="form-control form-expmo"
+                      type="text"
+                      size="2"
+                      data-stripe="exp-month"
+                      value=""
+                      placeholder="{% trans 'MM' %}" />
+                    <b> / </b>
+                    <input class="form-control form-expyr"
+                      type="text"
+                      size="4"
+                      data-stripe="exp-year"
+                      value=""
+                      placeholder="{% trans "YYYY" %}" />
+                  </div>
+                </div>
+              </div>
+
+              <p class="payment-errors"></p>
+
+              <div class="form-group">
+                <input id="post_credits" type="hidden" name="post_credits" value="42"/>
+                <div id="stripe-notify" class="alert alert-info">{% trans 'We use Stripe to process your payment super securely. We never store your card details on our system and instead leave that up to Stripe (who are very, very good at it).' %}</div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-hc">
+                    <span><i class ="loading-icon"></i></span>
+                    &nbsp {% trans 'Submit' %} &nbsp
+                  </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Enter credit card Modal -->
+
+
+{% comment %}
+<!-- Taster Pack Modal -->
+  <div id="modal-taster" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+          <div class="modal-body text-center">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <h1>Still undecided? Try Hook’s taster pack!</h1>
+
+            <div class="row text-center">
+              <div class="col-md-6">
+                <img src="{% static 'images/taster3x80g.jpg' %}" />
+                <h2>whole / ground taster pack</h2>
+                <a href="{% url 'taster3x80g' %}">Grab this now for $18</a>
+              </div>
+
+              <div class="col-md-6">
+                <img src="{% static 'images/taster5x.jpg' %}" />
+                <h2>drip bags taster pack</h2>
+                <a href="{% url 'taster5x' %}">Grab this now for $7</a>
+              </div>
+            </div>
+
+          </div>
+      </div>
+
+    </div>
+  </div>
+{% endcomment %}
+
+<!-- Gift Modal -->
+<div id="modal-gift" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+      <div class="modal-body text-center">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <section class="c-choose-gift-section c-choose-gift-section_modal">
+          <h1 class="c-choose-gift__header">{% trans 'Wait! Get A Free Gift On Your First Order!' %}</h1>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/v60starter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans 'V60 STARTER KIT' %}</div>
+            <ul class="c-choose-gift__list">
+              <li class="c-choose-gift__l-item">{% trans 'Hario v60' %}</li>
+              <li class="c-choose-gift__l-item">{% trans 'Coffee scoop' %}</li>
+              <li class="c-choose-gift__l-item">{% trans 'Filters to get you started' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              {# <a class="btn btn--choose-gift" href="?v=V60STARTER">Choose</a> #}
+              <input type="hidden" name="chosen_voucher" value="V60STARTER">
+              <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/80gstarter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans '80G BAG' %}</div>
+            <ul class="c-choose-gift__list">
+              <li class="c-choose-gift__l-item">{% trans '1 x 80g of freshly roasted coffee' %}</li>
+              <li class="c-choose-gift__l-item">{% trans 'Choose whole/ground' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="80GSTARTER">
+              <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/dripstarter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans '3 x DRIP COFFEE BAGS' %}</div>
+            <ul class="c-choose-gift__list c-choose-gift__list_modal">
+              <li class="c-choose-gift__l-item">{% trans '3 x drip coffee bags samplers' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="DRIPSTARTER">
+              <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/shotpodsstarter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans 'SHOTPODS BOX' %}</div>
+            <ul class="c-choose-gift__list c-choose-gift__list_modal">
+              <li class="c-choose-gift__l-item">{% trans '4 x assorted ShotPods' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="SHOTPODSSTARTER">
+              <button id="submit-email" class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- /Gift Modal -->
+
+<!-- Add to cart modal -->
+<div id="modal-cart-add" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <div class="form-body">
+              <div class="form-container">
+                <form id="form-cart-add" class="form-horizontal" action="" method="POST">
+
+                  {% csrf_token %}
+
+                  <div class="form-group form-group-lg">
+                    <h3>Brew method</h3>
+
+                    <div class="icon-list">
+                        {% for brew in brew_methods %}
+                        <div id="brew_{{ brew }}" data-value="{{ brew.id }}" data-title="{{ brew.name }}" class="form-option opt-brew pref-option">
+                          <div class="img-thumbnail" style="background: url(&quot;{{ brew.img.url }}&quot;) no-repeat scroll center center / 110% 110%;"></div>
+                          <p>{{ brew.name }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <h3>How do you want your coffee packaged for this order?</h3>
+
+                    <div class="icon-list">
+                      {% for key, value in preferences_form.package.field.choices %}
+                      <div id="pack_{{ key }}" data-value="{{ key }}" class="form-option opt-pack pref-option">
+                        <div class="img-thumbnail" style="background: url(&quot;{% static 'images/package_methods/' %}{% if key == 'GR' %}ground{% elif key == 'WB' %}wholebeans{% elif key == 'DR' %}dripbag{% endif %}.png&quot;) no-repeat scroll center center / 110% 110%;"></div>
+                        <p>{{ value }}</p>
+                      </div>
+                      {% endfor%}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <h3>Select quantity</h3>
+                    <div id="div-quantity">
+                      <button type="button" class="btn btn-default btn-cart-down" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                      </button>
+
+                      <input id="item-quantity" value="1" text-align="right" readonly></input>
+
+                      <button type="button" class="btn btn-default btn-cart-up" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                      </button>
+                    </div>
+
+                    <p id="p_brew_goal" class="hide"><i>Your coffee will be ground for <b><span id="brew_goal"></span></b>!</i></p>
+                    <p id="p_drip_bags" class="hide"><i>Your order will come in a pack of <b>10 drip bags</b>!</i></p>
+                    <p id="p_wholebeans" class="hide"><i>Your coffee will come in <b>whole beans</b>!</i></p>
+                    <p id="p_forgot_methods" class="hide"><i>Please select your brew and packaging methods</i></p>
+                    <p id="p_forgot_brew" class="hide"><i>Please select your brew method</i></p>
+                    <p id="p_forgot_package" class="hide"><i>Please select your packaging method</i></p>
+                  </div>
+
+                  <input type="hidden" name="coffee-id" value="" />
+                  <input type="hidden" name="coffee-name" value="" />
+                  <input type="hidden" name="brew-method" value="" />
+                  <input type="hidden" name="package-method" value="" />
+                  <input type="hidden" name="price" value="{{ price }}" />
+                  <input type="hidden" name="quantity" value="1" />
+
+                  <div class="form-group">
+                    <button id="submit-cart-add" class="btn btn-primary">Add to basket</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-left: 1px;">Back</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    var brew_method = "{{ current_brew }}";
+    var package_method = "{{ current_package }}";
+
+  $(document).ready(function(){
+
+      var stripeResponseHandler = function(status, response) {
+      var $form = $('#payment-form');
+
+      if (response.error) {
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+        $form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+      } else {
+        // token contains id, last4, and card type fa fa-spinner
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and re-submit
+        $form.get(0).submit();
+      }
+
+    };
+
+  $('#payment-form').submit(function(e) {
+        var $form = $(this);
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+        $form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+        Stripe.card.createToken($form, stripeResponseHandler);
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+
+  $(".btn-cart-add").click(function() {
+    $("input[name='coffee-id']").attr("value", $(this).attr("id"));
+    $("input[name='price']").attr("value", $(this).attr("price"));
+    $("input[name='coffee-name']").attr("value", $(this).siblings("h1").text());
+  });
+
+});
+</script>
+<script src="{% static 'assets/vendor/isotope.pkgd.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/custom/js/coffees.js' %}" type="text/javascript"></script>
+<script>
+  if (window.location.hash) {
+      $(window.location.hash).modal('show');
+    }
+  window.onload = function() {
+    var $container = $('.isotope').isotope({
+      itemSelector: '.element-item',
+      layoutMode: 'masonry',
+      percentPosition: true,
+      filter: ':not(.no-equipments)',
+      fitRows: {
+        gutter: '.gutter-sizer'
+      }
+    });
+
+    $('.brew-method').on('click', function() {
+
+      $('.brew-method').removeClass('selected');
+      $(this).addClass('selected');
+
+      var filterValue = $( this ).attr('data-filter');
+      $container.isotope({ filter: filterValue });
+      console.log('filterValue: ' + filterValue);
+    });
+
+    // Modal dropdown -> change selected item on click
+    // $(".modal-hc .dropdown-menu li a").click(function(){
+    //   $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    //   $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+};
+</script>
+
+{% compress js %}
+  <script src="{% static 'assets/custom/js/modal-dropdown.js' %}"></script>
+{% endcompress %}
+
+{% endblock %}

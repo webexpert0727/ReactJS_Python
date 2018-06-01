@@ -1,0 +1,49 @@
+.nespresso-banner {
+  background: url(/static/images/HOOK_SHOTPODS.jpeg) no-repeat;
+  min-height: 510px;
+  width: 100%;
+  background-size: cover;
+  /*background-size: 100% 100%;*/
+  margin-top: 72px;
+  background-position: 100% 100%;
+}
+@media only screen and (max-width: 767px) {
+  .nespresso-banner {
+    margin-top: 60px;
+  }
+}
+@media screen and (max-width: 415px) {
+  .nespresso-banner {
+    background: url(/static/images/HOOK_SHOTPODS.jpeg) no-repeat;
+    min-height: 510px;
+    width: 100%;
+    background-size: cover;
+    /*background-size: 100% 100%;*/
+    margin-top: 60px;
+    background-position: 70% 100%;
+  }
+}
+.nespresso-banner img#logo-pod {
+  margin-top: -100px !important;
+  max-width: 150px;
+}
+@media screen and (max-width: 414px) {
+  .nespresso-banner img#logo-pod {
+    margin-top: 0 !important;
+    max-width: 150px;
+  }
+}
+
+.top-banner .nespresso-banner{
+  /*vertical-align: middle;*/
+  margin-top: 90px;
+}
+.nespresso-banner .banner-text h1 {
+  font-size: 55px;
+  color: RGB(70, 40, 50) !important;
+}
+.nespresso-banner .banner-text p {
+  font-size: 16px;
+  color: RGB(70, 40, 50) !important;
+}
+

@@ -1,0 +1,45 @@
+#subs-bill-form, #payment-form {
+  .other-card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .form-group { margin-top: 0; }
+    .form-inline {
+      display: flex;
+      align-items: center;
+      max-width: unset;
+
+
+      .form-expmo { flex: 1; }
+      .form-expyr { flex: 2; }
+
+      flex-direction: column;
+      & > * { margin: 0; }
+
+      .form-control { width: 100%; }
+    }
+
+    @media (min-width: $width-sm) {
+      flex-direction: row;
+
+      .form-inline {
+        flex-direction: row;
+        
+        & > * {
+          margin-left: $base-padding / 2;
+          &:first-child { margin-left: 0; }
+        }
+
+
+        max-width: 260px;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  img[alt='Stripe'] {
+    height: 20px;
+  }
+}

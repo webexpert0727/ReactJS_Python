@@ -1,0 +1,26 @@
+.info-bar {
+  @extend .section;
+  padding: $base-padding / 2;
+
+  &.bar-lg { padding: $base-padding; }
+
+  .section-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+      margin: 0;
+      margin-left: $base-padding;
+      &:first-child { margin-left: 0; }
+    }
+
+    @media (max-width: $screen-sm) {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      & > * { margin-left: 0; }
+      &:not(:first-child) { margin-top: $base-padding / 2; }
+    }
+  }
+}

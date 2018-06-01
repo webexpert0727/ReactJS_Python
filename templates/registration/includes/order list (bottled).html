@@ -1,0 +1,500 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+
+<div id="prefbottled"
+  class="tab-pane {% if active_tab == 'active_subscriptions_bottled' and not is_worldwide %} active {% endif %}"
+  role="tabpanel">
+
+  <div class="pref-title__subs">
+    <p class="s-h2-bold">{% trans 'Your subscriptions' %}</p>
+
+    <button class="btn btn-primary btn-hc btn-hc-xs js-add-new-sub-btn {% if not orders_bottled %}hide{% endif %}"
+      data-toggle="modal"
+      data-target="#addNewSubsBottled">
+      {% trans 'Add a new subscription' %}
+    </button>
+  </div>
+
+  {% for order in orders_bottled %}
+  <div class="js-curr-subscription js-sub-{{ order.id }}"
+    data-order-id="{{ order.id }}"
+    data-shipping-date="{{ order.shipping_date|date:'d/m/Y' }}"
+    data-next-shipping-date="{{ order.get_next_shipping_date|date:'d/m/Y' }}">
+    <div class="js-pref-content">
+      <div class="panel-group panel-coffee-sub js-coffee-panel" id="coffee-sub-id-{{ order.id }}">
+        <div class="panel">
+
+          <div class="panel-header">
+            <div>
+              <h3 class="js-coffee-name">{{ order.coffee.name }}</h3>
+              <table>
+                <tr class="trans-toggle">
+                  <td>
+                    <p class="s-h1">{% trans 'Brew Method' %}</p>
+                  </td>
+                  <td><p>{{ order.brew }}</p></td>
+                </tr>
+                <tr class="trans-toggle">
+                  <td>
+                    <p class="s-h1">{% trans 'Packaging' %}</p>
+                  </td>
+                  <td><p>{{ order.get_package_display }}</p></td>
+                </tr>
+
+                <tr>
+                  <td><p class="s-h1">{% trans 'Price' %}</p></td>
+                  <td>
+                    <p class="js-sub-price">
+                      {% if free %}
+                        {% trans 'FREE!' %}
+                      {% else %}
+                        S${{ order.amount }}
+                      {% endif %}
+                    </p>
+                  </td>
+                </tr>
+                <tr class="resumed-div
+                  {% if order.status != 'AC' %}
+                    hide
+                  {% endif %}">
+                  <td>
+                    <p class="s-h1">{% trans 'Will be shipped on' %}</p>
+                  </td>
+                  <td>
+                    <p class="js-sched-details-date">
+                      {{ order.shipping_date|date:"F, d (l)" }}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="s-h1">{% trans 'Will be shipped to' %}</p>
+                  </td>
+                  <td>
+                    <p class="js-curr-addr-name">
+                      {{ order.shipping_address.name }}
+                    </p>
+                  </td>
+                </tr>
+                {% if order.status == 'DE' %}
+                  <tr>
+                    <td colspan="2">
+                      <p class="warning--order-declined">{% trans 'Oops, Your order is on hold due to a card payment error. Please update your billing details!' %}</p>
+                    </td>
+                  </tr>
+                {% endif %}
+              </table>
+            </div>
+
+            <img class="coffeeimg trans-toggle js-coffee-img"
+              src='{{ order.coffee.img.url }}' />
+          </div>
+
+          <div class="panel-footer" role="tab" id="coffee-sub-id-{{ order.id }}">
+            <p class="s-h4">
+              <a role="button"
+                class="accordion accordion-main"
+                data-toggle="collapse"
+                data-parent="#coffee-sub-id-{{ order.id }}"
+                href="#collapse-coffee-sub-id-{{ order.id }}"
+                aria-expanded="true"
+                aria-controls="collapseOtherPrefs">
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+              </a>
+            </p>
+          </div>
+
+          <div id="collapse-coffee-sub-id-{{ order.id }}"
+            class="panel-collapse collapse"
+            role="tabpanel"
+            aria-labelledby="headingOtherPrefs">
+            <div class="panel-body">
+
+              <div class="panel-row">
+
+                  <p class="header text-center">
+                    {% with hours=order.hours_to_change %}
+                      {% if order.is_editable and hours <= 48 %}
+                        {% blocktrans %}
+                          You have <span class="s-h4-lc">{{ hours }} hrs</span> left to make changes to this order.
+                        {% endblocktrans %}
+                      {% elif not order.is_editable %}
+                        {% trans 'You are unable to change this order as it is currently being processed.' %}
+                      {% endif %}
+                    {% endwith %}
+                  </p>
+
+                <div class="pref-action">
+                  <a class="btn btn-primary btn-block btn-rounded
+                    {% if order.is_editable and order.coffee.name != 'Taster pack' and order.status != 'DE'%}js-open-prefs{% else %}not-active{% endif %}"
+                    role="button"
+                    {% if not order.is_editable or order.coffee.name == 'Taster pack' or order.status == 'DE' %}
+                      disabled
+                    {% endif %}
+                  >
+                      {% trans 'Bottled preferences' %}
+                  </a>
+                </div>
+                <div class="pref-action">
+                  <a class="btn btn-primary btn-block
+                    {% if order.is_editable and order.coffee.name != 'Taster pack' and order.status != 'DE' %}js-change-order-coffee-btn{% else %}not-active{% endif %}"
+                    data-toggle="modal"
+                    data-order-id="{{ order.id }}"
+                    data-target="#chooseNewCoffeeBottled"
+                    {% if not order.is_editable or order.coffee.name == 'Taster pack' or order.status == 'DE' %}
+                      disabled
+                    {% endif %}
+                  >
+                    {% trans 'Change your coffee' %}
+                  </a>
+                </div>
+              </div>
+
+              <!-- subs buttons -->
+              {% if order.status != "DE" %}
+              <div class="panel-row">
+                {% if not order.is_editable %}
+                  <p class="header text-center">
+                    {% trans 'You are unable to change this order as it is currently being processed.' %}
+                  </p>
+                {% endif %}
+
+                <div class="shipping-action">
+                  <div class="form-group">
+                    <form class="js-change-schedule" method="POST" action="{% url 'change_order_schedule' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="order" value="{{ order.id }}"/>
+                      <input type="hidden" name="event" value="change-shipping-date-tmr"/>
+                      <input type="hidden" name="newDate" value="{{ shipping_tmr|date:'d/m/Y' }}"/>
+                      <button type="submit"
+                        class="btn btn-primary btn-block btn-rounded js-sub-btn js-ship-tomorrow-btn"
+                        {% if not order.is_editable or order.is_paused or not shipping_tmr  %}
+                          disabled
+                        {% endif %}
+                      >
+                        {% trans 'Ship tomorrow' %}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div class="shipping-action">
+                  <div class="form-group">
+                    <form class="js-change-schedule" method="POST" action="{% url 'change_order_schedule' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="order" value="{{ order.id }}"/>
+                      <input type="hidden" name="event" value="skip-next-delivery"/>
+                      <input type="hidden" name="newDate" value="{{ order.get_after_next_shipping_date|date:'d/m/Y' }}"/>
+                      <button type="submit"
+                        class="btn btn-primary btn-block btn-rounded js-sub-btn js-skip-next-delivery-btn"
+                        {% if not order.is_editable or order.is_paused %}
+                          disabled
+                        {% endif %}
+                      >
+                        {% trans 'Skip this delivery' %}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div class="shipping-action">
+                  <div class="form-group">
+                    <form class="js-change-schedule" method="POST" action="{% url 'change_order_schedule' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="order" value="{{ order.id }}"/>
+                      <input type="hidden" name="event" value="change-shipping-date"/>
+                      <input type="hidden" name="newDate" value=""/>
+                      <button type="button"
+                        class="btn btn-primary btn-block btn-rounded js-sub-btn js-change-schedule-btn"
+                        data-toggle="modal"
+                        data-target="#change-sched-modal"
+                        {% if not order.is_editable or order.is_paused %}
+                          disabled
+                        {% endif %}>
+                        {% trans 'Change shipping date' %}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+              <!-- subs buttons end -->
+
+              <!-- subs shipping address -->
+              <div class="panel-row">
+                <div class="panel-group"
+                  id="subs-addr-{{ order.id }}"
+                  role="tablist"
+                  aria-multiselectable="true">
+                  <div class="header">
+                    {% trans 'Shipping Address' %}
+                    <a role="button"
+                      data-toggle="collapse"
+                      data-parent="#subs-addr-{{ order.id }}"
+                      href="#subs-addr-change-{{ order.id }}"
+                      aria-expanded="true"
+                      aria-controls="collapseOne">
+                      {% trans 'Change Address' %}
+                    </a>
+                  </div>
+
+                  {% with address=order.shipping_address %}
+                    <p class="selected-addr">
+                      <span class="addr-name">
+                        {{ address.name }}
+                      </span>
+                      <span class="addr">
+                        {{ address.line1 }} {{ address.line2 }},
+                        {{ address.country.name }} {{ address.postcode }}
+                      </span>
+                    </p>
+                  {% endwith %}
+                </div>
+
+                <div id="subs-addr-change-{{ order.id }}"
+                  class="panel-collapse collapse js-subs-addr-change"
+                  role="tabpanel"
+                  aria-labelledby="headingOne">
+                  <ul class="address-list js-address-list">
+
+                    {% with address=order.shipping_address %}
+                    {% for form in addresses_forms %}
+                      <li data-subid="subs-addr-change"
+                        data-order-id="{{ order.id }}"
+                        data-parent-id="subs-addr-{{ order.id }}"
+                        data-addr-id="{{ form.initial.id }}"
+                        {% if address.id == form.initial.id %}
+                          class="selected"
+                        {% endif %}
+                        >
+                        <div>
+                          <p><b class="js-addr-name">{{ form.name.value }}</b></p>
+                          <p><small class="js-addr-recipient_name">{{ form.recipient_name.value }}</small></p>
+                          <p class="js-addr-lines">
+                            {{ form.line1.value }} {{ form.line2.value }},
+                            <br />
+                            {% firstof form.initial.country.name form.instance.country.name %}
+                            {{ form.postcode.value }}
+                          </p>
+                        </div>
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                      </li>
+                    {% endfor %}
+                    {% endwith %}
+
+                  </ul>
+
+                  <div class="panel-row-footer">
+                    <a class="s-h1-bold js-subs-addr-change-cancel" role="button">
+                      {% trans 'Cancel' %}
+                    </a>
+                    <form class="js-change-order-address" method="POST" action="{% url 'change_order_address' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="order"/>
+                      <input type="hidden" name="address"/>
+                      <button type="submit" class="btn btn-primary"
+                        {% if not order.is_editable %}
+                          disabled
+                        {% endif %}>
+                        {% trans 'Save' %}
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- end subs shipping address -->
+
+              <div class="panel-row">
+                {% if order.status == 'PA' %}
+                  <p class="header">
+                    {% trans 'Your subscription is temporarily paused. You may resume it any time.' %}
+                  </p>
+                {% elif order.status == 'AC' %}
+                  <p class="header">
+                    {% trans 'Have a voucher? Apply it now.' %}
+                  </p>
+
+                  <form method="POST" action="{% url 'profile_voucher' %}" class="js-submit-voucher">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ order.id }}" />
+                    <div class="form-group">
+                      <input id="voucher-input" class="form-control" name="voucher" type="text" size="32"
+                        {% if order.voucher %}
+                          placeholder="{{ order.voucher.name }}" disabled
+                        {% endif %}
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-primary"
+                      {% if order.voucher %}
+                        disabled
+                      {% endif %}
+                    >
+                      {% trans 'Apply' %}
+                    </button>
+                    <span class="help-block hide"></span>
+                  </form>
+                {% elif order.status == 'DE' %}
+                  <div class="panel-row panel-row-spaced-between">
+                    <p class="header">{% trans 'Your order is pending.' %}</p>
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- subs other opts -->
+              <div class="panel-row">
+                <div class="panel-group"
+                  id="subs-other-opt-{{ order.id }}"
+                  role="tablist"
+                  aria-multiselectable="true">
+                  <p class="header">
+                    <a role="button"
+                      data-toggle="collapse"
+                      href="#subs-other-opt-coll-{{ order.id }}"
+                      aria-expanded="true"
+                      aria-controls="collapseOne">
+                      {% trans 'Other subscription preferences' %}
+                    </a>
+                  </p>
+                </div>
+
+                <div id="subs-other-opt-coll-{{ order.id }}"
+                  class="panel-collapse collapse"
+                  role="tabpanel">
+                  {% if not order.is_editable %}
+                    <p class="header">
+                      {% trans 'You are unable to change this order as it is currently being processed.' %}
+                    </p>
+                  {% endif %}
+                  <p>
+                    <a class="{% if order.is_editable %}js-sub-pause{% else %}not-active{% endif %}"
+                      data-action="{% if order.is_paused %}resume{% else %}pause{% endif %}"
+                      data-order-id="{{ order.id }}"
+                      href="#"
+                    >
+                      {% if order.is_paused %}
+                        {% trans 'Resume' %}
+                      {% else %}
+                        {% trans 'Pause subscription for 30 days' %}
+                      {% endif %}
+                    </a>
+                  </p>
+                  <p>
+                    <a class="{% if order.is_editable and not order.is_paused %}js-show-unsubscribe-modal{% else %}not-active{% endif %}"
+                      data-order-id="{{ order.id }}"
+                      data-toggle="modal"
+                      data-target="#cancel-sub-modal"
+                      href="#">
+                      {% trans 'Unsubscribe' %}
+                    </a>
+                  </p>
+                </div>
+              </div>
+              <!-- end subs other opts -->
+
+              <div class="panel-footer">
+                <p class="s-h4">
+                  <a role="button"
+                    class="accordion"
+                    data-toggle="collapse"
+                    data-parent="#coffee-sub-id-{{ order.id }}"
+                    href="#collapse-coffee-sub-id-{{ order.id }}"
+                    aria-expanded="true"
+                    aria-controls="collapseOtherPrefs">
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                  </a>
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.js-pref-content -->
+
+    <div class="js-pref-prefs hide">
+      <!-- Preferences form -->
+      <div class="panel panel-form">
+        <div class="panel-header">
+          <p class="s-h2-bold">
+            {% trans 'Preferences' %}
+
+            <a type="button"
+              data-toggle="popover"
+              data-content="{% blocktrans %}Changes made here are only applied to the currently selected subscription. Each subscription has it's own set of preferences.{% endblocktrans %}">
+              <span class="glyphicon glyphicon-info-sign" aria-hidden="true">
+              </span>
+            </a>
+
+          </p>
+          <a class="js-close-prefs" href="#">{% trans 'Cancel' %}</a>
+        </div>
+
+        <div class="panel-body">
+
+          <!-- Form body -->
+          <div class="form-body">
+            <div class="form-container">
+              <form class="form-horizontal js-update-preferences" method="POST" action="{% url 'update_order' %}">
+                {% csrf_token %}
+
+                <div class="form-group form-group-slider centered">
+                  <h4>Delivery frequency</h4>
+                  <div class="btn-group btn-group-lg btn-group-bottled" data-toggle="buttons">
+                    <label id="weekly" data-value="7"
+                      class="btn btn-default opt-interval">
+                      <input type="radio" /> Weekly
+                    </label>
+                    <label id="fortnight" data-value="14"
+                      class="btn btn-default selected active opt-interval">
+                      <input type="radio" /> Fortnightly
+                    </label>
+                    <label id="monthly" data-value="30"
+                      class="btn btn-default opt-interval">
+                      <input type="radio" /> Monthly
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group controls">
+                  <input type="hidden" name="order" value="{{ order.id }}" />
+                  {% for order_id, form in order_forms.items %}
+                    {% if order_id == order.id %}
+                      {{ form.brew.as_hidden }}
+                      {{ form.package.as_hidden }}
+                      {{ form.interval.as_hidden }}
+                    {% endif %}
+                  {% endfor %}
+                  <button type="submit" class="btn btn-primary js-close-prefs">{% trans 'Save' %}</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <!-- /Form body -->
+
+          {# <div id="preferences-change-feedback" role="alert"></div> #}
+        </div>
+      </div>
+      <!-- Preferences form -->
+    </div>
+    <!--/ .js-pref-prefs -->
+  </div>
+  {% endfor %}
+
+  <div class="js-no-subscription {% if orders_bottled %}hide{% endif %}">
+    <div class="text-center">
+      <h4 class="hc-text-noshadow" style="margin: 0; padding: 40px;">
+        {% blocktrans with name=customer.first_name trimmed %}
+          Hi {{ name }}, you currently do not have any cold brew subscription, would you like us to prepare one for you?
+        {% endblocktrans%}
+        {# <br><strong><span class="use-base-font">=)</span></strong> #}
+      </h4>
+      <a type="button" class="btn btn-primary btn-hc"
+        data-toggle="modal"
+        data-target="#addNewSubsBottled">
+        {% trans 'Create a subscription here' %}
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,218 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Register For A 5x Taster Pack' %}{% endblock %}
+
+{% block head %}
+
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/registration.scss' %}" />
+  {% endcompress %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'animate.css/animate.min.css' %}" />
+
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+    Stripe.setPublishableKey("{{ stripe_key }}");
+
+    var stripeResponseHandler = function(status, response) {
+      var $form = $('#payment-form');
+
+      if (response.error) {
+        console.log('Errors getting token');
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+        $form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+        $form.find('span.loading-text').addClass('hidden');
+      } else {
+        console.log('Got the token');
+        var token = response.id;
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        $.ajax({
+          url: "{% url 'set_stripe_trial' %}",
+          type: "POST",
+          data: $form.serialize(),
+          success: function(data) {
+            if (data.success !== true){
+              console.log('Ajax has error data');
+              $.notify({
+                message: data.message
+              }, {
+                type: 'danger'
+              });
+              $form.find('button').prop('disabled', false);
+              $form.find('#submit-subs').html('Subscribe');
+              console.log(data);
+            } else {
+              console.log('Redirect to ThankYouPage');
+              $form.get(0).submit();
+            }
+          },
+        });
+
+      }
+    };
+    jQuery(function($) {
+      $('#payment-form').submit(function(e) {
+        var $form = $(this);
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+        $form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+        $form.find('span.loading-text').removeClass('hidden');
+        console.log('Get stripe token');
+        Stripe.card.createToken($form, stripeResponseHandler);
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+    });
+  </script>
+
+  <!-- Google Code for Track sales Conversion Page -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 928721515;
+  var google_conversion_language = "en";
+  var google_conversion_format = "3";
+  var google_conversion_color = "ffffff";
+  var google_conversion_label = "wZuoCO_z0WQQ69TsugM";
+  var google_remarketing_only = false;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+  <noscript>
+  <div style="display:inline;">
+  <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/928721515/?label=wZuoCO_z0WQQ69TsugM&amp;guid=ON&amp;script=0"/>
+  </div>
+  </noscript>
+
+{% endblock %}
+
+{% block content %}
+
+<div id="reg-page" class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+
+        <div class="form-body">
+          <div id="subs-auth-label" class="form-label active">
+            <p><span class="num">1</span> {% trans 'Authentication' %}</p>
+          </div>
+          <div id="subs-auth-form" class="form-container">
+            <form method="POST" action="">
+              {% csrf_token %}
+
+              <div id="fg_one-email" class="form-group">
+                <label for="id_one-email">{% trans 'Email' %}</label>
+                {% render_field reg_form.email class+="form-control" placeholder=reg_form.email.label value='' %}
+                <span class="help-block"></span>
+              </div>
+
+              <div id="fg_one-password1" class="form-group">
+                <label for="id_one-password1">{% trans 'Password' %}</label>
+                {% render_field reg_form.password1 class+="form-control" placeholder=reg_form.password1.label value='' %}
+                <span class="help-block"></span>
+              </div>
+
+              <div id="fg_one-password2" class="form-group">
+                <label for="id_one-password2">{% trans 'Confirm Password' %}</label>
+                {% render_field reg_form.password2 class+="form-control" placeholder=reg_form.password2.label value='' %}
+                <span class="help-block"></span>
+              </div>
+
+              <button id="confirm-acct" class="btn btn-primary pull-right">{% trans 'Next' %}</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="form-body">
+          <div id="subs-ship-label" class="form-label">
+            <p><span class="num">2</span> {% trans 'Shipping Details' %}</p>
+          </div>
+          <div id="subs-ship-form" class="form-container hidden">
+            <form method="POST" action="">
+              {% csrf_token %}
+              {% for field in cus_form.visible_fields %}
+              <div id="fg_two-{{ field.name }}" class="form-group">
+                <label for="id_two-{{ field.name }}">{{ field.label }}</label>
+                {% render_field field class+="form-control" placeholder=field.label value='' %}
+                <!-- {{ field.errors }} -->
+                <span class="help-block"></span>
+              </div>
+              {% endfor %}
+
+              <button id="confirm-ship" class="btn btn-primary pull-right">{% trans 'Next' %}</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="form-body">
+          <div id="subs-bill-label" class="form-label">
+            <p ><span class="num">3</span> {% trans 'Billing Details' %}
+              <img style="display: inline-block; vertical-align:middle; float: none; height:26px; margin-top:-3px;"class="pull-right" src="{% static 'images/stripe.png' %}" alt="Stripe"></p>
+          </div>
+
+          <div id="subs-bill-form" class="form-container hidden">
+            <form id="payment-form" method="POST" action="">
+              {% csrf_token %}
+
+              <p class="payment-errors"></p>
+
+              <div class="form-group">
+                <label for="id_one-username">{% trans 'Card Number' %}</label>
+                <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+              </div>
+
+              <div class="form-group">
+                <div class="form-inline">
+                  <label for="id_one-username">{% trans 'CVC' %}</label>
+                  <input type="text" size="4" data-stripe="cvc" class="form-control" value=""/>
+                  <label for="id_one-username">{% trans 'Expiration (MM/YYYY)' %}</label>
+                  <input class="form-control" type="text" size="2" data-stripe="exp-month" value=""/><b> / </b>
+                  <input class="form-control" type="text" size="4" data-stripe="exp-year" value=""/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <button type="submit" id="submit-subs" class="btn btn-primary pull-right subs-btn"><span><i class ="loading-icon"></i></span> &nbsp {% trans 'Subscribe' %} &nbsp </button>
+                  <span class="loading-text hidden">{% trans "Verifying... Don't close your browser..." %}</span>
+              </div>
+            </form>
+
+            </div>
+
+          </div>
+
+
+    </div>
+
+    <div id="trial-box" class="col-xs-12 col-sm-4">
+      <div id="details-subs">
+
+        <div class="subscribe-coffee">
+          <h3>{% trans 'TASTER PACK' %}</h3>
+          <div>
+            <h1>$7</h1>
+            <div class="img-thumbnail" style="background: url(&quot;{% static 'images/taster5x.jpg' %}&quot;) no-repeat scroll center center / 100% 100%;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'remarkable-bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+{% compress js %}
+  <script src="{% static 'assets/custom/js/trial.js' %}"></script>
+  <script src="{% static 'assets/custom/js/notify-defaults.js' %}"></script>
+{% endcompress %}
+
+
+{% endblock %}

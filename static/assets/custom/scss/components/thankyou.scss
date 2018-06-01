@@ -1,0 +1,75 @@
+.thank-you-wrapper {
+  @extend .text-center;
+  background-color: white;
+  padding: 30px;
+  border-radius: $base-border-radius;
+  border: 5px solid $color-new-secondary;
+  margin-bottom: 40px;
+
+  h1, h2, h3, h4 { @extend .hc-text-noshadow; }
+  & > * {
+    margin-top: $base-padding;
+    &:first-child { margin-top: 0; }
+  }
+
+  @media (min-width: $screen-md) {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+
+  .coffee-img {
+    padding-left: 125px;
+    padding-right: 125px;
+
+    @media screen and (max-width: $screen-lg) {
+      padding-left: 75px;
+      padding-right: 75px;
+    }
+
+    @media screen and (max-width: $screen-md) {
+      padding-left: 45px;
+      padding-right: 45px;
+    }
+
+    @media screen and (max-width: $screen-sm) {
+      padding-left: 45px;
+      padding-right: 45px;
+    }
+
+    @media screen and (max-width: $screen-xs) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+
+    .img-thumbnail {
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: $color-light-gray;
+      width: 100%;
+      padding-bottom: 100%;
+      border-radius: 50%;
+      border: 0
+    }
+  }
+  
+}
+
+#thankyou__purchased-item {
+  .purchase-info-box {
+    min-width: 280px;
+  }
+}
+
+#thankyou__purchased-items {
+  .coffee-box .cb-info {
+    .qty { margin-top: $base-padding / 2; }
+  }
+}
+
+#thankyou__purchased-items, #thankyou__added-items {
+  .cb-footer {
+    justify-content: center;
+  }
+}

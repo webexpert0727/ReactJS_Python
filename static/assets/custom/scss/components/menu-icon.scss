@@ -1,0 +1,19 @@
+.menu-icon {
+  display: block;
+  color: #fff;
+  font-size: 30px;
+  margin-left: 15px;
+  font-weight: normal;
+  position: relative;
+  z-index: 1;
+  -webkit-transition: all 0 ease-in-out !important;
+  -moz-transition: all 0 ease-in-out !important;
+  -ms-transition: all 0 ease-in-out !important;
+  -o-transition: all 0 ease-in-out !important;
+  transition: all 0 ease-in-out !important;
+}
+.menu-icon:hover,
+.menu-icon:active,
+.menu-icon:focus {
+  color: #f1f1f1;
+}

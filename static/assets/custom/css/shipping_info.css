@@ -1,0 +1,34 @@
+.shipping h2,
+.shipping p {
+    color: RGB(115, 80, 70);
+    text-align: center;
+}
+h1 {
+    margin: 40px;
+}
+.shipping .container {
+    margin: auto;
+}
+.shipping h2 {
+    margin: 40px;
+    font-size: 32px;
+}
+.shipping p {
+    margin-bottom: 40px;
+    font-size: 16px;
+}
+.shipping .left-half {
+    border-right: 4px solid RGB(215, 165, 70);
+}
+.shipping .right-half {
+    /*border-left: 2px solid RGB(215, 165, 70);*/
+}
+footer {
+    margin-top: 40px;
+}
+
+@media (max-width: 737px) {
+    .shipping .left-half {
+        border-right: 0;
+    }
+}

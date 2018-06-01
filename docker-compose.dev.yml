@@ -1,0 +1,160 @@
+version: "3"
+services:
+  sentry-postgres:
+    restart: "no"
+
+  sentry-redis:
+    restart: "no"
+
+  sentry-cron:
+    restart: "no"
+
+  sentry-worker:
+    restart: "no"
+
+  sentry:
+    restart: "no"
+
+  influxdb:
+    image: influxdb:1.2.4
+    restart: "no"
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+      # - ./services/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
+    ports:
+      - 8083:8083  # for debugging
+      - 8086:8086  # for debugging
+
+  telegraf:
+    restart: "no"
+    environment: {}
+    hostname: dev
+    volumes:
+     - ./services/telegraf/telegraf.dev.conf:/etc/telegraf/telegraf.conf:ro
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+
+  grafana:
+    restart: "no"
+
+  celery-beat:
+    build:
+      context: .
+      dockerfile: ./services/app/Dockerfile
+    image: hookcoffee_app:latest
+    container_name: hook_celery_beat
+    command: celery -A giveback_project beat -l info
+    restart: "no"
+    env_file: .env
+    volumes:
+      - .:/var/www/src:cached
+      - ../app_data/logs:/var/www/logs
+      - ../app_data/assets:/var/www/assets:cached
+      - ./services/app/docker-entrypoint.sh:/docker-entrypoint.sh
+    depends_on:
+      - db
+      - redis
+    links:
+      - db
+      - redis
+    networks:
+      - backend
+
+  celery-worker:
+    build:
+      context: .
+      dockerfile: ./services/app/Dockerfile
+    image: hookcoffee_app:latest
+    container_name: hook_celery_worker
+    command: celery worker -A giveback_project -l info
+    restart: "no"
+    env_file: .env
+    volumes:
+      - .:/var/www/src:cached
+      - ../app_data/logs:/var/www/logs
+      - ../app_data/assets:/var/www/assets:cached
+      - ./services/app/docker-entrypoint.sh:/docker-entrypoint.sh
+    depends_on:
+      - db
+      - redis
+    links:
+      - db
+      - redis
+    networks:
+      - backend
+
+  nginx:
+    build: ./services/nginx
+    container_name: hook_nginx
+    restart: "no"
+    ports:
+      - 80:80
+      - 8090:8090
+    volumes:
+      - ../app_data/assets:/var/www/assets:ro,cached
+    links:
+      - app
+    depends_on:
+      - app
+    networks:
+      - frontend
+      - backend
+
+  redis:
+    image: redis:3.2
+    container_name: hook_redis
+    volumes:
+      - redis_data:/var/lib/redis
+    ports:
+      - 6379:6379  # for debugging
+    networks:
+      - backend
+
+  db:
+    build: ./services/db
+    container_name: hook_db
+    restart: "no"
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ../backups:/backups
+    expose:
+      - "5432"
+    ports:
+      - 5432:5432  # for debugging
+    networks:
+      - backend
+
+  app:
+    build:
+      context: .
+      dockerfile: ./services/app/Dockerfile
+      args:
+        - BUILD_ENV=dev
+        - REQUIREMENTS=local
+    image: hookcoffee_app:latest
+    container_name: hook_app
+    command: ${SYSTEM_UP_COMMAND}
+    restart: "no"
+    env_file: .env
+    volumes:
+      - .:/var/www/src:cached
+      # mount all code except a few folders:
+      - /var/www/src/components
+      - /var/www/src/static/dist
+      - /var/www/src/node_modules
+      - ../app_data/logs:/var/www/logs
+      - ../app_data/generated:/var/www/generated
+      - ../app_data/assets:/var/www/assets:cached
+      - ./services/app/docker-entrypoint.sh:/docker-entrypoint.sh
+    depends_on:
+      - db
+      - redis
+    links:
+      - db
+      - redis
+    ports:
+      - 3000:3000
+      - 8000:8000
+    networks:
+      - frontend
+      - backend

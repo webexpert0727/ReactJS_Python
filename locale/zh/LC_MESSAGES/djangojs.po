@@ -1,0 +1,382 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-09 21:19+0800\n"
+"PO-Revision-Date: 2016-10-09 16:36+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: static/admin/js/SelectFilter2.js:45
+#, javascript-format
+msgid "Available %s"
+msgstr "可购得的%s"
+
+#: static/admin/js/SelectFilter2.js:46
+#, javascript-format
+msgid ""
+"This is the list of available %s. You may choose some by selecting them in "
+"the box below and then clicking the \"Choose\" arrow between the two boxes."
+msgstr ""
+"这是可购得的%s清单。你可以通过选中下方的方框来进行选择，然后点击两个方框之间"
+"的“选择”箭头。"
+
+#: static/admin/js/SelectFilter2.js:53
+#, javascript-format
+msgid "Type into this box to filter down the list of available %s."
+msgstr "输入到方框内来过滤可购得的%s的清单。"
+
+#: static/admin/js/SelectFilter2.js:57
+msgid "Filter"
+msgstr "过滤"
+
+#: static/admin/js/SelectFilter2.js:61
+msgid "Choose all"
+msgstr "选择全部"
+
+#: static/admin/js/SelectFilter2.js:61
+#, javascript-format
+msgid "Click to choose all %s at once."
+msgstr "点击选择全部%s"
+
+#: static/admin/js/SelectFilter2.js:67
+msgid "Choose"
+msgstr "选择"
+
+#: static/admin/js/SelectFilter2.js:69
+msgid "Remove"
+msgstr "删除"
+
+#: static/admin/js/SelectFilter2.js:75
+#, javascript-format
+msgid "Chosen %s"
+msgstr "选中%s"
+
+#: static/admin/js/SelectFilter2.js:76
+#, javascript-format
+msgid ""
+"This is the list of chosen %s. You may remove some by selecting them in the "
+"box below and then clicking the \"Remove\" arrow between the two boxes."
+msgstr ""
+"这是选中的%s的清单。你可以通过选中下方的方框来进行删除，然后点击两个方框之间"
+"的“删除”箭头"
+
+#: static/admin/js/SelectFilter2.js:80
+msgid "Remove all"
+msgstr "删除全部"
+
+#: static/admin/js/SelectFilter2.js:80
+#, javascript-format
+msgid "Click to remove all chosen %s at once."
+msgstr "点击删除全部%s"
+
+#: static/admin/js/actions.js:22 static/admin/js/actions.min.js:1
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] "选择了%(cnt)s个中的%(sel)s个"
+
+#: static/admin/js/actions.js:114 static/admin/js/actions.min.js:4
+msgid ""
+"You have unsaved changes on individual editable fields. If you run an "
+"action, your unsaved changes will be lost."
+msgstr ""
+"你在单个可编辑字段有未保存的更改。如果你运行操作就会都是未保存的更改内容。"
+
+#: static/admin/js/actions.js:126 static/admin/js/actions.min.js:5
+msgid ""
+"You have selected an action, but you haven't saved your changes to "
+"individual fields yet. Please click OK to save. You'll need to re-run the "
+"action."
+msgstr ""
+"你已经选中了一个操作，但是你尚未将任何更改保存到单个字段。请点击“好的”进行保"
+"存。你需要再次进行本操作。"
+
+#: static/admin/js/actions.js:128 static/admin/js/actions.min.js:5
+msgid ""
+"You have selected an action, and you haven't made any changes on individual "
+"fields. You're probably looking for the Go button rather than the Save "
+"button."
+msgstr ""
+"你已经选中了一个操作，并且你尚未将任何更改保存到单个字段。你可能正在寻找的"
+"是“前往”按钮，而不是“保存”按钮。"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:79
+#, javascript-format
+msgid "Note: You are %s hour ahead of server time."
+msgid_plural "Note: You are %s hours ahead of server time."
+msgstr[0] "注意：你比服务器时间早%s个小时。"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:87
+#, javascript-format
+msgid "Note: You are %s hour behind server time."
+msgid_plural "Note: You are %s hours behind server time."
+msgstr[0] "注意：你比服务器时间晚%s个小时。"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:114
+#: static/admin/js/admin/DateTimeShortcuts.js:149
+msgid "Now"
+msgstr "现在"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:118
+msgid "Clock"
+msgstr "时钟"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:146
+msgid "Choose a time"
+msgstr "选择一个时间"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:150
+msgid "Midnight"
+msgstr "午夜"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:151
+msgid "6 a.m."
+msgstr "上午6点"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:152
+msgid "Noon"
+msgstr "中午"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:156
+#: static/admin/js/admin/DateTimeShortcuts.js:276
+msgid "Cancel"
+msgstr "取消"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:216
+#: static/admin/js/admin/DateTimeShortcuts.js:269
+msgid "Today"
+msgstr "今天"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:220
+msgid "Calendar"
+msgstr "日历"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:267
+msgid "Yesterday"
+msgstr "昨天"
+
+#: static/admin/js/admin/DateTimeShortcuts.js:271
+msgid "Tomorrow"
+msgstr "明天"
+
+#: static/admin/js/calendar.js:8
+msgid ""
+"January February March April May June July August September October November "
+"December"
+msgstr ""
+"一月  二月  三月  四月  五月  六月  七月  八月  九月  十月  十一月 十二月"
+
+#: static/admin/js/calendar.js:9
+msgid "S M T W T F S"
+msgstr "星期日  星期一  星期二  星期三   星期四   星期五   星期六"
+
+#: static/admin/js/collapse.js:8 static/admin/js/collapse.js:19
+#: static/admin/js/collapse.min.js:1
+msgid "Show"
+msgstr "显示"
+
+#: static/admin/js/collapse.js:16 static/admin/js/collapse.min.js:1
+msgid "Hide"
+msgstr "隐藏"
+
+#: static/assets/custom/js/coffees.js:56
+#: static/assets/custom/js/registration-nespresso.js:41
+#: static/assets/custom/js/registration-nespresso.js:178
+#: static/assets/custom/js/registration.js:41
+#: static/assets/custom/js/registration.js:219
+#: static/assets/custom/js/taster3x80g.js:29
+#: static/assets/custom/js/taster3x80g.js:203
+msgid "200g (makes at least 12 cups of coffee)"
+msgstr "200克（至少能制作12杯咖啡）"
+
+#: static/assets/custom/js/coffees.js:62
+#: static/assets/custom/js/registration-nespresso.js:43
+#: static/assets/custom/js/registration-nespresso.js:184
+#: static/assets/custom/js/registration.js:43
+#: static/assets/custom/js/registration.js:225
+#: static/assets/custom/js/taster3x80g.js:31
+#: static/assets/custom/js/taster3x80g.js:209
+msgid "10 x 10g coffee drip bags"
+msgstr "10 x 10克滤挂咖啡"
+
+#: static/assets/custom/js/get-started.js:205
+msgid "It is absolutely fine if you have no preference!"
+msgstr "如果你没有任何偏好，也完全没问题！"
+
+#: static/assets/custom/js/get-started.js:226
+#: static/assets/custom/js/get-started.js:249
+msgid "Just choose up to three! Click Next when you're ready."
+msgstr "最多只能选择三个！当你准备好时点击“下一步”。"
+
+#: static/assets/custom/js/get-started.js:274
+msgid "I like something light and crisp"
+msgstr "我喜欢淡淡的，酥脆的东西"
+
+#: static/assets/custom/js/get-started.js:276
+msgid "I like intensity, but not too much"
+msgstr "我喜欢咖啡有强度，但是强度不能太高"
+
+#: static/assets/custom/js/get-started.js:278
+msgid "I like something strong and bold"
+msgstr "我喜欢浓浓的，强劲的"
+
+#: static/assets/custom/js/profile.js:21 static/assets/custom/js/profile.js:73
+msgid "This voucher is not found."
+msgstr "找不到该优惠券。"
+
+#: static/assets/custom/js/profile.js:28 static/assets/custom/js/profile.js:80
+msgid "This voucher's already used."
+msgstr "本优惠券已被使用。"
+
+#: static/assets/custom/js/profile.js:35 static/assets/custom/js/profile.js:87
+msgid "This voucher not applicable for this order."
+msgstr "本优惠券不适用于本订单。"
+
+#: static/assets/custom/js/profile.js:42 static/assets/custom/js/profile.js:94
+msgid "For this order a voucher already applied."
+msgstr "已有优惠券用于本订单。"
+
+#: static/assets/custom/js/profile.js:49 static/assets/custom/js/profile.js:101
+msgid "Voucher applied successfully!"
+msgstr "成功使用了优惠券！"
+
+#: static/assets/custom/js/profile.js:115
+#: static/assets/custom/js/profile.js:195
+#: static/assets/custom/js/profile.js:275
+#: static/assets/custom/js/profile.js:343
+msgid "Saving"
+msgstr "保存中"
+
+#: static/assets/custom/js/profile.js:172
+#: static/assets/custom/js/profile.js:177
+#: static/assets/custom/js/profile.js:252
+#: static/assets/custom/js/profile.js:257
+#: static/assets/custom/js/profile.js:284
+#: static/assets/custom/js/profile.js:324
+#: static/assets/custom/js/profile.js:352
+#: static/assets/custom/js/profile.js:392
+msgid "Save"
+msgstr "保存"
+
+#: static/assets/custom/js/profile.js:180
+#: static/assets/custom/js/profile.js:260
+#: static/assets/custom/js/profile.js:327
+#: static/assets/custom/js/profile.js:395
+msgid ""
+"Sorry there was an error trying to update your preferences. Please try again "
+"later."
+msgstr "抱歉，在更新您的偏好时发生错误。请稍后再试。"
+
+#: static/assets/custom/js/profile.js:303
+#: static/assets/custom/js/profile.js:371
+#: static/assets/custom/js/registration-nespresso.js:130
+#: static/assets/custom/js/registration.js:130
+#: static/assets/custom/js/taster3x80g.js:118
+#: static/assets/custom/js/trial.js:81
+msgid "Please enter a valid postal code."
+msgstr "请输入有效的邮编。"
+
+#: static/assets/custom/js/registration-nespresso.js:84
+#: static/assets/custom/js/registration.js:84
+#: static/assets/custom/js/taster3x80g.js:72
+#: static/assets/custom/js/trial.js:34
+msgid "A user with this Email address already exists."
+msgstr "使用该电子邮件的用户已存在。"
+
+#: static/assets/custom/js/registration-nespresso.js:257
+#: static/assets/custom/js/registration.js:298
+msgid "Applying"
+msgstr "使用中"
+
+#: static/assets/custom/js/registration-nespresso.js:272
+#: static/assets/custom/js/registration.js:313
+msgid "Awesome! You get $5 off your first order!"
+msgstr "太棒啦！你在第一个订单上省下了$5！"
+
+#: static/assets/custom/js/registration-nespresso.js:274
+#: static/assets/custom/js/registration.js:315
+msgid "Hurray! This order will be on your amazing friend"
+msgstr "万岁！这个订单是你的一位好友买单"
+
+#: static/assets/custom/js/registration-nespresso.js:276
+#: static/assets/custom/js/registration.js:317
+msgid "You have been referred by a wonderful friend"
+msgstr "你的一位好友为你推荐了这个"
+
+#: static/assets/custom/js/registration-nespresso.js:276
+#: static/assets/custom/js/registration.js:317
+#, javascript-format
+msgid "Here is 50%% off your first order!"
+msgstr "这是你的第一个订单的半价折扣！"
+
+#: static/assets/custom/js/registration-nespresso.js:278
+#: static/assets/custom/js/registration.js:319
+msgid "Great choice! Your first order comes with a free V60 Starter Kit!"
+msgstr "很好的选择！我们会在给你寄第一个订单包裹时免费送你一个V60入门套件！"
+
+#: static/assets/custom/js/registration-nespresso.js:280
+#: static/assets/custom/js/registration.js:321
+msgid "Great choice! Your first order beings with a free 80G Bag!"
+msgstr "很好的选择！我们会在给你寄第一个订单包裹时免费送你一袋80克的咖啡！"
+
+#: static/assets/custom/js/registration-nespresso.js:282
+#: static/assets/custom/js/registration.js:323
+msgid "Great choice! Your first order beings with 3 free Drip Coffee Bags!"
+msgstr "很好的选择！我们会在给你寄第一个订单包裹时免费送你三包滤挂咖啡！"
+
+#: static/assets/custom/js/registration-nespresso.js:284
+#: static/assets/custom/js/registration.js:325
+msgid "Great choice! Your first order beings with a Shotpods Taster Box!"
+msgstr "很好的选择！我们会在给你寄第一个订单包裹时免费送你一盒咖啡胶囊样品装！"
+
+#: static/assets/custom/js/registration-nespresso.js:286
+#: static/assets/custom/js/registration.js:327
+msgid "Awesome! Your first order costs"
+msgstr "太棒啦！你的第一个订单花费了"
+
+#: static/assets/custom/js/registration-nespresso.js:292
+#: static/assets/custom/js/registration.js:333
+msgid "Subscribe"
+msgstr "订阅"
+
+#: static/assets/custom/js/registration-nespresso.js:301
+#: static/assets/custom/js/registration.js:342
+msgid "Applied"
+msgstr "已使用"
+
+#: static/assets/custom/js/registration-nespresso.js:310
+#: static/assets/custom/js/registration.js:351
+msgid "Your voucher code could not be found."
+msgstr "无法找到你的优惠码。"
+
+#: static/assets/custom/js/registration-nespresso.js:313
+#: static/assets/custom/js/registration.js:354
+msgid "Apply"
+msgstr "使用"
+
+#: static/assets/custom/js/registration-nespresso.js:326
+#: static/assets/custom/js/registration.js:367
+msgid ""
+"Sorry there was an error trying to update your subscription. Please try "
+"again later."
+msgstr "抱歉，在更新你的订阅时发生了错误，请稍后再试。"
+
+#: static/assets/custom/js/registration-nespresso.js:337
+#: static/assets/custom/js/registration.js:378
+msgid "Don’t worry! Here is $5 off your first order!"
+msgstr "别担心！这是你的第一个订单的$$5优惠！"
+
+#: static/jquery-ui/jquery-ui.min.js:8
+msgid "'"
+msgstr ""

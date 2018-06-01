@@ -1,0 +1,11 @@
+.gear-box {
+  @extend .coffee-box;
+
+  border: unset;
+  border-top: 15px solid $color-new-secondary;
+  border-bottom: 15px solid $color-new-secondary;
+
+  .carousel-inner .item img {
+    max-height: 225px !important;
+  }
+}

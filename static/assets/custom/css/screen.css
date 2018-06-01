@@ -1,0 +1,236 @@
+/* this is my custom CSS */
+
+@media (min-width: 991px) and (max-width: 1200px) {
+footer ul {
+	width: 16%;
+}
+}
+@media (min-width: 768px) and (max-width: 990px) {
+.logo {
+	left: 210px;
+	right: auto;
+}
+footer .f-links li a {
+	margin-right: 18px;
+}
+.s-lniks li {
+	margin: 0 7px;
+}
+.logo {
+	display: none;
+}
+footer ul {
+	width: 16%;
+}
+footer ul li a {
+	font-size: 11px;
+}
+}
+
+@media (max-width: 737px) {
+.news {
+	margin-top: -20px;
+	padding: 5px;
+}
+}
+@media (max-height: 414px) {
+.news {
+	margin-top: -40px;
+	padding: 5px;
+}
+}
+
+@media (max-width: 767px) {
+
+.logo {
+	display: none;
+}
+.three-sec i {
+	display: none;
+}
+footer ul {
+	width: 40%;
+}
+.ls {
+	top: 90px;
+}
+.copyrights a {
+	margin-top: 15px;
+}
+.story-secs .col-sm-6, .story-secs .col-md-10 {
+	padding-left: 0;
+	padding-right: 0;
+}
+.story-secs span {
+	line-height: 51px;
+	width: 55px;
+	height: 55px;
+	font-size: 30px;
+}
+.owner .text-left {
+	text-align: center !important;
+}
+.owner img {
+	margin: 15px auto;
+}
+.gift-sec small {
+	display: none;
+}
+.contact-sec {
+	min-height: 500px;
+}
+.corporate button {
+	margin-bottom: 25px;
+}
+.two-boxes a {
+	margin-bottom: 25px;
+}
+.gift-sec2 small {
+	margin-top: -40px;
+}
+
+#buyGift h2,
+#buyGift #payment-form label {
+	font-family: 'Arvo', serif;
+	/*font-family: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+}
+
+}
+@media (max-width: 480px) {
+.right-menu {
+	clear: both;
+	margin-top: 50px;
+}
+.right-menu li a {
+	padding: 20px 10px;
+}
+.logo {
+	display: none;
+}
+.three-sec i {
+	display: none;
+}
+footer ul {
+	width: 40%;
+}
+.ls {
+	top: 90px;
+}
+.copyrights a {
+	margin-top: 15px;
+}
+.story-secs .col-sm-6, .story-secs .col-md-10 {
+	padding-left: 0;
+	padding-right: 0;
+}
+.story-secs span {
+	line-height: 51px;
+	width: 55px;
+	height: 55px;
+	font-size: 30px;
+}
+.owner .text-left {
+	text-align: center !important;
+}
+.owner img {
+	margin: 15px auto;
+}
+.gift-sec small {
+	display: none;
+}
+.contact-sec {
+	min-height: 570px;
+}
+.corporate button {
+	margin-bottom: 25px;
+}
+.two-boxes a {
+	margin-bottom: 25px;
+}
+.s-o {
+	margin-left: 0;
+	margin-right: 0;
+}
+.ui-slider-handle {
+	margin-top: -4px !important;
+	width: 30px !important;
+	height: 30px !important;
+}
+}
+@media (max-width: 360px) {
+@media (max-height: 415px) {
+.banner-text {
+    position: relative;
+    display: block;
+    margin-top: 0px;
+}
+}
+.right-menu {
+	clear: both;
+	margin-top: 50px;
+}
+.right-menu li a {
+	padding: 20px 10px;
+}
+.logo {
+	display: none;
+}
+.three-sec i {
+	display: none;
+}
+footer ul {
+	width: 100%;
+}
+.ls {
+	top: 90px;
+}
+.copyrights a {
+	margin-top: 15px;
+}
+.clients img {
+	margin-top: 25px;
+	margin-right: 0;
+	margin-left: 15px;
+}
+.story-secs .col-sm-6, .story-secs .col-md-10 {
+	padding-left: 0;
+	padding-right: 0;
+}
+.story-secs span {
+	line-height: 51px;
+	width: 55px;
+	height: 55px;
+	font-size: 30px;
+}
+.owner .text-left {
+	text-align: center !important;
+}
+.owner img {
+	margin: 15px auto;
+}
+.gift-sec small {
+	display: none;
+}
+.plans button {
+	font-size: 14px;
+}
+.contact-sec {
+	min-height: 680px;
+}
+.corporate button {
+	font-size: 14px;
+	margin-bottom: 25px;
+}
+.two-boxes a {
+	margin-bottom: 25px;
+}
+.s-o {
+	margin-left: 0;
+	margin-right: 0;
+}
+.ui-slider-handle {
+	margin-top: -4px !important;
+	width: 30px !important;
+	height: 30px !important;
+}
+}

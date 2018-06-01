@@ -1,0 +1,56 @@
+.bullet {
+  text-align: left;
+  counter-reset: section;
+  padding: 0;
+
+  li {
+    padding-left: $base-padding * 2;
+    list-style-position: inside;
+    list-style-type: none;
+    position: relative;
+    margin: 0px 0px $base-padding 0px;
+
+    &::before {
+      counter-increment: section;
+      content: counter(section);
+      background: $color-new-secondary;
+      border-radius: 100%;
+      color: white;
+      width: 1.5em;
+      height: 1.5em;
+
+      text-align: center;
+      font-size: 18px;
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: -0.15em;
+    }
+
+    p.s-h2-bold, p.s-h3-s, span { margin-bottom: $base-padding / 2; }
+
+    @media (max-width: $screen-sm) {
+      padding: 0 $base-padding/2 0 $base-padding/2;
+
+      p.s-h2-bold, p.s-h3-s, span { margin-left: $base-padding * 2; }
+    }
+  }
+
+  &.ul-bullet {
+    & > li {
+      &::before {
+        content: "";
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .bullet {
+    & > li {
+      &:before {
+        left: $base-padding / 2;
+      }
+    }
+  }
+}

@@ -1,0 +1,430 @@
+#get-started-container {
+  width: 100%;
+  min-height: 100vh;
+
+  h1, h2, h3, h4 { @extend .hc-text-noshadow; }
+  font-size: 1.1em;
+  @media (max-width: $screen-xs) { font-size: 1em; }
+
+  .section {
+    padding: $base-padding*2.5 0 $base-padding*2;
+    min-height: 100vh;
+    background: transparent;
+    border-bottom: 1px solid $color-dark-20;
+  }
+
+  a.btn-back {
+    color: $color-new-text;
+    padding-top: 10px;
+    cursor: pointer;
+  }
+  .coffee-cup {
+    font-size: 50px;
+    margin-bottom: $base-padding !important;
+  }
+
+  .close-order-flow {
+    color: $color-dark;
+    z-index: 9999;
+    &:hover {
+      text-decoration: none;
+      color: lighten($color-dark, 10%);
+    }
+  }
+
+  .method-item:hover,
+  #drip-method:hover,
+  .flavour-item:hover {
+    color: #333;
+    text-decoration: underline;
+  }
+}
+
+.progress-bar__wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100px;
+
+  .progress {
+    background: white;
+    max-width: $width-sm;
+    margin-bottom: 0px;
+    border-radius: 0;
+
+    .progress-bar--get-started {
+      background-color: $color-new-secondary;
+      box-shadow: unset;
+    }
+  }
+}
+
+// Get started Buttons
+.btn-long{
+  width:100%;
+  margin-top:10px;
+}
+
+.btn-facebook, .btn-facebook:hover, .btn-facebook:active, .btn-facebook:focus{
+  background-color: #3b5999;
+  border-color: #3b5999;
+  color:white;
+  margin-bottom:10px;
+}
+
+
+.order-flow-body {
+  width: 100%;
+
+  .close-order-flow {
+    font-size: 24px
+  }
+
+  p, h1 {
+    @extend .text-center;
+  }
+}
+
+.input-wrapper {
+  padding-top: 6px;
+  input { height: 50px; }
+
+  label {
+    color: $color-peppercorn;
+  }
+
+  #name-input {
+    width: 100%;
+  }
+
+  #email-input {
+    width: 100%;
+  }
+}
+
+.order-flow-content {
+  // Hide the element
+  display: none;
+}
+
+.close-order-flow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.show {
+  display: block !important;
+}
+
+.c-get-started-footer {
+  width: 60%;
+  height: 60px;
+  margin: 0px auto;
+}
+.progress--get-started {
+  height: 16px;
+  margin-bottom: 40px;
+  background-color: #daa62a;
+  border-radius: 10px;
+}
+
+
+// Brew methods
+.method-list {
+  @include center-block;
+  @extend .text-center;
+}
+
+.method-item, #drip-method {
+  display: inline-block;
+  width: 130px;
+  height: 130px;
+  vertical-align: middle;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-top: $base-padding;
+  color: $color-dark;
+
+  .img-bg {
+    @include center-block;
+    cursor: pointer;
+
+    width: 90px;
+    height: 90px;
+    background-size: contain;
+    background-size: 115%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 5px solid transparent;
+    border-radius: 50%;
+  }
+
+  &.selected {
+    .img-bg { border: 5px solid $color-new-secondary; }
+  }
+
+  @media screen and (max-width: $screen-xs) {
+    .img-bg {
+      width: 70px;
+      height: 70px;
+    }
+
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  p { margin-top: $base-padding / 2; }
+}
+
+#drip-method {
+  @extend .method-item;
+  @include center-block;
+}
+
+// Sensory Taste Profile
+.flavour-list {
+  @include center-block;
+  @extend .text-center;
+}
+
+.flavour-item {
+  display: inline-block;
+  width: 130px;
+  height: 130px;
+  vertical-align: middle;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: $base-padding;
+
+  .img-bg {
+    @include center-block;
+    cursor: pointer;
+
+    width: 90px;
+    height: 90px;
+    background-size: 115%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 5px solid transparent;
+    border-radius: 50%;
+  }
+  p { margin-top: $base-padding / 2; }
+
+  &.selected {
+    .img-bg { border: 5px solid $color-new-secondary; }
+  }
+
+  @media screen and (max-width: $screen-xs) {
+    .img-bg {
+      width: 70px;
+      height: 70px;
+    }
+
+    height: 100px;
+    margin-bottom: 10px;
+  }
+}
+
+.method-item, #drip-method {
+  
+}
+
+.img-overlay {
+  background-color: transparent;
+  &:before {
+    width: 100%;
+    height: 100%;
+    background-color: rbga(0, 0, 0, 0.63);
+  }
+}
+
+.non-nespresso-desc {
+  display: none;
+}
+
+.no-equipments-desc {
+  display: none;
+}
+
+.nespresso-desc {
+  display: none;
+}
+
+.flavour-list-wrapper {
+  display: none;
+}
+
+#submit-flavours {
+  display: none;
+}
+
+#btn-back-to-brew-flav {
+  display: none;
+}
+
+// Intensity
+#intensity-slider {
+  width: auto;
+}
+
+.slider {
+  width: 100% !important;
+  .slider-handle {
+    background-image: linear-gradient(to bottom, $color-forest 0%, $color-forest 100%);
+    background-repeat: repeat-x;
+  }
+}
+
+// Recommendation
+#processing {
+  display: none;
+  img {
+    display: inline-block;
+    margin-top: $base-padding * 2;
+  }
+}
+
+#recommended-coffee {
+  img {
+    @include center-block;
+    height: 200px;
+    width: auto;
+  }
+
+  .description-head {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .coffee-title {
+    @extend .text-center;
+  }
+
+  @media screen and (max-width: $screen-xs) {
+    img {
+      height: 140px;
+      width: 140px;
+    }
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    img {
+      height: 180px;
+      width: 180px;
+    }
+  }
+}
+
+#result {
+  display: none;
+}
+
+// Other coffees
+.coffee-list {
+  width: 100%;
+  @extend .text-center;
+}
+
+.coffee-item {
+  display: inline-block;
+  vertical-align: top;
+
+  width: 220px;
+  height: 440px;
+  @extend .text-center;
+  padding: 12px;
+  margin: 10px 10px;
+  border-radius: 4px;
+  color: white;
+  background-color: $color-forest;
+
+  .coffee-img {
+    background: url('#') no-repeat scroll center center;
+    background-size: 100% 100%;
+    width: 100%;
+    padding-bottom: 100%;
+    -moz-padding-bottom: 50%;
+    border-radius: 50%;
+    margin-top: 10px;
+  }
+
+  .coffee-item-desc {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .coffee-name {
+    font-size: 26px;
+    margin-top: 7px;
+    margin-bottom: 0px;
+  }
+
+  .coffee-by {
+    margin-top: 4px;
+    margin-bottom: 0px;
+  }
+
+  .banner-special {
+  }
+
+  .location {
+    margin-top: 4px;
+    margin-bottom: 0px;
+  }
+
+  .description {
+    margin-top: 4px;
+    margin-bottom: 0px;
+  }
+
+  .buttons {
+    padding-top: 6px;
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    width: 180px;
+  }
+
+  @media screen and (max-width: $screen-xs) {
+    margin: 5px 5px;
+  }
+}
+
+// Errors
+.error-message {
+  color: $brand-danger !important;
+  font-size: 75% !important;
+  display: none;
+}
+
+
+
+/* GIFT ITEMS */
+
+.c-voucher-gift__item {
+  display: inline-block;
+  margin-top: 40px;
+  vertical-align: top;
+  text-align: center;
+}
+.c-voucher-gift__img {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 30px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+.c-voucher-gift__name {
+  font: bold 16px "Archer-Medium";
+}
+.c-voucher-gift__list {
+  margin: 15px 0;
+  padding: 0;
+  list-style: none;
+}
+.c-voucher-gift__l-item {
+  font: 14px/1.5 "Archer-Medium";
+}
+
+/* // GIFT ITEMS */

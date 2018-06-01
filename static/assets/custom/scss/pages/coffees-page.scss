@@ -1,0 +1,579 @@
+/* ------------------------------------------------------------------
+Coffee pages
+------------------------------------------------------------------- */
+#coffees__top-banner.top-banner.section {
+  background: url('/static/images/banners/our-coffees-1920x.jpg') no-repeat top center;
+  background-position: 50% 60%;
+  background-size: cover;
+}
+
+#workshop__top-banner.top-banner.section {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('/static/images/banners/workshop-banner.jpg');
+  background-position: 50% 45%;
+  background-size: cover;
+}
+
+.coffee-special-tag {
+  line-height: 20px;
+  padding: $base-padding * .5 0 0 0;
+  content: 'Special Edition';
+  font-family: $font-family-2;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+
+  position: absolute;
+  top: 5px;
+  left: -35px;
+  width: 60px;
+  height: 60px;
+  background-color: $color-new-primary;
+
+  border-radius: 50%;
+  border: 3px solid white;
+  -webkit-transform: rotate(-15deg);
+     -moz-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+
+// .coffees-page {
+// color: $color-peppercorn;
+// min-height: 750px;
+// padding-top: 0px !important;
+// 
+// .row.header {
+//   background-color: $color-cream;
+//   padding-top: 75px;
+//   padding-bottom: 50px;
+// 
+//   h1 {
+//     font-family: 'Amatic';
+//     font-weight: bold;
+//     padding-bottom: 10px;
+//     font-size: 4em;
+//   }
+// }
+// 
+// .coffees-container {
+//   margin-top: 30px;
+//   margin-bottom: 30px;
+// }
+// }
+// 
+// #filters {
+// .filter-wrapper {
+//   display: inline-block;
+//   width: 100px;
+//   margin-right: 10px;
+//   margin-left: 10px;
+//   margin-bottom: 30px;
+//   vertical-align: middle;
+//   height: 110px;
+// }
+// }
+// 
+// @media (max-width: $screen-xs) {
+// .filter-wrapper {
+//   width: 90px !important;
+//   height: 80px !important;
+// 
+//   .img-thumbnail {
+//     width: 75px !important;
+//     height: 75px !important;
+//   }
+// }
+// }
+// 
+// .element-item {
+// position: relative;
+// float: center;
+// width: 100%;
+// padding-top: 10px;
+// padding-bottom: 10px;
+// padding-right: 30px;
+// padding-left: 30px;
+// border-radius: 5px;
+// margin-bottom: 15px;
+// margin: 10px;
+// 
+// height: auto;
+// border: 0;
+// color: $color-peppercorn;
+// background-color: $color-cream;
+// 
+// @media screen and (max-width: $screen-xs) {
+//   padding-top: 0px;
+//   padding-bottom: 0px;
+//   padding-left: 30px !important;
+//   padding-right: 30px !important;
+// }
+// 
+// 
+// @media (min-width: $screen-xs) {
+//   width: 45%;
+// }
+// 
+// @media (min-width: $screen-sm) {
+//   width: 30%;
+//   padding-left: 20px !important;
+//   padding-right: 20px !important;
+// }
+// 
+// /* Element item in small screens */
+// @media (max-width: $screen-md) {
+//   padding-left: 20px;
+//   padding-right: 20px;
+// }
+// 
+// img.banner_special {
+//   position: absolute;
+//   top: 10px;
+//   left: 10px;
+//   width: 90%;
+// }
+// 
+// 
+// .img-thumbnail {
+//   background: url('#') no-repeat scroll center center;
+//   background-size: 100% 100%;
+//   width: 100%;
+//   padding-bottom: 100%;
+//   border-radius: 50%;
+//   margin-top: 10px;
+// }
+// 
+// h1 {
+//   font-family: 'Amatic';
+//   font-weight: bold;
+// }
+// 
+// h3 {
+//   font-family: 'Amatic';
+//   margin-top: -15px;
+//   font-weight: bold;
+// }
+// 
+// .location {
+// /*    display: block;
+//   height: 50px;*/
+// 
+//   p {
+//     font-family: 'Archer Bold';
+//     display: inline-block;
+//     line-height: 20px;
+//   }
+// 
+//   img {
+//     display: inline-block;
+//     width: 30px;
+//   }
+// }
+// 
+// p.description {
+//   font-style: italic;
+//   margin-top: 10px;
+// }
+// 
+// p.roast {
+//   font-size: 14px;
+//   line-height: 12px;
+// }
+// 
+// p.rdate {
+//   font-size: 12px;
+//   line-height: 5px;
+// }
+// 
+// .buttons {
+//   .btn {
+//     font-size: 13px !important;
+//     font-family: 'Archer-Bold';
+//     letter-spacing: 1px;
+//     line-height: 20px;
+//     margin-top: 10px;
+//     margin-bottom: 10px;
+//     border-radius: 10px;
+//     padding: 7px 5px;
+// 
+//   &.special {
+//     background-color: RGB(184, 220, 215);
+//     border-color: RGB(184, 220, 215);
+//   }
+//   }
+// 
+// 
+//   .single-charge {
+//     color: white;
+//     background-color: $color-warm;
+//   }
+// 
+//   .more {
+//     color: $color-forest;
+//     font-family: 'Archer-Semibold';
+//     letter-spacing: 0px;
+//   }
+// }
+// 
+// &.special {
+//   color: white;
+//   background-color: $color-forest;
+// 
+//   .single-charge {
+//     color: black;
+//     background-color: $color-robin-egg;
+//   }
+// 
+//   .more {
+//     color: $color-cream;
+//   }
+// 
+// }
+// }
+// 
+// .no-equipments {
+// width: 100% !important;
+// }
+// 
+// .selected .img-thumbnail {
+// border: 5px solid $color-honeysuckie !important;
+// opacity: 1;
+// }
+// 
+// .unselected .img-thumbnail {
+// opacity: 0.4 !important;
+// border: 5px solid transparent !important;
+// }
+// 
+// .isotope {
+// border: 0px solid #333;
+// margin: 0 auto;
+// max-width: 1200px;
+// }
+// 
+// .isotope:after {
+// content: '';
+// display: block;
+// clear: both;
+// }
+// 
+// /* fluid 1% gutter */
+// .gutter-sizer {
+// width: 4%;
+// }
+// 
+// 
+// /* ------------------------------------------------------------------
+// Module
+// ------------------------------------------------------------------- */
+// 
+// .module {
+// padding: 0 0 !important;
+// 
+// h1 {
+//   font-weight: bold;
+// }
+// }
+// 
+// 
+// /* ------------------------------------------------------------------
+// Coffee Details
+// ------------------------------------------------------------------- */
+// 
+// .coffee-details {
+// text-align: center;
+// border-radius: 10px;
+// background-color: $color-cream;
+// padding: 30px;
+// margin-bottom: 30px;
+// 
+// .img-thumbnail {
+//   background: url('#') no-repeat scroll center center;
+//   background-size: 100% 100%;
+//   width: 100%;
+//   padding-bottom: 100%;
+//   border-radius: 50%;
+//   border: 5px solid white;
+//   margin-top: 10px;
+// }
+// 
+// @media screen and (min-width: $screen-xs) {
+//   padding: 30px 60px 30px 60px;
+// }
+// }
+// 
+// 
+// /* ------------------------------------------------------------------
+// More info modal
+// ------------------------------------------------------------------- */
+// .modal-dialog {
+// width: 750px;
+// }
+// 
+// .modal-body {
+// padding: 0px;
+// 
+// .close {
+//   position: absolute;
+//   font-size: 35px;
+//   left: 15px;
+//   top: 5px;
+// 
+//   z-index: 1000;
+// }
+// 
+// dl {
+//   padding: 0;
+// 
+//   dd {
+//     padding-bottom: 5px;
+//   }
+// 
+//   &.dl-horizontal {
+//     word-wrap: break-word;
+// 
+//     dt {
+//       width: 75px;
+//     }
+// 
+//     dd {
+//       margin-left: 85px;
+//     }
+//   }
+// }
+// }
+// 
+// .panel-info-body {
+// height: auto;
+// }
+// 
+// .text-panel {
+// background-color: transparent;
+// 
+// .coffee-desc {
+//   max-height: 310px;
+//   width: 100%;
+// 
+//   overflow: auto;
+//   overflow-x: hidden;
+// }
+// }
+// 
+// .left-panel {
+// min-height: 540px;
+// padding: 15px 35px;
+// background-color: white;
+// 
+// border-radius: 0px;
+// 
+// h1 {
+//   margin: 0;
+// }
+// 
+// h3 {
+//   margin-top: 0;
+//   margin-bottom: 30px;
+// }
+// }
+// 
+// .right-panel {
+// min-height: 540px;
+// padding: 15px;
+// 
+// background-color: $color-forest;
+// border-left: 5px solid $color-warm;
+// 
+// 
+// .img-thumbnail {
+//   width: 100%;
+//   padding-bottom: 100%;
+//   border-radius: 50%;
+//   border: 0;
+// }
+// 
+// .text-panel {
+//   display: inline-block;
+//   color: $color-cream;
+//   padding: 0;
+// }
+// }
+// 
+// /* Portrait tablet or bigger */
+// @media screen and (min-width: $screen-sm) {
+// .left-panel {
+//   border-top-left-radius: 15px;
+//   border-bottom-left-radius: 15px;
+// }
+// 
+// dl.dl-horizontal dd {
+//   margin-left: 85px !important;
+// }
+// }
+// 
+// /* Landscape phone to portrait tablet */
+// @media screen and (max-width: $screen-sm) {
+// dl.dl-horizontal dd {
+//   margin-left: 0px !important;
+// }
+// }
+// 
+// /* Landscape phones and down */
+// @media screen and (max-width: 775px) and (min-width: 600px) {
+// .right-panel {
+// 
+//   .img-thumbnail {
+//     display: inline-block;
+//     vertical-align: middle;
+//   }
+// 
+//   .text-panel {
+//     display: inline-block;
+//     vertical-align: middle;
+//     margin-left: 30px;
+//     width: 40%;
+//   }
+// 
+// }
+// }
+// 
+// @media screen and (max-width: 775px) {
+// 
+// .modal-dialog {
+//   width: initial;
+// }
+// 
+// .left-panel {
+//   width: 100% !important;
+//   min-height: auto;
+// }
+// 
+// .right-panel {
+//   width: 100% !important;
+//   border: 0;
+//   min-height: auto;
+// }
+// }
+// 
+// @media screen and (max-width: $screen-xs) {
+// .right-panel .row .col-xs-6 {
+//   width: 100% !important;
+// }
+// }
+// 
+// /* ------------------------------------------------------------------
+// Trial pack modal
+// ------------------------------------------------------------------- */
+// #trialModal {
+// .modal-dialog {
+// 
+//   @media (min-width: $screen-sm) {
+//     width: 50%;
+//   }
+// 
+//   .modal-content {
+//     border-radius: 0px;
+//     border: 8px solid #FFF;
+// 
+//     .close {
+//       font-size: 40px;
+//       width: 40px;
+//       opacity: 0.3;
+//     }
+// 
+//     .modal-footer {
+//       padding: 15px 15px 20px;
+//       bottom: 0px;
+//       position: absolute;
+//       right: 0px;
+//       left: 0px;
+//       color: #FEF8ED;
+//       border: 0;
+// 
+//       span {
+//         font-family: 'Archer-Bold';
+//         font-size: 62px;
+// 
+//         text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+// 
+//         text-align: center;
+//         line-height: 54px;
+//         margin-bottom: 30px;
+//       }
+// 
+//       p {
+//         color: black;
+//       }
+// 
+//       #register-link {
+//         position: relative;
+//         right: 50%;
+//         transform: translateX(50%);
+// 
+//         font-size: 36px;
+//         line-height: 42px;
+//         width: 240px;
+//         padding: 10px 0px;
+//       }
+//     }
+//   }
+// }
+// }
+// 
+// /* ------------------------------------------------------------------
+// One-off coffee modal
+// ------------------------------------------------------------------- */
+// #modal-one-off {
+// .modal-dialog {
+// 
+//   @media (min-width: $screen-sm) {
+//     width: 50%;
+//   }
+// 
+//   .modal-content {
+//     border-radius: 1px;
+//     border: 8px solid #FFF;
+// 
+//     .close {
+//       font-size: 40px;
+//       width: 40px;
+//       opacity: 0.3;
+//     }
+//   }
+// 
+// }
+// }
+// 
+// #cart-summary div.list-group-item {
+//   text-align: center;
+//   padding: 0;
+//   margin-bottom: 10px;
+//   border: 0;
+// }
+// .list-group-item img {
+//   width: 150px;
+//   height: 150px;
+//   border-radius: 50%;
+//   margin: 0 !important;
+// }
+// 
+// #cart-summary {
+//   text-align: center;
+// }
+// 
+// #btn-confirm-register {
+//   margin: 30px;
+//   padding: 10px 30px;
+// }
+//   #btn-confirm-register:hover {
+//     color: #FFF;
+//   }
+// 
+// #btn-cart {
+//   color: #fff;
+//   background-color: #d9a52a;
+//   margin-top: 15px;
+// }

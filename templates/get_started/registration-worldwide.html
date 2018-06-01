@@ -1,0 +1,649 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load getstarted_extras %}
+
+{% block title %}- {% trans "Register For A Worldwide Account" %}{% endblock %}
+
+{% block head %}
+
+{% compress css %}
+  <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+{% endcompress %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'animate.css/animate.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'seiyria-bootstrap-slider/dist/css/bootstrap-slider.css' %}" />
+
+<!-- The required Stripe lib -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="{% static 'seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+
+<script type="text/javascript">
+  // This identifies your website in the createToken call below
+  // Stripe.setPublishableKey('pk_test_kfcuJ26NVnCUweuNmZSNoCwD');
+  Stripe.setPublishableKey("{{ stripe_key }}");
+
+  var stripeResponseHandler = function(status, response) {
+    var $form = $('#payment-form');
+
+    if (response.error) {
+      // Show errors on the form
+      $form.find('.payment-errors').text(response.error.message);
+      $form.find('button').prop('disabled', false);
+      $form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+      $form.find('span.loading-text').addClass('hidden');
+    } else {
+      // token contains id, last4, and card type fa fa-spinner
+      var token = response.id;
+      // Insert the token into the form so it gets submitted to the server
+      $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+      // and re-submit
+      // $form.get(0).submit();
+      $.ajax({
+        url: "{% url 'register_stripe' %}",
+        type: "POST",
+        data: $form.serialize(),
+        success: function(data) {
+          if (data.success !== true){
+            $.notify({
+              message: data.message
+            }, {
+              type: 'danger'
+            });
+            $form.find('button').prop('disabled', false);
+            $form.find('#submit-subs').html('Subscribe');
+            console.log(data);
+          } else {
+            // redirect to thanks page
+            $form.get(0).submit();
+            // window.location.replace("/get_started/thankyou.html");
+          }
+        },
+      });
+    }
+  };
+
+  jQuery(function($) {
+    $('#payment-form').submit(function(e) {
+      var $form = $(this);
+      // Disable the submit button to prevent repeated clicks
+      $form.find('button').prop('disabled', true);
+      $form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+      $form.find('span.loading-text').removeClass('hidden');
+      Stripe.card.createToken($form, stripeResponseHandler);
+      // Prevent the form from submitting with the default action
+      return false;
+    });
+  });
+</script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div id="reg-page" class="container">
+  <div class="row">
+
+    {% comment %}
+    Left column
+    {% endcomment %}
+    <div class="col-xs-12 col-md-8">
+      <ol class="bullet">
+
+        {% comment %}
+        Login form
+        {% endcomment %}
+        <section id="login-form" {% if not show_login_form %}hidden{% endif %}>
+          <p class="s-h2-bold">{% trans 'Checkout' %}</p>
+          <div id="reg-page__signin">
+
+            <div class="form-body">
+              <div class="form-container form-hc-spacier box">
+                <form method="POST" action="{% url 'login-existing-user' %}">
+                  {% csrf_token %}
+
+
+                  <div id="{{ form.username.id_for_label }}" class="form-group">
+                    <label for="{{ form.username.id_for_label }}">{% trans 'Email' %}</label>
+                    <!-- <input class="form-control" id="id_username" name="username" type="email" /> -->
+                    {% render_field auth_form.username class+="form-control" %}
+                  </div>
+
+                  <div id="{{ form.password.id_for_label }}" class="form-group">
+                    <label for="{{ form.password.id_for_label }}">{% trans 'Password' %}</label>
+                    <!-- <input class="form-control" id="id_password" name="password" type="password" /> -->
+                    {% render_field auth_form.password class+="form-control" %}
+                    <span class="help-block"></span>
+                  </div>
+
+                  <div class="form-group signin__footer">
+                    <div class="signin__create-acc">
+                      <h6>{% trans 'No account yet?' %}</h6>
+                      <h4>
+                        <a id="create-account-link" class="signin__create-acc-link">
+                          {% trans 'Create an Account' %}
+                        </a>
+                      </h4>
+                    </div>
+
+
+                    <button type='submit' class="btn btn-primary btn-hc btn-hc-sm">
+                      {% trans 'Sign In' %}
+                    </button>
+                  </div>
+                </form>
+
+                <br>
+              </div>
+            </div>
+
+          </div>
+        </section>
+        {% comment %}
+        End Login form
+        {% endcomment %}
+
+
+        <section id="subscription-form" {% if not show_subscription_form %}hidden{% endif %}>
+          {% comment %}
+          Authentication
+          {% endcomment %}
+          <li>
+            <p class="s-h2-bold">{% trans 'Authentication' %}</p>
+
+            <div class="form-body">
+              <div id="subs-auth-form" class="form-container box">
+
+                <div class="form-group">
+                  <label>{% trans 'I have a voucher code...' %}</label>
+
+                  <form id="submit-voucher-1" class="submit-voucher" method="POST" action="{% url 'voucher' %}">
+                    {% csrf_token %}
+                    <div class="form-hc-inline">
+                      <input id="voucher-input-1"
+                        class="form-control voucher-input"
+                        name="voucher-name"
+                        placeholder="Enter Voucher Code"
+                        value="{{ request.session.chosen_voucher }}" type="text">
+                      <input type="hidden" name="orders" value="{{ orders }}" />
+                      <button id="js-voucher-btn-1" class="btn btn-primary-white btn-hc-xs js-voucher-btn" type="submit">
+                        {% trans 'Apply' %}
+                      </button>
+                      <button id="js-voucher-def-btn-1"
+                        class="btn btn-secondary-inv btn-hc-xs js-voucher-def-btn" type="button">
+                        {% trans "I don't have a code" %}
+                      </button>
+                    </div>
+                  </form>
+
+                  <span id="js-voucher-msg-1" class="help-block js-voucher-msg"></span>
+                </div>
+
+                <form method="POST" action="">
+                  {% csrf_token %}
+
+                  <div id="fg_one-email" class="form-group">
+                    <label for="id_one-email">Email</label>
+                    {% render_field reg_form.email class+="form-control" placeholder=reg_form.email.label %}
+                    <span class="help-block"></span>
+                  </div>
+
+                  <div id="fg_one-password1" class="form-group">
+                    <label for="id_one-password1">Password</label>
+                    {% render_field reg_form.password1 class+="form-control" placeholder=reg_form.password1.label %}
+                    <span class="help-block"></span>
+                  </div>
+
+                  <div id="fg_one-password2" class="form-group">
+                    <label for="id_one-password2">Confirm Password</label>
+                    {% render_field reg_form.password2 class+="form-control" placeholder=reg_form.password2.label %}
+                    <span class="help-block"></span>
+                  </div>
+
+                  <button id="confirm-acct" class="btn btn-secondary btn-long btn-hc btn-hc-sm">
+                    {% trans 'Next' %}
+                  </button>
+                </form>
+
+              </div>
+            </div>
+          </li>
+          {% comment %}
+          Authentication
+          {% endcomment %}
+
+          {% comment %}
+          Shipping details
+          {% endcomment %}
+          <li>
+            <p class="s-h2-bold">{% trans 'Shipping Details' %}</p>
+
+            <div class="form-body">
+              <div id="subs-ship-form" class="form-container box hidden">
+                <form method="POST" action="">
+                  {% csrf_token %}
+
+                  {% for field in cus_form.visible_fields %}
+                    <div id="fg_two-{{ field.name }}" class="form-group">
+                      <label for="id_two-{{ field.name }}">
+                        {% if field.name == 'postcode'%}
+                          Zip/Postal Code
+                        {% else %}
+                          {{ field.label }}&nbsp;
+                          <small>{{ field.help_text }}</small>
+                        {% endif %}
+                      </label>
+
+                      {% render_field field class+="form-control" placeholder=field.label %}
+                      <span class="help-block"></span>
+                    </div>
+                  {% endfor %}
+
+                  <div class="form-footer">
+                    <button id="confirm-ship" data-credits="false" class="btn btn-secondary btn-long btn-hc btn-hc-sm">
+                      {% trans 'Next' %}
+                    </button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </li>
+          {% comment %}
+          Shipping details
+          {% endcomment %}
+
+          {% comment %}
+          Billing details
+          {% endcomment %}
+          <li>
+            <p class="s-h2-bold">
+              {% trans 'Billing Details' %}
+              <img height="30"
+                class="pull-right" src="{% static 'images/powered_by_stripe.png' %}"
+                alt="Stripe" />
+            </p>
+
+            <div id="bill-form" class="form-body">
+              <div class="form-body">
+                <div id="subs-bill-form" class="form-container box hidden">
+                  <form id="payment-form" method="POST" action="">
+                    {% csrf_token %}
+
+                    <div class="form-group has-error">
+                      <span class="help-block payment-errors"></span>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="id_one-username">{% trans 'Card Number' %}</label>
+                      <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+                    </div>
+
+                    <div class="other-card-info">
+                      <div class="form-group">
+                        <label for="card__cvc">{% trans 'CVC' %}</label>
+                        <input id="card__cvc"
+                          type="text"
+                          size="4"
+                          data-stripe="cvc"
+                          class="form-control"
+                          value=""/>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="card__exp">{% trans 'Expiration (MM/YYYY)' %}</label>
+                        <div class="form-inline">
+                          <input class="form-control form-expmo"
+                            type="text"
+                            size="2"
+                            data-stripe="exp-month"
+                            value=""
+                            placeholder="{% trans 'MM' %}" />
+                          <b> / </b>
+                          <input class="form-control form-expyr"
+                            type="text"
+                            size="4"
+                            data-stripe="exp-year"
+                            value=""
+                            placeholder="{% trans "YYYY" %}" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <span class="loading-text hidden">
+                        {% trans "Verifying... Don't close your browser..." %}
+                      </span>
+                    </div>
+
+                    <div class="form-footer">
+                      <input id="voucher" type="hidden" name="voucher" value=""/>
+                      <input type="hidden" name="confirm" value=""/>
+                      <button id="submit-subs" type="submit" data-credits="false"
+                        class="btn btn-secondary btn-long btn-hc btn-hc-sm subs-btn">
+                        {% trans 'Confirm and Pay now' %}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </li>
+          {% comment %}
+          Billing details
+          {% endcomment %}
+        </section>
+
+        <section id="address-form" hidden>
+          {% comment %}
+          User Addresses and Voucher Field
+          {% endcomment %}
+          <div id="reg-page__user-addresses">
+
+            {% comment %}
+            <div class="form-container">
+              <div class="form-group">
+                <label>{% trans 'I have a voucher code...' %}</label>
+
+                <form id="submit-voucher-2" class="submit-voucher" method="POST" action="{% url 'voucher' %}">
+                  {% csrf_token %}
+                  <div class="form-hc-inline">
+                    <input id="voucher-input-2"
+                      class="form-control voucher-input"
+                      name="voucher-name"
+                      placeholder="Enter Voucher Code"
+                      value="{{ request.session.chosen_voucher }}" type="text">
+                    <input type="hidden" name="orders" value="{{ orders }}" />
+                    <button id="js-voucher-btn-2" class="btn btn-primary-white btn-hc-xs js-voucher-btn" type="submit">
+                      {% trans 'Apply' %}
+                    </button>
+                    <button id="js-voucher-def-btn-2"
+                      class="btn btn-secondary-inv btn-hc-xs js-voucher-def-btn" type="button">
+                      {% trans "I don't have a code" %}
+                    </button>
+                  </div>
+                </form>
+
+                <span id="js-voucher-msg-2" class="help-block js-voucher-msg"></span>
+              </div>
+            </div>
+            {% endcomment %}
+
+            <div class="panel-group"
+              id="user-addresses"
+              role="tablist"
+              aria-multiselectable="true">
+              <div class="panel panel-default">
+                <div class="panel-header">
+                  <p class="s-h2-bold">{% trans 'Shipping Address' %}</p>
+
+                  <a id="user-addresses__add-btn" class="view-toggle s-h1" role="button"
+                    data-toggle="collapse"
+                    data-parent="#user-addresses"
+                    href="#user-addresses__add"
+                    aria-expanded="true"
+                    aria-controls="collapseOne">
+                    {% trans 'ADD A NEW ADDRESS' %}
+                  </a>
+                </div>
+
+                <div class="panel-row view-toggle">
+
+                  <ul class="address-list js-address-list"></ul>
+
+                  <div class="panel-row-footer">
+                    <a id="confirm-and-pay" class="btn btn-primary btn-hc btn-hc-sm">
+                      {% trans 'Confirm and Pay now' %}
+                    </a>
+                  </div>
+                </div>
+
+                <div id="user-addresses__add"
+                  class="panel-collapse collapse"
+                  role="tabpanel">
+                    {% with form=new_address_form %}
+                        <form class="js-update-address" method="POST" action="{% url 'create_address' %}">
+                          {% csrf_token %}
+                          <div class="panel-body">
+                            <p class="s-h1-bold">{% trans 'Add address' %}</p>
+
+                            <div class="form-group form-group--name">
+                              {{ form.name.label_tag }}
+                              {% render_field form.name class+="form-control" %}
+                              <span class="help-block"></span>
+                            </div>
+
+                            <div class="form-group form-group--recipient_name">
+                              <label for="{{ form.recipient_name.id_for_label }}">{% trans 'Full name' %}</label>
+                              {% render_field form.recipient_name class+="form-control" %}
+                              <span class="help-block"></span>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group form-group--line1">
+                                  {{ form.line1.label_tag }}
+                                  {% render_field form.line1 class+="form-control" %}
+                                  <span class="help-block"></span>
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group form-group--line2">
+                                  {{ form.line2.label_tag }}
+                                  {% render_field form.line2 class+="form-control" %}
+                                  <span class="help-block"></span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group form-group--postcode">
+                                  {{ form.postcode.label_tag }}
+                                  {% render_field form.postcode class+="form-control" %}
+                                  <span class="help-block"></span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="panel-row-footer flex-spaced-between">
+                              <a class="s-h1-bold" role="button" id="acct-addr-add-cancel">
+                                {% trans 'Cancel' %}
+                              </a>
+
+                              <button type="submit" class="btn btn-primary">
+                                {% trans 'Add Address' %}
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      {% endwith %}
+
+                    </div>
+                    <!-- add address -->
+
+              </div>
+            </div>
+
+          </div>
+          {% comment %}
+          User Addresses and Voucher Field
+          {% endcomment %}
+        </section>
+
+      </ol>
+    </div>
+    {% comment %}
+    Left column
+    {% endcomment %}
+
+    {% comment %}
+    Right column
+    {% endcomment %}
+    <div class="col-xs-12 col-md-4">
+      <ul class="bullet ul-bullet">
+        <li>
+          <p class="s-h2-bold">{% trans 'Summary' %}</p>
+
+          <div id="details-subs">
+            <div class="cb-info cb-header"></div>
+
+            <div class="cb-info cb-body">
+              <div class="inf-lg">
+                {% for order in orders %}
+                  <p>&#9679; {{ order.0 }} ({{ order.1 }})</p>
+                  <p> {% if order.2 %} {{ order.2|convert_date }} {% endif %} </p>
+                {% endfor %}
+              </div>
+
+              <div class="inf-md">
+                <p class="s-h2">
+                  S$<span id="price-current">{{ coffee_cost }}</span>
+                </p>
+                <p class="s-h2">
+                {% if shipping_cost != 0 %}
+                  <small>+ S$<span id="shipping-cost">{{ shipping_cost }}</span>&nbsp;(shipping)</small>
+                {% else %}
+                  FREE SHIPPING!
+                {% endif %}
+                </p>
+              </div>
+
+              <div class="inf-lg">
+                <p class="s-h2">
+                  {% trans 'Total' %}
+                </p>
+                <p class="s-h5">
+                  S$<span id="overall-cost">{% addition coffee_cost shipping_cost %}</span>
+                </p>
+              </div>
+
+              {% comment %}
+              Voucher Field
+              {% endcomment %}
+              <div id="details-subs__voucher" class="form-container">
+                <div class="form-group">
+                  <label>{% trans 'I have a voucher code...' %}</label>
+
+                  <form id="submit-voucher-3" class="submit-voucher" method="POST" action="{% url 'voucher' %}">
+                    {% csrf_token %}
+                    <div class="form-hc-inline">
+                      <input id="voucher-input-3"
+                        class="form-control voucher-input"
+                        name="voucher-name"
+                        placeholder="Enter Voucher Code"
+                        value="{{ request.session.chosen_voucher }}" type="text">
+                      <input type="hidden" name="orders" value="{{ orders }}" />
+                      <button id="js-voucher-btn-3" class="btn btn-primary-white btn-hc-xs js-voucher-btn" type="submit">
+                        {% trans 'Apply' %}
+                      </button>
+                      <button id="js-voucher-def-btn-3"
+                        class="btn btn-secondary-inv btn-hc-xs js-voucher-def-btn" type="button">
+                        {% trans "I don't have a code" %}
+                      </button>
+                    </div>
+                  </form>
+
+                  <span id="js-voucher-msg-3" class="help-block js-voucher-msg"></span>
+                </div>
+              </div>
+              {% comment %}
+              Voucher Field
+              {% endcomment %}
+            </div>
+
+            <div class="cb-info cb-footer"></div>
+          </div>
+        </li>
+      </ul>
+
+      {% comment %} you may also like
+      <p class="s-h2-bold">{% trans 'You may also like' %}</p>
+
+      <div class="gear-box">
+        <div class="cb-info cb-header">
+          <h4>Marina Coffee Dripper</h4>
+        </div>
+
+        <div id="reg__carousel-id1"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#reg__carousel-id1" data-slide-to="0" class="active"></li>
+            <li data-target="#reg__carousel-id1" data-slide-to="1"></li>
+            <li data-target="#reg__carousel-id1" data-slide-to="2"></li>
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img src="{% static 'images/hclogo_horizontal.png' %}" alt="">
+            </div>
+
+            <div class="item">
+              <img src="{% static 'images/hclogo_horizontal.png' %}" alt="">
+            </div>
+
+            <div class="item">
+              <img src="{% static 'images/hclogo_horizontal.png' %}" alt="">
+            </div>
+          </div>
+
+          <a class="left carousel-control"
+            href="#reg__carousel-id1" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="right carousel-control"
+            href="#reg__carousel-id1" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <div class="cb-info cb-footer">
+          <div class="c-price">
+            <p class="s-h4">S$14.00</p>
+            <p><small>(Free P&P)</small></p>
+          </div>
+          <button name="btn" class="btn btnx btn-primary btn-hc btn-hc-sm">
+            {% trans 'Add to checkout' %}
+          </button>
+        </div>
+      </div>
+       end you may also like {% endcomment %}
+    </div>
+    {% comment %}
+    Right column
+    {% endcomment %}
+  </div>
+</div>
+
+<script>
+  var is_worldwide = "{{ is_worldwide }}";
+  var IS_DISCOVERY_PACK = {{ coffee.is_discovery_pack|yesno:'true,false' }};
+  var show_active_subs = "{{ show_active_subs }}";
+  var isAuthenticated = "{{ user.is_authenticated|yesno:'True,False' }}";
+  if (show_active_subs === "True") {
+    var active_subscriptions = "{{active_subscriptions}}";
+    active_subscriptions = $("<div/>").html(active_subscriptions).text();
+  }
+  var show_sub_details = "{{ show_sub_details }}";
+  var base_address = {{ base_address|safe }};
+  var addresses = {{ addresses|safe }};
+</script>
+<script src="{% static 'remarkable-bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+{% compress js %}
+  <script src="{% static 'assets/custom/js/registration.js' %}"></script>
+  <script src="{% static 'assets/custom/js/registration-worldwide.js' %}"></script>
+  <script src="{% static 'assets/custom/js/notify-defaults.js' %}"></script>
+{% endcompress %}
+
+{% endblock %}

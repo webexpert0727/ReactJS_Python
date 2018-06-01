@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load coffees_extras %}
+
+{% block title %}- {% trans "Order Summary" %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+  <link href="{% static 'assets/custom/css/cart-checkout.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+  <section id="cart-summary" class="section text-left">
+    <div class="section-row row-lg text-left">
+      <h4>{% trans 'Your order summary' %}</h4>
+    </div>
+
+    <div class="section-row row-lg text-left">
+      <div class="container-fluid">
+        {% for order in orders %}
+         {% with order.0|classname as class_name %}
+         {% if class_name == 'CoffeeType' %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="coffee-box">
+
+              <div class="cb-info cb-header">
+                <h4>{{ order.0.name }}</h4>
+              </div>
+
+              <div class="cb-img"
+                style='background-image: url({{ order.0.img.url }})'>
+              </div>
+
+              <div class="cb-info">
+                <p class="s-h1-bold">{% trans 'Brew method' %}</p>
+                <p class="brew_method">{{ order.1 }}</p>
+                <p class="s-h1-bold">{% trans 'Packaging' %}</p>
+                <p class="package_method">{{ order.2 }}</p>
+                <p class="s-h1-bold">{% trans 'Quantity' %}</p>
+                <p class="checkout-quantity">{{ order.3 }}</p>
+                <p class="s-h1-bold">{% trans 'Price' %}</p>
+                <p class="s-h3">S$
+                  <span class="price">{% multiply order.0.amount_one_off order.3 %}</span>
+                </p>
+
+                <input type="hidden" name="coffee_short_name" value="{{ order.0.name }}">
+                <input type="hidden" name="coffee_id" value="{{ order.0.id }}">
+                <input type="hidden" name="package_short" value="{{ order.4 }}">
+                <input type="hidden" name="brew_id" value="{{ order.5 }}">
+              </div>
+
+            </div>
+          </div>
+          {% elif class_name == 'CoffeeGear' %}
+          <div class="col-lg-4 col-md-6 col-sm-6">
+            <div class="coffee-box">
+
+              <div class="cb-info cb-header">
+                <h4>{{ order.0.name }}</h4>
+              </div>
+
+              <div class="cb-img"
+                style='background-image: url({{ order.0.images.all.0.image.url }})'>
+              </div>
+
+              <div class="cb-info">
+                <p class="s-h1-bold">{% trans 'Description' %}</p>
+                <p class="brew_method">{{ order.0.description }}</p>
+                <p class="s-h1-bold">{% trans 'Quantity' %}</p>
+                <p class="checkout-quantity">{{ order.1 }}</p>
+                <p class="s-h1-bold">{% trans 'Price' %}</p>
+                <p class="s-h3">S$
+                  <span class="price">{% multiply order.0.price order.1 %}</span>
+                </p>
+              </div>
+
+            </div>
+          </div>
+          {% endif %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="section-row row-sm">
+      <div class="col-xs-12" {% if user.is_authenticated or not is_worldwide %}hidden{% endif %}>
+        <div id="dest-country" class="form-group">
+          <label for="dest-country">Shipping rates calculator</label>
+          {% render_field cus_form.country class+="form-control" %}
+          <span class="help-block s-h3">&nbsp;</span>
+        </div>
+      </div>
+
+      <div {% if user.is_authenticated or not is_worldwide %}hidden{% endif %}>
+        <h4>Overall</h4>
+        <h4>$<span id="overall-cost">{{ coffee_cost | stringformat:'d' }}</span></h4>
+        <h4 id="shipping-cost">+ shipping</h4>
+      </div>
+
+      <form id="cart-confirm" method="POST" action="/coffees/cart_confirm/">
+        {% csrf_token %}
+        <button type="submit" id="btn-confirm-register" class="btn btn-primary btn-hc">
+          {% trans 'Proceed to checkout' %}
+        </button>
+      </form>
+
+      {% comment %}
+      {% if not user.is_authenticated %}
+        <a id="btn-confirm-register" href="{% url 'register_worldwide' %}" class="btn tbtn">{% trans 'CONFIRM' %}</a>
+      {% else %}
+        <a id="btn-confirm-register" href="{% url 'cart_process' %}" class="btn tbtn">{% trans 'PROCESS' %}</a>
+      {% endif %}
+      {% endcomment %}
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $("#id_country").on("change", function(){
+      get_shipping_rates($("#id_country").val());
+    });
+
+    function get_shipping_rates(cid) {
+      var coffee_ids = [];
+      {% for order in orders %}
+        coffee_ids.push({'id': "{{ order.0.id }}", 'qty': "{{ order.3 }}" });
+      {% endfor %}
+
+      var data = {
+          'cid': cid,
+          'coffee_ids': coffee_ids,
+        };
+
+      console.log('get_shipping_rates(), data: ', data);
+
+      $.ajax({
+        url: "/coffees/get_shipping_rates/",
+        dataType: 'json',
+        type: "POST",
+        headers: {'X-CSRFToken': getCookie('csrftoken')},
+        data: {'my_data': JSON.stringify(data)},
+        success: function(response) {
+          console.log('response', response);
+          // $("#dest-country>.help-block").text("$" + response.shipping_cost);
+          $("#shipping-cost").text("+ $" + response.shipping_cost + " (shipping)");
+        },
+      });
+    }
+
+    $("document").ready(function() {
+
+    });
+  </script>
+{% endblock %}

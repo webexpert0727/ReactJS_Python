@@ -1,0 +1,14 @@
+.box {
+  // width: 320px;
+  margin: 0 auto;
+
+  -webkit-box-shadow: $box-shadow;
+  -moz-box-shadow: $box-shadow;
+  box-shadow: $box-shadow;
+
+  border-radius: $base-border-radius;
+
+  .box-header, .box-body { padding: $base-padding; }
+  .box-footer {}
+}
+

@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Coffee Brewing Equipment' %}{% endblock %}
+
+{% block meta-description %}
+{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="sub-nav">
+  <div class="container-fluid">
+    <div class="wrapper">
+      <div class="sub-nav-title">
+        <h4>{% trans 'Gears' %}</h4>
+      </div>
+
+      <div class="sub-nav-links">
+        <a href="#" class="link">
+          <h4>
+            <img src="{% static 'images/icons/subnav_gears/gear-essentials.png' %}" alt="Essentials" />
+            <span>{% trans 'Essentials' %}</span>
+          </h4>
+        </a>
+
+        <a href="{% url 'gears_machines' %}" class="link">
+          <h4>
+            <img src="{% static 'images/icons/subnav_gears/gear-machines.png' %}" alt="Machines" />
+            <span>{% trans 'Machines' %}</span>
+          </h4>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-row row-lg row-grid flex-grid">
+
+  {% for gear in gears %}
+  {% with images=gear.images.all %}
+    <div class="item-col">
+      <div class="gear-box">
+        <div class="cb-info cb-header">
+          <h4>{{ gear.name }}</h4>
+        </div>
+
+        <div id="ess__carousel-id{{ gear.id }}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+
+          {% if images.count > 1 %}
+            <ol class="carousel-indicators">
+            {% for img in images %}
+              <li
+                data-target="#ess__carousel-id{{ gear.id }}"
+                data-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.counter0 == 0 %}
+                class="active"
+                {% endif %}
+              >
+              </li>
+            {% endfor %}
+            </ol>
+          {% endif %}
+
+          <div class="carousel-inner" role="listbox">
+          {% for img in images %}
+            <div
+              class="
+                item
+                {% if forloop.counter0 == 0 %}
+                active
+                {% endif %}
+              "
+            >
+              <img src="{{ img.image.url }}" alt="{{ gear.name }}">
+            </div>
+          {% endfor %}
+          </div>
+
+          {% if images.count > 1 %}
+            <a class="left carousel-control"
+              href="#ess__carousel-id{{ gear.id }}" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="right carousel-control"
+              href="#ess__carousel-id{{ gear.id }}" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          {% endif %}
+        </div>
+
+        <div class="cb-info cb-footer">
+          <div class="c-price">
+            <p class="s-h2">S${{ gear.price }}</p>
+            <p><small>(Free P&P)</small></p>
+          </div>
+          <button name="btn"
+            class="btn btnx btn-primary btn-hc btn-hc-sm"
+            data-toggle="modal"
+            data-target="#ess__modal-id{{ gear.id }}">
+            {% trans 'More Info' %}
+          </button>
+        </div>
+
+      </div>
+    </div>
+  {% endwith %}
+  {% endfor %}
+
+  </div>
+</section>
+
+{% for gear in gears %}
+{% with images=gear.images.all %}
+<div id="ess__modal-id{{ gear.id }}" class="modal modal-hc modal-hc-gears fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>{{ gear.name }}</h3>
+      </div>
+
+      <div class="modal-img-bg img-bg-carousel">
+        <div id="ess__modal-carousel-id{{ gear.id }}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+
+          {% if images.count > 1 %}
+            <ol class="carousel-indicators">
+            {% for img in images %}
+              <li
+                data-target="#ess__modal-carousel-id{{ gear.id }}"
+                data-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.counter0 == 0 %}
+                class="active"
+                {% endif %}
+              >
+              </li>
+            {% endfor %}
+            </ol>
+          {% endif %}
+
+          <div class="carousel-inner" role="listbox">
+          {% for img in images %}
+            <div
+              class="
+                item
+                {% if forloop.counter0 == 0 %}
+                active
+                {% endif %}
+              "
+            >
+              <img src="{{ img.image.url }}" alt="{{ gear.name }}">
+            </div>
+          {% endfor %}
+          </div>
+
+          {% if images.count > 1 %}
+            <a class="left carousel-control"
+              href="#ess__modal-carousel-id{{ gear.id }}" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+
+            <a class="right carousel-control"
+              href="#ess__modal-carousel-id{{ gear.id }}" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="row modal-body-section__sm">
+          <div class="col-xs-12 col-sm-8">
+            <p>{{ gear.more_info|linebreaks }}</p>
+          </div>
+
+
+          <div class="col-xs-12 col-sm-4">
+            <div class="purchase-box">
+              <div class="purchase-box__price">
+                <div>
+                  <p class="s-h2">S${{ gear.price }}</p>
+                  <p><small>(Free P&P)</small></p>
+                </div>
+
+                <div id="gear-oneoff-quantity__{{ gear.id }}" class="plus-minus" data-id="{{ gear.id }}">will be replaced with React</div>
+              </div>
+
+              <div class="btn-add-gear-placement" data-id="{{ gear.id }}"></div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endwith %}
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+    if (window.location.hash) {
+      $(window.location.hash).modal('show');
+    }
+  </script>
+{% endblock %}

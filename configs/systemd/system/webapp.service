@@ -1,0 +1,32 @@
+[Unit]
+Description=webapp
+Requires=webapp.socket
+After=network.target
+
+[Service]
+PIDFile=/var/run/webapp/pid
+User=admin
+Group=webapp
+WorkingDirectory=/webapp/giveback_project
+EnvironmentFile=/webapp/giveback_project/.env
+ExecStartPre=/bin/mkdir -p /var/run/webapp
+ExecStartPre=/bin/chown -R admin:webapp /var/run/webapp
+ExecStart=/webapp/env/bin/gunicorn \
+    --pid $GUNICORN_PID_FILE \
+    --bind unix:${SOCKFILE} \
+    --name $PROJECT_NAME \
+    --workers $NUM_WORKERS \
+    --user $SYSTEM_USER \
+    --group $SYSTEM_GROUP \
+    --access-logfile $GUNICORN_ACCESS_LOGFILE \
+    --error-logfile $GUNICORN_ERROR_LOGFILE \
+    --timeout $TIMEOUT \
+    ${DJANGO_WSGI_MODULE}:application
+PrivateTmp=true
+# PermissionsStartOnly = true  
+# ExecReload = /bin/kill -s HUP $MAINPID  
+# ExecStop = /bin/kill -s TERM $MAINPID  
+# ExecStopPost = /bin/rm -rf /var/run/webapp  
+
+[Install]
+WantedBy=multi-user.target

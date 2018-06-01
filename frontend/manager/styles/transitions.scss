@@ -1,0 +1,56 @@
+.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity .4s ease-in;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity .4s ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave.active {
+  opacity: 0.1;
+  transition: opacity 0.4s ease-in;
+}
+
+.grow-appear {
+  max-height:0!important;
+  overflow:hidden;
+}
+
+.grow-appear.grow-appear-active{
+  max-height: 100%!important;
+  transition: max-height 0.8s ease-in;
+}
+
+.grow-enter {
+  max-height:0!important;
+  overflow:hidden!important;
+}
+
+.grow-enter.grow-enter-active{
+  max-height: 900px!important;
+  transition: max-height 0.8s ease-in;
+}
+
+.grow-leave {
+  max-height:0;
+  overflow:hidden;
+}
+
+.grow-leave.grow-leave-active{
+  max-height: 900px;
+  transition: max-height 0.8s ease-in;
+}

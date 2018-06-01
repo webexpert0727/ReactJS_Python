@@ -1,0 +1,1948 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load coffees_extras %}
+
+{% block title %}— {% trans 'Our Coffees' %}{% endblock %}
+
+{% block meta-description %}
+    "Sustainably grown and ethically produced, lovingly roasted and caringly packed, then sent to your doorstep within a week of roasting. Hook Drip Bag, V60 Dripper, French Press, Stovetop, Aeropress, Espresso, Cold Brew"
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}{% url 'coffees' %}" />
+
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+  <script>
+    Stripe.setPublishableKey("{{ stripe_key }}");
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{% if not workshop %}
+  {% include "coffees/subnav.html" %}
+{% endif %}
+
+{% if workshop %}
+<section id="workshop__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-sm text-center">
+      <h3>{% trans 'It all starts with' %}</h3>
+       <h1>{% trans 'EDUCATION' %}</h1>
+       <h3>{% trans 'Our Coffee masterclasses are designed to suit</br> any coffee lover of any level' %}
+      </h3>
+    </div>
+  </div>
+</section>
+{% else %}
+<section id="coffees__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-sm text-center">
+      <h1>{% trans 'OUR COFFEES' %}</h1>
+      <h4>{% trans 'Sustainably grown and ethically produced, lovingly roasted and caringly packed, then sent to your doorstep within a week of roasting. These are the steps we take to make a difference in your lives and the lives of our farmers.' %}
+      </h4>
+      <!-- <div id="reactius"></div> -->
+      <h4>
+        {% blocktrans %}Don<span class="use-base-font">’</span>t worry about not having the right apparatus – we have something for everyone regardless of your brew method.{% endblocktrans %}
+      </h4>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% comment %}
+<section id="coffee__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-sm text-center">
+      {% if workshop %}
+       <h3>{% trans 'It all starts with' %}</h3>
+       <h1>{% trans 'EDUCATION' %}</h1>
+       <h3>{% trans 'Our Coffee masterclasses are designed to suit</br> any coffee lover of any level</br> (ie we dont discriminate)' %}
+      </h3>
+      {% else %}
+      <h1>{% trans 'OUR COFFEES' %}</h1>
+      <h4>{% trans 'Sustainably grown and ethically produced, lovingly roasted and caringly packed, then sent to your doorstep within a week of roasting. These are the steps we take to make a difference in your lives and the lives of our farmers.' %}
+      </h4>
+      <!-- <div id="reactius"></div> -->
+      <h4>
+        {% blocktrans %}Don<span class="use-base-font">’</span>t worry about not having the right apparatus – we have something for everyone regardless of your brew method.{% endblocktrans %}
+      </h4>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endcomment %}
+<!--top-banner-->
+
+<!-- <section class="story">
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+      <h1>our coffees</h1>
+      <p>Sustainably grown and ethically produced, lovingly roasted and caringly packed, then sent to your doorstep within a week of roasting. These are the steps we take to make a difference in your lives and the lives of our farmers.<br />
+        <br />
+        Don’t worry about now having the right apparatus – we have something for everyone regardless of your brew method.</p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</section> -->
+
+{% comment %}
+<!-- <section class="section">
+  <div class="section-row row-lg">
+    <p>{% trans 'Help us find you your perfect coffee by picking your preferred brew method.' %}</p>
+
+    <ul class="coffee-filter" role="tablist">
+      <li role="presentation" class="brew-method" data-filter=":not(.no-equipments)">
+        <a href="#one" aria-controls="one" role="tab" data-toggle="tab">
+          <img src="{% static 'images/brew_method/show-all.png' %}" alt="All" />
+        </a>
+        <span>{% trans 'Show All' %}</span>
+      </li>
+      {% for brew in brew_methods %}
+        <li role="presentation" class="brew-method" data-filter=".{{ brew.name.split|join:'_' }}">
+          <a href="#one" aria-controls="one" role="tab" data-toggle="tab">
+            <img src="{{ brew.img.url }}" alt="{{ brew.name }}" />
+          </a>
+          <span>{{brew.name}}</span>
+        </li>
+      {% endfor %}
+      <li role="presentation" class="brew-method" data-filter=".no-equipments">
+        <a href="#one" aria-controls="one" role="tab" data-toggle="tab">
+          <img src="{% static 'images/brew_method/none.png' %}" alt="None" />
+        </a>
+        <span>{% trans 'None' %}</span>
+      </li>
+    </ul>
+  </div>
+</section> -->
+{% endcomment %}
+
+<section class="section">
+<div class="section-row row-lg">
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="one">
+
+  {% if not workshop %}
+    {% comment %}
+    Start -> isotope
+    {% endcomment %}
+    <div class="isotope">
+
+      {% comment %}
+        <div class="section-row row-lg">
+          <div class="element-item text-center no-equipments">
+            <p>
+              {% trans 'Don’t worry if you do not have any fancy coffee brewing equipments. We’ve got drip coffee bags for you! Easy, convenient and portable but just as fresh and delicious.' %}
+              {% trans 'Just go ahead and select any of the coffees from the' %} <a class="brew-method" data-filter=":not(.no-equipments)" style="opacity: 1; cursor: pointer; cursor: hand;">{% trans 'full range' %}</a> {% trans 'and select ‘drip bags’ as your preferred packaging method at check out.' %}
+            </p>
+          </div>
+        </div>
+      {% endcomment %}
+
+      <div class="section-row row-lg row-grid">
+      {% comment %}
+      Start -> special coffee list
+      {% endcomment %}
+      {% for c in special_coffee_list %}
+
+        {% comment %}
+        Start -> special coffee element-item
+        {% endcomment %}
+        <div class="col-xs-12 col-sm-6 col-md-4 element-item
+          {% for pc in c.brew_method.all %}
+            {{ pc.name.split|join:'_' }}
+          {% endfor %}" data-category="">
+
+          {% comment %}
+          Start -> coffee box
+          {% endcomment %}
+          <div class="coffee-box special-coffee">
+            <div class="cb-info cb-header">
+              <h4>{{ c.name }}</h4>
+              <small>
+                <i class="fa fa-map-marker"></i>
+                {{ c.region }}, {{ c.get_country_display }}
+              </small>
+            </div>
+
+            <div class="cb-img"
+              style='background-image: url({{ c.img.url }})'>
+            </div>
+
+            <div class="cb-info">
+              <p class="c-taste">
+                <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+              </p>
+              <p class="c-bdisplay"><em>Roast profile:</em> {{ c.get_body_display }}</p>
+              {# <p class="c-bdisplay"><em>Acidity: {{ c.acidity }}</em></p> #}
+
+              {% if c.reviews_count != 0 %}
+                <div class="avg-rating" data-id="{{ c.id }}">
+                  <span class="js-coffee-avg-rating"></span>
+                  <span class="avg-rating-value"></span>
+                </div>
+                <a
+                  data-toggle="modal"
+                  data-target="#reviews-modal{{c.id}}"
+                  class="reviews-count">See Reviews
+                </a>
+              {% endif %}
+
+              <table>
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Roasted on' %}</td>
+                  <td><p>{{ c.roasted_on }}</p></td>
+                </tr>
+
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Upcoming roast' %}</td>
+                  <td><p>{{ c.shipping_till }}</p></td>
+                </tr>
+              </table>
+            </div>
+
+            {% comment %}
+            Start -> special coffee footer
+            {% endcomment %}
+            <div class="cb-info cb-footer">
+              <div class="c-price">
+                <p class="s-h2">From S${{ c.amount|floatformat:2 }}</p>
+                <p><small>(Free P&P)</small></p>
+              </div>
+
+              {% comment %}
+              {% if out_of_credits %}
+                <a data-toggle="modal"
+                  data-target="#enter_credit_card"
+                  class="btn tbtn special hc-btn">
+                  {% trans 'SEND NEXT' %} (${{ c.amount|floatformat }})
+                </a>
+
+                <a data-toggle="modal"
+                  data-target="#enter_credit_card"
+                  class="btn tbtn special hc-btn">
+                  {% trans 'ONE-OFF' %} (${{ c.amount_one_off|floatformat }})
+                </a>
+              {% else %}
+                {% if user.is_authenticated %}
+                  {% if not is_worldwide %}
+                    <a href="{{ c.id}}?subscribe=1&isNespresso=0"
+                      class="btn tbtn">
+                      {% trans 'SEND NEXT' %} (${{ c.amount|floatformat }})
+                    </a>
+
+                    <a href="{{ c.id}}?subscribe=0&isNespresso=0"
+                      class="btn tbtn special">
+                      {% trans 'ONE-OFF' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% else %}
+                    <a id="{{ c.id }}"
+                      price="{{ c.amount_one_off }}"
+                      name="one-off"
+                      class="btn btn-primary btn-cart-add"
+                      data-toggle="modal"
+                      data-target="#modal-cart-add">
+                      {% trans 'CHOOSE' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% endif %}
+                {% else %}
+                  {% if not is_worldwide %}
+                    <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=True %}"
+                      class="btn tbtn special">
+                      {% trans 'ONE-OFF' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% else %}
+                    <a id="{{ c.id }}"
+                      price="{{ c.amount_one_off }}"
+                      name="one-off"
+                      class="btn btn-primary btn-cart-add"
+                      data-toggle="modal"
+                      data-target="#modal-cart-add">
+                      {% trans 'CHOOSE' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+              {% endcomment %}
+
+              <button name="btn"
+                class="btn btnx btn-primary btn-hc btn-hc-sm"
+                data-toggle="modal"
+                data-target="#moreinfo-modal{{c.id}}"
+                style="display: block;">
+                {% trans 'More Info' %}
+              </button>
+            </div>
+            {% comment %}
+            End -> special coffee footer
+            {% endcomment %}
+
+          </div>
+          {% comment %}
+          End -> special coffee
+          {% endcomment %}
+
+        </div>
+        {% comment %}
+        End -> special coffee element-item
+        {% endcomment %}
+      {% endfor %}
+
+      {% for c in taster_coffee_list %}
+        <div class="col-xs-12 col-sm-6 col-md-4 element-item
+          {% for pc in c.brew_method.all %}
+            {{ pc.name.split|join:'_' }}
+          {% endfor %}" data-category="">
+
+          <div class="coffee-box {% if c.special %}special-coffee{% endif %}">
+            <div class="cb-info cb-header">
+              <h4>{{ c.name }}</h4>
+              <small>
+                <i class="fa fa-map-marker"></i>
+                {{ c.region }}, {{ c.get_country_display }}
+              </small>
+            </div>
+
+            <div class="cb-img"
+              style='background-image: url({{ c.img.url }})'>
+            </div>
+
+            <div class="cb-info">
+              <p class="c-taste">
+                <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+              </p>
+              <p class="c-bdisplay"><em>Roast profile:</em> {{ c.get_body_display }}</p>
+              <p class="c-bdisplay"><em>Acidity: {{ c.acidity }}</em></p>
+
+              <table>
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Roasted on' %}</td>
+                  <td><p>{{ c.roasted_on }}</p></td>
+                </tr>
+
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Upcoming roast' %}</td>
+                  <td><p>{{ c.shipping_till }}</p></td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="cb-info cb-footer">
+              <div class="c-price">
+                <p class="s-h2">FROM S${{ c.amount|floatformat:2 }}</p>
+                <p><small>(Free P&P)</small></p>
+              </div>
+              <button name="btn"
+                class="btn btnx btn-primary btn-hc btn-hc-sm"
+                data-toggle="modal"
+                data-target="#moreinfo-modal{{c.id}}"
+                style="display: block;">
+                {% trans 'More Info' %}
+              </button>
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+
+      {% for c in coffee_list %}
+        {% comment %}
+        Start -> regular coffee element-item
+        {% endcomment %}
+        <div class="col-xs-12 col-sm-6 col-md-4 element-item
+          {% for pc in c.brew_method.all %}
+            {{ pc.name.split|join:'_' }}
+          {% endfor %}" data-category="">
+
+          {% comment %}
+          Start -> coffee box
+          {% endcomment %}
+          <div class="coffee-box">
+            <div class="cb-info cb-header">
+              <h4>{{ c.name }}</h4>
+              <small>
+                <i class="fa fa-map-marker"></i>
+                {{ c.region }}, {{ c.get_country_display }}
+              </small>
+            </div>
+
+            <div class="cb-img"
+              style='background-image: url({{ c.img.url }})'>
+            </div>
+
+            <div class="cb-info">
+              <p class="c-taste">
+                <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+              </p>
+              <p class="c-bdisplay"><em>Roast profile:</em> {{ c.get_body_display }}</p>
+              {# <p class="c-bdisplay"><em>Acidity: {{ c.acidity }}</em></p> #}
+
+              {% if c.reviews_count != 0 %}
+                <div class="avg-rating" data-id="{{ c.id }}">
+                  <span class="js-coffee-avg-rating"></span>
+                  <span class="avg-rating-value"></span>
+                </div>
+                <a
+                  data-toggle="modal"
+                  data-target="#reviews-modal{{c.id}}"
+                  class="reviews-count">See Reviews
+                </a>
+              {% endif %}
+
+              <table>
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Roasted on' %}</td>
+                  <td><p>{{ c.roasted_on }}</p></td>
+                </tr>
+
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Upcoming roast' %}</td>
+                  <td><p>{{ c.shipping_till }}</p></td>
+                </tr>
+              </table>
+            </div>
+
+            {% comment %}
+            Start -> special coffee footer
+            {% endcomment %}
+            <div class="cb-info cb-footer">
+              <div class="c-price">
+                <p class="s-h2">From S${{ c.amount|floatformat:2 }}</p>
+                <p><small>(Free P&P)</small></p>
+              </div>
+
+              {% comment %}
+              {% if out_of_credits %}
+                <a data-toggle="modal"
+                  data-target="#enter_credit_card"
+                  class="btn tbtn">
+                  {% trans 'SEND NEXT' %} (${{ c.amount|floatformat }})
+                </a>
+                <a data-toggle="modal"
+                  data-target="#enter_credit_card"
+                  class="btn tbtn">
+                  {% trans 'ONE-OFF' %} (${{ c.amount_one_off|floatformat }})
+                </a>
+              {% else %}
+                {% if user.is_authenticated %}
+                  {% if not is_worldwide %}
+                    <a href="{{ c.id}}?subscribe=1&isNespresso=0"
+                      class="btn tbtn">
+                      {% trans 'SEND NEXT' %} (${{ c.amount|floatformat }})
+                    </a>
+
+                    <a href="{{ c.id}}?subscribe=0&isNespresso=0"
+                      class="btn tbtn">
+                      {% trans 'ONE-OFF' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% else %}
+                    <a id="{{ c.id }}"
+                      price="{{ c.amount_one_off }}"
+                      name="one-off" class="btn btn-primary btn-cart-add"
+                      data-toggle="modal"
+                      data-target="#modal-cart-add">
+                      {% trans 'CHOOSE' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% endif %}
+                {% else %}
+                  {% if not is_worldwide %}
+                    <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=False %}"
+                      class="btn tbtn">
+                      {% trans 'Subscribe' %} (${{ c.amount|floatformat }})
+                    </a>
+
+                    <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=True %}"
+                      class="btn tbtn">
+                      {% trans 'ONE-OFF' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% else %}
+                    <a id="{{ c.id }}"
+                      price="{{ c.amount_one_off }}"
+                      name="one-off"
+                      class="btn btn-primary btn-cart-add"
+                      data-toggle="modal"
+                      data-target="#modal-cart-add">
+                      {% trans 'CHOOSE' %} (${{ c.amount_one_off|floatformat }})
+                    </a>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+              {% endcomment %}
+
+              <button name="btn"
+                class="btn btnx btn-primary btn-hc btn-hc-sm"
+                data-toggle="modal"
+                data-target="#moreinfo-modal{{c.id}}"
+                style="display: block;">
+                {% trans 'More Info' %}
+              </button>
+            </div>
+          </div>
+          {% comment %}
+          End -> coffee box
+          {% endcomment %}
+
+        </div>
+        {% comment %}
+        End -> regular coffee element-item
+        {% endcomment %}
+      {% endfor %}
+    {% endif %}
+
+      <!-- Start: WorkShop Course Details -->
+      {% for workshop in workshops_list %}
+        <div class="col-xs-12 col-sm-6 col-md-4 element-item" data-category="">
+
+          <div class="coffee-box">
+            <!-- <div class="cb-info cb-header">
+              <h4>{{ .course_name }}</h4>
+              <small>
+                <i class="fa fa-map-marker"></i>
+                {{ c.region }}, {{ c.get_country_display }}
+              </small>
+            </div> -->
+
+            <div class="cb-img"
+              style='background-image: url({{ workshop.img.url }})'>
+            </div>
+
+            <div class="cb-info">
+              <p class="c-taste">
+                <em><br/><h4>{{ workshop.name }}</h4></em>
+              </p>
+              <!-- <p class="c-bdisplay"><em>Roast profile:</em> {{ c.get_body_display }}</p>
+              {# <p class="c-bdisplay"><em>Acidity: {{ c.acidity }}</em></p> #} -->
+
+              <!-- {% if c.reviews_count != 0 %}
+                <div class="avg-rating" data-id="{{ c.id }}">
+                  <span class="js-coffee-avg-rating"></span>
+                  <span class="avg-rating-value"></span>
+                </div>
+                <a
+                  data-toggle="modal"
+                  data-target="#reviews-modal{{c.id}}"
+                  class="reviews-count">See Reviews
+                </a>
+              {% endif %} -->
+
+              <!-- <table>
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Roasted on' %}</td>
+                  <td><p>{{ c.roasted_on }}</p></td>
+                </tr>
+
+                <tr>
+                  <td class="s-h1-bold">{% trans 'Upcoming roast' %}</td>
+                  <td><p>{{ c.shipping_till }}</p></td>
+                </tr>
+              </table> -->
+            </div>
+
+            <div class="cb-info cb-footer">
+              <div class="c-price">
+                <p class="s-h2">S${{ workshop.cost }}</p>
+                <p><small>(Free P&P)</small></p>
+              </div>
+
+              <button name="btn"
+                class="btn btnx btn-primary btn-hc btn-hc-sm"
+                data-toggle="modal"
+                data-target="#moreinfo-modal{{workshop.id}}"
+                style="display: block;">
+                {% trans 'More Info' %}
+              </button>
+            </div>
+          </div>
+          {% comment %}
+          End -> coffee box
+          {% endcomment %}
+
+        </div>
+        {% comment %}
+        End -> regular coffee element-item
+        {% endcomment %}
+      {% endfor %}
+      <!-- End: WorkShop Course Details -->
+
+      </div>
+
+    </div>
+    {% comment %}
+    Start -> isotope
+    {% endcomment %}
+
+    <div class="clearfix"></div>
+  </div>
+  <!--tab-pane-->
+</div>
+</div>
+</section>
+
+{% if "workshops" in request.path %}
+<section id="op-banner" class="top-banne section">
+  <div class="container-fluid">
+    <div class="section-row row-sm text-center">
+      <h1>{% trans 'Corporate Workshops' %}</h1>
+    <h2>{% trans 'Looking for a customised corporate coffee workshop?' %}</h2>
+      <button type="button" class="btn btn-info" onclick="location.href='mailto:hola@hookcoffee.com.sg';">CONTACT US HERE!</button>
+    <h2>{% trans 'Some companies that have benefited from our workshops!' %}</h2>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- <div class="container-fluid">
+<div class="section-row row-sm text-center">
+    <h1>{% trans 'Corporate Workshops' %}</h1>
+    <h2>{% trans 'Looking for a customised corporate coffee workshop?' %}</h2>
+    <button>CONTACT US HERE!</button>
+    <h2>{% trans 'Some companies that have benefited from our workshops!' %}</h2>
+</div>
+</div> -->
+<section class="section bg-d info-bar">
+  <div class="section-row row-lg">
+    <h4 class="clr-me-p">{% trans 'Looking for coffees for the office?' %}</h4>
+    <a href="{% url 'wholesale' %}"
+      class="btn btn-primary btn-hc btn-hc-sm">
+      {% trans 'Find out more here' %}
+    </a>
+  </div>
+</section>
+
+<!-- Modal windows -->
+
+<!-- Modal for WorkShops details -->
+{% for c in workshops_list %}
+
+<!-- Modal -->
+<div id="moreinfo-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__regular fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{c.name}}</h3>
+          <p>{{c.maker}}</p>
+        </div>
+      </div>
+
+      <!-- Subcsriptions are available for Singapore only -->
+      <div class="modal-img-bg"
+      style="background-image: url({{ c.img.url }})">
+
+        {% if c.id|available_dates %}
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Book a master class' %}</p>
+          <p><small>{% trans 'Choose available dates' %}</small></p>
+          <div class="workshop" data-id="{{ c.id }}">
+            <select>
+              {% for obj in c.id|available_dates %}
+                <option>{{obj.date}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="purchase-box__price">
+            <div>
+              <p class="s-h2">S${{ c.cost|floatformat:2}}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <div id="pbox-oneoff-quantity__{{c.id}}" class="plus-minus" data-id="{{ c.id }}">will be replaced with React</div>
+          </div>
+
+          <div class="btn-add-course-placement" data-id="{{ c.id }}"></div>
+
+        </div>
+        {% endif %}
+
+        {% if is_worldwide %}
+          </br></br></br></br>
+        {% endif %}
+
+      </div>
+
+      <div class="modal-body">
+        <div class="container">
+          <div class="col-md-7">
+            <div class="modal-body-section__sm">
+              <table class="modal-short-info">
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Country' %}</td>
+                  <td class="modal-val">{{c.get_country_display}}</td>
+                </tr>
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Producer' %}</td>
+                  <td class="modal-val">{{c.maker}}</td>
+                </tr>
+                </tr>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>  </div>
+
+  </div>
+</div>
+{% endfor %}
+
+<!-- Modal for coffee details -->
+{% for c in coffee_list %}
+
+<!-- Modal -->
+<div id="moreinfo-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__regular fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{c.name}}</h3>
+          <p>{{c.maker}}</p>
+        </div>
+      </div>
+
+      <!-- Subcsriptions are available for Singapore only -->
+      <div class="modal-img-bg"
+      style="background-image: url({{ c.img.url }})">
+      {% if not is_worldwide %}
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Subscribe and Save' %}</p>
+
+          <div>
+            <p class="s-h2">S${{ c.amount|floatformat:2 }}</p>
+            <p><small>(Free P&P)</small></p>
+          </div>
+
+          <!--
+          User who has been registered without credit card but with credits by a friend
+          goes out of credits and should provide credit card details
+          -->
+          {% if out_of_credits %}
+            <a data-toggle="modal" data-target="#enter_credit_card" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+          {% else %}
+            {% if user.is_authenticated %}
+              <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=False %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% else %}
+              <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=False %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% endif %}
+          {% endif %}
+        </div>
+
+      {% else %}
+        </br></br></br></br>
+      {% endif %}
+
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Order a One-off' %}</p>
+
+          <p><small>{% trans 'Select Brew Method' %}</small></p>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-hc btn-hc-xs btn-primary-inv"
+              type="button"
+              id="pbox-oneoff-brewmethod__{{ c.id }}"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+              data-brew-id="{{ current_brew.id }}">
+              <div class="dropdown-item">
+                <img src="{{ current_brew.img.url }}" />
+                <div>
+                  <p>{% trans current_brew.name %}</p>
+                </div>
+              </div>
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="pbox-oneoff-brewmethod__{{c.id}}">
+              {% for brew in brew_methods_oneoff %}
+                <li>
+                  <a class="dropdown-item" data-id="{{ brew.id }}" brew=true href="#">
+                    <img src="{{ brew.img.url }}" />
+                    <div>
+                      <p>{% trans brew.name %}</p>
+                    </div>
+                  </a>
+                </li>
+              {% endfor %}
+
+            </ul>
+          </div>
+
+          <p><small>{% trans 'Select Packaging Method' %}</small></p>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-hc btn-hc-xs btn-primary-inv"
+              type="button"
+              id="pbox-oneoff-packaging__{{c.id}}"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+              data-package-id="{{ current_package }}">
+              <div class="dropdown-item">
+                <img src="{% static 'images/package_methods/wholebeans.png' %}" />
+                <div>
+                  <p>{% trans 'Wholebeans' %}</p>
+                </div>
+              </div>
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="pbox-oneoff-packaging__{{c.id}}">
+              <li>
+                <a class="dropdown-item" data-package="GR" href="#">
+                  <img src="{% static 'images/package_methods/ground.png' %}" />
+                  <div>
+                    <p>{% trans 'Ground' %}</p>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" data-package="WB" href="#">
+                  <img src="{% static 'images/package_methods/wholebeans.png' %}" />
+                  <div>
+                    <p>{% trans 'Wholebeans' %}</p>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" data-package="DR" href="#">
+                  <img src="{% static 'images/package_methods/dripbag.png' %}" />
+                  <div>
+                    <p>{% trans 'Drip Bags' %}</p>
+                  </div>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="purchase-box__price">
+            <div>
+              <p class="s-h2">S${{ c.amount_one_off|floatformat:2}}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <div id="pbox-oneoff-quantity__{{c.id}}" class="plus-minus" data-id="{{ c.id }}">will be replaced with React</div>
+          </div>
+
+          <div class="btn-add-bag-placement" data-id="{{ c.id }}"></div>
+
+        </div>
+
+        {% if is_worldwide %}
+          </br></br></br></br>
+        {% endif %}
+
+      </div>
+
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="col-md-7">
+            <div class="modal-body-section__sm">
+              <table class="modal-short-info">
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Country' %}</td>
+                  <td class="modal-val">{{c.get_country_display}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Producer' %}</td>
+                  <td class="modal-val">{{c.maker}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Altitude' %}</td>
+                  <td class="modal-val">{{c.altitude}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Varietal' %}</td>
+                  <td class="modal-val">{{c.varietal}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Processes' %}</td>
+                  <td class="modal-val">{{c.process}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          {% if c.recommended_brew %}
+            <div class="col-md-2 text-center">
+              <!-- <span>Recommended brew method</span> -->
+              <div class="coffee-filter">
+                <div class="brew-method">
+                  <img src="{{ c.recommended_brew.img.url }}" alt="{{ c.recommended_brew.name }}" />
+                </div>
+              </div>
+              <span>{% firstof c.recommended_brew.name "None" %}</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="modal-body-section__sm">
+          <h4>{% trans 'How this coffee will taste like?' %}</h4>
+          <p>{{c.more_taste|safe}}</p>
+        </div>
+
+        {% farm c as farm_photos %}
+        {% if farm_photos %}
+          <div class="modal-body-section__sm">
+            <h4>{% trans 'More information about the farm' %}</h4>
+          </div>
+        </div>
+
+        <div id="cof__carousel{{c.id}}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for x in farm_photos %}
+              <li
+                data-target="#cof__carousel{{c.id}}"
+                data-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.counter0 == 0 %}
+                  class="active"
+                {% endif %}
+              ></li>
+            {% endfor %}
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            {% for x in farm_photos %}
+              <div
+                class="
+                  item
+                  {% if forloop.counter0 == 0 %}
+                  active
+                  {% endif %}
+                ">
+                <img src="{{ x }}" alt="">
+              </div>
+            {% endfor %}
+          </div>
+
+          <a class="left carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Previous' %}</span>
+          </a>
+
+          <a class="right carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Next' %}</span>
+          </a>
+        </div>
+      {% else %}
+        </div>
+      {% endif %}
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <h4>{% blocktrans %}More info about the coffee's origins{% endblocktrans %}</h4>
+          <p>{{c.description|linebreaks}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="reviews-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__regular fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3 class="centered">What some of our subscribers say about {{c.name}}</h3>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        {% if c.reviews.all %}
+          {% for x in c.reviews.all reversed %}
+            {% if not x.hidden and x.rating > 1 %}
+              <div class="review-body">
+                <span class="username">{{ x.order.customer.first_name }}</span>
+                {% if x.brew != None and x.brew.name != "None" %}
+                  | <span>Brews using <span class="brews-with">{{ x.brew }}</span>
+                {% endif %}
+                {# <span class="loves">{% listing x.order.customer.preferences.flavor.all %}</span> #}
+                {# <span>Intensity rating <span class="intensity-rating">{{ x.order.customer.preferences.intense }}/5</span></span> #}
+                <br />
+                <span>Subscriber since <span class="subscribed-since">{{ x.order.customer.orders.all.0.date|date:"M Y" }}</span></span>
+                <span class="comment-stars">
+                  {% with ''|center:x.rating as range %}
+                    {% for _ in range %}
+                      <span class="glyphicon glyphicon-star text-primary"></span>
+                    {% endfor %}
+                  {% endwith %}
+                </span>
+                {% if x.comment %}
+                  <p class="review-comment">{{ x.comment }}</p>
+                {% endif %}
+              </div>
+              <br />
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <h4 class="centered">Nothing yet :(</h4>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+
+
+<!-- Modal for special coffee details -->
+{% for c in special_coffee_list %}
+<div id="moreinfo-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__special fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{c.name}}</h3>
+          <p>{{c.maker}}</p>
+        </div>
+      </div>
+
+      <div class="modal-img-bg"
+        style="background-image: url({{ c.img.url }})">
+
+        {% if not is_worldwide and user.is_authenticated %}
+          <div class="purchase-box">
+            <p class="s-h1-bold">{% trans 'Subscribe and Save' %}</p>
+
+            <div>
+              <p class="s-h2">S${{ c.amount|floatformat:2 }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <!--
+            User who has been registered without credit card but with credits by a friend
+            goes out of credits and should provide credit card details
+            -->
+            {% if out_of_credits %}
+              <a data-toggle="modal" data-target="#enter_credit_card" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% else %}
+                <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=False %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% endif %}
+          </div>
+
+        {% else %}
+          </br></br></br></br>
+        {% endif %}
+
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Order a One-off' %}</p>
+
+          <p><small>{% trans 'Select Brew Method' %}</small></p>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-hc btn-hc-xs btn-primary-inv"
+              type="button"
+              id="pbox-oneoff-brewmethod__{{ c.id }}"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+              data-brew-id="{{ current_brew.id }}">
+              <div class="dropdown-item">
+                <img src="{{ current_brew.img.url }}" />
+                <div>
+                  <p>{% trans current_brew.name %}</p>
+                </div>
+              </div>
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="pbox-oneoff-brewmethod__{{c.id}}">
+              {% for brew in brew_methods_oneoff %}
+                <li>
+                  <a class="dropdown-item" data-id="{{ brew.id }}" brew=true href="#">
+                    <img src="{{ brew.img.url }}" />
+                    <div>
+                      <p>{% trans brew.name %}</p>
+                    </div>
+                  </a>
+                </li>
+              {% endfor %}
+
+            </ul>
+          </div>
+
+          <p><small>{% trans 'Select Packaging Method' %}</small></p>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-hc btn-hc-xs btn-primary-inv"
+              type="button"
+              id="pbox-oneoff-packaging__{{c.id}}"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+              data-package-id="{{ current_package }}">
+              <div class="dropdown-item">
+                <img src="{% static 'images/package_methods/wholebeans.png' %}" />
+                <div>
+                  <p>{% trans 'Wholebeans' %}</p>
+                  <p class="s-h1"><small>{% trans 'Wholebeans' %} (200g)</small></p>
+                </div>
+              </div>
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="pbox-oneoff-packaging__{{c.id}}">
+              <li>
+                <a class="dropdown-item" data-package="GR" href="#">
+                  <img src="{% static 'images/package_methods/ground.png' %}" />
+                  <div>
+                    <p>{% trans 'Ground' %}</p>
+                    <p class="s-h1"><small>{% trans 'Ground' %} (200g)</small></p>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" data-package="WB" href="#">
+                  <img src="{% static 'images/package_methods/wholebeans.png' %}" />
+                  <div>
+                    <p>{% trans 'Wholebeans' %}</p>
+                    <p class="s-h1"><small>{% trans 'Wholebeans' %} (200g)</small></p>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" data-package="DR" href="#">
+                  <img src="{% static 'images/package_methods/dripbag.png' %}" />
+                  <div>
+                    <p>{% trans 'Drip Bags' %}</p>
+                    <p class="s-h1"><small>{% trans 'Drip Bags' %} (x10)</small></p>
+                  </div>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="purchase-box__price">
+            <div>
+              <p class="s-h2">S${{ c.amount_one_off }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <div id="pbox-oneoff-quantity__{{c.id}}" class="plus-minus" data-id="{{ c.id }}">will be replaced with React</div>
+          </div>
+
+          <div class="btn-add-bag-placement" data-id="{{ c.id }}"></div>
+        </div>
+
+        </br></br></br></br>
+
+      </div>
+
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="col-md-7">
+            <div class="modal-body-section__sm">
+              <table class="modal-short-info">
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Country' %}</td>
+                  <td class="modal-val">{{c.get_country_display}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Producer' %}</td>
+                  <td class="modal-val">{{c.maker}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Altitude' %}</td>
+                  <td class="modal-val">{{c.altitude}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Varietal' %}</td>
+                  <td class="modal-val">{{c.varietal}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Processes' %}</td>
+                  <td class="modal-val">{{c.process}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          {% if c.recommended_brew %}
+            <div class="col-md-2 text-center">
+              <!-- <span>Recommended brew method</span> -->
+              <div class="coffee-filter">
+                <div class="brew-method">
+                  <img src="{{ c.recommended_brew.img.url }}" alt="{{ c.recommended_brew.name }}" />
+                </div>
+              </div>
+              <span>{% firstof c.recommended_brew.name "None" %}</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="modal-body-section__sm">
+          <h4>{% trans 'How this coffee will taste like?' %}</h4>
+          <p>{{c.more_taste|safe}}</p>
+        </div>
+
+        {% farm c as farm_photos %}
+        {% if farm_photos %}
+          <div class="modal-body-section__sm">
+            <h4>{% trans 'More information about the farm' %}</h4>
+          </div>
+        </div>
+
+        <div id="cof__carousel{{c.id}}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for x in farm_photos %}
+              <li
+                data-target="#cof__carousel{{c.id}}"
+                data-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.counter0 == 0 %}
+                  class="active"
+                {% endif %}
+              ></li>
+            {% endfor %}
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            {% for x in farm_photos %}
+              <div
+                class="
+                  item
+                  {% if forloop.counter0 == 0 %}
+                  active
+                  {% endif %}
+                ">
+                <img src="{{ x }}" alt="">
+              </div>
+            {% endfor %}
+          </div>
+
+          <a class="left carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Previous' %}</span>
+          </a>
+
+          <a class="right carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Next' %}</span>
+          </a>
+        </div>
+      {% else %}
+        </div>
+      {% endif %}
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <h4>{% blocktrans %}More info about the coffee's origins{% endblocktrans %}</h4>
+          <p>{{c.description|linebreaks}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="reviews-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__regular fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3 class="centered">What some of our subscribers say about {{c.name}}</h3>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        {% if c.reviews.all %}
+          {% for x in c.reviews.all reversed %}
+            {% if not x.hidden and x.rating > 1 %}
+              <div class="review-body">
+                <span class="username">{{ x.order.customer.first_name }}</span>
+                {% if x.brew != None and x.brew.name != "None" %}
+                  | <span>Brews using <span class="brews-with">{{ x.brew }}</span>
+                {% endif %}
+                {# <span class="loves">{% listing x.order.customer.preferences.flavor.all %}</span> #}
+                {# <span>Intensity rating <span class="intensity-rating">{{ x.order.customer.preferences.intense }}/5</span></span> #}
+                <br />
+                <span>Subscriber since <span class="subscribed-since">{{ x.order.customer.orders.all.0.date|date:"M Y" }}</span></span>
+                <span class="comment-stars">
+                  {% with ''|center:x.rating as range %}
+                    {% for _ in range %}
+                      <span class="glyphicon glyphicon-star text-primary"></span>
+                    {% endfor %}
+                  {% endwith %}
+                </span>
+                {% if x.comment %}
+                  <p class="review-comment">{{ x.comment }}</p>
+                {% endif %}
+              </div>
+              <br />
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <h4 class="centered">Nothing yet :(</h4>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+<!-- Modal coffee special -->
+
+
+
+<!-- Modal for taster coffee details -->
+{% for c in taster_coffee_list %}
+<div id="moreinfo-modal{{c.id}}" class="modal modal-hc
+  {% if c.special %}
+    modal-hc-coffee__special
+  {% else %}
+    modal-hc-coffee__regular
+  {% endif %} fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{c.name}}</h3>
+          <p>{{c.maker}}</p>
+        </div>
+      </div>
+
+      <div class="modal-img-bg"
+        style="background-image: url({{ c.img.url }})">
+
+        {% if not is_worldwide %}
+          <div class="purchase-box">
+            <p class="s-h1-bold">{% trans 'Subscribe and Save' %}</p>
+
+            <div>
+              <p class="s-h2">S${{ c.amount|floatformat:2 }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <!--
+            User who has been registered without credit card but with credits by a friend
+            goes out of credits and should provide credit card details
+            -->
+            {% if out_of_credits %}
+              <a data-toggle="modal" data-target="#enter_credit_card" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% else %}
+                <a href="{% url 'preregister' coffee_id=c.id isNespresso=False isOneoff=False %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% endif %}
+          </div>
+
+        {% else %}
+          </br></br></br></br>
+        {% endif %}
+
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Order a One-off' %}</p>
+
+          <p><small>{% trans 'Select Brew Method' %}</small></p>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-hc btn-hc-xs btn-primary-inv"
+              type="button"
+              id="pbox-oneoff-brewmethod__{{ c.id }}"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+              data-brew-id="{{ current_brew.id }}">
+              <div class="dropdown-item">
+                <img src="{{ current_brew.img.url }}" />
+                <div>
+                  <p>{% trans current_brew.name %}</p>
+                </div>
+              </div>
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="pbox-oneoff-brewmethod__{{c.id}}">
+              {% for brew in brew_methods_oneoff %}
+                <li>
+                  <a class="dropdown-item" data-id="{{ brew.id }}" brew=true href="#">
+                    <img src="{{ brew.img.url }}" />
+                    <div>
+                      <p>{% trans brew.name %}</p>
+                    </div>
+                  </a>
+                </li>
+              {% endfor %}
+
+            </ul>
+          </div>
+
+          <p><small>{% trans 'Select Packaging Method' %}</small></p>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-hc btn-hc-xs btn-primary-inv"
+              type="button"
+              id="pbox-oneoff-packaging__{{c.id}}"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+              data-package-id="{{ current_package }}">
+              <div class="dropdown-item">
+                <img src="{% static 'images/package_methods/wholebeans.png' %}" />
+                <div>
+                  <p>{% trans 'Wholebeans' %}</p>
+                  <p class="s-h1"><small>{% trans 'Wholebeans' %} (200g)</small></p>
+                </div>
+              </div>
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" aria-labelledby="pbox-oneoff-packaging__{{c.id}}">
+              <li>
+                <a class="dropdown-item" data-package="GR" href="#">
+                  <img src="{% static 'images/package_methods/ground.png' %}" />
+                  <div>
+                    <p>{% trans 'Ground' %}</p>
+                    <p class="s-h1"><small>{% trans 'Ground' %} (3 x 80g)</small></p>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" data-package="WB" href="#">
+                  <img src="{% static 'images/package_methods/wholebeans.png' %}" />
+                  <div>
+                    <p>{% trans 'Wholebeans' %}</p>
+                    <p class="s-h1"><small>{% trans 'Wholebeans' %} (3 x 80g)</small></p>
+                  </div>
+                </a>
+              </li>
+
+              <li>
+                <a class="dropdown-item" data-package="DR" href="#">
+                  <img src="{% static 'images/package_methods/dripbag.png' %}" />
+                  <div>
+                    <p>{% trans 'Drip Bags' %}</p>
+                    <p class="s-h1"><small>{% trans 'Drip Bags' %} (3 x 4)</small></p>
+                  </div>
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="purchase-box__price">
+            <div>
+              <p class="s-h2">S${{ c.amount_one_off }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <div id="pbox-oneoff-quantity__{{c.id}}" class="plus-minus" data-id="{{ c.id }}">will be replaced with React</div>
+          </div>
+
+          <div class="btn-add-bag-placement" data-id="{{ c.id }}"></div>
+        </div>
+
+        </br></br></br></br>
+
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <h4>{% trans 'How this coffee will taste like?' %}</h4>
+          <p>{{c.more_taste|safe}}</p>
+        </div>
+
+        {% farm c as farm_photos %}
+        {% if farm_photos %}
+          <div class="modal-body-section__sm">
+            <h4>{% trans 'More information about the farm' %}</h4>
+          </div>
+        </div>
+
+        <div id="cof__carousel{{c.id}}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for x in farm_photos %}
+              <li
+                data-target="#cof__carousel{{c.id}}"
+                data-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.counter0 == 0 %}
+                  class="active"
+                {% endif %}
+              ></li>
+            {% endfor %}
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            {% for x in farm_photos %}
+              <div
+                class="
+                  item
+                  {% if forloop.counter0 == 0 %}
+                  active
+                  {% endif %}
+                ">
+                <img src="{{ x }}" alt="">
+              </div>
+            {% endfor %}
+          </div>
+
+          <a class="left carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Previous' %}</span>
+          </a>
+
+          <a class="right carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Next' %}</span>
+          </a>
+        </div>
+      {% else %}
+        </div>
+      {% endif %}
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <h4>{% blocktrans %}More info about the coffee's origins{% endblocktrans %}</h4>
+          <p>{{c.description|linebreaks}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+<!-- Modal coffee taster -->
+
+
+<!-- Enter credit card Modal -->
+<div id="enter_credit_card" class="modal modal-hc modal-form fade" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="s-h2"><b>{% trans 'Credit Card Details' %}</b></p>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body">
+          <div class="modal-body-section__sm">
+            <div class="alert alert-info">
+              {% trans 'Almost there! Please enter your credit card details' %}
+            </div>
+
+            <form id="payment-form" method="POST" action="{% url 'set_stripe_credits' %}">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <label>{% trans 'Card Number' %}</label>
+                <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+              </div>
+
+              <div class="other-card-info">
+                <div class="form-group">
+                  <label for="card__cvc">{% trans 'CVC' %}</label>
+                  <input id="card__cvc"
+                    type="text"
+                    size="4"
+                    data-stripe="cvc"
+                    class="form-control"
+                    value=""/>
+                </div>
+
+                <div class="form-group">
+                  <label for="card__exp">{% trans 'Expiration (MM/YYYY)' %}</label>
+                  <div class="form-inline">
+                    <input id="card__exp"
+                      class="form-control form-expmo"
+                      type="text"
+                      size="2"
+                      data-stripe="exp-month"
+                      value=""
+                      placeholder="{% trans 'MM' %}" />
+                    <b> / </b>
+                    <input class="form-control form-expyr"
+                      type="text"
+                      size="4"
+                      data-stripe="exp-year"
+                      value=""
+                      placeholder="{% trans "YYYY" %}" />
+                  </div>
+                </div>
+              </div>
+
+              <p class="payment-errors"></p>
+
+              <div class="form-group">
+                <input id="post_credits" type="hidden" name="post_credits" value="42"/>
+                <div id="stripe-notify" class="alert alert-info">{% trans 'We use Stripe to process your payment super securely. We never store your card details on our system and instead leave that up to Stripe (who are very, very good at it).' %}</div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-hc">
+                    <span><i class ="loading-icon"></i></span>
+                    &nbsp {% trans 'Submit' %} &nbsp
+                  </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Enter credit card Modal -->
+
+
+{% comment %}
+<!-- Taster Pack Modal -->
+  <div id="modal-taster" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+          <div class="modal-body text-center">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <h1>Still undecided? Try Hook’s taster pack!</h1>
+
+            <div class="row text-center">
+              <div class="col-md-6">
+                <img src="{% static 'images/taster3x80g.jpg' %}" />
+                <h2>whole / ground taster pack</h2>
+                <a href="{% url 'taster3x80g' %}">Grab this now for $18</a>
+              </div>
+
+              <div class="col-md-6">
+                <img src="{% static 'images/taster5x.jpg' %}" />
+                <h2>drip bags taster pack</h2>
+                <a href="{% url 'taster5x' %}">Grab this now for $7</a>
+              </div>
+            </div>
+
+          </div>
+      </div>
+
+    </div>
+  </div>
+{% endcomment %}
+
+<!-- Gift Modal -->
+<div id="modal-gift" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+      <div class="modal-body text-center">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <section class="c-choose-gift-section c-choose-gift-section_modal">
+          <h1 class="c-choose-gift__header">{% trans 'Wait! Get A Free Gift On Your First Order!' %}</h1>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/v60starter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans 'V60 STARTER KIT' %}</div>
+            <ul class="c-choose-gift__list">
+              <li class="c-choose-gift__l-item">{% trans 'Hario v60' %}</li>
+              <li class="c-choose-gift__l-item">{% trans 'Coffee scoop' %}</li>
+              <li class="c-choose-gift__l-item">{% trans 'Filters to get you started' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              {# <a class="btn btn--choose-gift" href="?v=V60STARTER">Choose</a> #}
+              <input type="hidden" name="chosen_voucher" value="V60STARTER">
+              <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/80gstarter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans '80G BAG' %}</div>
+            <ul class="c-choose-gift__list">
+              <li class="c-choose-gift__l-item">{% trans '1 x 80g of freshly roasted coffee' %}</li>
+              <li class="c-choose-gift__l-item">{% trans 'Choose whole/ground' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="80GSTARTER">
+              <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/dripstarter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans '3 x DRIP COFFEE BAGS' %}</div>
+            <ul class="c-choose-gift__list c-choose-gift__list_modal">
+              <li class="c-choose-gift__l-item">{% trans '3 x drip coffee bags samplers' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="DRIPSTARTER">
+              <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+
+          <div class="c-choose-gift__item c-choose-gift__item_modal">
+            <img class="c-choose-gift__img" src="{% static 'images/shotpodsstarter_200.png' %}" />
+            <div class="c-choose-gift__name">{% trans 'SHOTPODS BOX' %}</div>
+            <ul class="c-choose-gift__list c-choose-gift__list_modal">
+              <li class="c-choose-gift__l-item">{% trans '4 x assorted ShotPods' %}</li>
+            </ul>
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="SHOTPODSSTARTER">
+              <button id="submit-email" class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- /Gift Modal -->
+
+<!-- Add to cart modal -->
+<div id="modal-cart-add" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <div class="form-body">
+              <div class="form-container">
+                <form id="form-cart-add" class="form-horizontal" action="" method="POST">
+
+                  {% csrf_token %}
+
+                  <div class="form-group form-group-lg">
+                    <h3>Brew method</h3>
+
+                    <div class="icon-list">
+                        {% for brew in brew_methods %}
+                        <div id="brew_{{ brew }}" data-value="{{ brew.id }}" data-title="{{ brew.name }}" class="form-option opt-brew pref-option">
+                          <div class="img-thumbnail" style="background: url(&quot;{{ brew.img.url }}&quot;) no-repeat scroll center center / 110% 110%;"></div>
+                          <p>{{ brew.name }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <h3>How do you want your coffee packaged for this order?</h3>
+
+                    <div class="icon-list">
+                      {% for key, value in preferences_form.package.field.choices %}
+                      <div id="pack_{{ key }}" data-value="{{ key }}" class="form-option opt-pack pref-option">
+                        <div class="img-thumbnail" style="background: url(&quot;{% static 'images/package_methods/' %}{% if key == 'GR' %}ground{% elif key == 'WB' %}wholebeans{% elif key == 'DR' %}dripbag{% endif %}.png&quot;) no-repeat scroll center center / 110% 110%;"></div>
+                        <p>{{ value }}</p>
+                      </div>
+                      {% endfor%}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <h3>Select quantity</h3>
+                    <div id="div-quantity">
+                      <button type="button" class="btn btn-default btn-cart-down" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                      </button>
+
+                      <input id="item-quantity" value="1" text-align="right" readonly></input>
+
+                      <button type="button" class="btn btn-default btn-cart-up" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+                      </button>
+                    </div>
+
+                    <p id="p_brew_goal" class="hide"><i>Your coffee will be ground for <b><span id="brew_goal"></span></b>!</i></p>
+                    <p id="p_drip_bags" class="hide"><i>Your order will come in a pack of <b>10 drip bags</b>!</i></p>
+                    <p id="p_wholebeans" class="hide"><i>Your coffee will come in <b>whole beans</b>!</i></p>
+                    <p id="p_forgot_methods" class="hide"><i>Please select your brew and packaging methods</i></p>
+                    <p id="p_forgot_brew" class="hide"><i>Please select your brew method</i></p>
+                    <p id="p_forgot_package" class="hide"><i>Please select your packaging method</i></p>
+                  </div>
+
+                  <input type="hidden" name="coffee-id" value="" />
+                  <input type="hidden" name="coffee-name" value="" />
+                  <input type="hidden" name="brew-method" value="" />
+                  <input type="hidden" name="package-method" value="" />
+                  <input type="hidden" name="price" value="{{ price }}" />
+                  <input type="hidden" name="quantity" value="1" />
+
+                  <div class="form-group">
+                    <button id="submit-cart-add" class="btn btn-primary">Add to basket</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-left: 1px;">Back</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    var brew_method = "{{ current_brew }}";
+    var package_method = "{{ current_package }}";
+
+    var coffee_rating = {
+      {% for coffee in coffee_rating %}
+        '{{ coffee.id }}': {{ coffee.avg_rating }},
+      {% endfor %}
+    }
+    console.log('coffee_rating', coffee_rating);
+
+  $(document).ready(function(){
+
+      var stripeResponseHandler = function(status, response) {
+      var $form = $('#payment-form');
+
+      if (response.error) {
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+        $form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+      } else {
+        // token contains id, last4, and card type fa fa-spinner
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and re-submit
+        $form.get(0).submit();
+      }
+
+    };
+
+  $('#payment-form').submit(function(e) {
+        var $form = $(this);
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+        $form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+        Stripe.card.createToken($form, stripeResponseHandler);
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+
+  $(".btn-cart-add").click(function() {
+    $("input[name='coffee-id']").attr("value", $(this).attr("id"));
+    $("input[name='price']").attr("value", $(this).attr("price"));
+    $("input[name='coffee-name']").attr("value", $(this).siblings("h1").text());
+  });
+
+  // Show average review rating
+  $(".avg-rating").each(function(obj) {
+    var coffeeId = $(this).data("id")
+    $(this).find(".avg-rating-value").text((Math.round(coffee_rating[coffeeId] * 100) / 100).toFixed(1));
+
+    var $coffeeAvgStarsBlock = $(this).find('.js-coffee-avg-rating');
+    console.log('$coffeeAvgStarsBlock', $coffeeAvgStarsBlock);
+    var coffeeAvgRating = Math.round(coffee_rating[coffeeId]);
+
+    if (!isNaN(coffeeAvgRating)) {
+      $coffeeAvgStarsBlock
+        .empty()
+        .append('<span class="glyphicon glyphicon-star text-primary"></span>'.repeat(coffeeAvgRating))
+        .show();
+    } else {
+      $coffeeAvgStarsBlock.hide();
+    }
+  });
+
+});
+</script>
+<script src="{% static 'assets/vendor/isotope.pkgd.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/custom/js/coffees.js' %}" type="text/javascript"></script>
+<script>
+  if (window.location.hash) {
+      $(window.location.hash).modal('show');
+    }
+  window.onload = function() {
+    var $container = $('.isotope').isotope({
+      itemSelector: '.element-item',
+      layoutMode: 'masonry',
+      percentPosition: true,
+      filter: ':not(.no-equipments)',
+      fitRows: {
+        gutter: '.gutter-sizer'
+      }
+    });
+
+    $('.brew-method').on('click', function() {
+
+      $('.brew-method').removeClass('selected');
+      $(this).addClass('selected');
+
+      var filterValue = $( this ).attr('data-filter');
+      $container.isotope({ filter: filterValue });
+      console.log('filterValue: ' + filterValue);
+    });
+
+    // Modal dropdown -> change selected item on click
+    // $(".modal-hc .dropdown-menu li a").click(function(){
+    //   $(this).parents(".dropdown").find('.btn').html($(this).text() + ' <span class="caret"></span>');
+    //   $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+};
+</script>
+
+{% compress js %}
+  <script src="{% static 'assets/custom/js/modal-dropdown.js' %}"></script>
+{% endcompress %}
+
+{% endblock %}

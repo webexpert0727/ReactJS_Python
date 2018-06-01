@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}- {% trans 'Gifts' %}{% endblock %}
+
+{% block head %}
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content%}
+
+<section class="top-banner gift-banner">
+  <div class="container">
+  <div class="banner-text text-center">
+    <h1>{% trans 'GIFTS AND GEAR' %}</h1>
+    <p>
+      {% blocktrans trimmed %}
+      Our coffees make people happy. And our stylish brewing essentials and<br />
+      coffee accessories? They make that happiness last ever longer!<br />
+      <br />
+      You can send your coffee-loving friends some extraordinary coffees or coffee<br />
+      gear to spruce up their coffee adventures. We’re also constantly curating<br />
+      elemental starter kits and classic gift sets for coffee lovers of all levels.
+      {% endblocktrans %}
+    </p>
+    <!-- <button name="btn" class="btn btn-1">Start Shopping</button> -->
+    <!--banner-text-->
+    <div class="clearfix"></div>
+    <!--clearfix-->
+  </div>
+  <!--container-->
+</section>
+<!--top-banner-->
+
+
+<section class="two-boxes text-center">
+  <div class="container">
+    <div class="clearfix">
+      <div class="col-sm-6"> <img src="{% static 'images/gift1.png' %}" alt="Image" class="img-responsive" />
+        <h1>{% trans 'GIFT CREDITS' %}</h1>
+        <p>{% trans 'Whether it’s for a special occasion, to send your best wishes, or for no reason at all, coffee is a sure way to make someone’s day (or weeks). Buy credits and send a friend some coffees! You choose the amount, and they pick their coffees and delivery preferences.' %}</p>
+        <a href="{% url 'send-friend' %}" class="btn btn3">&nbsp; {% trans 'Send A Friend Coffee' %} &nbsp;</a> </div>
+      <!--col-sm-6-->
+      <div class="col-sm-6"> <img src="{% static 'images/gift2.png' %}" alt="Image" class="img-responsive" />
+        <h1>{% trans 'gift sets and coffee gear' %}</h1>
+        <p>{% trans 'If you thought the pleasure you get from drinking our freshly roasted coffees couldn’t get any better, you’re probably right. But to be sure you’re doing the coffees justice, equip yourself or your coffee comrades with brewing essentials and inspiring coffee accessories.' %}</p>
+        <a href="{% url 'shop-gift' %}" class="btn btn3">&nbsp; {% trans 'SHOP GIFT SETS & GEAR' %} &nbsp;</a> </div>
+        {# <a href="javascript:void();" class="btn btn3">&nbsp;{% trans 'AVAILABLE SOON!' %}&nbsp;</a> </div> #}
+      <!--col-sm-6-->
+    </div>
+    <!--clearfix-->
+  </div>
+  <!--container-->
+</section>
+<!--two-boxes-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="buyGift" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">{% trans 'Purchase A Gift' %}</h4>
+      </div>
+      <!--modal-header-->
+      <div class="modal-body">
+        <center class="counter">
+          {% trans 'Credit Amount' %}<br />
+          <br />
+          <a href="javascript:void(0);" id="decrement" class="minus"><i class="fa fa-minus"></i></a>
+          <input class="qty" type="text" value="1$" id="number" />
+          <input class="qty" type="hidden" value="1" id="number1" />
+          <a href="javascript:void(0);" id="increment" class="add"><i class="fa fa-plus"></i></a>
+        </center>
+        <div class="clearfix"></div>
+        <form class="cart-form">
+          <h2>{% trans 'RECIPIENT’S DETAILS – WHO’S THE GIFT FOR?' %}</h2>
+          <label>{% trans 'Recipient’s name' %}*:</label>
+          <input type="text" name="text" class="form-control" placeholder="" />
+          <br />
+          <label>{% trans 'Your first name' %}*:</label>
+          <input type="text" name="text" class="form-control" placeholder="" />
+          <br />
+          <h2>{% trans 'YOUR DETAILS' %}</h2>
+          <label>{% trans 'Your last name' %}*:</label>
+          <input type="text" name="text" class="form-control" placeholder="" />
+          <br />
+          <label>{% trans 'Your email' %}*:</label>
+          <input type="text" name="text" class="form-control" placeholder="" />
+          <br />
+          <h2>{% trans 'YOUR PAYMENT DETAILS' %}</h2>
+          <label>{% trans 'Number' %}*:</label>
+          <input type="text" name="text" class="form-control" placeholder="" />
+          <br />
+          <label>{% trans 'Expiry' %}*:</label>
+          <input type="text" name="text" class="form-control" placeholder="" />
+          <br />
+          <label>{% trans 'CVC' %}*:</label>
+          <input type="text" name="text" class="form-control" placeholder="" />
+        </form>
+        <div class="alert alert-info"> {% trans 'We use Stripe to process your payment super securely. We never store your card details on our system and instead leave that up to Stripe (who are very, very good at it).' %} </div>
+      </div>
+      <!--modal-body-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn3">{% trans 'PAY' %} $65 {% trans 'NOW' %}</button>
+      </div>
+      <!--modal-footer-->
+    </div>
+    <!--modal-content-->
+  </div>
+  <!--modal-dialog-->
+</div>
+<!--modal-->
+{% endblock %}
+
+{% block scripts %}
+<!-- <script src="{% static 'assets/vendor/jquery.js' %}"></script> -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script> -->
+<script>
+$(document).ready(function(){
+    $('.menu-icon').click(function(){
+    var hidden = $('.hemburger-menu');
+    if (hidden.hasClass('visible')){
+        hidden.animate({"left":"-300px"}, "slow").removeClass('visible');
+    } else {
+        hidden.animate({"left":"0px"}, "slow").addClass('visible');
+    }
+    });
+  $(function() {
+    $( "#slider-range-min" ).slider({
+      range: "min",
+      value: 37,
+      min: 1,
+      max: 700,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+  });
+  $("#increment").click(function(){
+      if($('#number1').val() !="90"){
+        var $n = $("#number1");
+        $n.val(Number($n.val())+1);
+        var value = $n.val();
+        $("#number").val(value +'$');
+       }
+    });
+
+   $("#decrement").click(function(){
+         if($('#number1').val() !="10"){
+        var $n = $("#number1");
+        $n.val(Number($n.val())-1);
+         var value = $n.val();
+        $("#number").val(value +'$');
+       }
+    });
+});
+</script>
+{% endblock %}

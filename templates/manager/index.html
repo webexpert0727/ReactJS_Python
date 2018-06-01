@@ -1,0 +1,16 @@
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>HookCoffee Admin</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicons/base_favicon.ico' %}">
+  </head>
+  <body>
+    {% csrf_token %}
+    <div id="app"></div>
+    {% render_bundle 'manager' config='MANAGER' %}
+  </body>
+</html>

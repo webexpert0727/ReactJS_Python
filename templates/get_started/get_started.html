@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+<html lang="en">
+  <head>
+
+  {% block head %}
+  <title>Hook Coffee — {% trans 'Get Started' %}</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link href="{% static 'assets/vendor/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+
+  <!-- Favicons -->
+  <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicons/apple-touch-icon-57x57.png' %}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicons/apple-touch-icon-60x60.png' %}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicons/apple-touch-icon-72x72.png' %}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicons/apple-touch-icon-76x76.png' %}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicons/apple-touch-icon-114x114.png' %}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicons/apple-touch-icon-120x120.png' %}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicons/apple-touch-icon-144x144.png' %}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicons/apple-touch-icon-152x152.png' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon-180x180.png' %}">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicons/base_favicon.ico' %}">
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-16x16.png' %}" sizes="16x16">
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-32x32.png' %}" sizes="32x32" >
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-96x96.png' %}" sizes="96x96">
+  <link rel="icon" type="image/png" href="{% static 'favicons/favicon-192x192.png' %}" sizes="192x192">
+
+  <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
+  <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="{% static 'favicons/mstile-144x144.png' %}">
+  <meta name="msapplication-config" content="{% static 'favicons/browserconfig.xml' %}">
+  <meta name="theme-color" content="#ffffff">
+
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'seiyria-bootstrap-slider/dist/css/bootstrap-slider.css' %}" />
+
+  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'bootstrap-sass/assets/javascripts/bootstrap.min.js' %}"></script>
+  <script src="{% static 'seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+
+  <script src="{% static 'assets/vendor/isotope.pkgd.min.js' %}" type="text/javascript"></script>
+  <script src="//cdn.jsdelivr.net/velocity/1.4/velocity.min.js"></script>
+  <script src="{% static 'assets/custom/js/get-started.js' %}"></script>
+
+  <!-- Heap analytics -->
+  <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var n=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(n?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(a,o);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=r(p[c])};
+    heap.load("2757493293");
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-71545429-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1581259845537433');
+    fbq('track', "PageView");
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1581259845537433&ev=PageView&noscript=1"
+    />
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+  {% endblock %}
+
+</head>
+
+<body style="margin-top: 0;">
+{% block content %}
+
+<!--
+<section class="progress-bar__wrapper">
+  <div class="progress">
+    <div class="progress-bar progress-bar--get-started js-progress-bar--get-started" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 0%;">
+    </div>
+  </div>
+</section>
+-->
+
+<div id="get-started-container">
+  <div class="order-flow-body container">
+
+    <a class="close-order-flow glyphicon glyphicon-remove" href="{% url 'index' %}"></a>
+
+    <section id="brew-method" class="section order-flow-content {% if not request.session.user_info %}show{% endif %}">
+      <div class="section-row row-sm text-center">
+        <h3>{% trans 'Hi there! First up, how do you make your coffee?' %}</h3>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <div class="methods-list-wrapper col-xs-12">
+          <div class="method-list">
+            {% for brew in brew_methods %}
+
+            <a data-method="{{ brew.id }}"
+              href="#sensory-taste-profile"
+              data-title="{{ brew.name }}"
+              class="method-item">
+              <div class="img-bg" style="background-image: url('{% if brew.img %}{{ brew.img.url }}{% endif %}')">
+              </div>
+              <p>{{ brew.name }}</p>
+            </a>
+
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sensory-taste-profile" class="section order-flow-content">
+      <div class="section-row row-sm text-center">
+        <h3>{% trans 'Sensory Taste Profile' %}</h3>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <div class="non-nespresso-desc">
+          <p>{% blocktrans trimmed %}Great choice! Specialty coffee is almost like wine, each having its own unique characteristics and flavours. In order for us to recommend a coffee most suited to you, we will need to understand a little about your sensory palette. So which of these do you like? (you can choose up to 3){% endblocktrans %}</p>
+        </div>
+
+        <div class="no-equipments-desc">
+          <h4>{% trans 'Brewing Method' %}</h4>
+
+          <p>{% blocktrans %}Don’t worry if you don’t have any fancy coffee apparatus. We’ve got our coffee drip bags for you! Easy, convenient and portable but just as fresh and delicious!{% endblocktrans %}</p>
+
+          <a id="drip-method"
+            data-method="3"
+            href="#intensity">
+            <div class="img-bg" style="background-image: url({% static 'images/package_methods/dripbag.png' %})">
+            </div>
+            <p>{% trans 'Drip bag' %}</p>
+          </a>
+
+          <a id="btn-back-to-brew-drip" href="#brew-method"
+            class="next btn-back pull-left hide">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            {% trans 'Back' %}
+          </a>
+
+          <button id="btn-submit-drip" class="next submit-drip btn btn-primary btn-hc pull-right" type="submit">{% trans 'Next' %}</button>
+        </div>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <div class="flavour-list-wrapper col-xs-12 show">
+          <div class="flavour-list">
+
+            {% for flavor in flavors %}
+
+            <div class="flavour-item" data-flavour={{ flavor.id }}>
+              <div class="img-bg" style="background-image: url('{{ flavor.img.url }}')">
+                <!--<span>&#x2713;</span>-->
+              </div>
+              <p>{{ flavor.name }}</p>
+            </div>
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <p><i><span class="no-preference-message"></span></i></p>
+
+        <div class="row" style="padding-top: 20px;">
+          <div class="col-sm-8 col-sm-offset-4">
+            <p id="flavour-error" class="error-message text-left pull-right show"></br></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <a id="btn-back-to-brew-flav" href="#brew-method" class="next btn-back pull-left">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              {% trans 'Back' %}
+            </a>
+            <a id="submit-flavours" class="next btn btn-primary btn-hc pull-right" type="submit">{% trans 'Next' %}</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="intensity" class="section order-flow-content">
+      <div class="section-row row-sm text-center">
+        <h3>{% trans 'Intensity' %}</h3>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <p class="no-preference-desc">
+          {% trans 'Now, tell us how intense you like your coffee!' %}
+        </p>
+        <p class="flavour-desc">
+          {% trans 'What lovely flavours! Now that we know a little about your sensory taste profile, tell us how intense you like your coffee!' %}
+        </p>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <div class="row intesity-slider-wrapper text-center">
+          <h2 class="coffee-cup"><i class="fa fa-coffee"></i><br></h2>
+          <div class="col-md-6 col-md-offset-3">
+            <div class="slider-brown">
+              <div id="intensity-slider" class="slider">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <i><span id="intensity-info">
+          {% trans 'I like intensity, but not too much' %}
+        </span></i>
+      </div>
+
+      <div class="section-row row-sm text-center">
+        <form method="POST" action="">
+          {% csrf_token %}
+          <div class="row" >
+            <div class="col-md-12">
+              {# <input type=hidden name="username" value={{ username }}> #}
+              {# <input type=hidden name="email" value={{ email }}> #}
+              <a id="btn-back-to-flavours" href="#sensory-taste-profile" class="btn-back pull-left">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                {% trans 'Back' %}
+              </a>
+
+              <a id="submit-intensity" href="#recommendation" class="btn btn-primary btn-hc pull-right">
+                {% trans 'Next' %}
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="intro" class="section order-flow-content
+      {% if not valid and request.session.user_info %}show{% endif %}">
+      <div class="section-row row-sm">
+        <h3>{% blocktrans trimmed %}We think we know what coffee you will love!<br/>
+            But can we get acquainted first ? :){% endblocktrans %}</h3>
+      </div>
+
+      <div class="section-row row-sm text-left">
+        <form id="submit-intro" method="POST" action="">
+          {% csrf_token %}
+          <div class="input-wrapper">
+            <label class="label" for="{{ form.name.id_for_label }}">{% trans 'Name' %}</label>
+            {% render_field form.name id="name-input" class+="form-control" placeholder='Coffee Lover' value='' %}
+            {{ form.name.errors }}
+          </div>
+
+          <div class="input-wrapper">
+            <label class="label" for="{{ form.email.id_for_label}}">{% trans 'Email Address' %}</label>
+            {% render_field form.email id="email-input" class+="form-control" placeholder='hello@hookcoffee.com.sg' value='' %}
+            {{ form.email.errors }}
+            {{ errors }}
+          </div>
+
+          <button id="submit-email" class="next btn btn-primary btn-hc btn-long" type="submit">{% trans 'Next' %}</button>
+          <input type="hidden" id="user_info" name="user_info" value="{{ request.session.user_info }}"/>
+          <input type="hidden" id="accesstoken" name="accesstoken"/>
+        </form>
+      </div>
+
+      <div class="section-row row-sm">
+        <button onclick="loginFB()" class="btn btn-fb btn-block btn-long btn-hc"><i class='fa fa-facebook'></i>&nbsp&nbsp&nbsp&nbsp {% trans 'Sign up with' %} Facebook</button>
+      </div>
+    </section>
+
+    <section id="recommendation" class="section order-flow-content {% if valid %}show{% endif %}">
+      <div class="section-row row-sm">
+        <h3>{% trans 'Your recommended coffee' %}</h3>
+      </div>
+
+      <div class="section-row row-sm">
+        <div id="processing" class="text-center {% if not valid %}show{% endif %}">
+          <p>
+            {% trans 'Fantastic! Hang on while we find the perfect coffee for you!' %}
+          </p>
+          <img class="img-responsive" src="{% static 'images/espresso-fill.gif' %}" alt="">
+        </div>
+      </div>
+
+      <div class="section-row row-sm">
+        <div id="result" class="{% if valid %}show{% endif %}">
+          {{details}}
+          <h2>{% trans 'Hi' %} <span class="username">{{ username }}</span>!</h2>
+          <h3>
+            {% trans "We think you'll love" %}
+          </h3>
+
+          <div id="recommended-coffee"/>
+            <div class="description-head">
+              <img class="img-responsive" src="" alt="">
+              <h2 class="coffee-title"></h2>
+            </div>
+
+            <p id="description"></p>
+            <input id="csrftoken" type="hidden" name="csrftoken" value="{{ csrf_token }}">
+          </div>
+
+          <div class="section-row row-sm">
+            <div class="btn-group__collapsing text-center">
+              <a id="other-coffees" class="btn btn-primary-inv btn-hc">
+                {% trans 'Other coffees' %}
+              </a>
+
+              <a id="register-link" href="{% url 'register' %}"
+                class="btn btn-primary btn-hc hide">
+                {% trans "I'll take it!" %}
+              </a>
+
+              <a id="register-link-credits" href="{% url 'register_credits' %}"
+                class="btn btn-primary btn-hc hide">
+                {% trans "I'll take it!" %}
+              </a>
+
+              <a id="register-link-nespresso" href="{% url 'register_nespresso' %}"
+                class="btn btn-primary btn-hc hide">
+                {% trans "I'll take it!" %}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="our-bags" class="section order-flow-content">
+      <div class="section-row row-sm">
+        <h2>{% trans 'Our coffees' %}</h2>
+      </div>
+
+      <div class="section-row row-lg row-grid">
+
+        <div class="isotope">
+          {% for c in bags_list %}
+            <div class="col-xs-12 col-sm-6 col-md-4 element-item
+              {% for pc in c.brew_method.all %}
+                {{ pc.name.split|join:'_' }}
+              {% endfor %}" data-category="">
+
+              <div class="coffee-box {% if c.is_special %}special-coffee{% endif %}">
+                <div class="cb-info cb-header">
+                  <h4>{{ c.name }}</h4>
+                  <small>
+                    <i class="fa fa-map-marker"></i>
+                    {{ c.region }}, {{ c.get_country_display }}
+                  </small>
+                </div>
+
+                <div class="cb-img" style='background-image: url({{ c.img.url }})'>
+                </div>
+
+                <div class="cb-info">
+                  <p class="c-taste">
+                    <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+                  </p>
+                  <p class="c-bdisplay">{{ c.get_body_display }}</p>
+
+                  <table>
+                    <tr>
+                      <td class="s-h1-bold">{% trans 'Roasted on' %}</td>
+                      <td><p>{{ c.roasted_on }}</p></td>
+                    </tr>
+
+                    <tr>
+                      <td class="s-h1-bold">{% trans 'Upcoming roast' %}</td>
+                      <td><p>{{ c.shipping_till }}</p></td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div class="cb-info cb-footer">
+                  <form method="POST" action=''>
+                    {% csrf_token %}
+                    <div class="buttons">
+                      <input type="hidden" name="coffee_id" value="{{ c.id }}">
+                      <a href="" class="btn btn-primary btn-sm btn-choose-coffee">
+                        {% trans 'CHOOSE' %}
+                      </a>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section>
+
+    <section id="our-pods" class="section order-flow-content">
+      <div class="section-row row-sm">
+        <h2>{% trans 'Our coffees' %}</h2>
+      </div>
+
+      <div class="section-row row-lg row-grid">
+
+        <div class="isotope">
+          {% for c in pods_list %}
+            <div class="col-xs-12 col-sm-6 col-md-4 element-item
+              {% for pc in c.brew_method.all %}
+                {{ pc.name.split|join:'_' }}
+              {% endfor %}" data-category="">
+
+              <div class="coffee-box {% if c.is_special %}special-coffee{% endif %}">
+                <div class="cb-info cb-header">
+                  <h4>{{ c.name }}</h4>
+                  <small>
+                    <i class="fa fa-map-marker"></i>
+                    {{ c.region }}, {{ c.get_country_display }}
+                  </small>
+                </div>
+
+                <div class="cb-img" style='background-image: url({{ c.img.url }})'>
+                </div>
+
+                <div class="cb-info">
+                  <p class="c-taste">
+                    <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+                  </p>
+                  <p class="c-bdisplay">{{ c.get_body_display }}</p>
+
+                  <table>
+                    <tr>
+                      <td class="s-h1-bold">{% trans 'Roasted on' %}</td>
+                      <td><p>{{ c.roasted_on }}</p></td>
+                    </tr>
+
+                    <tr>
+                      <td class="s-h1-bold">{% trans 'Upcoming roast' %}</td>
+                      <td><p>{{ c.shipping_till }}</p></td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div class="cb-info cb-footer">
+                  <form method="POST" action=''>
+                    {% csrf_token %}
+                    <div class="buttons">
+                      <input type="hidden" name="coffee_id" value="{{ c.id }}">
+                      <a href="" class="btn btn-primary btn-sm btn-choose-coffee">
+                        {% trans 'CHOOSE' %}
+                      </a>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="{% static 'remarkable-bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+<script src="{% url 'jsi18n' %}"></script>
+
+{% endblock %}
+
+</body>
+</html>

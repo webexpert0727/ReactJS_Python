@@ -1,0 +1,22 @@
+#bottled__top-banner.top-banner.section {
+  background: url('/static/images/banners/bottled__top-banner__mobiles.jpg') no-repeat top center;
+  background-position: 50% 0%;
+  background-size: cover;
+  @media only (min-width: 768px) {
+    background: url('/static/images/banners/bottled__top-banner__300kb.jpg') no-repeat top center;
+    background-position: 50% 75%;
+    background-size: cover;
+  }
+  @media only (min-width: 1365px) {
+    background-position: 50% 80%;
+  }
+  @media only (min-width: 1439px) {
+    background-position: 50% 72%;
+  }
+  @media only (min-width: 1919px) {
+    background-position: 50% 50%;
+  }
+}
+td.s-h1-bold {
+  font-size: 75%;
+}

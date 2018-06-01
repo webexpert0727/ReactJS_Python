@@ -1,0 +1,125 @@
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:400,700);
+@import url(https://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic);
+
+/* Archer */
+@font-face {
+  // font-family:"Archer-Bold";
+  // src: url('../../../fonts/archer-book/Archer-Bold-Pro.otf') format('opentype');
+
+  font-family: 'Archer-Bold';
+  src: url(static('fonts/Archer-Bold_gdi.eot?#iefix')) format('eot'),
+       url(static('fonts/Archer-Bold_gdi.woff')) format('woff'),
+       url(static('fonts/Archer-Bold_gdi.ttf')) format('truetype'),
+       url(static('fonts/Archer-Bold_gdi.otf')) format('opentype'),
+       url(static('fonts/Archer-Bold_gdi.svg')) format('svg');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Archer-Semibold';
+  src: url(static('fonts/archer-book/Archer-Semibold-Pro.otf')) format('opentype');
+}
+
+@font-face {
+  font-family: 'Archer-Medium';
+  src: url(static('fonts/archer-book/Archer-Medium-Pro.otf')) format('opentype');
+}
+
+/* Amatic */
+@font-face {
+  font-family: 'Amatic-Bold';
+  src: url(static('fonts/amatic/Amatic-Bold.ttf')) format('truetype');
+}
+
+@font-face {
+  font-family: 'AmaticSC';
+  src: url(static('fonts/amatic/AmaticSC-Regular.ttf')) format('truetype');
+}
+
+@font-face {
+  font-family: 'Amatic';
+  src: url(static('fonts/amatic/Amatic-Bold.ttf')) format('truetype');
+}
+
+@font-face {
+  font-family: 'Arboria-Book';
+  src: url(static('fonts/arboria/Arboria-Book.ttf'));
+}
+@font-face {
+  font-family: 'Arboria-Black';
+  src: url(static('fonts/arboria/Arboria-Black.ttf'));
+}
+@font-face {
+  font-family: 'Arboria-Bold';
+  src: url(static('fonts/arboria/Arboria-Bold.ttf'));
+}
+
+
+@font-face {
+  font-family: 'DKSugaryPancake';
+  src: url(static('fonts/DKSugaryPancake/DKSugaryPancake.eot?')) format('eot'),
+       url(static('fonts/DKSugaryPancake/DKSugaryPancake.woff')) format('woff'),
+       url(static('fonts/DKSugaryPancake/DKSugaryPancake.ttf')) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DKButterflyBall';
+  src: url(static('fonts/DKButterflyBall/DKButterflyBall.eot?')) format('eot'),
+       url(static('fonts/DKButterflyBall/DKButterflyBall.woff2')) format('woff2'),
+       url(static('fonts/DKButterflyBall/DKButterflyBall.woff')) format('woff'),
+       url(static('fonts/DKButterflyBall/DKButterflyBall.otf')) format('opentype'),
+       url(static('fonts/DKButterflyBall/DKButterflyBall.ttf')) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Open sans
+// Bold
+@font-face {
+  font-family: 'Open Sans';
+  src: url(static('fonts/open-sans/OpenSans-Bold.ttf'));
+  font-weight: 700;
+  font-style: bold;
+}
+
+// Italic
+@font-face {
+  font-family: 'Open Sans';
+  src: url(static('fonts/open-sans/OpenSans-Italic.ttf'));
+  font-weight: 400;
+  font-style: italic;
+}
+
+// Light
+@font-face {
+  font-family: 'Open Sans';
+  src: url(static('fonts/open-sans/OpenSans-Light.ttf'));
+  font-weight: 200;
+  font-style: normal;
+}
+
+// LightItalic
+@font-face {
+  font-family: 'Open Sans';
+  src: url(static('fonts/open-sans/OpenSans-LightItalic.ttf'));
+  font-weight: 200;
+  font-style: italic;
+}
+
+// Regular
+@font-face {
+  font-family: 'Open Sans';
+  src: url(static('fonts/open-sans/OpenSans-Regular.ttf'));
+  font-weight: 400;
+  font-style: normal;
+}
+// End Open Sans
+
+@font-face {
+  font-family: 'HookCoffee Club';
+  src: url(static('fonts/HookCoffee Club.ttf'));
+}
+

@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}- {% trans 'About' %}{% endblock %}
+
+{% block meta-description %}
+    "We source the finest sustainably grown and ethically produced beans from farms in the developing world. We lovingly roast them in Singapore then send them out to you within a week of roasting, not to mention right to your doorstep."
+{% endblock %}
+
+{% block head %}
+<link rel="canonical" href="https://{{current_domain}}{% url 'about' %}" />
+{% compress css %}
+  <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+{% endcompress %}
+<!-- Get Social bar -->
+<script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content%}
+
+<section id="about__top-banner" class="top-banner section">
+    <div class="section-row row-sm text-center">
+        <h1><span class="use-base-font">#</span>{% trans 'MAKE COFFEE BETTER' %}</h1>
+            <h4>
+                <!-- {% trans 'That' %}<span class="use-base-font">'</span>{% trans 's our mission.' %} -->
+                <!-- <br /> -->
+                {% trans 'Hook Coffee is a coffee brand by and for ordinary people with extraordinary lives. We source beans from the world’s best farms, roast with state-of-the-art roasters, and deliver freshly roasted coffees direct to our customers. Through machine learning and constant conversations with our customers, we are creating a coffee experience specially for you, while making specialty coffee relatable and accessible to all. Everything we do comes down to a simple calling — to empower coffee farmers and coffee lovers alike to' %} <span class="use-base-font">#</span>MakeCoffeeBetter.
+            </h4>
+    </div>
+</section>
+
+<section class="section about-page is-align-left">
+    <div class="what-we-do section-row row-sm">
+        <h2>{% trans 'WHAT WE DO' %}</h2>
+        <img src="{% static 'images/story1.png' %}" alt="Image" class="img-responsive" />
+        <p>{% blocktrans %}Because no one should have to worry about running out of their favourite beans or stock up & settle for stale coffee (we’ve been there and understand that pain), we make freshly roasted specialty coffee conveniently accessible to you. You can customise your delivery frequency and we’ll deliver you your coffee just the way you want it, straight to your mailbox!{% endblocktrans %}<br />
+        </p>
+    </div>
+
+    <div class="what-we-believe section-row row-sm">
+        <h2>{% trans 'WHAT WE BELIEVE IN' %}</h2>
+        <ol class="bullet">
+            <li>
+                <span>{% trans 'We believe everyone can make their own fresh and great tasting coffee at home or at work as long as the beans are grown and processed at the best farms, and freshly roasted with love and care. That’s why we source only the finest and always send out your coffee to you within 1 week of roasting. Don’t get too startled when that heavenly aroma hits you!' %}</span>
+            </li>
+            <li>
+                <span>{% blocktrans %}We’re big on sustainability so we’ve adopted the Direct Trademodel to give you traceability of our coffees and ethical choices. Our farmers receive a bigger share of the final retail value and this is just one of the ways we show our appreciation for their skills and hard work as growing and processing specialty coffee is a real art. We aren’t 100% Direct Trade yet, but we’re definitely getting there.{% endblocktrans %}</span>
+            </li>
+            <li>
+                <span>{% trans 'Although we think you’re likely to get hooked on us, we know commitment can be a scary thing. We won’t tie you to any contract — you can edit, pause or cancel your subscription at any time, with zero commitment. And since change is only natural, you can update your profile so we can recommend you a coffee better suited to your needs and preferences.' %}</span>
+            </li>
+        </ol>
+    </div>
+
+    <div class="about-coffee section-row row-sm">
+        <img src="{% static 'images/story3.png' %}" alt="Image" class="img-responsive" />
+        <p>{% blocktrans %}It takes at least 3 years for a coffee seedling to grow into a tree, up to 4 weeks for coffee cherries to be processed (depending on the method and climate), and 8-12 minutes to roast coffee beans. Finally, it takes an average 7-10 days for freshly roasted coffee to “de-gas”, which helps the beans to settle, giving you a more balanced cup. Since we send out your coffee to you within a week of roasting, by the time you receive it, your coffee is at it’s best for your enjoyment.{% endblocktrans %}
+        </p>
+    </div>
+</section>
+
+<section class="section about-page bg-d">
+    <div class="founder section-row row-sm">
+       <h2>{% trans 'MEET THE FOUNDERS' %}</h2>
+       <div class="col-md-6">
+           <img src="{% static 'images/ernest.png' %}" alt="" class="founder">
+           <h4>{% trans 'Ernest' %}</h4>
+           <p>
+               {% trans 'A self-proclaimed coffee geek with an intrepid & wild entrepreneurial spirit, Ernest’s ambition in life is to share his love of coffee by bringing great coffee to everyone.' %}
+               <br/>
+               <br/>
+               {% trans 'Which brew method best describes Ernest?' %}
+               {% trans 'The Espresso — He’s high energy, dynamic, bold, and can do some pretty decent latte art.' %}
+           </p>
+       </div>
+       <div class="col-md-6">
+          <img src="{% static 'images/faye.png' %}" alt="" class="founder">
+          <h4>{% trans 'Faye' %}</h4>
+          <p>
+              {% trans 'Faye is a coffeeholic who thinks specialty coffee shouldn’t just be about better coffee, but also about sustainable livelihoods and making a diff in people’s lives and the environment.' %}
+              <br/>
+              <br/>
+              {% trans 'Which brew method best describes Faye?' %}
+              {% trans 'The AeroPress — She’s all about achieving that perfect balance and works well under pressure.' %}
+          </p>
+       </div>
+    </div>
+</section>
+<!--<section class="top-banner about-banner">
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 banner-text text-center">
+            <h1>{% trans 'ORDINARY LIVES. EXTRAORDINARY COFFEES' %}</h1>
+            <p>{% trans 'That’s our vision.' %}<br />
+                <br />
+                {% trans 'At Hook, we want to share our love and knowledge of coffee with you, and with every cup of coffee, take you on a journey from our farmers’ hands to yours.' %}<br />
+                <br />
+                {% trans 'We source the finest sustainably grown and ethically produced beans from farms in the developing world — and this is only the start of making a difference in people’s lives. We lovingly roast them in Singapore then send them out to you within a week of roasting, not to mention right to your doorstep. All you have to do is enjoy.' %}</p>
+        <div class="clearfix"></div>
+    </div>
+</section>-->
+
+<!-- <section class="story">
+<div class="container">
+<div class="col-md-6 col-md-offset-3">
+<h1>ORDINARY LIVES. EXTRAORDINARY COFFEES</h1>
+<p>That’s our vision.<br />
+<br />
+At Hook, we want to share our love and knowledge of coffee with you, and with every cup of coffee, take you on a journey from our farmers’ hands to yours.<br />
+<br />
+We source the finest sustainably grown and ethically produced beans from farms in the developing world — and this is only the start of making a difference in people’s lives. We lovingly roast them in Singapore then send them out to you within a week of roasting, not to mention right to your doorstep. All you have to do is enjoy.</p>
+</div>
+<div class="clearfix"></div>
+</div>
+</section> -->
+
+
+        <!-- Trial Pack Modal -->
+        <div id="trialModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    {% if popup_ids|random == '1' %}
+                    <div class="modal-body" style="background: transparent url({% static 'images/V60STARTER.jpeg' %}) no-repeat scroll center right / cover; height: 600px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-footer">
+                            <a id="register-link" href="{% url 'get_started' %}" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'i want this starter kit!' %}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <p>{% trans '* for limited time only!' %}</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="modal-body" style='background: RGB(220, 201, 195);'>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 id="hi50-box">
+                            {% blocktrans trimmed %}
+                            new to hook?</br>
+                            enter "TAKEFIVE!"
+                            for <u>$5</u> off your first
+                            bag!
+                            {% endblocktrans %}
+                        </h1>
+                        <div class="modal-footer">
+                            <a id="register-link" href="{% url 'get_started' %}" class="btn">{% trans 'get me hooked!' %}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+
+        {% endblock %}
+
+        {% block scripts %}
+        <script>
+        $(document).ready(function(){
+
+            $('[name=btn]').click(function() {
+                window.location.href = "{% url 'get_started' %}"
+            });
+
+            $('.menu-icon').click(function(){
+                var hidden = $('.hemburger-menu');
+                if (hidden.hasClass('visible')){
+                    hidden.animate({"left":"-300px"}, "slow").removeClass('visible');
+                } else {
+                    hidden.animate({"left":"0px"}, "slow").addClass('visible');
+                }
+            });
+
+if ('{{ form.email.errors }}' !== '' || '{{ form.name.errors }}' !== '') {
+    $("#btn-get-started").click();
+}
+});
+        </script>
+
+        {% endblock %}

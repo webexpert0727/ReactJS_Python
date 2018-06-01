@@ -1,0 +1,141 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Log in' %}{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://hookcoffee.com.sg/accounts/login/" />
+  <!-- Custom styles for this template -->
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+  <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '288894678127616',
+            xfbml      : true,
+            version    : 'v2.6'
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    loginFB = function (){
+        FB.login(function(response){
+            console.log(response);
+          if (response.status === 'connected') {
+            var accesstoken = response.authResponse.accessToken;
+              $('#accesstoken').val(accesstoken);
+              $('#login-form').submit();
+{#              console.log($('#submitbutton'))#}
+          }
+        }, {scope: 'public_profile,email,user_about_me'});
+    }
+    </script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+      <form id="login-form" class="form-signin" method="post" action="">
+        {% csrf_token %}
+
+        <h1 class="text-center">{% trans 'Sign In' %}</h1>
+
+        <div class="sign-in-wrapper">
+          <p>{{ form.non_field_errors }}</p>
+
+          <div class="form-group">
+            <label for="inputEmail" class="sr-only">{% trans 'Email address' %}</label>
+            {{ form.username|add_class:"form-control input-lg"|attr:"autofocus"|attr:"placeholder:Email"}}
+            {# <input type="text" class="form-control input-lg" name="username" autofocus placeholder="Email" required>#}
+          </div>
+          <p>{{ form.username.errors}}</p>
+
+          <div class="form-group">
+            <label for="inputPassword" class="sr-only">{% trans 'Password' %}</label>
+            {{ form.password|add_class:"form-control input-lg"|attr:"placeholder:Password"}}
+            {{ form.password.non_field_errors }}
+            {# <input type="password" class="form-control input-lg" name="password" autofocus placeholder="Password" required>#}
+            <p>{{ form.password.errors}}</p>
+          </div>
+
+          <div class="text-center">
+            <input type="checkbox" value="remember-me"/> {% trans 'Remember me' %}
+          </div>
+
+          <div class="form-group">
+            <label for="inputAccessToken" class="sr-only">accesstoken</label>
+            {{ form.accesstoken|attr:"id:accesstoken"|add_class:"form-control input-lg"|attr:"placeholder:accesstoken"}}
+          </div>
+          {# <input id='accesstoken' class="form-control" placeholder="accesstoken" type="hidden" name="accesstoken" />#}
+
+          <button class="btn btn-primary btn-lg btn-block btn-hc btn-hc-sm" type="submit">
+            {% trans 'Sign in' %}
+          </button>
+        </div>
+      </form>
+
+      <button onclick="loginFB()" class="btn btn-fb btn-lg btn-block btn-hc btn-hc-sm">
+        <i class='fa fa-facebook'></i>&nbsp&nbsp&nbsp&nbsp
+        {% trans 'Login with Facebook' %}
+      </button>
+
+      <div class="text-center forgot-pw">
+        <span>
+          <a href="{% url 'reset_password_reset1'%}">
+            {% trans 'Forgot your password?' %}
+          </a>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+{% comment %}
+**registration/login.html**
+
+It's your responsibility to provide the login form in a template called
+registration/login.html by default. This template gets passed four
+template context variables:
+
+``form``
+    A Form object representing the login form. See the forms
+    documentation for more on Form objects.
+
+``next``
+    The URL to redirect to after successful login. This may contain a
+    query string, too.
+
+``site``
+    The current Site, according to the SITE_ID setting. If you don't
+    have the site framework installed, this will be set to an instance
+    of RequestSite, which derives the site name and domain from the
+    current HttpRequest.
+
+``site_name``
+    An alias for site.name. If you don't have the site framework
+    installed, this will be set to the value of
+    request.META['SERVER_NAME']. For more on sites, see The
+    "sites" framework.
+{% endcomment %}

@@ -1,0 +1,102 @@
+.section {
+  position: relative;
+  padding: $section-padding 0;
+  margin: 0 auto;
+  text-align: center;
+
+  background-color: white;
+
+  &.is-align-left {
+    text-align: left;
+  }
+
+  &.is-banner-lg {
+    padding: 150px;
+
+    @media screen and (max-width: $width-sm) { padding: 150px 0; }
+  }
+
+  &.is-banner-xs { padding: $base-padding 0; }
+
+  &.section-lg { max-width: $width-lg; }
+  &.section-md { max-width: $width-md; }
+  &.section-sm { max-width: $width-sm; }
+  &.section-xs { max-width: $width-xs; }
+  &.section-reset-height { min-height: unset; }
+
+  &.bg-d {
+    background: $color-dark;
+    color: white;
+  }
+  &.bg-p { background: $color-new-primary; }
+  &.bg-s { background: $color-new-secondary; }
+  &.bg-p, &.bg-s {
+    color: $color-dark;
+
+    .section-row {
+      & > h1, & > h2, & > h3, & > h4 { color: white; }
+    }
+  }
+
+  &.em-text, &.top-banner {
+    @extend .hc-em-text;
+  }
+  h1, h2, h3, h4, p {
+    // override bootstrap text tag margins
+    margin: 0;
+    @extend .hc-text-noshadow;
+  }
+
+  .section-row {
+    @include make-row(12);
+    margin: 0 auto;
+
+    &.text-center { text-align: center !important; }
+    &.text-left { text-align: left !important; }
+    &.text-right { text-align: right !important; }
+
+    &.row-lg { max-width: $width-lg; }
+    &.row-md { max-width: $width-md; }
+    &.row-sm { max-width: $width-sm; }
+    &.row-xs { max-width: $width-xs; }
+    &.row-grid {
+      & > * { margin-top: 0; }
+    }
+    &.flex-grid {
+      display: flex;
+      flex-flow: row wrap;
+
+      .item-col {
+        padding: 0 $base-padding / 2;
+        margin: 0 auto;
+
+        @media (max-width: $screen-xs) {
+          padding: 0px;
+        }
+      }
+    }
+
+    & > * {
+      margin-top: $base-padding;
+      &:first-child { margin-top: 0; }
+    }
+
+    margin-top: $base-padding;
+    &:first-child { margin-top: 0; }
+
+    // Add small padding on small screens
+    @media (max-width: $screen-sm) {
+      &:not(.row-grid) {
+        padding: 0 $base-padding/2 !important;
+      }
+    }
+  }
+
+  .section-pagelink-target {
+    display: block;
+    position: relative;
+    top: -137px;
+    visibility: hidden;
+  }
+}
+

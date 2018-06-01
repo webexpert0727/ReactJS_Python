@@ -1,0 +1,18 @@
+.filter__grayscale {
+  a {
+    &:hover { text-decoration: none; }
+
+    @media (min-width: $screen-sm) {
+      img {
+        filter: grayscale(100%);
+        transition: 0.3s filter;
+
+        &:hover {
+          filter: none;
+          transition: 0.3s filter;
+        }
+      }
+    }
+  }
+}
+

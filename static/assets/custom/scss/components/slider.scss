@@ -1,0 +1,51 @@
+.slider {
+  .slider-track-low, .slider-track-high {
+    border-radius: 0px;
+    background-color: $color-light-gray;
+  }
+
+  .slider-handle {
+    background-image: unset !important;
+    border-color: white;
+    border-width: 5px;
+
+    width: 30px;
+    height: 30px;
+
+    margin-left: -10px !important;
+    margin-top: -10px !important;
+  }
+
+  .slider-selection {
+    background-image: unset;
+    border-radius: 0;
+  }
+}
+
+&.slider-brown {
+  .slider {
+    .slider-selection { background-color: $color-old-accent-brown !important; }
+    .slider-handle { background-color: $color-old-accent-brown !important; }
+  }
+}
+
+.form-group.form-group-slider {
+  .slider { margin-bottom: $base-padding / 2; }
+  .slider, .sldr-count {
+    max-width: 360px;
+  }
+
+  .sldr-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: $base-padding 0 $base-padding/2;
+
+    h3 {
+      @extend .hc-text-noshadow;
+      color: $color-new-primary;
+      margin-right: $base-padding*0.75;
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+<section
+  id="login-form"
+  {% if not show_login_form %}
+    hidden
+  {% endif %}
+>
+
+  <p class="s-h2-bold">{% trans 'Checkout' %}</p>
+
+  <div id="reg-page__signin">
+
+    <div class="form-body">
+      <div class="form-container form-hc-spacier box">
+        <form method="POST" action="{% url 'login-existing-user' %}">
+          {% csrf_token %}
+
+          <div id="{{ form.username.id_for_label }}" class="form-group">
+            <label for="{{ form.username.id_for_label }}">{% trans 'Email' %}</label>
+            {% render_field auth_form.username class+="form-control" %}
+          </div>
+
+          <div id="{{ form.password.id_for_label }}" class="form-group">
+            <label for="{{ form.password.id_for_label }}">{% trans 'Password' %}</label>
+            {% render_field auth_form.password class+="form-control" %}
+            <span class="help-block"></span>
+          </div>
+
+          <div class="form-group signin__footer">
+            <div class="signin__create-acc">
+              <h6>{% trans 'No account yet?' %}</h6>
+              <h4>
+                <a id="create-account-link" class="signin__create-acc-link">
+                  {% trans 'Create an Account' %}
+                </a>
+              </h4>
+            </div>
+
+            <button type='submit' class="btn btn-primary btn-hc btn-hc-sm">
+              {% trans 'Sign In' %}
+            </button>
+          </div>
+        </form>
+
+        <br>
+      </div>
+    </div>
+
+  </div>
+</section>

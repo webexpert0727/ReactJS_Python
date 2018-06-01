@@ -1,0 +1,4088 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-20 05:20+0800\n"
+"PO-Revision-Date: 2016-10-20 00:31+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: coffees/models.py:17
+msgid "Light Roast"
+msgstr "浅度烘焙"
+
+#: coffees/models.py:18
+msgid "Light-Medium Roast"
+msgstr "中浅度烘焙"
+
+#: coffees/models.py:19
+msgid "Medium Roast"
+msgstr "中度烘焙"
+
+#: coffees/models.py:20
+msgid "Medium-Dark Roast"
+msgstr "中高度烘焙"
+
+#: coffees/models.py:21
+msgid "Dark Roast"
+msgstr "深度烘焙"
+
+#: coffees/models.py:31 templates/coffees/detail.html:62
+#: templates/registration/profile.html:227
+#: templates/registration/profile.html:591
+#: templates/registration/profile.html:720
+msgid "Brew method"
+msgstr "烹煮方式"
+
+#: coffees/models.py:39
+msgid "Flavor"
+msgstr "口味"
+
+#: coffees/models.py:47
+msgid "Coffee name"
+msgstr "咖啡名称"
+
+#: coffees/models.py:48 coffees/models.py:172
+msgid "Available"
+msgstr "可得"
+
+#: coffees/models.py:49
+msgid "Special"
+msgstr ""
+
+#: coffees/models.py:50
+msgid "Decaffeinated"
+msgstr "无咖啡因"
+
+#: coffees/models.py:51
+msgid "Coffee producer"
+msgstr "咖啡生产商"
+
+#: coffees/models.py:52
+msgid "Region"
+msgstr "地区"
+
+#: coffees/models.py:54
+msgid "Coffee taste"
+msgstr "咖啡口味"
+
+#: coffees/models.py:55
+msgid "More taste"
+msgstr "更多口味"
+
+#: coffees/models.py:56
+msgid "Roast"
+msgstr "烘焙"
+
+#: coffees/models.py:57 templates/coffees/nespresso.html:86
+#: templates/coffees/nespresso.html:128
+#: templates/get_started/get_started.html:211
+#: var/9_oct/test/get_started.html:211
+msgid "Intensity"
+msgstr "强度"
+
+#: coffees/models.py:58 templates/coffees/index-xo.html:97
+#: templates/coffees/index-xo.html:129 templates/coffees/index.html:107
+#: templates/coffees/index.html.py:148 templates/coffees/nespresso.html:88
+#: templates/get_started/registration-credits.html:219
+#: templates/get_started/registration.html:361 var/9_oct/test/index.html:107
+#: var/9_oct/test/index.html.py:148
+msgid "Roasted on"
+msgstr "烘焙于"
+
+#: coffees/models.py:59
+msgid "Shipping untill"
+msgstr "发货截止于"
+
+#: coffees/models.py:60 coffees/models.py:171
+msgid "Amount"
+msgstr "量"
+
+#: coffees/models.py:61
+msgid "Amount for One-off"
+msgstr "一次性的量"
+
+#: coffees/models.py:70
+msgid "Position"
+msgstr ""
+
+#: coffees/models.py:71 coffees/models.py:100 coffees/models.py:139
+msgid "Description"
+msgstr "描述"
+
+#: coffees/models.py:71
+msgid "This coffee is good"
+msgstr "咖啡很好"
+
+#: coffees/models.py:74
+msgid "Arabica"
+msgstr "阿拉比卡咖啡"
+
+#: coffees/models.py:82
+msgid "Header text"
+msgstr "标题文本"
+
+#: coffees/models.py:83
+msgid "Is active"
+msgstr "是活跃的"
+
+#: coffees/models.py:90
+msgid "Color name"
+msgstr ""
+
+#: coffees/models.py:97
+msgid "Title"
+msgstr "咖啡设备名称"
+
+#: coffees/models.py:98
+msgid "Essentials"
+msgstr "重要的"
+
+#: coffees/models.py:99
+msgid "Model"
+msgstr "型号"
+
+#: coffees/models.py:101 templates/coffees/shop-gift.html:89
+#, fuzzy
+#| msgid "More Info"
+msgid "More info"
+msgstr "更多信息"
+
+#: coffees/models.py:102
+msgid "Watch brew guide link"
+msgstr ""
+
+#: coffees/models.py:103 templates/get_started/registration-gear.html:208
+#: templates/registration/profile.html:229
+#: templates/registration/profile.html:426
+#: templates/registration/profile.html:593
+#: templates/registration/profile.html:646
+#: templates/registration/profile.html:1051
+msgid "Price"
+msgstr "价格"
+
+#: coffees/models.py:104
+msgid "In Stock"
+msgstr ""
+
+#: coffees/models.py:138 coffees/models.py:170
+#: templates/about/about-xo.html:244 templates/get_started/get_started.html:263
+#: templates/giveback_project/index-xo.html:355
+#: templates/registration/profile.html:645 var/9_oct/test/get_started.html:263
+msgid "Name"
+msgstr "名"
+
+#: coffees/models.py:144
+msgid "Caption"
+msgstr "说明"
+
+#: coffees/models.py:145
+msgid "Hashtag"
+msgstr "标签"
+
+#: coffees/models.py:154
+msgid "User"
+msgstr "用户"
+
+#: coffees/models.py:155
+msgid "Post"
+msgstr "发布"
+
+#: coffees/models.py:156
+msgid "Shared hashtag"
+msgstr "共享标签"
+
+#: coffees/models.py:157
+msgid "Created"
+msgstr "已创建"
+
+#: customauth/admin.py:16 templates/about/about-xo.html:248
+#: templates/get_started/registration-credits.html:154
+#: templates/get_started/registration-gear.html:113
+#: templates/get_started/registration-nespresso.html:200
+#: templates/get_started/registration.html:256
+#: templates/giveback_project/index-xo.html:359
+#: templates/registration/login.html:71 templates/taster/taster3x80g.html:176
+#: templates/taster/taster5x.html:117 templates/trial.html:117
+msgid "Password"
+msgstr "密码"
+
+#: customauth/admin.py:19
+msgid "Password confirmation"
+msgstr ""
+
+#: customauth/admin.py:30
+msgid "Passwords don't match"
+msgstr ""
+
+#: customauth/forms.py:11
+msgid "Email is required!"
+msgstr ""
+
+#: customauth/forms.py:12
+msgid "Password is required!"
+msgstr ""
+
+#: customauth/forms.py:13 get_started/forms.py:14
+msgid "Please enter valid data"
+msgstr ""
+
+#: customauth/forms.py:18
+msgid "username"
+msgstr ""
+
+#: customauth/forms.py:22
+#, fuzzy
+#| msgid "Password"
+msgid "password"
+msgstr "密码"
+
+#: customauth/views.py:37 customauth/views.py:54
+msgid ""
+"Please enter a correct Email address and password. Note that both fields may "
+"be case-sensitive."
+msgstr ""
+
+#: customers/forms.py:14 customers/forms.py:32
+msgid "Please enter your first name"
+msgstr "请输入你的名"
+
+#: customers/forms.py:15 customers/forms.py:33 customers/models/customer.py:18
+#: customers/models/facebook_customer.py:15
+msgid "First name"
+msgstr "名"
+
+#: customers/forms.py:19 customers/forms.py:37
+msgid "Please enter your last name"
+msgstr "请输入你的姓"
+
+#: customers/forms.py:20 customers/forms.py:38 customers/models/customer.py:19
+#: customers/models/facebook_customer.py:18
+msgid "Last name"
+msgstr "姓"
+
+#: customers/models/customer.py:20
+msgid "First line of address"
+msgstr "地址第一行"
+
+#: customers/models/customer.py:21
+msgid "Second line of address"
+msgstr "地址第二行"
+
+#: customers/models/customer.py:23
+msgid "Postal code"
+msgstr "邮编"
+
+#: customers/models/customer.py:26
+msgid "Phone"
+msgstr "电话"
+
+#: customers/models/customer.py:27 templates/registration/profile.html:1062
+msgid "Credits"
+msgstr "积分"
+
+#: customers/models/customer.py:28
+msgid "Stripe customer ID"
+msgstr ""
+
+#: customers/models/facebook_customer.py:12
+msgid "Facebook ID"
+msgstr "Facebook账号"
+
+#: customers/models/facebook_customer.py:22
+#: templates/registration/login.html:64
+#: templates/registration/password_reset_form.html:25
+msgid "Email address"
+msgstr "电子邮件"
+
+#: customers/models/facebook_customer.py:27
+msgid "Gender"
+msgstr "性别"
+
+#: customers/models/preferences.py:18
+msgid "Ground (200g)"
+msgstr "咖啡粉 (200g)"
+
+#: customers/models/preferences.py:19
+msgid "Wholebeans (200g)"
+msgstr "全豆咖啡 (200g)"
+
+#: customers/models/preferences.py:20
+msgid "Drip bags (x10)"
+msgstr "滤挂咖啡 (x10)"
+
+#: customers/models/preferences.py:40
+msgid "Packaging method"
+msgstr "包装方式"
+
+#: customers/models/preferences.py:47
+msgid "Decaffeinated?"
+msgstr "无咖啡因的？"
+
+#: customers/models/preferences.py:51
+msgid "Different?"
+msgstr "不同？"
+
+#: customers/models/preferences.py:55
+msgid "Different Pods?"
+msgstr "不同的咖啡胶囊？"
+
+#: customers/models/preferences.py:59
+msgid "Cups per week"
+msgstr "每周的杯数"
+
+#: customers/models/preferences.py:63
+msgid "Intense"
+msgstr "强度"
+
+#: customers/models/preferences.py:67
+msgid "Shipping Interval"
+msgstr "发货截止于"
+
+#: customers/models/preferences.py:71
+msgid "Shipping Interval for Pods"
+msgstr "咖啡胶囊的发货截止时间"
+
+#: customers/models/preferences.py:75
+msgid "Force sending Bag choosen by client"
+msgstr "总是相同的咖啡"
+
+#: customers/models/preferences.py:79
+msgid "Force sending Pod choosen by client"
+msgstr "总是相同的咖啡胶囊"
+
+#: customers/models/preferences.py:83
+msgid "Make next order free"
+msgstr "使下一个订单免费"
+
+#: customers/models/preferences.py:87
+msgid "Preferences"
+msgstr ""
+
+#: customers/views.py:161
+msgid "Ground"
+msgstr "咖啡粉"
+
+#: customers/views.py:162
+msgid "Wholebeans"
+msgstr "全豆咖啡"
+
+#: customers/views.py:163
+msgid "Drip bags"
+msgstr "滤挂咖啡"
+
+#: customers/views.py:180
+#, python-format
+msgid "Your order's brewing method is changed to <big>%(new_brew_name)s</big>"
+msgstr "你的订单的烹煮方式已更改为<big>%(new_brew_name)s</big>"
+
+#: customers/views.py:192
+#, python-format
+msgid ""
+"Your order's change in brewing method <i>%(new_brew_name)s</i> will be "
+"applied to your <strong>next order</strong>."
+msgstr ""
+"你对烹煮方法进行的修改<i>%(new_brew_name)s</i>将会被应用到<strong>你的下一个"
+"订单</strong>。"
+
+#: customers/views.py:213
+#, python-format
+msgid "Your order's packaging is changed to <big>%(new_package)s</big>"
+msgstr "你的订单的包装已更改为<big>%(new_package)s</big>"
+
+#: customers/views.py:225
+#, python-format
+msgid ""
+"Your order's change in packaging <i>%(new_package)s</i> will be applied to "
+"your <strong>next order</strong>."
+msgstr ""
+"你对订单包装进行的修改<i>%(new_package)s</i>将会被应用到<strong>你的下一个订"
+"单</strong>"
+
+#: customers/views.py:240 customers/views.py:292
+#, python-format
+msgid "You will now receive your coffee every <big>%(new_interval)d</big> days"
+msgstr "你现在会每<big>%(new_interval)d</big>天收到你的咖啡。"
+
+#: customers/views.py:255 customers/views.py:308
+msgid "You will now receive <big>different</big> coffee every time."
+msgstr "你现在每次都会收到<big>不同</big>的咖啡。"
+
+#: customers/views.py:258 customers/views.py:311
+msgid "You will now receive <big>the same</big> coffee every time."
+msgstr "你现在每次都会收到<big>相同</big>的咖啡。"
+
+#: customers/views.py:268 customers/views.py:319
+msgid "Preferences successfully updated"
+msgstr "成功更新偏好设置"
+
+#: customers/views.py:339
+msgid "Profile successfully updated"
+msgstr "资料更新成功"
+
+#: customers/views.py:577
+#, python-format
+msgid "Subscription for %(coffee)s successfully paused"
+msgstr "%(coffee)s的订阅已成功暂停"
+
+#: customers/views.py:630
+#, python-format
+msgid "Shipping date %(coffee)s successfully changed"
+msgstr "%(coffee)s的配送日期已成功更改！"
+
+#: customers/views.py:658
+#, python-format
+msgid ""
+"Shipping date changed to %(shipping_date)s\n"
+"Subscription for %(coffee)s successfully activated"
+msgstr ""
+"配送日期已更改为%(shipping_date)s\n"
+"%(coffee)s的订阅已成功激活"
+
+#: customers/views.py:698
+msgid "Order cancelled succesfully"
+msgstr "成功取消订单"
+
+#: customers/views.py:716
+#, python-format
+msgid "Order for %(coffee)s canceled"
+msgstr "%(coffee)s的订单已取消"
+
+#: customers/views.py:757
+#, python-format
+msgid "Subscription for %(coffee)s canceled"
+msgstr "%(coffee)s的订阅已取消"
+
+#: customers/views.py:790
+#, python-format
+msgid "Subscription for %(coffee)s updated"
+msgstr "%(coffee)s的订阅已更新"
+
+#: customers/views.py:807 customers/views.py:828
+msgid "Feedback set"
+msgstr "反馈集"
+
+#: get_started/forms.py:13
+msgid "Please tell us your name"
+msgstr ""
+
+#: get_started/forms.py:19
+msgid "Username"
+msgstr ""
+
+#: get_started/views.py:99 var/2_sep/test/views.py:99
+msgid "Nespresso"
+msgstr "Nespresso"
+
+#: get_started/views.py:173 get_started/views.py:668 get_started/views.py:885
+#: get_started/views.py:1343 var/2_sep/test/views.py:173
+#: var/2_sep/test/views.py:665 var/2_sep/test/views.py:882
+#: var/2_sep/test/views.py:1327
+msgid "Espresso"
+msgstr "浓缩咖啡"
+
+#: get_started/views.py:1085 templates/coffees/index-xo.html:59
+#: templates/coffees/index.html:75 var/2_sep/test/views.py:1082
+#: var/9_oct/test/index.html:75
+msgid "None"
+msgstr "无"
+
+#: giveback_project/settings/base.py:169 var/19_oct/real/base.py:164
+#: var/2_sep/test/base.py:164 var/30_sep/test/base.py:166
+msgid "English"
+msgstr "英文"
+
+#: giveback_project/settings/base.py:170 var/19_oct/real/base.py:165
+#: var/2_sep/test/base.py:165 var/30_sep/test/base.py:167
+msgid "Chinese"
+msgstr "简体中文"
+
+#: templates/_top_menu.html:7 templates/about/faq-xo.html:27
+#: templates/content/privacy.html:150 templates/registration/profile.html:125
+msgid "Toggle navigation"
+msgstr "切换导航开关"
+
+#: templates/_top_menu.html:12
+msgid "Coffees"
+msgstr "咖啡"
+
+#: templates/_top_menu.html:13
+msgid "ShotPods"
+msgstr "咖啡胶囊"
+
+#: templates/_top_menu.html:14
+msgid "About Us"
+msgstr "关于我们"
+
+#: templates/_top_menu.html:15
+msgid "Workplace"
+msgstr "工作场所"
+
+#: templates/_top_menu.html:16
+msgid "Gifts & Gears"
+msgstr ""
+
+#: templates/_top_menu.html:17
+msgid "Blog"
+msgstr "博客"
+
+#: templates/_top_menu.html:47
+msgid "Log out"
+msgstr "退出登录"
+
+#: templates/_top_menu.html:49
+msgid "LOG IN"
+msgstr "登录"
+
+#: templates/_top_menu.html:50 templates/giveback_project/index.html:119
+msgid "GET STARTED HERE"
+msgstr "在此开始"
+
+#: templates/about/about-xo.html:27 templates/base.html:139
+#: templates/giveback_project/index-xo.html:130
+msgid "Our Story"
+msgstr "我们的故事"
+
+#: templates/about/about-xo.html:33
+msgid ""
+"We source the finest sustainably grown and ethically produced beans from "
+"farms in the developing world — and this is only the start of making a "
+"difference in people’s lives. We tailor their roast profiles and roast them "
+"in Singapore then send them out to you within a week of roasting, not to "
+"mention right to your doorstep. All you have to do is enjoy."
+msgstr ""
+"我们在发展中国家找到最好的可持续种植的咖啡豆，生产时遵守企业道德概念 - 并且这"
+"仅仅是改变人们生活的开始。我们根据咖啡的烘焙曲线量身定制，在新加坡烘烤咖啡"
+"豆，然后在你的咖啡刚烘焙好一周内发货，更不用说会送到你的家门口了。你所需要做"
+"的就是好好享受。"
+
+#: templates/about/about-xo.html:57
+msgid "What we do"
+msgstr "我们的服务"
+
+#: templates/about/about-xo.html:59
+msgid ""
+"Because no one should have to worry about running out of their favourite "
+"beans or stock up & settle for stale coffee (we’ve been there and understand "
+"that pain), we make freshly roasted specialty coffee conveniently accessible "
+"to you. We’ll deliver you your coffee just the way you want it, weekly or "
+"fortnightly, and straight to your mailbox!"
+msgstr ""
+"因为没有人应该去担心什么时候他们最爱的咖啡豆会没有了或者囤积和满足于不新鲜的"
+"咖啡（我们也经历过这种事，所以我们理解这种痛苦）。我们制作新鲜烘焙的精品咖啡"
+"并且便于你购买。我们会根据你想要的方式给你配送咖啡，并且径直送达你的邮箱！"
+
+#: templates/about/about-xo.html:72 templates/about/about-xo.html.py:221
+#: templates/coffees/index-xo.html:138
+msgid "GET STARTED"
+msgstr "开始"
+
+#: templates/about/about-xo.html:87
+msgid "What We Believe In"
+msgstr "我们所相信的"
+
+#: templates/about/about-xo.html:93
+msgid ""
+"We believe everyone can make their own fresh and great tasting coffee at "
+"home or at work as long as the beans are grown and processed at the best "
+"farms, and freshly roasted with love and care. That’s why we source only the "
+"finest and always send out your coffee to you <b>within 1 week* of roasting</"
+"b>. Don’t get too startled when that heavenly aroma hits you!"
+msgstr ""
+"我们相信每个人都能在家或者在工作的地方制作他们自己新鲜的, 口感极佳的咖啡, 只"
+"要这些咖啡豆是在最好的农场种植和处理的, 并且是在爱与关怀的环境中被新鲜烘焙的"
+"即可. 这就是为什么我们用的都是最好的咖啡豆, 而且我们总会确保在咖啡新鲜烘焙好"
+"<b>一周</b>内发货. 当你闻到那香味时, 请不要太震惊!"
+
+#: templates/about/about-xo.html:105
+#, python-format
+msgid ""
+"We’re big on sustainability so we’ve adopted the <b>Direct Trade</b> model "
+"to give you traceability of our coffees and ethical choices. Our farmers "
+"receive a bigger share of the final retail value and this is just one of the "
+"ways we show our appreciation for their skills and hard work as growing and "
+"processing specialty coffee is a real art. We aren’t 100%% Direct Trade yet, "
+"but we’re definitely getting there."
+msgstr ""
+"我们支持可持续性, 所以我们采用<b>直接</b>贸易模式来帮助你追踪我们的咖啡和符合"
+"企业道德概念的选择. 我们的农民获得最终零售价的较大份额, 并且这只是我们感谢他"
+"们的技术和辛勤工作的方式之一, 因为种植和处理精品咖啡是一门真正的艺术. 我们还"
+"不是100%%的直接贸易, 但是迟早有一天, 我们绝对会的."
+
+#: templates/about/about-xo.html:117
+msgid ""
+"Although we think you’re likely to get hooked on us, we know commitment can "
+"be a scary thing. We won’t tie you to any contract — you can edit, pause or "
+"cancel your subscription at any time, with <b>zero commitment.</b> And since "
+"change is only natural, you can update your profile so we can recommend you "
+"a coffee better suited to your needs and preferences."
+msgstr ""
+"尽管我们认为你很可能会迷上我们, 但是我们知道承诺有时候让人害怕. 我们不会用任"
+"何合同来捆绑你 - 你可以随时编辑, 暂停或取消你的订阅, <b>无需任何承诺</b>. 因"
+"为改变是理所当然的, 你可以更新你的资料, 便于我们为你推荐一款更适合你的需要和"
+"偏好的咖啡."
+
+#: templates/about/about-xo.html:154 templates/about/about.html:97
+msgid "It takes at least 3 years for a coffee seedling to grow into a tree."
+msgstr "咖啡幼苗长成一棵树, 至少需要3年的时间."
+
+#: templates/about/about-xo.html:156 templates/about/about.html:99
+msgid ""
+"It takes up to 4 weeks for coffee cherries to be processed, depending on the "
+"method & climate."
+msgstr "需要长达4周的时间来处理咖啡果, 具体取决于处理方法和气候."
+
+#: templates/about/about-xo.html:158 templates/about/about.html:101
+msgid "It takes 8-12 minutes to roast coffee beans."
+msgstr "需要8-12分钟来烘焙咖啡豆."
+
+#: templates/about/about-xo.html:160
+msgid ""
+"It takes on average 1 week* for freshly roasted coffee to “degas”, which "
+"helps the beans to settle and gives you a more balanced cup. We’ll send out "
+"your coffee to you within a week of roasting and by the time you receive it, "
+"you’re all set for a perfect cup of coffee."
+msgstr ""
+"新鲜烘焙的咖啡平均需要1周*的时间来“脱气”, 有助于咖啡豆放松, 让你的咖啡尝起来"
+"更美味."
+
+#: templates/about/about-xo.html:172 templates/about/about.html:118
+msgid "Meet the Founders"
+msgstr "创办人信息."
+
+#: templates/about/about-xo.html:182 templates/about/about.html:128
+msgid "Ernest"
+msgstr "欧内斯特"
+
+#: templates/about/about-xo.html:184 templates/about/about.html:130
+msgid ""
+"A self-proclaimed coffee geek with an intrepid & wild entrepreneurial "
+"spirit, Ernest’s ambition in life is to share his love of coffee by bringing "
+"great coffee to everyone."
+msgstr ""
+"自称为咖啡爱好者, 有着勇敢狂热的创业精神, 欧内斯特在生活中的雄心壮志是和每个"
+"人分享他对咖啡的爱."
+
+#: templates/about/about-xo.html:187 templates/about/about.html:133
+msgid "Which brew method best describes Ernest?"
+msgstr "哪种烹煮方式最适合用来描述欧内斯特呢?"
+
+#: templates/about/about-xo.html:188 templates/about/about.html:134
+msgid ""
+"The Espresso — He’s high energy, dynamic, bold, and can do some pretty "
+"decent latte art."
+msgstr ""
+"应该是意式浓缩咖啡 - 他总是精力充沛, 有活力, 勇敢, 而且可以做一些相当好的拿铁"
+"艺术."
+
+#: templates/about/about-xo.html:199 templates/about/about.html:145
+msgid "Faye"
+msgstr "法耶"
+
+#: templates/about/about-xo.html:201 templates/about/about.html:147
+msgid ""
+"Faye is a coffeeholic who thinks specialty coffee shouldn’t just be about "
+"better coffee, but also about sustainable livelihoods and making a diff in "
+"people’s lives & the environment."
+msgstr ""
+"法耶是一个咖啡的狂热爱好者, 她认为精品咖啡不应该只是关于更好的咖啡, 还应该与"
+"可持续生计和改变人们的生活与环境相关."
+
+#: templates/about/about-xo.html:204 templates/about/about.html:150
+msgid "Which brew method best describes Faye?"
+msgstr "哪种烹煮方式最适合用来描述法耶呢?"
+
+#: templates/about/about-xo.html:205 templates/about/about.html:151
+msgid ""
+"The AeroPress — She’s all about achieving that perfect balance and works "
+"well under pressure."
+msgstr ""
+"应该是爱乐压 - 她一心想要实现这一完美的平衡, 并且在压力之下也能很好地工作."
+
+#: templates/about/about-xo.html:220 templates/about/about.html:162
+msgid "What's Next?"
+msgstr "下一步是什么？"
+
+#: templates/about/about-xo.html:238
+#: templates/giveback_project/index-xo.html:349
+msgid "We are coming really soon!"
+msgstr "我们即将出品！"
+
+#: templates/about/about-xo.html:242
+#: templates/giveback_project/index-xo.html:353
+msgid "Drop you name and email address for early bird updates!"
+msgstr "留下你的姓名和电子邮件地址来获取最新更新信息！"
+
+#: templates/about/about-xo.html:255
+#: templates/giveback_project/index-xo.html:366
+msgid "Done"
+msgstr "完成"
+
+#: templates/about/about-xo.html:272 templates/coffees/index-xo.html:323
+msgid "TASTER PACK FOR ONLY"
+msgstr "品尝小样只有"
+
+#: templates/about/about-xo.html:273 templates/coffees/index-xo.html:324
+#: templates/get_started/get_started.html:328
+#: templates/get_started/get_started.html:329
+#: templates/get_started/get_started.html:330
+#: var/9_oct/test/get_started.html:328 var/9_oct/test/get_started.html:329
+#: var/9_oct/test/get_started.html:330
+msgid "I'll take it!"
+msgstr "我就要它啦！"
+
+#: templates/about/about-xo.html:274 templates/about/about.html:179
+#: templates/coffees/index-xo.html:325
+#: templates/giveback_project/index-xo.html:385
+#: templates/giveback_project/index.html:413
+msgid "* for limited time only!"
+msgstr "*时间有限！"
+
+#: templates/about/about.html:19
+msgid "ORDINARY LIVES. EXTRAORDINARY COFFEES"
+msgstr "普通的生活, 非凡的咖啡"
+
+#: templates/about/about.html:20
+msgid "That’s our vision."
+msgstr "这就是我们的愿景."
+
+#: templates/about/about.html:22 templates/giveback_project/index-xo.html:133
+msgid ""
+"At Hook, we want to share our love and knowledge of coffee with you, and "
+"with every cup of coffee, take you on a journey from our farmers’ hands to "
+"yours."
+msgstr ""
+"在Hook, 我们想要跟你分享我们对于咖啡的爱和知识, 和每一杯咖啡一起, 带你踏上一"
+"段旅程, 从我们农民的手中到你的手中."
+
+#: templates/about/about.html:24
+msgid ""
+"We source the finest sustainably grown and ethically produced beans from "
+"farms in the developing world — and this is only the start of making a "
+"difference in people’s lives. We lovingly roast them in Singapore then send "
+"them out to you within a week of roasting, not to mention right to your "
+"doorstep. All you have to do is enjoy."
+msgstr ""
+"我们在发展中国家找到最好的可持续种植的咖啡豆, 生产时遵守企业道德概念 - 并且这"
+"仅仅是改变人们生活的开始. 我们在新加坡饱含深情地烘烤咖啡豆, 然后在你的咖啡刚"
+"烘焙好一周内发货, 更不用说会送到你的家门口了. 你所需要做的就是好好享受."
+
+#: templates/about/about.html:52
+msgid "WHAT WE DO"
+msgstr "我们的服务"
+
+#: templates/about/about.html:53
+msgid ""
+"Because no one should have to worry about running out of their favourite "
+"beans or stock up & settle for stale coffee (we’ve been there and understand "
+"that pain), we make freshly roasted specialty coffee conveniently accessible "
+"to you. You can customise your delivery frequency and we’ll deliver you your "
+"coffee just the way you want it, straight to your mailbox!"
+msgstr ""
+"因为没有人应该去担心什么时候他们最爱的咖啡豆会没有了或者囤积和满足于不新鲜的"
+"咖啡 (我们也经历过这种事, 所以我们理解这种痛苦). 我们制作新鲜烘焙的精品咖啡并"
+"且便于你购买. 你可以私人订制你的送货频率, 我们会根据你想要的方式给你配送咖"
+"啡, 并且径直送达你的邮箱!"
+
+#: templates/about/about.html:56
+msgid "Get started NOW! You can thank us later :)"
+msgstr "现在就开始吧! 你可以稍后再感谢我们 :)"
+
+#: templates/about/about.html:64
+msgid "WHAT WE BELIEVE IN"
+msgstr "我们所相信的"
+
+#: templates/about/about.html:68
+msgid ""
+"We believe everyone can make their own fresh and great tasting coffee at "
+"home or at work as long as the beans are grown and processed at the best "
+"farms, and freshly roasted with love and care. That’s why we source only the "
+"finest and always send out your coffee to you within 1 week of roasting. "
+"Don’t get too startled when that heavenly aroma hits you!"
+msgstr ""
+"我们相信每个人都能在家或者在工作的地方制作他们自己新鲜的, 口感极佳的咖啡, 只"
+"要这些咖啡豆是在最好的农场种植和处理的, 并且是在爱与关怀的环境中被新鲜烘焙的"
+"即可. 这就是为什么我们用的都是最好的咖啡豆, 而且我们总会确保在咖啡新鲜烘焙好"
+"一周内发货. 当你闻到那香味时, 请不要太震惊!"
+
+#: templates/about/about.html:76
+#, python-format
+msgid ""
+"We’re big on sustainability so we’ve adopted the Direct Trademodel to give "
+"you traceability of our coffees and ethical choices. Our farmers receive a "
+"bigger share of the final retail value and this is just one of the ways we "
+"show our appreciation for their skills and hard work as growing and "
+"processing specialty coffee is a real art. We aren’t 100%% Direct Trade yet, "
+"but we’re definitely getting there."
+msgstr ""
+"我们支持可持续性, 所以我们采用直接贸易模式来帮助你追踪我们的咖啡和符合企业道"
+"德概念的选择. 我们的农民获得最终零售价的较大份额, 并且这只是我们感谢他们的技"
+"术和辛勤工作的方式之一, 因为种植和处理精品咖啡是一门真正的艺术. 我们还不是"
+"100%%的直接贸易, 但是迟早有一天, 我们绝对会的."
+
+#: templates/about/about.html:84
+msgid ""
+"Although we think you’re likely to get hooked on us, we know commitment can "
+"be a scary thing. We won’t tie you to any contract — you can edit, pause or "
+"cancel your subscription at any time, with zero commitment. And since change "
+"is only natural, you can update your profile so we can recommend you a "
+"coffee better suited to your needs and preferences."
+msgstr ""
+"尽管我们认为你很可能会迷上我们, 但是我们知道承诺有时候让人害怕. 我们不会用任"
+"何合同来捆绑你 - 你可以随时编辑, 暂停或取消你的订阅, 无需任何承诺. 因为改变是"
+"理所当然的, 你可以更新你的资料, 便于我们为你推荐一款更适合你的需要和偏好的咖"
+"啡."
+
+#: templates/about/about.html:103
+msgid ""
+"It takes on average  1 week* for freshly roasted coffee to “de-gas”, which "
+"helps the beans to settle and gives you a more balanced cup."
+msgstr ""
+"新鲜烘焙的咖啡平均需要1周*的时间来“脱气”, 有助于咖啡豆放松, 让你的咖啡尝起来"
+"更美味."
+
+#: templates/about/about.html:105
+msgid ""
+"Since we send out your coffee to you within a week of roasting, by the time "
+"you receive it, your coffee is at it’s best for consumption."
+msgstr ""
+"因为我们在你的咖啡刚烘焙好一周内发货, 在你收到咖啡的时候, 也正是咖啡最好喝的"
+"时刻."
+
+#: templates/about/about.html:165 templates/get_started/get_started.html:12
+#: templates/giveback_project/index.html:157 var/9_oct/test/get_started.html:12
+msgid "Get Started"
+msgstr "开始"
+
+#: templates/about/about.html:178 templates/giveback_project/index-xo.html:384
+#: templates/giveback_project/index.html:412
+msgid "i want this starter kit!"
+msgstr "我想要这个入门套装！"
+
+#: templates/about/about.html:186 templates/giveback_project/index.html:420
+msgid "new to hook?</br> enter \"TAKEFIVE!\" for <u>$5</u> off your first bag!"
+msgstr ""
+"是hook咖啡的新客户？</br>输入\"减五\" 来让你的第一个包裹减掉<u>$5</u>！"
+
+#: templates/about/about.html:194 templates/giveback_project/index.html:428
+msgid "get me hooked!"
+msgstr "算我一个！"
+
+#: templates/about/faq-xo.html:8 templates/about/faq.html:8
+#: templates/about/faq.html.py:26 templates/base-xo.html:168
+#: templates/base.html:142
+msgid "FAQ"
+msgstr "常见问题解答"
+
+#: templates/about/faq-xo.html:21 templates/about/faq.html:18
+msgid "Frequently Asked Questions"
+msgstr "常见问题解答"
+
+#: templates/base-xo.html:122 templates/giveback_project/index.html:448
+#: templates/registration/profile.html:988
+#: templates/registration/profile.html:1529
+msgid "LOVE HOOK COFFEE?"
+msgstr "喜欢HOOK咖啡?"
+
+#: templates/base-xo.html:124 templates/giveback_project/index.html:450
+#: templates/registration/profile.html:990
+#: templates/registration/profile.html:1531
+msgid "Then tell your friends about us!"
+msgstr "那么告诉你的朋友关于我们的消息!"
+
+#: templates/base-xo.html:130 templates/base-xo.html.py:133
+#: templates/base-xo.html:136 templates/giveback_project/index.html:456
+#: templates/registration/profile.html:996
+#: templates/registration/profile.html:1537
+msgid "Enter the email of the biggest coffee fan you know"
+msgstr "输入你认识的最大的咖啡爱好者的邮箱"
+
+#: templates/base-xo.html:140
+msgid "Invite!"
+msgstr "邀请"
+
+#: templates/base-xo.html:145 templates/giveback_project/index.html:471
+#: templates/registration/profile.html:1016
+#: templates/registration/profile.html:1554
+msgid "What happens next:"
+msgstr "接下来:"
+
+#: templates/base-xo.html:148 templates/giveback_project/index.html:474
+#: templates/registration/profile.html:1019
+#: templates/registration/profile.html:1557
+#, python-format
+msgid ""
+"We’ll send your coffee-loving friends a personalised email with your unique "
+"link they can use to sign up and get the their first bag at half price! For "
+"every friend that signs up, you get a %(prepaid)s gift credit which you can "
+"use for your next purchase."
+msgstr ""
+"我们会给你那位爱好咖啡的朋友发送一封个性化的邮件, 里面含有你的独特链接, 他们"
+"可以使用该链接来注册并能够以半价购买第一袋咖啡! 每有一位朋友注册, 你就能够获"
+"得价值 %(prepaid)s 的代金券, 你可以在下次购买时使用."
+
+#: templates/base-xo.html:165 templates/content/privacy.html:975
+msgid "The freshest coffee you'll ever make"
+msgstr "你做过的最新鲜的咖啡"
+
+#: templates/base.html:136
+msgid "Basics"
+msgstr "基本要素"
+
+#: templates/base.html:138
+msgid "Home Page"
+msgstr "主页"
+
+#: templates/base.html:140
+msgid "Your Account"
+msgstr "你的账户"
+
+#: templates/base.html:141
+msgid "The Hook Blog"
+msgstr "Hook 博客"
+
+#: templates/base.html:146
+msgid "Shop"
+msgstr "购物"
+
+#: templates/base.html:148
+msgid "Coffee for the Home"
+msgstr "家用咖啡"
+
+#: templates/base.html:149
+msgid "Coffee for the Office"
+msgstr "办公室用的咖啡"
+
+#: templates/base.html:150
+msgid "Gifts and Gear"
+msgstr "礼品和设备"
+
+#: templates/base.html:154 templates/giveback_project/index.html:243
+msgid "Brew Guides"
+msgstr "烹煮指南"
+
+#: templates/base.html:156
+msgid "Hook Drip Bag"
+msgstr "Hook 滤挂咖啡"
+
+#: templates/base.html:157
+msgid "V60 Dripper"
+msgstr "滤杯"
+
+#: templates/base.html:158
+msgid "French Press"
+msgstr "法式滤压壶"
+
+#: templates/base.html:159
+msgid "Aeropress"
+msgstr "爱乐压"
+
+#: templates/base.html:160
+msgid "Cold Brew"
+msgstr "冷泡"
+
+#: templates/base.html:164
+msgid "Social"
+msgstr "社交媒体"
+
+#: templates/base.html:174
+msgid "Our Company"
+msgstr "我们的公司"
+
+#: templates/base.html:176 templates/content/careers.html:8
+msgid "Careers"
+msgstr "招贤纳士"
+
+#: templates/base.html:178
+msgid "Contacts"
+msgstr "联系方式"
+
+#: templates/base.html:181
+msgid "E-mail"
+msgstr "电子邮件"
+
+#: templates/base.html:196
+msgid "COPYRIGHT"
+msgstr "版权"
+
+#: templates/base.html:198
+msgid "Terms & Privacy"
+msgstr "条款和隐私"
+
+#: templates/coffees/detail.html:29
+msgid "CONFIRM SUBSCRIPTION"
+msgstr "确认订阅"
+
+#: templates/coffees/detail.html:32 templates/coffees/detail.html.py:34
+msgid "CONFIRM ONE-OFF"
+msgstr "确认次性"
+
+#: templates/coffees/detail.html:38 templates/coffees/detail.html.py:100
+#: templates/coffees/shop-gift.html:123
+#: templates/get_started/get_started.html:161
+#: templates/get_started/get_started.html:202
+#: templates/get_started/get_started.html:241
+#: templates/registration/profile.html:1459
+#: templates/registration/profile.html:1507 var/9_oct/test/get_started.html:161
+#: var/9_oct/test/get_started.html:202 var/9_oct/test/get_started.html:241
+msgid "Back"
+msgstr "返回"
+
+#: templates/coffees/detail.html:41 templates/registration/login.html:8
+#: templates/registration/password_reset_complete.html:24
+msgid "Log in"
+msgstr "登录"
+
+#: templates/coffees/detail.html:76
+msgid "How do you want your coffee packaged for this order?"
+msgstr "你想要怎么包装本订单的咖啡？"
+
+#: templates/coffees/detail.html:90
+#: templates/get_started/registration-credits.html:88
+#: templates/get_started/registration.html:182
+msgid "Your coffee will be ground for"
+msgstr "你的咖啡会被磨成咖啡粉"
+
+#: templates/coffees/detail.html:91
+#: templates/get_started/registration-credits.html:89
+#: templates/get_started/registration.html:183
+#: templates/taster/taster3x80g.html:153
+msgid "Your order will come in a pack of"
+msgstr "你的订单包裹形式是一包"
+
+#: templates/coffees/detail.html:91
+#: templates/get_started/registration-credits.html:89
+#: templates/get_started/registration.html:183
+#: templates/taster/taster3x80g.html:153
+msgid "drip bags"
+msgstr "滤挂咖啡"
+
+#: templates/coffees/detail.html:92
+#: templates/get_started/registration-credits.html:90
+#: templates/get_started/registration.html:184
+#: templates/taster/taster3x80g.html:154
+msgid "Your coffee will come in"
+msgstr "你的咖啡形式是"
+
+#: templates/coffees/detail.html:92
+#: templates/get_started/registration-credits.html:90
+#: templates/get_started/registration.html:184
+#: templates/taster/taster3x80g.html:154
+msgid "whole beans"
+msgstr "全豆咖啡"
+
+#: templates/coffees/detail.html:99
+msgid "Confirm"
+msgstr "确认"
+
+#: templates/coffees/gifts copy.html:8
+msgid "— Gifts"
+msgstr "— 礼物"
+
+#: templates/coffees/gifts-xo.html:8
+msgid "Gifts"
+msgstr "礼品"
+
+#: templates/coffees/gifts-xo.html:30
+msgid "Hang on!"
+msgstr "坚持下去！"
+
+#: templates/coffees/gifts-xo.html:31
+msgid "We are busy curating some new awesome gift sets"
+msgstr "我们忙于组织一些新的很棒的礼品套装"
+
+#: templates/coffees/gifts.html:19
+msgid "GIFTS AND GEAR"
+msgstr "礼品和设备"
+
+#: templates/coffees/gifts.html:21
+msgid ""
+"Our coffees make people happy. And our stylish brewing essentials and<br /> "
+"coffee accessories? They make that happiness last ever longer!<br /> <br /> "
+"You can send your coffee-loving friends some extraordinary coffees or "
+"coffee<br /> gear to spruce up their coffee adventures. We’re also "
+"constantly curating<br /> elemental starter kits and classic gift sets for "
+"coffee lovers of all levels."
+msgstr ""
+"我们的咖啡让人快乐. 还有我们时尚的烹煮必需品和咖啡配件? 它们让幸福持续的更久!"
+"<br /> <br /> 你可以给你热爱咖啡的朋友发一些非凡的咖啡或咖啡设备来装饰他们的"
+"咖啡冒险. 我们还时常管理基本入门套件和给各级的咖啡爱好者的经典礼品套装."
+
+#: templates/coffees/gifts.html:44 templates/coffees/send-friend.html:87
+#: templates/registration/profile.html:1296
+msgid "GIFT CREDITS"
+msgstr "礼品点数"
+
+#: templates/coffees/gifts.html:45
+msgid ""
+"Whether it’s for a special occasion, to send your best wishes, or for no "
+"reason at all, coffee is a sure way to make someone’s day (or weeks). Buy "
+"credits and send a friend some coffees! You choose the amount, and they pick "
+"their coffees and delivery preferences."
+msgstr ""
+"无论是否用于特殊场合, 送出你最好的祝福或是没有任何理由, 咖啡都是让别人振作起"
+"来的好东西. 购买点数然后给朋友寄一些咖啡! 你选择数量, 他们选择他们想要的咖啡"
+"和运送偏好."
+
+#: templates/coffees/gifts.html:46 templates/coffees/send-friend.html:138
+msgid "Send A Friend Coffee"
+msgstr "给朋友寄咖啡"
+
+#: templates/coffees/gifts.html:49
+msgid "gift sets and coffee gear"
+msgstr "礼品套装和咖啡设备"
+
+#: templates/coffees/gifts.html:50
+msgid ""
+"If you thought the pleasure you get from drinking our freshly roasted "
+"coffees couldn’t get any better, you’re probably right. But to be sure "
+"you’re doing the coffees justice, equip yourself or your coffee comrades "
+"with brewing essentials and inspiring coffee accessories."
+msgstr ""
+"如果你认为你从喝我们新鲜烘焙的咖啡中获得的乐趣不能再好了, 那你很有可能是对"
+"的. 但是为了确保你有最好的咖啡体验, 用烹煮咖啡的必需品和鼓舞人心的咖啡配件来"
+"装备你自己和你的咖啡伙伴."
+
+#: templates/coffees/gifts.html:51
+msgid "SHOP GIFT SETS & GEAR"
+msgstr "商店礼品套装和设备"
+
+#: templates/coffees/gifts.html:68 templates/coffees/send-friend.html:175
+msgid "Purchase A Gift"
+msgstr "购买礼品"
+
+#: templates/coffees/gifts.html:73
+msgid "Credit Amount"
+msgstr "礼品点数"
+
+#: templates/coffees/gifts.html:82 templates/coffees/send-friend.html:194
+msgid "RECIPIENT’S DETAILS – WHO’S THE GIFT FOR?"
+msgstr "收件人详情 - 礼品是给谁的？"
+
+#: templates/coffees/gifts.html:83 templates/coffees/send-friend.html:196
+msgid "Recipient’s name"
+msgstr "收件人姓名"
+
+#: templates/coffees/gifts.html:86 templates/coffees/send-friend.html:199
+msgid "Your first name"
+msgstr "你的名"
+
+#: templates/coffees/gifts.html:89 templates/coffees/send-friend.html:198
+msgid "YOUR DETAILS"
+msgstr "你的详细信息"
+
+#: templates/coffees/gifts.html:90 templates/coffees/send-friend.html:201
+msgid "Your last name"
+msgstr "你的姓"
+
+#: templates/coffees/gifts.html:93 templates/coffees/send-friend.html:203
+msgid "Your email"
+msgstr "你的电子邮件"
+
+#: templates/coffees/gifts.html:96 templates/coffees/send-friend.html:206
+msgid "YOUR PAYMENT DETAILS"
+msgstr "你的付款详情"
+
+#: templates/coffees/gifts.html:97
+msgid "Number"
+msgstr "卡号"
+
+#: templates/coffees/gifts.html:100
+msgid "Expiry"
+msgstr "期满"
+
+#: templates/coffees/gifts.html:103 templates/coffees/index.html:408
+#: templates/coffees/nespresso.html:395 templates/coffees/send-friend.html:215
+#: templates/get_started/registration-gear.html:174
+#: templates/get_started/registration-nespresso.html:262
+#: templates/get_started/registration.html:318
+#: templates/registration/profile.html:946
+#: templates/taster/taster3x80g.html:234 templates/taster/taster5x.html:173
+#: templates/trial.html:173 var/9_oct/test/index.html:408
+msgid "CVC"
+msgstr "CVC"
+
+#: templates/coffees/gifts.html:106 templates/coffees/send-friend.html:228
+msgid ""
+"We use Stripe to process your payment super securely. We never store your "
+"card details on our system and instead leave that up to Stripe (who are "
+"very, very good at it)."
+msgstr ""
+"我们使用Stripe来处理你的付款，超级安全。我们从不在我们的系统上储存你的信用卡"
+"信息，我们会让Stripe来处理（Stripe很擅长这个）。"
+
+#: templates/coffees/gifts.html:110 templates/coffees/send-friend.html:234
+msgid "PAY"
+msgstr "付款"
+
+#: templates/coffees/gifts.html:110 templates/coffees/send-friend.html:234
+msgid "NOW"
+msgstr "现在"
+
+#: templates/coffees/index-xo.html:8 templates/coffees/index-xo.html.py:27
+#: templates/coffees/index.html:8 templates/giveback_project/index-xo.html:168
+#: templates/giveback_project/index.html:238 var/9_oct/test/index.html:8
+msgid "Our Coffees"
+msgstr "我们的咖啡"
+
+#: templates/coffees/index-xo.html:31 templates/coffees/index.html:29
+#: var/9_oct/test/index.html:29
+msgid ""
+"Don’t worry about not having the right apparatus – we have something for "
+"everyone regardless of your brew method."
+msgstr "不用担心没有合适的设备 - 无论你煮咖啡的方式如何，我们都有适合你的产品."
+
+#: templates/coffees/index-xo.html:40 templates/coffees/index.html:54
+#: var/9_oct/test/index.html:54
+msgid "Help us find you your perfect coffee by picking your brew method:"
+msgstr "通过选择你煮咖啡的方式来帮助我们为你找到最适合你的咖啡:"
+
+#: templates/coffees/index-xo.html:45 templates/coffees/index.html:61
+#: var/9_oct/test/index.html:61
+msgid "Show All"
+msgstr "显示全部"
+
+#: templates/coffees/index-xo.html:73 templates/coffees/index.html:87
+#: var/9_oct/test/index.html:87
+msgid ""
+"Don’t worry if you do not have any fancy coffee brewing equipments. We’ve "
+"got coffee drip bags for you! Easy, convenient and portable but just as "
+"fresh and delicious."
+msgstr ""
+"如果你没有任何烹煮咖啡的设备也不要担心。我们为你准备了滤挂咖啡！简单，便捷，"
+"方便携带，但是仍然新鲜美味。"
+
+#: templates/coffees/index-xo.html:74 templates/coffees/index.html:88
+#: var/9_oct/test/index.html:88
+msgid "Just go ahead and select any of the coffees from the"
+msgstr "去选择任何一款咖啡"
+
+#: templates/coffees/index-xo.html:74 templates/coffees/index.html:88
+#: var/9_oct/test/index.html:88
+msgid "full range"
+msgstr "所有种类"
+
+#: templates/coffees/index-xo.html:74 templates/coffees/index.html:88
+#: var/9_oct/test/index.html:88
+msgid "and select ‘drip bags’ as preferred packaging method at check out."
+msgstr "并且选择“滤挂咖啡”作为付款时的首选包装方法。"
+
+#: templates/coffees/index-xo.html:98 templates/coffees/index-xo.html:130
+#: templates/coffees/index.html:109 templates/coffees/index.html.py:150
+#: templates/coffees/nespresso.html:90
+#: templates/get_started/registration-credits.html:220
+#: templates/get_started/registration.html:362 var/9_oct/test/index.html:109
+#: var/9_oct/test/index.html.py:150
+msgid "Shipping till"
+msgstr "发货截止于"
+
+#: templates/coffees/index-xo.html:102 templates/coffees/index-xo.html:105
+#: templates/coffees/index-xo.html:135 templates/coffees/index-xo.html:139
+#: templates/coffees/index.html:112 templates/coffees/index.html.py:117
+#: templates/coffees/index.html:121 templates/coffees/index.html.py:155
+#: templates/coffees/index.html:160 templates/coffees/index.html.py:165
+#: templates/coffees/nespresso.html:93 templates/coffees/nespresso.html:98
+#: templates/coffees/nespresso.html:102 templates/coffees/nespresso.html:134
+#: templates/coffees/nespresso.html:139 templates/coffees/nespresso.html:143
+#: templates/registration/profile.html:578 var/9_oct/test/index.html:112
+#: var/9_oct/test/index.html.py:117 var/9_oct/test/index.html:121
+#: var/9_oct/test/index.html.py:155 var/9_oct/test/index.html:160
+#: var/9_oct/test/index.html.py:165
+msgid "ONE-OFF"
+msgstr "次性"
+
+#: templates/coffees/index-xo.html:108 templates/coffees/index-xo.html:142
+msgid "MORE INFO"
+msgstr "更多信息"
+
+#: templates/coffees/index-xo.html:123 templates/coffees/index.html:139
+#: templates/coffees/nespresso.html:78 templates/coffees/nespresso.html:120
+#: var/9_oct/test/index.html:139
+msgid "by"
+msgstr "由"
+
+#: templates/coffees/index-xo.html:134 templates/coffees/index.html:153
+#: templates/coffees/index.html.py:158 templates/coffees/nespresso.html:132
+#: templates/coffees/nespresso.html:137 var/9_oct/test/index.html:153
+#: var/9_oct/test/index.html.py:158
+msgid "SEND NEXT"
+msgstr "接下来送"
+
+#: templates/coffees/index-xo.html:176 templates/coffees/index-xo.html:256
+#: templates/coffees/index.html:229 templates/coffees/index.html.py:310
+#: templates/coffees/nespresso.html:217 templates/coffees/nespresso.html:297
+#: var/9_oct/test/index.html:229 var/9_oct/test/index.html.py:310
+msgid "How this coffee will taste like?"
+msgstr "这咖啡味道如何?"
+
+#: templates/coffees/index-xo.html:179 templates/coffees/index-xo.html:259
+#: templates/coffees/index.html:232 templates/coffees/index.html.py:313
+#: templates/coffees/nespresso.html:220 templates/coffees/nespresso.html:300
+#: var/9_oct/test/index.html:232 var/9_oct/test/index.html.py:313
+msgid "More information about the farm"
+msgstr "关于农场的更多信息"
+
+#: templates/coffees/index-xo.html:201 templates/coffees/index-xo.html:281
+#: templates/coffees/index.html:254 templates/coffees/index.html.py:335
+#: templates/coffees/nespresso.html:242 templates/coffees/nespresso.html:322
+#: var/9_oct/test/index.html:254 var/9_oct/test/index.html.py:335
+msgid "Country"
+msgstr "国家"
+
+#: templates/coffees/index-xo.html:204 templates/coffees/index-xo.html:284
+#: templates/coffees/index.html:257 templates/coffees/index.html.py:338
+#: templates/coffees/nespresso.html:245 templates/coffees/nespresso.html:325
+#: var/9_oct/test/index.html:257 var/9_oct/test/index.html.py:338
+msgid "Producer"
+msgstr "生产商"
+
+#: templates/coffees/index-xo.html:207 templates/coffees/index-xo.html:287
+#: templates/coffees/index.html:260 templates/coffees/index.html.py:341
+#: templates/coffees/nespresso.html:248 templates/coffees/nespresso.html:328
+#: var/9_oct/test/index.html:260 var/9_oct/test/index.html.py:341
+msgid "Altitude"
+msgstr "海拔"
+
+#: templates/coffees/index-xo.html:210 templates/coffees/index-xo.html:290
+#: templates/coffees/index.html:263 templates/coffees/index.html.py:344
+#: templates/coffees/nespresso.html:251 templates/coffees/nespresso.html:331
+#: var/9_oct/test/index.html:263 var/9_oct/test/index.html.py:344
+msgid "Varietal"
+msgstr "品种"
+
+#: templates/coffees/index-xo.html:213 templates/coffees/index-xo.html:293
+#: templates/coffees/index.html:266 templates/coffees/index.html.py:347
+#: templates/coffees/nespresso.html:254 templates/coffees/nespresso.html:334
+#: var/9_oct/test/index.html:266 var/9_oct/test/index.html.py:347
+msgid "Processes"
+msgstr "工序"
+
+#: templates/coffees/index.html:26 var/9_oct/test/index.html:26
+msgid "OUR COFFEES"
+msgstr "我们的咖啡"
+
+#: templates/coffees/index.html:27 templates/giveback_project/index-xo.html:171
+#: var/9_oct/test/index.html:27
+msgid ""
+"Sustainably grown and ethically produced, lovingly roasted and caringly "
+"packed, then sent to your doorstep within a week of roasting. These are the "
+"steps we take to make a difference in your lives and the lives of our "
+"farmers."
+msgstr ""
+"可持续地生长，生产时遵守企业道德概念，精心烘焙，体贴的包装，在你的咖啡刚烘焙"
+"好一周内发货。这些都是我们采取的用来改变你的生活和我们的咖啡种植户的生活的步"
+"骤."
+
+#: templates/coffees/index.html:125 templates/coffees/index.html.py:169
+#: templates/coffees/nespresso.html:106 templates/coffees/nespresso.html:147
+#: var/9_oct/test/index.html:125 var/9_oct/test/index.html.py:169
+msgid "More Info"
+msgstr "更多信息"
+
+#: templates/coffees/index.html:162 templates/coffees/nespresso.html:141
+#: templates/get_started/registration-credits.html:191
+#: templates/get_started/registration-nespresso.html:273
+#: templates/get_started/registration.html:329
+#: templates/taster/taster3x80g.html:245 templates/taster/taster5x.html:182
+#: templates/trial.html:182 var/9_oct/test/index.html:162
+msgid "Subscribe"
+msgstr "订阅"
+
+#: templates/coffees/index.html:196 var/9_oct/test/index.html:196
+msgid "LOOKING FOR COFFEES FOR THE OFFICE?"
+msgstr "在寻找适合办公室用的咖啡?"
+
+#: templates/coffees/index.html:197 var/9_oct/test/index.html:197
+msgid "FIND OUT MORE HERE"
+msgstr "在这里了解更多"
+
+#: templates/coffees/index.html:387 templates/coffees/nespresso.html:374
+#: var/9_oct/test/index.html:387
+msgid "Almost there! Please enter your credit card details"
+msgstr "几乎完成了！请输入你的信用卡详情"
+
+#: templates/coffees/index.html:402 templates/coffees/nespresso.html:389
+#: templates/coffees/send-friend.html:209
+#: templates/get_started/registration-gear.html:168
+#: templates/get_started/registration-nespresso.html:256
+#: templates/get_started/registration.html:312
+#: templates/registration/profile.html:940
+#: templates/taster/taster3x80g.html:228 templates/taster/taster5x.html:167
+#: templates/trial.html:167 var/9_oct/test/index.html:402
+msgid "Card Number"
+msgstr "卡号"
+
+#: templates/coffees/index.html:410 templates/coffees/nespresso.html:397
+#: templates/coffees/send-friend.html:217
+#: templates/get_started/registration-gear.html:176
+#: templates/get_started/registration-nespresso.html:264
+#: templates/get_started/registration.html:320
+#: templates/registration/profile.html:948
+#: templates/taster/taster3x80g.html:236 templates/taster/taster5x.html:175
+#: templates/trial.html:175 var/9_oct/test/index.html:410
+msgid "Expiration (MM/YYYY)"
+msgstr "有效期至"
+
+#: templates/coffees/index.html:417 templates/coffees/nespresso.html:404
+#: templates/registration/profile.html:62
+#: templates/registration/profile.html:68
+#: templates/registration/profile.html:957
+#: templates/registration/registration_form.html:36
+#: var/9_oct/test/index.html:417
+msgid "Submit"
+msgstr "提交"
+
+#: templates/coffees/index.html:482 templates/giveback_project/index.html:336
+#: var/9_oct/test/index.html:482
+msgid "Wait! Get A Free Gift On Your First Order!"
+msgstr "等一下！在你下第一个订单时获得一份免费的礼物！"
+
+#: templates/coffees/index.html:486 templates/giveback_project/index.html:173
+#: templates/giveback_project/index.html:340 var/9_oct/test/index.html:486
+msgid "V60 STARTER KIT"
+msgstr "入门套件"
+
+#: templates/coffees/index.html:488 templates/giveback_project/index.html:175
+#: templates/giveback_project/index.html:342 var/9_oct/test/index.html:488
+msgid "Hario v60"
+msgstr "哈里欧V60"
+
+#: templates/coffees/index.html:489 templates/giveback_project/index.html:176
+#: templates/giveback_project/index.html:343 var/9_oct/test/index.html:489
+msgid "Coffee scoop"
+msgstr "咖啡勺"
+
+#: templates/coffees/index.html:490 templates/giveback_project/index.html:177
+#: templates/giveback_project/index.html:344 var/9_oct/test/index.html:490
+msgid "Filters to get you started"
+msgstr "过滤器来开启你的咖啡之旅"
+
+#: templates/coffees/index.html:496 templates/coffees/index.html.py:510
+#: templates/coffees/index.html:523 templates/coffees/index.html.py:536
+#: templates/giveback_project/index.html:183
+#: templates/giveback_project/index.html:197
+#: templates/giveback_project/index.html:210
+#: templates/giveback_project/index.html:223
+#: templates/giveback_project/index.html:350
+#: templates/giveback_project/index.html:364
+#: templates/giveback_project/index.html:377
+#: templates/giveback_project/index.html:390 var/9_oct/test/index.html:496
+#: var/9_oct/test/index.html.py:510 var/9_oct/test/index.html:523
+#: var/9_oct/test/index.html.py:536
+msgid "Choose"
+msgstr "选择"
+
+#: templates/coffees/index.html:502 templates/giveback_project/index.html:189
+#: templates/giveback_project/index.html:356 var/9_oct/test/index.html:502
+msgid "80G BAG"
+msgstr "80克一袋的咖啡"
+
+#: templates/coffees/index.html:504 templates/giveback_project/index.html:191
+#: templates/giveback_project/index.html:358 var/9_oct/test/index.html:504
+msgid "1 x 80g of freshly roasted coffee"
+msgstr "1袋80g新鲜烘焙的咖啡"
+
+#: templates/coffees/index.html:505 templates/giveback_project/index.html:192
+#: templates/giveback_project/index.html:359 var/9_oct/test/index.html:505
+msgid "Choose whole/ground"
+msgstr "选择全豆咖啡/咖啡粉"
+
+#: templates/coffees/index.html:516 templates/giveback_project/index.html:203
+#: templates/giveback_project/index.html:370 var/9_oct/test/index.html:516
+msgid "3 x DRIP COFFEE BAGS"
+msgstr "3 袋滤挂咖啡"
+
+#: templates/coffees/index.html:518 templates/giveback_project/index.html:205
+#: templates/giveback_project/index.html:372 var/9_oct/test/index.html:518
+msgid "3 x drip coffee bags samplers"
+msgstr "3 袋滤挂咖啡取样器"
+
+#: templates/coffees/index.html:529 templates/giveback_project/index.html:216
+#: templates/giveback_project/index.html:383 var/9_oct/test/index.html:529
+msgid "SHOTPODS BOX"
+msgstr "咖啡胶囊盒"
+
+#: templates/coffees/index.html:531 templates/giveback_project/index.html:218
+#: templates/giveback_project/index.html:385 var/9_oct/test/index.html:531
+msgid "4 x Shotpods assorted origin"
+msgstr "4 个来自不同地方的咖啡胶囊"
+
+#: templates/coffees/nespresso.html:8
+msgid "Our Pods"
+msgstr "我们的咖啡胶囊"
+
+#: templates/coffees/nespresso.html:28
+msgid ""
+"Freshly roasted to precision and hermetically sealed to preserve the "
+"coffees’ freshness, Hook’s Shot-Pods contain some of our best and most "
+"beloved coffees, developed to work perfectly with your Nespresso® machine."
+msgstr ""
+"精确新鲜地烘焙咖啡，密封保存，保持咖啡的新鲜度，Hook的咖啡胶囊包含我们一些最"
+"好的，最受欢迎的咖啡，我们进行开发使其能够与你的Nespresso®机器完美合作."
+
+#: templates/coffees/nespresso.html:31
+msgid ""
+"Now, you can enjoy the same fresh and great tasting coffees from Hook at the "
+"touch of a button."
+msgstr ""
+"现在，只需触摸一个按钮，你就可以享受到来自Hook的一样新鲜和口味极佳的咖啡."
+
+#: templates/coffees/nespresso.html:58
+msgid "HOOK'S SHOTPODS"
+msgstr "HOOK 的咖啡胶囊"
+
+#: templates/coffees/nespresso.html:60
+msgid ""
+"Our unbelievably aromatic and decadent Shot-Pods are delivered to you in "
+"sets of 20."
+msgstr "我们香气扑鼻的，美味的咖啡胶囊是以20个一组的形式运送给你的."
+
+#: templates/coffees/nespresso.html:173
+msgid "SHOTPODS FAQ"
+msgstr "关于咖啡胶囊的常见问题解答"
+
+#: templates/coffees/nespresso.html:179
+msgid "Find Shotpods in"
+msgstr "咖啡胶囊在"
+
+#: templates/coffees/nespresso.html:433
+msgid "shotpods taster pack"
+msgstr "样品咖啡胶囊"
+
+#: templates/coffees/nespresso.html:434
+msgid "TRY FOR JUST $5!"
+msgstr "只需$5就能试一试！"
+
+#: templates/coffees/nespresso.html:435
+msgid "No thanks! I would like a full box."
+msgstr "不用了，谢谢！我想要一整盒。"
+
+#: templates/coffees/send-friend.html:88
+msgid ""
+"Whether it’s for a special occasion, to send your best wishes, or for no<br /"
+"> reason at all, coffee is a sure way to make someone’s day (or weeks). "
+"Buy<br /> credits and send a friend some coffees! You choose the amount, and "
+"they<br /> pick their coffees and delivery preferences."
+msgstr ""
+"无论是否用于特殊场合, 送出你最好的祝福或是没有任何理由, 咖啡都是让别人振作起"
+"来的好东西. 购买<br />点数然后给朋友寄一些咖啡! 你选择数量, 他们<br />选择他"
+"们想要的咖啡和运送偏好."
+
+#: templates/coffees/send-friend.html:96 templates/wholesale/wholesale.html:24
+msgid "find out more"
+msgstr "了解更多"
+
+#: templates/coffees/send-friend.html:109
+msgid "How it works"
+msgstr "如何运作"
+
+#: templates/coffees/send-friend.html:116
+msgid "choose a gift credit amount"
+msgstr "选择礼品点数的数额"
+
+#: templates/coffees/send-friend.html:117
+msgid ""
+"Purchase any amount of gift credits you want and once your order is "
+"complete, we’ll send you a lovely printable voucher to your email. Add a "
+"personalised message if you want!"
+msgstr ""
+"购买任意你想要的数额的礼品点数，并且因你的订单完成后，我们会将可爱的可打印的"
+"优惠券以电子邮件的形式发送给你。如果你希望的话，还可以添加个性化的消息！"
+
+#: templates/coffees/send-friend.html:121
+msgid "gift the voucher"
+msgstr "赠送优惠券"
+
+#: templates/coffees/send-friend.html:122
+msgid ""
+"Simply forward the gift voucher to the lucky recipient via email, or print "
+"and present it personally so you get to see their smile and maybe you’ll "
+"even get a giant hug or a wet sloppy kiss!"
+msgstr ""
+"只需将礼品优惠券以电子邮件的形式转给幸运儿，或打印出来亲自交给他，这样你就能"
+"看到他们的笑容，可能你甚至会得到一个大大的拥抱或是一个吻！"
+
+#: templates/coffees/send-friend.html:126
+msgid "lucky recipient redeems gift"
+msgstr "幸运的获奖者兑换礼品"
+
+#: templates/coffees/send-friend.html:127
+msgid ""
+"When redeeming their coffees from our website, the lucky recipient has the "
+"flexibility of choosing which coffees they’d like, how they’d like the "
+"coffees packed, and the delivery frequency."
+msgstr ""
+"当从我们的网站兑换咖啡时，幸运儿能灵活选择他们喜欢的咖啡，想要包装的方式以及"
+"配送频率。"
+
+#: templates/coffees/send-friend.html:131
+msgid "relax <u>&</u> enjoy"
+msgstr "放松 <u>&amp;</u> 享受"
+
+#: templates/coffees/send-friend.html:132
+msgid ""
+"We’ll send out their coffees within a week of roasting, straight to their "
+"mailbox, so all they have to do is relax, be thankful, and enjoy! You too, "
+"can relax - knowing it’s the perfect gift."
+msgstr ""
+"他们的咖啡会在刚烘焙好一周内发货，径直发往他们的邮箱，所有他们只要放松，觉得"
+"感恩，然后好好享受即可！你也是，好好放松 - 因为你知道这会是个完美的礼物。"
+
+#: templates/coffees/send-friend.html:149
+msgid "PURCHASE GIFT CREDITS"
+msgstr "购买礼品点数"
+
+#: templates/coffees/send-friend.html:150
+#: templates/coffees/send-friend.html:180
+msgid "Credit amount"
+msgstr "点数数额"
+
+#: templates/coffees/send-friend.html:154
+msgid "Min."
+msgstr "最小"
+
+#: templates/coffees/send-friend.html:154
+msgid "Max."
+msgstr "最大"
+
+#: templates/coffees/send-friend.html:161
+msgid "Buy Credit"
+msgstr "购买点数"
+
+#: templates/coffees/send-friend.html:236
+msgid "Verifying"
+msgstr "验证中"
+
+#: templates/coffees/send-friend.html:259
+msgid "Thank you!"
+msgstr "谢谢你！"
+
+#: templates/coffees/send-friend.html:260
+msgid "What happens next?"
+msgstr "接下来?"
+
+#: templates/coffees/send-friend.html:262
+msgid ""
+"You will be receiving an email shortly with a lovely printable voucher "
+"containing a unique code which you can forward via email or print and "
+"present it personally so you get to see their smile and maybe a giant hug or "
+"a wet sloppy kiss!"
+msgstr ""
+"你很快就会收到附有可爱的并且可打印的优惠券的电子邮件，电子邮件中含有识别码，"
+"你能通过电子邮件转发或者打印出来然后亲自交给别人，这样你就能看见他们的微笑，"
+"可能还会得到一个大大的拥抱或是一个吻！"
+
+#: templates/coffees/send-friend.html:268
+msgid "Perfect!"
+msgstr "完美！"
+
+#: templates/coffees/shop-gift.html:8
+msgid "Coffee brewing equipments"
+msgstr ""
+
+#: templates/coffees/shop-gift.html:23
+msgid ""
+"A collaboration between Hook Coffee and Atomi, this section presents<br/> a "
+"curated selection of artisanal Japanese coffee brewing equipments<br/> "
+"handmade by the finest Japanese coffee craftsman."
+msgstr ""
+
+#: templates/coffees/shop-gift.html:65
+msgid "Previous"
+msgstr ""
+
+#: templates/coffees/shop-gift.html:69
+#: templates/get_started/get_started.html:162
+#: templates/get_started/get_started.html:203
+#: templates/get_started/get_started.html:242
+#: templates/get_started/get_started.html:282
+#: templates/get_started/registration-credits.html:134
+#: templates/get_started/registration-credits.html:170
+#: templates/get_started/registration-gear.html:129
+#: templates/get_started/registration-gear.html:150
+#: templates/get_started/registration-nespresso.html:166
+#: templates/get_started/registration-nespresso.html:217
+#: templates/get_started/registration-nespresso.html:238
+#: templates/get_started/registration.html:228
+#: templates/get_started/registration.html:273
+#: templates/get_started/registration.html:294
+#: templates/taster/taster3x80g.html:156 templates/taster/taster3x80g.html:189
+#: templates/taster/taster3x80g.html:210 templates/taster/taster5x.html:128
+#: templates/taster/taster5x.html.py:149 templates/trial.html:128
+#: templates/trial.html.py:149 var/9_oct/test/get_started.html:162
+#: var/9_oct/test/get_started.html:203 var/9_oct/test/get_started.html:242
+#: var/9_oct/test/get_started.html:282
+msgid "Next"
+msgstr "下一步"
+
+#: templates/coffees/shop-gift.html:83
+#: templates/get_started/registration-gear.html:185
+msgid "Purchase"
+msgstr ""
+
+#: templates/coffees/shop-gift.html:83
+msgid "Sold out"
+msgstr ""
+
+#: templates/coffees/shop-gift.html:112
+msgid "You are one step away from receiving<br/>this awesome"
+msgstr ""
+
+#: templates/coffees/shop-gift.html:114
+msgid "But first pick a colour!"
+msgstr ""
+
+#: templates/coffees/shop-gift.html:122
+msgid "Confirm Purchase"
+msgstr ""
+
+#: templates/content/careers.html:28
+msgid "Join the Hook Team!"
+msgstr "加入Hook团队!"
+
+#: templates/content/careers.html:31
+msgid "Aye, aye, Captain!"
+msgstr "是, 是, 队长!"
+
+#: templates/content/careers.html:35
+msgid ""
+"Come on board and join us on our simple yet important mission to make "
+"freshly roasted specialty coffee accessible to everyone."
+msgstr ""
+"加入我们的团队, 和我们一起去完成一个简单而重要的任务, 让每个人都能享受到新鲜"
+"烘焙的精品咖啡."
+
+#: templates/content/careers.html:44
+msgid "Reasons to work with us"
+msgstr "与我们合作的理由"
+
+#: templates/content/careers.html:57 templates/content/careers.html.py:94
+msgid "An environment for Learning & Innovation"
+msgstr "学习与创新的环境"
+
+#: templates/content/careers.html:58 templates/content/careers.html.py:95
+msgid ""
+"Come exchange knowledge, skills, and ideas. We also love being creative and "
+"embrace creative ideas, even the crazy ones. Working with a team that is "
+"highly passionate and enthusiastic is bound to spark inspiration and "
+"innovation!"
+msgstr ""
+"来交换知识, 技能和思想. 我们还热爱创新, 拥抱创意, 即使是疯狂的创意. 和高度热"
+"情的团队一起合作必然会引发灵感和创新!"
+
+#: templates/content/careers.html:62 templates/content/careers.html.py:99
+msgid "Be the driver of Change & Growth"
+msgstr "成为改变与成长的驱动者"
+
+#: templates/content/careers.html:63 templates/content/careers.html.py:100
+msgid ""
+"As a key player on the team, you’ll need more than skill to affect change "
+"and make an impact. Your vision and involvement is paramount so be prepared "
+"to be part of major brainstorming and critical decision-making."
+msgstr ""
+"作为团队的关键成员, 你需要的不仅仅是影响变化, 产生影响的技能. 你的愿景和参与"
+"是非常重要的, 所以准备好成为主要的头脑风暴和关键决策的一部分."
+
+#: templates/content/careers.html:67 templates/content/careers.html.py:104
+msgid "Strike a Balance"
+msgstr "取得平衡"
+
+#: templates/content/careers.html:68 templates/content/careers.html.py:105
+msgid ""
+"We strongly believe in work-life balance and know everyone has a different "
+"style of working. We’re very open and flexible, and hope you are too. You’re "
+"expected to manage your own time and work in a way that best suits you while "
+"value-adding the team."
+msgstr ""
+"我们坚信工作与生活的平衡, 也知道每个人都有不同的工作风格. 我们很开放和灵活, "
+"并且我们希望你也是. 你需要在为团队增值的同时, 管理你自己的时间, 并以最适合自"
+"己的方式工作."
+
+#: templates/content/careers.html:72 templates/content/careers.html.py:109
+msgid "Make a Difference"
+msgstr "创造不同"
+
+#: templates/content/careers.html:73 templates/content/careers.html.py:110
+msgid ""
+"Revolutionise coffee culture as we know it. Champion socially and "
+"environmentally sustainable practices. Support specialty coffee producers "
+"and communities around the world."
+msgstr ""
+"正如我们所知道的, 彻底改变咖啡文化. 支持社会和环境可持续做法. 支持全世界的精"
+"品咖啡生产商和团体."
+
+#: templates/content/careers.html:73 templates/content/careers.html.py:110
+msgid "We mean it."
+msgstr "我们是认真的."
+
+#: templates/content/careers.html:77 templates/content/careers.html.py:114
+msgid "Immerse Yourself"
+msgstr "沉浸自己"
+
+#: templates/content/careers.html:78 templates/content/careers.html.py:115
+msgid ""
+"Looking for a steep learning curve? Hungry to learn? A hands-on kinda "
+"person? We probably hate sitting at the desk doing the same ol’ tasks "
+"everyday as much as you do and are pretty sure you’re looking at the right "
+"place to work at."
+msgstr ""
+"在寻求陡峭的学习曲线? 如饥似渴地学习? 是亲身实践类型的人? 我们可能和你一样讨"
+"厌坐在桌子边, 每天做着同样的旧任务, 我们确定你找对地方了."
+
+#: templates/content/careers.html:82 templates/content/careers.html.py:119
+msgid "Oh, and did we mention <u>unlimited coffee</u>?"
+msgstr "哦, 对了, 我们有提到<u>无限量的</u>咖啡吗?"
+
+#: templates/content/careers.html:129
+msgid "Open Positions"
+msgstr "招聘岗位"
+
+#: templates/content/careers.html:145
+msgid "Interested?"
+msgstr "感兴趣吗?"
+
+#: templates/content/careers.html:146
+msgid ""
+"If you like what you see, email us at careers@hookcoffee.com.sg to find out "
+"more and don’t forget to drop your CV!"
+msgstr ""
+"如果你喜欢你所看到的, 请发电子邮件给我们: careers@hookcoffee.com.sg, 来了解更"
+"多信息, 别忘记在邮件中附上你的个人简历!"
+
+#: templates/content/privacy.html:173
+msgid "Terms and Conditions"
+msgstr "条款和条件"
+
+#: templates/content/privacy.html:176
+msgid "Terms of Website Use"
+msgstr "网站使用条款"
+
+#: templates/content/privacy.html:179
+msgid ""
+"This terms of use (together with the documents referred to in it) tells you "
+"the terms of use on which you may make use of our website www.hookcoffee.com."
+"sg (the \"Website\"), whether as a guest or a registered user. Use of our "
+"Website includes accessing, browsing, or registering to use our Website."
+msgstr ""
+"本使用条款 (以及其中提及的文件)会告知你在我们的网站www.hookcoffee.com.sg "
+"(\"网站\")上使用的使用条款，无论是作为游客还是已注册用户。使用我们的网站包括"
+"访问，浏览或注册以使用我们的网站。 "
+
+#: templates/content/privacy.html:189
+msgid ""
+"Please read these terms of use carefully before you start to use our "
+"Website, as these will apply to your use of our Website. We recommend that "
+"you print a copy of this for future reference."
+msgstr ""
+"请在你开始使用我们的网站签仔细阅读这些使用条款，因为这与你使用我们的网站相"
+"关。我们建议你打印一份备查。"
+
+#: templates/content/privacy.html:197
+msgid ""
+"By using our Website, you confirm that you accept these terms of use and "
+"that you agree to comply with them."
+msgstr "通过使用我们的网站，表明你接受并同意遵守这些使用条款。"
+
+#: templates/content/privacy.html:204
+msgid ""
+"If you do not agree to these terms of use, you must not use our Website."
+msgstr "如果你不同意这些使用条款，请你不要使用我们的网站。"
+
+#: templates/content/privacy.html:212
+msgid "Other Applicable Terms"
+msgstr "其他试用的条款"
+
+#: templates/content/privacy.html:215
+msgid ""
+"These terms of use refer to the following additional terms, which also apply "
+"to your use of our Website:"
+msgstr "这些使用条款指下列附加的条款，也适用于你对我们网站的使用："
+
+#: templates/content/privacy.html:220
+msgid ""
+"Our Privacy Policy, which sets out the terms on which we process any "
+"personal data we collect from you, or that you provide to us. By using our "
+"Website, you consent to such processing and you warrant that all data "
+"provided by you is accurate."
+msgstr ""
+"我们的隐私政策，制定了我们处理任何从你处收集的或者你提供给我们的个人数据的相"
+"关条款。通过使用我们的网站，表明你同意这样的处理并且你保证你提供的所有数据都"
+"是准确的。"
+
+#: templates/content/privacy.html:229
+msgid ""
+"Our Cookie Policy, which sets out information about the cookies on our "
+"Website."
+msgstr "我们的Cookie政策，陈述关于我们网站的cookie信息。"
+
+#: templates/content/privacy.html:239
+msgid "Information About Us"
+msgstr "关于我们的信息"
+
+#: templates/content/privacy.html:242
+msgid ""
+"www.hookcoffee.com.sg is a site operated by Giveback Coffee Co. Pte. Ltd. "
+"(trading as Hook coffee) (\"We\"). We are registered in Singapore under "
+"company number 201536451G and have our registered office at 191A Jalan "
+"Besar, Singapore 208882. We are currently not GST registered."
+msgstr ""
+"www.hookcoffee.com.sg是Giveback Coffee Co. Pte. Ltd运营的一个网站，(营业名称"
+"为Hook coffee) (\"我们\")。我们注册与新加坡，公司编号为201536451G，并且我们的"
+"注册办事处在新加坡惹兰勿刹路191A，208882。我们目前尚未注册GST。"
+
+#: templates/content/privacy.html:254
+msgid "Changes to These Terms"
+msgstr "这些条款的更改"
+
+#: templates/content/privacy.html:257
+msgid "We may revise these terms of use at any time by amending this page."
+msgstr "我们可能会通过修改这个页面来随时修改这些使用条款。"
+
+#: templates/content/privacy.html:262
+msgid ""
+"Please check this page from time to time to take notice of any changes we "
+"made, as they are binding on you."
+msgstr "请经常查看本页面，以防我们作出任何更改，因为这些都是与你相关的。"
+
+#: templates/content/privacy.html:271
+msgid "Changes to Our Website"
+msgstr "我们网站的更改"
+
+#: templates/content/privacy.html:274
+msgid ""
+"We may update our Website from time to time, and may change the content at "
+"any time. However, please note that any of the content on our Website may be "
+"out of date at any given time, and we are under no obligation to update it."
+msgstr ""
+"我们时常会更新我们的网站，并且随时会更改其内容。但是请注意我们网站的任何内容"
+"可能在任何给定的时期内都是过时的，我们没有义务更新。"
+
+#: templates/content/privacy.html:283
+msgid ""
+"We do not guarantee that our Website, or any content on it, will be free "
+"from errors or omissions."
+msgstr "我们不保证我们的网站或网站上的内容是无错误或遗漏的。"
+
+#: templates/content/privacy.html:292
+msgid "Accessing Our Website"
+msgstr "访问我们的网站"
+
+#: templates/content/privacy.html:295
+msgid "Our Website is made available free of charge."
+msgstr "我们的网站是免费的。"
+
+#: templates/content/privacy.html:300
+msgid ""
+"We do not guarantee that our Website, or any content on it, will always be "
+"available or be uninterrupted. Access to our Website is permitted on a "
+"temporary basis. We may suspend, withdraw, discontinue or change all or any "
+"part of our Website without notice. We will not be liable to you if for any "
+"reason our Website is unavailable at any time or for any period."
+msgstr ""
+"我们不保证我们的网站或其内容总是可用的或不间断的。访问我们的网站都是临时性"
+"的。我们可能会暂停，撤销或，终止或更改我们网站的任何内容，而且无需通知你。如"
+"果网站由于某些原因，在任何时间或时间段无法正常运行，我们不承担任何责任。"
+
+#: templates/content/privacy.html:310
+msgid ""
+"You are responsible for making all arrangements necessary for you to have "
+"access to our Website."
+msgstr "你对你做出的所有访问我们网站的必要安排承担责任。"
+
+#: templates/content/privacy.html:316
+msgid ""
+"You are also responsible for ensuring that all persons who access our "
+"Website through your internet connection are aware of these terms of use and "
+"other applicable terms and conditions, and that they comply with them."
+msgstr ""
+"你还需要对确保所有通过你的网络连接访问我们的网站的人都了解这些使用条款以及其"
+"他适用的条款和条件，并且他们会遵守这些条款和条件而承担责任。"
+
+#: templates/content/privacy.html:328
+msgid "Visitor Registration"
+msgstr "来宾登记"
+
+#: templates/content/privacy.html:331
+msgid ""
+"Visitors will need to register with the Website in order to use some of the "
+"services or features made available on this Website."
+msgstr "游客需要在网站上注册以后才能使用在本网站上可得的一些服务或功能。"
+
+#: templates/content/privacy.html:338
+msgid ""
+"Should any of your registration information change, please notify us "
+"immediately either using the Website’s automated service, or via e-mail at "
+"hola@hookcoffee.com.sg."
+msgstr ""
+"如果你的注册信息发生变化，请即刻通过使用我们网站的自动化服务或者通过发送电子"
+"邮件到hola@hookcoffee.com.sg来通知我们。"
+
+#: templates/content/privacy.html:345
+msgid "We may change registration requirements from time to time."
+msgstr "我们可能时常会更改注册要求。"
+
+#: templates/content/privacy.html:353
+msgid "Your Account and Password"
+msgstr "你的账户"
+
+#: templates/content/privacy.html:356
+msgid ""
+"If you choose, or you are provided with, a user identification code, "
+"password or any other piece of information as part of our security "
+"procedures, you must treat such information as confidential. You must not "
+"disclose it to any third party."
+msgstr ""
+"如果你选择或者我们提供给你一个用户识别代码，密码或者其他任何属于我们的安全程"
+"序的信息，那么你必须对这些信息保密。你不能泄露给任何第三方。"
+
+#: templates/content/privacy.html:365
+msgid ""
+"We have the right to disable any user identification code or password, "
+"whether chosen by you or allocated by us, at any time, if in our reasonable "
+"opinion you have failed to comply with any of the provisions of these terms "
+"of use."
+msgstr ""
+"如果我们有合理的理由相信你没有遵守本使用条款的规定，那么我们有权随时禁用任何"
+"用户识别码或密码，无论是你选择的还是我们分配的。"
+
+#: templates/content/privacy.html:374
+msgid ""
+"If you know or suspect that anyone other than you knows your user "
+"identification code or password, you must promptly notify us at "
+"hola@hookcoffee.com.sg."
+msgstr ""
+"如果你知道或怀疑除你之外还有他人知道你的用户识别码或密码，你必须及时通知我"
+"们：hola@hookcoffee.com.sg。"
+
+#: templates/content/privacy.html:384
+msgid "Intellectual Property Rights"
+msgstr "知识产权"
+
+#: templates/content/privacy.html:387
+msgid ""
+"We are the owner or the licensee of all intellectual property rights in our "
+"Website, and in the material published on it. Those works are protected by "
+"copyright laws and treaties around the world. All such rights are reserved."
+msgstr ""
+"我们是我们网站及其发布内容的所有知识产权的所有者或被许可方。这些都受到全球版"
+"权法律和条约的保护。保留所有权利。"
+
+#: templates/content/privacy.html:396
+msgid ""
+"You may print off one copy, and may download extracts, of any page(s) from "
+"our Website for your personal use and you may draw the attention of others "
+"within your organisation to content posted on our Website."
+msgstr ""
+"你可以打印我们网站的任何页面的副本，也可能下载引用内容，供你个人使用，并且你"
+"可以通过你自己的组织来吸引他人注意我们网站上发布的内容。"
+
+#: templates/content/privacy.html:405
+msgid ""
+"You must not modify the paper or digital copies of any materials you have "
+"printed off or downloaded in any way, and you must not use any "
+"illustrations, photographs, video or audio sequences or any graphics "
+"separately from any accompanying text."
+msgstr ""
+"你不能以任何方式修改下载或打印的任何材料的纸质或电子副本，你不能使用任何插"
+"图、照片、视频或音频序列或者任何独立于附带文本的图形。"
+
+#: templates/content/privacy.html:414
+msgid ""
+"Our status (and that of any identified contributors) as the authors of "
+"content on our Website must always be acknowledged."
+msgstr ""
+"我们（和任何经过鉴定的投稿人）创建了网站内容，并且所有人都会在网站上得到承"
+"认。"
+
+#: templates/content/privacy.html:421
+msgid ""
+"You must not use any part of the content on our Website for commercial "
+"purposes without obtaining a licence to do so from us or our licensors."
+msgstr ""
+"如果没有从我们或我们的授权商处获得授权，你不得为商业目的使用我们的网站上任何"
+"内容的一部分。"
+
+#: templates/content/privacy.html:428
+msgid ""
+"If you print off, copy or download any part of our Website in breach of "
+"these terms of use, your right to use our Website will cease immediately and "
+"you must, at our option, return or destroy any copies of the materials you "
+"have made."
+msgstr ""
+"如果你打印、复制或下载的我们的网站的任何部分违反了这些使用条款，那么你使用我"
+"们网站的权利就会被即可停止并且你必须，这取决于我们的决定，返还或销毁你制作的"
+"任何材料副本。"
+
+#: templates/content/privacy.html:440
+msgid "No Reliance on Information"
+msgstr "不依赖信息"
+
+#: templates/content/privacy.html:443
+msgid ""
+"The content on our Website is provided for general information only. It is "
+"not intended to amount to advice on which you should rely. You must obtain "
+"professional or specialist advice before taking, or refraining from, any "
+"action on the basis of the content on our Website."
+msgstr ""
+"我们网站上提供的内容仅供一般参考。其意图并非是建议你应该依赖什么。你必须在基"
+"于我们网站上的内容采取或避免任何行动之前听取专业或专家意见。"
+
+#: templates/content/privacy.html:452
+msgid ""
+"Although we make reasonable efforts to update the information on our "
+"Website, we make no representations, warranties or guarantees, whether "
+"express or implied, that the content on our Website is accurate, complete or "
+"up-to-date."
+msgstr ""
+"尽管我们做出合理的努力来更新我们网站上的信息，但是我们不表示，保证或担保，无"
+"论明示或暗示，我们网站上的内容是准确的，完整的或是最新的。"
+
+#: templates/content/privacy.html:464
+msgid "Viruses"
+msgstr "病毒"
+
+#: templates/content/privacy.html:467
+msgid ""
+"We do not guarantee that our Website will be secure or free from bugs or "
+"viruses."
+msgstr "我们不保证我们的我能够是安全的或者没有漏洞或病毒。"
+
+#: templates/content/privacy.html:472
+msgid ""
+"You are responsible for configuring your information technology, computer "
+"programmes and platform in order to access our Website. You should use your "
+"own virus protection software."
+msgstr ""
+"你要对为了访问我们的网站而配置信息技术、计算机程序以及平台承担责任。你应该使"
+"用自己的病毒防护软件。"
+
+#: templates/content/privacy.html:479
+msgid ""
+"You must not misuse our Website by knowingly introducing viruses, Trojans, "
+"worms, logic bombs or other material which is malicious or technologically "
+"harmful. You must not attempt to gain unauthorised access to our Website, "
+"the server on which our Website is stored or any server, computer or "
+"database connected to our Website. You must not attack our Website via a "
+"denial-of-service attack or a distributed denial-of service attack. By "
+"breaching this provision, you would commit a criminal offence under the "
+"COMPUTER MISUSE AND CYBERSECURITY ACT (CHAPTER 50A). We will report any such "
+"breach to the relevant law enforcement authorities and we will co-operate "
+"with those authorities by disclosing your identity to them. In the event of "
+"such a breach, your right to use our Website will cease immediately."
+msgstr ""
+"你不能通过故意引入病毒，特洛伊木马、蠕虫、逻辑炸弹或其他恶意的或者技术上有害"
+"的材料而滥用我们的网站。你不能试图非法进入我们的网站，存储我们网站的服务器或"
+"者任何连接到我们网站的服务器，电脑或数据库。你不能通过拒绝服务攻击或分布式拒"
+"绝服务攻击来攻击我们的网站。如果违反该规定，那就是刑事犯罪，违反了滥用电脑和"
+"网络安全法令(第50A章节)。我们会将任何此类违反行为报告有关执法部门，并且我们会"
+"将你的身份告知当局。在这样的违反行为中，你使用我们网站的权利会被即刻停止。 "
+
+#: templates/content/privacy.html:501
+msgid "Linking to Our Website"
+msgstr "链接到我们的网站"
+
+#: templates/content/privacy.html:504
+msgid ""
+"You may link to our home page, provided you do so in a way that is fair and "
+"legal and does not damage our reputation or take advantage of it."
+msgstr ""
+"你可以链接到我们的主页，只要你通过公平合法的方式，不损害我们的声誉，也不利用"
+"我们的网站即可。"
+
+#: templates/content/privacy.html:511
+msgid ""
+"You must not establish a link in such a way as to suggest any form of "
+"association, approval or endorsement on our part where none exists."
+msgstr "你不能以任何暗示我们同意，批准或认可你的方式发布链接。"
+
+#: templates/content/privacy.html:518
+msgid ""
+"You must not establish a link to our Website in any website that is not "
+"owned by you."
+msgstr "你不能在任何不属于你的网站建立任何与我们网站相连的链接。"
+
+#: templates/content/privacy.html:523
+msgid ""
+"Our Website must not be framed on any other site, nor may you create a link "
+"to any part of our Website other than the home page."
+msgstr ""
+"我们的网站不能被挂在其它网站上，你也不能创建链接到我们主页以外内容的链接。"
+
+#: templates/content/privacy.html:530
+msgid "We reserve the right to withdraw linking permission without notice."
+msgstr "我们有权撤销链接权限，恕不另行通知。"
+
+#: templates/content/privacy.html:535
+msgid ""
+"If you wish to make any use of content on our Website other than that set "
+"out above, please contact us at hola@hookcoffee.com.sg."
+msgstr ""
+"如果你想要以上述内容以外的方式使用我们网站的内容，请联系我们："
+"hola@hookcoffee.com.sg。"
+
+#: templates/content/privacy.html:544
+msgid "Third Party Links and Resources in Our Website"
+msgstr "我们网站的第三方链接和资源"
+
+#: templates/content/privacy.html:547
+msgid ""
+"Where our Website contains links to other sites and resources provided by "
+"third parties, these links are provided for your information only."
+msgstr ""
+"如果我们的网站包含由第三方提供的资源和到其他网站的链接，这些链接仅为你提供信"
+"息。"
+
+#: templates/content/privacy.html:553
+msgid "We have no control over the contents of those sites or resources."
+msgstr "我们无法控制这些网站的内容和资源。"
+
+#: templates/content/privacy.html:561
+msgid "Credit Card Payment"
+msgstr "信用卡支付"
+
+#: templates/content/privacy.html:564
+msgid ""
+"In a credit card transaction, you must use your own credit card. We will not "
+"be liable for any credit card fraud. The liability to use a card "
+"fraudulently will be on the user and the onus to 'prove otherwise' shall be "
+"exclusively on the user."
+msgstr ""
+"在信用卡交易中，你必须使用自己的信用卡。我们不对任何信用卡欺诈承担责任。信用"
+"卡欺诈的责任在用户并且责任“证明”应只在用户。"
+
+#: templates/content/privacy.html:577
+msgid "Trademarks"
+msgstr "商标"
+
+#: templates/content/privacy.html:580
+msgid ""
+"The trademarks, names, logos and service marks (collectively \"trademarks\") "
+"displayed on this website are registered and unregistered trademarks of the "
+"Website Owner and the suppliers of the products listed on the Website. "
+"Nothing contained on this website should be construed as granting any "
+"licence or right to use any trademark without the prior written permission "
+"of the Website Owner."
+msgstr ""
+"显示在本网站的商标，名称，标志和服务商标（合称为“商标”）都是网站所有者和列在"
+"网站上的产品供应商的已注册的和未注册商标。未经网站所有者的事先书面许可，本网"
+"站包含的任何内容都不能被理解为已被授权或有权使用任何商标。"
+
+#: templates/content/privacy.html:593
+msgid "Specific Use"
+msgstr "具体使用"
+
+#: templates/content/privacy.html:596
+msgid ""
+"Do be courteous and polite. We will not tolerate any form of verbal abuse to "
+"our delivery runners or staff."
+msgstr ""
+"要恭敬有礼貌。我们不会容忍对我们的快递员或员工进行的任何形式的言语暴力。"
+
+#: templates/content/privacy.html:606
+msgid "Refund Policy"
+msgstr "退款政策"
+
+#: templates/content/privacy.html:609
+msgid ""
+"It's okay to change your mind upon ordering. Just email us at "
+"hola@hookcoffee.com.sg right away if you place a wrong order, for either an "
+"exchange or a full refund. For lost parcel or late parcels (defined on the "
+"5th working day after the shipping date), we will either send out a new bag "
+"of coffee or provide a full refund of the goods. Refunds will be issued in "
+"the same method of payment as the original payment, or in credits."
+msgstr ""
+"在下单后，你仍然可以改主意。如果你下错单了，只需即刻给我们发送电子邮件："
+"hola@hookcoffee.com.sg，你可以选择更改订单或全额退款。如果发生包裹丢失或延误"
+"（在配送日之后的第五个工作日），我们会给你发送一袋新的咖啡或者提供给你所买产"
+"品的全额退款。退款会以与原始的支付方式或者点数相同的方式进行。"
+
+#: templates/content/privacy.html:622
+msgid "Delivery Policy"
+msgstr "配送政策"
+
+#: templates/content/privacy.html:625
+msgid ""
+"In the shopping cart, you will receive an estimated delivery time. All our "
+"orders are shipped using Singpost non-standard ordinary mail service, and "
+"will take between 2-4 working days after the sent out date for it to be "
+"delivered. Please note that this is not a guaranteed delivery time for your "
+"order, as deliveries to some areas may take longer due to unforseen "
+"circumstances."
+msgstr ""
+"在购物车中，你会收到预计配送时间。我们所有的订单都使用新加坡邮政非标准普通邮"
+"件服务，在发货后需要2-4个工作日就能送达。请注意这不是承诺交货期，因为一些区域"
+"的送货员可能会因为难以预料的情况而需要更长的时间。"
+
+#: templates/content/privacy.html:639
+msgid "Limitation of Our Liability"
+msgstr "我们的责任范围"
+
+#: templates/content/privacy.html:642
+msgid ""
+"Nothing in these terms of use excludes or limits our liability for death or "
+"personal injury arising from our negligence, or our fraud or fraudulent "
+"misrepresentation, or any other liability that cannot be excluded or limited "
+"by Singapore law."
+msgstr ""
+"如果用户因为我们的疏忽，欺诈或欺诈性误导，或者其他新加坡法律限制或规定的责任"
+"而死亡或受伤，我们会承担相应责任。"
+
+#: templates/content/privacy.html:651
+msgid ""
+"To the extent permitted by law, we exclude all conditions, warranties, "
+"representations or other terms which may apply to our Website or any content "
+"on it, whether express or implied."
+msgstr ""
+"在法律允许的范围内，我们排除了所有的条件、保证、陈述或其他适用于我们的网站或"
+"者网站上的任何内容的条款，无论明示或暗示。"
+
+#: templates/content/privacy.html:658
+msgid ""
+"We will not be liable to any user for any loss or damage, whether in "
+"contract, tort (including negligence), breach of statutory duty, or "
+"otherwise, even if foreseeable, arising under or in connection with: <ol> "
+"<li style=\"margin-left:25px\"> use of, or inability to use, our Website; or "
+"</li> <li style=\"margin-left:25px\"> use of or reliance on any content "
+"displayed on our Website. </li> </ol>"
+msgstr ""
+"我们不对任何用户的任何损失或损害承担责任，无论是否在合同中，是否侵权 (包括过"
+"失)，违反法定义务，或者即使是可预见的，在下列情况下发生或者与之相关: <ol> "
+"<li style=\"margin-left:25px\">使用或者无法使用我们的网站；或者</li> <li "
+"style=\"margin-left:25px\"> 使用或依赖任何内容显示在我们的网站。 </li> </ol>"
+
+#: templates/content/privacy.html:675
+msgid ""
+"If you are a business user, please note that in particular, we will not be "
+"liable for: <ol> <li style=\"margin-left:25px\"> loss of profits, sales, "
+"business, or revenue; </li> <li style=\"margin-left:25px\"> business "
+"interruption; </li> <li style=\"margin-left:25px\"> loss of anticipated "
+"savings; </li> <li style=\"margin-left:25px\"> loss of business opportunity, "
+"goodwill or reputation; or </li> <li style=\"margin-left:25px\"> any "
+"indirect or consequential loss or damage. </li> </ol>"
+msgstr ""
+"如果你是商业用户，请尤其注意，我们不因下列情况承担责任: <ol> <li style="
+"\"margin-left:25px\">利润，销售，业务，或收入的损失; </li> <li style="
+"\"margin-left:25px\">营业中断; </li> <li style=\"margin-left:25px\">预期存款"
+"的损失; </li> <li style=\"margin-left:25px\">商机，商誉或声誉的损失; or </"
+"li> <li style=\"margin-left:25px\"> 任何直接或间接的损失或损害。</li> </ol>"
+
+#: templates/content/privacy.html:697
+msgid ""
+"If you are a consumer user, please note that we only provide our Website for "
+"domestic and private use. You agree not to use our Website for any "
+"commercial or business purposes, and we have no liability to you for any "
+"loss of profit, loss of business, business interruption, or loss of business "
+"opportunity."
+msgstr ""
+"如果你是消费者用户，请注意我们只在国内提供我们的网站并且仅供个人使用。你同意"
+"不将我们的网站用于任何商业或业务目的，并且如果你有任何利润的损失，业务，营业"
+"中断的损失，或者商机的损失，我们不承担任何责任。"
+
+#: templates/content/privacy.html:707
+msgid ""
+"We will not be liable for any loss or damage caused by a virus, distributed "
+"denial-of-service attack, or other technologically harmful material that may "
+"infect your computer equipment, computer programs, data or other proprietary "
+"material due to your use of our Website or to your downloading of any "
+"content on it, or on any website linked to it."
+msgstr ""
+"我们不对任何由于你使用我们的网站或下载任何内容，或者使用与之链接的任何网站而"
+"受到病毒,分布式拒绝服务攻击或其他会感染你的电脑设备、计算机程序、数据或其他专"
+"利材料的技术有害材料的攻击而引起的损失或损害承担责任。"
+
+#: templates/content/privacy.html:717
+msgid ""
+"We assume no responsibility for the content of websites linked on our "
+"Website. Such links should not be interpreted as endorsement by us of those "
+"linked websites. We will not be liable for any loss or damage that may arise "
+"from your use of them."
+msgstr ""
+"我们对链接到我们的网站上的其他网站的内容不承担任何责任。请不要认为我们认同那"
+"些与我们网站链接的其他网站上的链接。我们不对任何因为你使用这些网站及其链接而"
+"导致的损失或损害负责。"
+
+#: templates/content/privacy.html:729
+msgid "General"
+msgstr "一般条款"
+
+#: templates/content/privacy.html:732
+msgid ""
+"<b>Entire Agreement:</b> These website terms and conditions constitute the "
+"sole record of the agreement between you and the Website Owner in relation "
+"to your use of the website. Neither you nor the Website Owner shall be bound "
+"by any express tacit or implied representation, warranty, promise or the "
+"like not recorded herein. Unless otherwise specifically stated these website "
+"terms and conditions supersede and replace all prior commitments, "
+"undertakings or representations, whether written or oral, between you and "
+"the Website Owner in respect of your use of the website."
+msgstr ""
+"<b>完整协议:</b> 这些网站条款和条件构成您与本网站所有者之间的关于网站使用协议"
+"的唯一记录。无论是你还是网站所有者都应当遵守任何隐性表达或暗示的表示，保证和"
+"承诺或者诸如此类但是没有记录在此的要求。除非这些网站条款和条件另有特别说明，"
+"则能取代和替换之前你与网站所有者之间的关于网站使用的所有承诺，保证和陈述，无"
+"论是书面的还是口头的。 "
+
+#: templates/content/privacy.html:746
+msgid ""
+"<b>Alteration:</b> The Website Owner may at any time modify any relevant "
+"terms and conditions, policies or notices. You acknowledge that by visiting "
+"the website from time to time, you shall become bound to the current version "
+"of the relevant terms and conditions (the \"current version\") and, unless "
+"stated in the current version, all previous versions shall be superseded by "
+"the current version. You shall be responsible for reviewing the then current "
+"version each time you visit the website."
+msgstr ""
+"<b>更改:</b> 网站所有者能够随时修改任何相关条款和条件，政策或通知。通过时常的"
+"访问网站，你承认你会遵守当前版本的相关条款和条件 (\"当前版本\")并且，除非在当"
+"前版本中另有说明，否则之前所有的版本都应该被当前版本所取代。每次你访问网站"
+"时，你都应该负责查看当时的当前版本。"
+
+#: templates/content/privacy.html:760
+msgid ""
+"<b>Conflict:</b> Where any conflict or contradiction appears between the "
+"provisions of these website terms and conditions and any other relevant "
+"terms and conditions, policies or notices, the other relevant terms and "
+"conditions, policies or notices which relate specifically to a particular "
+"section or module of the website shall prevail in respect of your use of the "
+"relevant section or module of the website."
+msgstr ""
+"<b>冲突：</b>如果网站条款和条件与其他任何相关条款和条件，政策与通知相冲突或矛"
+"盾，那么具体涉及网站的特定部分或模块的相关条款和条件，政策与通知应当以你对网"
+"站的相关部门或模块的使用为准。"
+
+#: templates/content/privacy.html:771
+msgid ""
+"<b>Waiver:</b> No indulgence or extension of time which either you or the "
+"Website Owner may grant to the other will constitute a waiver of or, whether "
+"by estoppel or otherwise, limit any of the existing or future rights of the "
+"grantor in terms hereof, save in the event or to the extent that the grantor "
+"has signed a written document expressly waiving or limiting such rights."
+msgstr ""
+"<b>弃权:</b>你或者网站所有者不能授予对方任何延长时间，这不会构成弃权，无论是"
+"否以禁止反言或其他方式，都不会限制条款和条件中的任何现在或未来的让与人权利，"
+"除非让与人已经签署书面文件明确免除或限制此种权利。"
+
+#: templates/content/privacy.html:781
+msgid ""
+"<b>Cession:</b> The Website Owner shall be entitled to cede, assign and "
+"delegate all or any of its rights and obligations in terms of any relevant "
+"terms and conditions, policies and notices to any third party."
+msgstr ""
+"<b>转让:</b>根据相关条款和条件，政策和通知，网站所有者有权将全部或部分权利和"
+"义务转让、分配和委托给任何第三方."
+
+#: templates/content/privacy.html:790
+msgid ""
+"<b>Severability:</b> All provisions of any relevant terms and conditions, "
+"policies and notices are, notwithstanding the manner in which they have been "
+"grouped together or linked grammatically, severable from each other. Any "
+"provision of any relevant terms and conditions, policies and notices, which "
+"is or becomes unenforceable in any jurisdiction, whether due to voidness, "
+"invalidity, illegality, unlawfulness or for any reason whatever, shall, in "
+"such jurisdiction only and only to the extent that it is so unenforceable, "
+"be treated as pro non scripto and the remaining provisions of any relevant "
+"terms and conditions, policies and notices shall remain in full force and "
+"effect."
+msgstr ""
+"<b>可分割性:</b>所有组合在一起或者语法上相连的相关条款和条件，政策和通知的规"
+"定是可分开的。任何在司法管辖权内不能或即将不能执行的相关条款和条件，通知和政"
+"策的规定，无论是因其无效，非正当，非法，不合法或者其他任何原因，都只限于该司"
+"法管辖区，并且只在某种程度上是无法执行的。那些无法被执行的条款和条件，通知和"
+"政策会被处理为从未存在，而其余条款则仍应具有完全的执行力及效力。"
+
+#: templates/content/privacy.html:807
+msgid ""
+"<b>Applicable:</b> Any relevant terms and conditions, policies and notices "
+"shall be governed by and construed in accordance with the laws of Singapore "
+"without giving effect to any principles of conflict of law. You hereby "
+"consent to the exclusive jurisdiction of the courts of Singapore in respect "
+"of any disputes arising in connection with the website, or any relevant "
+"terms and conditions, policies and notices or any matter related to or in "
+"connection therewith."
+msgstr ""
+"<b>适用性:</b> 任何相关的条款与条件，政策与通知的管理和解释都应符合新加坡的法"
+"律，不能影响新加坡的任何法律。您在此同意新加坡的法院专属管辖任何与网站，或任"
+"何相关条款和条件，政策与通知或者任何相关问题有关的纠纷。"
+
+#: templates/content/privacy.html:824
+msgid "Contact Us"
+msgstr "联系我们"
+
+#: templates/content/privacy.html:825
+msgid ""
+"If you have any questions, comments or concerns arising from the website or "
+"any other relevant terms and conditions, policies and notices contact us at "
+"hola@hookcoffee.com.sg."
+msgstr ""
+"如果你有任何由网站或任何其他相关的条款和条件，政策和通知引起的问题，评论或疑"
+"问，请随时联系我们：hola@hookcoffee.com.sg。"
+
+#: templates/content/privacy.html:872
+msgid "Privacy"
+msgstr "隐私"
+
+#: templates/content/privacy.html:875
+msgid ""
+"If you have questions about deleting or correcting your personal data please "
+"contact us at hola@hookcoffee.com.sg. <br><br> It is our policy to respect "
+"your privacy regarding any information we may collect while operating our "
+"websites."
+msgstr ""
+"如果你有任何关于删除或纠正你的个人资料的问题，请随时联系我们："
+"hola@hookcoffee.com.sg。 <br><br>尊重与我们在运行网站时从你处收集的信息相关的"
+"你的隐私是我们的政策。"
+
+#: templates/content/privacy.html:884
+msgid "Gathering of Personally-Identifying Information"
+msgstr "收集个人识别信息"
+
+#: templates/content/privacy.html:886
+msgid ""
+"When ordering or registering on our site, when appropriate, you may be asked "
+"to enter your name, email address, phone number, credit card information or "
+"other details to help you with your experience. <br> We collect information "
+"from you when you register on our site, place an order or enter information "
+"on our site. <br> We may use the information we collect from you when you "
+"register, make a purchase, sign up for our newsletter, respond to a survey "
+"or marketing communication, surf the website, or use certain other site "
+"features in the following ways: to personalise the user experience; to "
+"improve our website in order to better serve you; to better service you; to "
+"administer a contest, promotion, survey or other site feature; to quickly "
+"process your transactions; to send periodic emails regarding your order or "
+"other products and services."
+msgstr ""
+"当你在本网站注册或下单时，我们可能会在恰当的时机要求你输入你的姓名，电子邮箱"
+"地址，电话号码，信用卡信息或者其他详细信息，以帮助你有更好的用户体验<br> 当你"
+"在本网站注册，下单或者输入信息时，我们会从你处收集信息。<br> 我们可能会使用在"
+"你注册，购物，登记我们的邮件列表，回应调查或者营销传播，浏览网站，或者以下列"
+"方式使用特定的其他网站功能: 个性化用户体验；改善我们的网站为了更好的为您服"
+"务；为了更好的为您服务；为了管理竞争，推广，调查或者其他网站功能；为了快速处"
+"理你的交易，为了定期发送关于你的订单或其他产品和服务的邮件时，我们从你处收集"
+"的信息。"
+
+#: templates/content/privacy.html:902
+msgid "Choice/Opt-Out"
+msgstr "选择/选择退出"
+
+#: templates/content/privacy.html:904
+msgid ""
+"You may choose to stop receiving our newsletter or marketing emails by "
+"following the unsubscribe instructions included in each email or by "
+"contacting us."
+msgstr ""
+"你可以通过包含在每封邮件中的取消订阅说明或者联系我们来选择停止接受我们的实事"
+"通讯和营销邮件。"
+
+#: templates/content/privacy.html:910
+msgid "Business Transfers"
+msgstr "业务转移"
+
+#: templates/content/privacy.html:912
+msgid ""
+"If Hook Coffee, or substantially all of its assets, were acquired, or in the "
+"unlikely event that Hook Coffee goes out of business or enters bankruptcy, "
+"user information will be one of the assets that is transferred or acquired "
+"by a third party. You acknowledge that such transfers may occur, and that "
+"any acquirer of Hook Coffee may continue to use your personal information as "
+"set forth in this policy."
+msgstr ""
+"如果Hook咖啡或者实质上所有的资产都被收购了，或者在不太可能的情况下，Hook咖啡"
+"停业破产了，那么用户信息也会作为资产的一部分一同转移到或被收购到第三方。你承"
+"认这样的转移会发生，并且Hook咖啡的任何收购者都能继续使用你的个人信息，如前在"
+"本政策中所阐述的。"
+
+#: templates/content/privacy.html:920
+msgid "Ads"
+msgstr "广告"
+
+#: templates/content/privacy.html:922
+msgid ""
+"Ads appearing on any of our websites may be delivered to users by "
+"advertising partners, who may set cookies. These cookies allow the ad server "
+"to recognize your computer each time they send you an online advertisement "
+"to compile information about you or others who use your computer. This "
+"information allows ad networks to, among other things, deliver targeted "
+"advertisements that they believe will be of most interest to you. This "
+"Privacy Policy covers the use of cookies by us and does not cover the use of "
+"cookies by any advertisers."
+msgstr ""
+"出现在我们网站上的广告都可能被广告合伙发送给用户，广告伙伴可能设置了cookie。"
+"这些cookie让广告服务器每次在他们给你发送在线广告来收集你和其他使用你的电脑的"
+"人的信息的时候都能识别你的电脑。除此之外，这信息使得广告网络能够发送他们认为"
+"你最感兴趣的针对性广告。这个隐私政策涵盖我们使用的cookie但是不含有其他广告商"
+"使用的cookie。"
+
+#: templates/content/privacy.html:932
+msgid "Privacy Policy Changes"
+msgstr "隐私政策更改"
+
+#: templates/content/privacy.html:934
+msgid ""
+"Although most changes are likely to be minor, we may change our Privacy "
+"Policy from time to time, and in our sole discretion. We encourage visitors "
+"to frequently check this page for any changes to our Privacy Policy. Your "
+"continued use of the service after any change in this Privacy Policy will "
+"constitute your acceptance of such change."
+msgstr ""
+"尽管大多数更改是是较小的，我们可以时不时地酌情决定更改我们的隐私政策。我们鼓"
+"励大家频繁地查看该页面，了解我们的隐私政策的任何更改。如果你在隐私政策发生更"
+"改后仍继续使用我们的服务，则表明你同意接受这些更改。"
+
+#: templates/content/privacy.html:951
+msgid "Cookie Policies"
+msgstr "Cookie政策"
+
+#: templates/content/privacy.html:954
+msgid ""
+"We do not use cookies for tracking purposes. <br><br> You can choose to have "
+"your computer warn you each time a cookie is being sent, or you can choose "
+"to turn off all cookies. You can do this through your browser settings. Each "
+"browser is a little different, so do look at your browser's help menu to "
+"learn the correct way to modify your cookies. <br><br> If you disable "
+"cookies, some features will be disabled that may make your site experience "
+"less efficient and some of our services may not function properly."
+msgstr ""
+"我们不使用cookie来进行追踪。<br><br>你可以选择让你的电脑每次都警告你有cookie"
+"被发送，或者直接关闭所有cokie。你可以通过浏览器设置进行本操作。每个浏览器都略"
+"有不同，所以请查看你的浏览器的帮助菜单来了解正确修改你的cookie的方式。"
+"<br><br>如果你禁用cookie，一些功能也就会被禁用，而这回导致你的网站体验的效率"
+"下降并且我们的一些服务可能无法正常运行。"
+
+#: templates/dashboard.html:8 var/9_oct/test/dashboard.html:8
+msgid "— Dashboard"
+msgstr "— 指示板"
+
+#: templates/dashboard.html:399 var/9_oct/test/dashboard.html:399
+msgid "Process"
+msgstr "过程"
+
+#: templates/get_started/get_started.html:106
+#: var/9_oct/test/get_started.html:106
+msgid "Hi there! First up, how do you make your coffee?"
+msgstr "你好！首先，你是怎么做咖啡的？"
+
+#: templates/get_started/get_started.html:138
+#: var/9_oct/test/get_started.html:138
+msgid "Sensory Taste Profile"
+msgstr "感官口味偏好"
+
+#: templates/get_started/get_started.html:140
+#: var/9_oct/test/get_started.html:140
+msgid "Great choice!"
+msgstr "很棒的选择！"
+
+#: templates/get_started/get_started.html:142
+#: var/9_oct/test/get_started.html:142
+msgid ""
+"Specialty coffee is almost like wine, each having its own unique "
+"characteristics and flavours. In order for us to recommend a coffee most "
+"suited to you, we will need to understand a little about your sensory "
+"palette. So which of these do you like? (you can choose up to 3)"
+msgstr ""
+"精品咖啡几乎就和红酒一样，每种都有自己独特的个性和味道。为了方便我们为你推荐"
+"最适合你的咖啡，我们需要知道你的感官要求。所以下面这些你喜欢哪些呢？（你最多"
+"可以选择3个）"
+
+#: templates/get_started/get_started.html:150
+#: var/9_oct/test/get_started.html:150
+msgid "Brewing Method"
+msgstr "烹煮方式"
+
+#: templates/get_started/get_started.html:158
+#: var/9_oct/test/get_started.html:158
+msgid "Drip bag"
+msgstr "滤挂咖啡"
+
+#: templates/get_started/get_started.html:215
+#: var/9_oct/test/get_started.html:215
+msgid "Now, tell us how intense you like your coffee!"
+msgstr "现在，告诉我们你喜欢的咖啡强度是怎样的！"
+
+#: templates/get_started/get_started.html:218
+#: var/9_oct/test/get_started.html:218
+msgid ""
+"What lovely flavours! Now that we know a little about your sensory taste "
+"profile, tell us how intense you like your coffee!"
+msgstr ""
+"味道多么好的咖啡啊！既然我们对你的感官口味偏好所知甚少，那么请告诉我们你喜欢"
+"的咖啡强度是怎样的！"
+
+#: templates/get_started/get_started.html:231
+#: var/9_oct/test/get_started.html:231
+msgid "I like intensity, but not too much"
+msgstr "我喜欢有强度的咖啡，但是强度不要太高"
+
+#: templates/get_started/get_started.html:254
+#: var/9_oct/test/get_started.html:254
+msgid ""
+"We think we know what coffee you will love!<br/> But can we get acquainted "
+"first ? :)"
+msgstr "我们认为我们知道你爱的是哪款咖啡！<br/>但是我们能彼此熟悉一下吗？ :)"
+
+#: templates/get_started/get_started.html:271
+#: var/9_oct/test/get_started.html:271
+msgid "Email Address"
+msgstr "电子邮件"
+
+#: templates/get_started/get_started.html:291
+#: var/9_oct/test/get_started.html:291
+msgid "Sign up with"
+msgstr "注册"
+
+#: templates/get_started/get_started.html:301
+#: var/9_oct/test/get_started.html:301
+msgid "YOUR RECOMMENDED COFFEE"
+msgstr "推荐给你的咖啡"
+
+#: templates/get_started/get_started.html:304
+#: var/9_oct/test/get_started.html:304
+msgid "Fantastic! Hang on while we find the perfect coffee for you!"
+msgstr "太妙了！请稍等片刻，我们正在为你寻找最适合你的咖啡！"
+
+#: templates/get_started/get_started.html:312
+#: var/9_oct/test/get_started.html:312
+msgid "Hi"
+msgstr "你好"
+
+#: templates/get_started/get_started.html:313
+#: var/9_oct/test/get_started.html:313
+msgid "We think you'll love"
+msgstr "我们认为你会喜欢"
+
+#: templates/get_started/get_started.html:313
+#: var/9_oct/test/get_started.html:313
+msgid "coffee"
+msgstr "咖啡"
+
+#: templates/get_started/get_started.html:327
+#: var/9_oct/test/get_started.html:327
+msgid "Other coffees"
+msgstr "其他咖啡"
+
+#: templates/get_started/get_started.html:341
+#: templates/get_started/get_started.html:383
+#: var/9_oct/test/get_started.html:341 var/9_oct/test/get_started.html:383
+msgid "Our coffees"
+msgstr "我们的咖啡"
+
+#: templates/get_started/get_started.html:369
+#: templates/get_started/get_started.html:411
+#: var/9_oct/test/get_started.html:369 var/9_oct/test/get_started.html:411
+msgid "CHOOSE"
+msgstr "选择"
+
+#: templates/get_started/registration-credits.html:8
+msgid "Register for an account with credits"
+msgstr "注册带有礼品点数的账户"
+
+#: templates/get_started/registration-credits.html:32
+#: templates/get_started/registration-nespresso.html:110
+#: templates/get_started/registration.html:109
+#: templates/taster/taster3x80g.html:98
+msgid "Your Coffee"
+msgstr "你的咖啡"
+
+#: templates/get_started/registration-credits.html:34
+#: templates/get_started/registration-nespresso.html:112
+#: templates/get_started/registration.html:111
+#: templates/taster/taster3x80g.html:100
+msgid "Your Subscription"
+msgstr "你的订阅"
+
+#: templates/get_started/registration-credits.html:42
+#: templates/get_started/registration.html:136
+#: templates/taster/taster3x80g.html:107
+msgid "Choose a brewing method"
+msgstr "选择烹煮方式"
+
+#: templates/get_started/registration-credits.html:61
+#: templates/get_started/registration.html:155
+#: templates/registration/profile.html:735
+#: templates/taster/taster3x80g.html:125
+msgid "How do you want your coffee packaged?"
+msgstr "你想要如何包装你的咖啡?"
+
+#: templates/get_started/registration-credits.html:104
+#: templates/get_started/registration-nespresso.html:137
+#: templates/get_started/registration.html:198
+#: templates/registration/profile.html:751
+#: templates/registration/profile.html:826
+#, python-format
+msgid "I drink about %(cups)s cups of coffee a week"
+msgstr "我每周大约喝 %(cups)s 杯咖啡"
+
+#: templates/get_started/registration-credits.html:111
+#: templates/get_started/registration.html:205
+#: templates/registration/profile.html:766
+#, python-format
+msgid "A Fresh bag of coffee will be sent to you every %(days)s days"
+msgstr "我们每 %(days)s 天会给你寄一袋新鲜的咖啡"
+
+#: templates/get_started/registration-credits.html:118
+#: templates/get_started/registration-nespresso.html:151
+#: templates/get_started/registration.html:212
+msgid ""
+"Remember! No obligations, you can pause or cancel your subscription anytime!"
+msgstr "记住！无义务，你可以随时暂停或取消你的订阅！"
+
+#: templates/get_started/registration-credits.html:122
+#: templates/get_started/registration-nespresso.html:155
+#: templates/get_started/registration.html:216
+msgid "Send me same coffee or surprise me each time!"
+msgstr "每次都给我及相同的咖啡或给我惊喜！"
+
+#: templates/get_started/registration-credits.html:125
+#: templates/get_started/registration-nespresso.html:158
+#: templates/get_started/registration.html:219
+#: templates/registration/profile.html:777
+#: templates/registration/profile.html:842
+msgid "Same"
+msgstr "相同的"
+
+#: templates/get_started/registration-credits.html:128
+#: templates/get_started/registration-nespresso.html:161
+#: templates/get_started/registration.html:222
+msgid "Surprise me"
+msgstr "给我惊喜"
+
+#: templates/get_started/registration-credits.html:140
+#: templates/get_started/registration-gear.html:100
+#: templates/get_started/registration-nespresso.html:177
+#: templates/get_started/registration.html:233
+#: templates/taster/taster3x80g.html:162 templates/taster/taster5x.html:104
+#: templates/trial.html:104
+msgid "Authentication"
+msgstr "身份验证"
+
+#: templates/get_started/registration-credits.html:147
+#: templates/get_started/registration-gear.html:106
+#: templates/get_started/registration-nespresso.html:193
+#: templates/get_started/registration.html:249
+#: templates/taster/taster3x80g.html:169 templates/taster/taster5x.html:111
+#: templates/trial.html:111
+msgid "Email"
+msgstr "电子邮件"
+
+#: templates/get_started/registration-credits.html:161
+#: templates/get_started/registration-gear.html:120
+#: templates/get_started/registration-nespresso.html:207
+#: templates/get_started/registration.html:263
+#: templates/taster/taster3x80g.html:183 templates/taster/taster5x.html:123
+#: templates/trial.html:123
+msgid "Confirm Password"
+msgstr "确认密码"
+
+#: templates/get_started/registration-credits.html:168
+#: templates/get_started/registration-gear.html:127
+#: templates/get_started/registration-nespresso.html:215
+#: templates/get_started/registration.html:271
+msgid "Already registered? Log in"
+msgstr "已经注册过了？登录"
+
+#: templates/get_started/registration-credits.html:168
+#: templates/get_started/registration-gear.html:127
+#: templates/get_started/registration-nespresso.html:215
+#: templates/get_started/registration.html:271
+msgid "here"
+msgstr "这里"
+
+#: templates/get_started/registration-credits.html:177
+#: templates/get_started/registration-gear.html:136
+#: templates/get_started/registration-nespresso.html:224
+#: templates/get_started/registration.html:280
+#: templates/taster/taster3x80g.html:196 templates/taster/taster5x.html:135
+#: templates/trial.html:135
+msgid "Shipping Details"
+msgstr "配送详情"
+
+#: templates/get_started/registration-credits.html:204
+#: templates/get_started/registration-nespresso.html:290
+#: templates/get_started/registration.html:346
+#: templates/registration/profile.html:149
+msgid "One-off"
+msgstr "次性"
+
+#: templates/get_started/registration-credits.html:206
+#: templates/get_started/registration.html:348
+msgid "Subscribe to"
+msgstr "订阅"
+
+#: templates/get_started/registration-credits.html:224
+#: templates/get_started/registration-nespresso.html:306
+#: templates/get_started/registration.html:366
+msgid "Price for current pack"
+msgstr "当前这袋咖啡的价格"
+
+#: templates/get_started/registration-gear.html:8
+#: templates/get_started/registration-nespresso.html:8
+#: templates/get_started/registration.html:8
+#: templates/registration/registration_form.html:8
+#: templates/taster/taster3x80g.html:8 templates/taster/taster5x.html:8
+#: templates/trial.html:8
+msgid "Register for an account"
+msgstr "注册一个帐户"
+
+#: templates/get_started/registration-gear.html:157
+#: templates/get_started/registration-nespresso.html:245
+#: templates/get_started/registration.html:301
+#: templates/taster/taster3x80g.html:217 templates/taster/taster5x.html:156
+#: templates/trial.html:156
+msgid "Billing Details"
+msgstr "账单详情"
+
+#: templates/get_started/registration-gear.html:186
+#: templates/get_started/registration-nespresso.html:274
+#: templates/get_started/registration.html:330
+#: templates/taster/taster3x80g.html:246 templates/taster/taster5x.html:183
+#: templates/trial.html:183
+msgid "Verifying... Don't close your browser..."
+msgstr "验证中......请不要关闭你的浏览器......"
+
+#: templates/get_started/registration-nespresso.html:118
+#: templates/get_started/registration.html:118
+msgid "Do you have a voucher code?"
+msgstr "你有优惠码吗？"
+
+#: templates/get_started/registration-nespresso.html:126
+#: templates/get_started/registration.html:126
+msgid "I don't have a code"
+msgstr "我没有优惠码"
+
+#: templates/get_started/registration-nespresso.html:127
+#: templates/get_started/registration.html:127
+#: templates/registration/profile.html:304
+#: templates/registration/profile.html:508
+msgid "Apply"
+msgstr "使用"
+
+#: templates/get_started/registration-nespresso.html:144
+#: templates/registration/profile.html:832
+#, python-format
+msgid "A Fresh box of pods will be sent to you every %(days)s days"
+msgstr "我们每 %(days)s 天会给你寄一盒新鲜的咖啡胶囊"
+
+#: templates/get_started/registration-nespresso.html:184
+#: templates/get_started/registration.html:240
+msgid "Facebook account"
+msgstr "Facebook账户"
+
+#: templates/get_started/registration-nespresso.html:304
+msgid "20 Nespresso compatible pods"
+msgstr "20 Nespresso 兼容的咖啡胶囊"
+
+#: templates/get_started/thankyou-trial.html:8
+#: templates/get_started/thankyou.html:8
+msgid "Thank You!"
+msgstr "谢谢你！"
+
+#: templates/get_started/thankyou-trial.html:43
+msgid "THANK YOU! YOUR TASTER PACK IS ON ITS WAY TO YOU."
+msgstr "谢谢你！你的样品咖啡已发货。"
+
+#: templates/get_started/thankyou-trial.html:45
+msgid ""
+"Take your time to savour each coffee, and compare & contrast their different "
+"tasting notes! Once you have decided which coffee's you love, get started on "
+"our flexible subscription service — rest assured that you’ll have all the "
+"freedom to change, pause or cancel anytime you want!"
+msgstr ""
+"慢慢地品味咖啡，比较和对比不同的味道！一旦你决定哪种咖啡是你的最爱，那么就开"
+"始使用我们灵活的订阅服务把——你放心你随时可以更改，暂停\n"
+"或取消订阅！"
+
+#: templates/get_started/thankyou-trial.html:47
+msgid ""
+"We can’t wait for you to taste the freshest coffee you’ll ever make, and "
+"promise this’ll be the best coffee experience you’ve ever had."
+msgstr ""
+"我们等不及想让你尝一下你做过的最新鲜的咖啡了，并且我们保证这将会是你最好的咖"
+"啡体验。"
+
+#: templates/get_started/thankyou-trial.html:50
+#: templates/get_started/thankyou.html:57
+msgid "See my subscriptions"
+msgstr "查看我的订阅"
+
+#: templates/get_started/thankyou.html:44
+msgid "You are purchased"
+msgstr ""
+
+#: templates/get_started/thankyou.html:48
+msgid "You are now subscribed to"
+msgstr "你现在已订阅"
+
+#: templates/get_started/thankyou.html:51
+msgid ""
+"Thank you! We can’t wait for you to taste the freshest coffee you’ll ever "
+"make."
+msgstr "谢谢你！我们等不及想让你尝一下你有生以来尝过的最新型的咖啡了。"
+
+#: templates/get_started/thankyou.html:53
+msgid ""
+"You can always log on to your profile and change your preferences at "
+"anytime. Edit, pause or cancel your subscriptions easily on your dashboard. "
+"Leave us your feedback! That’ll be really helpful while we strive to "
+"continue delivering the best coffee experience for you and make sure you’ll "
+"never run out of delicious, freshly roasted coffee."
+msgstr ""
+"你可以随时登录到你的资料，更改你的偏好设置。简单地在指示板上编辑，暂停或取消"
+"你的订阅。给我们留下你的反馈！那对于我们继续努力为你提供最好的咖啡体验是很有"
+"帮助的，并且能确保你永远不会没有美味的，新鲜烘焙的咖啡。。"
+
+#: templates/giveback_project/index-xo.html:30
+msgid "THE FRESHEST COFFEE YOU EVER MADE"
+msgstr "你烹煮过的最新鲜的咖啡"
+
+#: templates/giveback_project/index-xo.html:37
+msgid ""
+"Freshly roasted, sustainably sourced specialty coffee, whole, ground or in "
+"coffee drip bags delivered to you as you need it."
+msgstr ""
+"新鲜烘焙，可持续来源的精品咖啡，全豆咖啡，咖啡扽或者是滤挂咖啡，根据你的需要"
+"来为你送货上门。"
+
+#: templates/giveback_project/index-xo.html:41
+msgid "TRY!"
+msgstr "试试！"
+
+#: templates/giveback_project/index-xo.html:42
+msgid "FIND OUT MORE"
+msgstr "了解更多"
+
+#: templates/giveback_project/index-xo.html:56
+#: templates/giveback_project/index.html:133
+msgid "How it Works"
+msgstr "如何运作"
+
+#: templates/giveback_project/index-xo.html:65
+msgid "Getting to know you"
+msgstr "逐渐了解你"
+
+#: templates/giveback_project/index-xo.html:70
+msgid ""
+"Get stared with a mini quiz and our intelligent recommendation engine will "
+"suggest a coffee specially for you! We’ve something for you even if you "
+"don’t have any brewing equipment!"
+msgstr ""
+"以小测验开始，我们的智能推荐引擎会专门为你推荐一款咖啡！即使你没有任何烹煮咖"
+"啡的设备，我们也仍然可以为你推荐一款咖啡！"
+
+#: templates/giveback_project/index-xo.html:82
+msgid "Pick your preference"
+msgstr "选择你的喜好"
+
+#: templates/giveback_project/index-xo.html:86
+msgid ""
+"Choose whole beans, ground or our super convenient coffee drip bags! Manage "
+"your own delivery frequency using our coffee calculator so you’ll never run "
+"out of freshly roasted coffee!"
+msgstr ""
+"选择全豆咖啡，咖啡粉或我们超级便利的滤挂咖啡！根据我们的咖啡计算器管理你自己"
+"的送货频率，这样你就再也不会没有新鲜烘焙的咖啡了！"
+
+#: templates/giveback_project/index-xo.html:99
+msgid "Sit Back, Relax, Enjoy"
+msgstr "坐下来，放松，然后享受你的咖啡"
+
+#: templates/giveback_project/index-xo.html:103
+msgid ""
+"Your coffee is freshly sent out to you within a week of roasting, straight "
+"to your mailbox, so missed deliveries or postoffice runs necessary! All you "
+"have to do is sit back, relax, and enjoy!"
+msgstr ""
+"你的咖啡会在刚烘焙好一周内发货，径直发往你的邮箱，所以你不会错过收货，也无需"
+"去邮局取货！你只需要坐下来，放松，然后享受你的咖啡！"
+
+#: templates/giveback_project/index-xo.html:141
+msgid ""
+"We source the finest sustainably grown and ethically produced beans from "
+"farms in the developing world — and this is only the start of making a "
+"difference in people’s lives. We tailor their roast profiles and roast them "
+"in Singapore and send them to you within a week of roasting, not to mention "
+"right to your doorstep. All you have to do is enjoy."
+msgstr ""
+"我们在发展中国家找到最好的可持续种植的咖啡豆，生产时遵守企业道德概念 - 并且这"
+"仅仅是改变人们生活的开始。我们根据咖啡的烘焙曲线量身定制，在新加坡烘烤咖啡"
+"豆，然后在你的咖啡刚烘焙好一周内发货，更不用说会送到你的家门口了。你所需要做"
+"的就是好好享受。"
+
+#: templates/giveback_project/index-xo.html:182
+msgid ""
+"Don’t worry about not having the right apparatus - we have something for "
+"everyone regardless of your brew method."
+msgstr "不用担心没有合适的设备 - 无论你煮咖啡的方式如何，我们都有适合你的产品."
+
+#: templates/giveback_project/index-xo.html:216
+msgid "Ethical Choices"
+msgstr "道德选择"
+
+#: templates/giveback_project/index-xo.html:219
+msgid ""
+"Have you ever wondered about the exact origins of your coffee? We’ve adopted "
+"the Direct Trade model so you’ll have traceability of our coffees and "
+"ethical choices."
+msgstr ""
+"你有没有想过你的咖啡的确切来源是哪里？我们采用直接贸易模式，便于你能追踪我们"
+"的咖啡和道德选择。"
+
+#: templates/giveback_project/index-xo.html:227
+msgid ""
+"At the same time, our farmers receive a bigger share of the final retail "
+"value. This is just one of the ways we show our appreciation for their "
+"skills and hard work because growing and processing specialty coffee is a "
+"real art."
+msgstr ""
+"我们的咖啡种植户会收到最终零售价的较大份额，而且这只是我们感谢他们的技术和辛"
+"勤工作的方式之一，因为种植和处理精品咖啡是一门真正的艺术。"
+
+#: templates/giveback_project/index-xo.html:236
+#, python-format
+msgid ""
+"To be honest, we are not 100%% Direct Trade yet, but we’re definitely "
+"getting there."
+msgstr "说实话，我们还不是100%%的直接贸易，但是我们迟早有一天会是的。"
+
+#: templates/giveback_project/index-xo.html:251
+msgid "As featured on"
+msgstr "作为特色"
+
+#: templates/giveback_project/index-xo.html:300
+msgid "What our customers say"
+msgstr ""
+
+#: templates/giveback_project/index-xo.html:391
+#, python-format
+msgid ""
+"new to hook?</br>here is 50%% off your first bag!</br>use voucher code: Hi50!"
+msgstr ""
+"是hook咖啡的新客户？</br>这是你的第一个包裹的50%%的折扣</br>使用优惠码: Hi50!"
+
+#: templates/giveback_project/index.html:82
+msgid "REDEEM YOUR FREE GIFT HERE"
+msgstr ""
+
+#: templates/giveback_project/index.html:120
+msgid "LEARN MORE"
+msgstr ""
+
+#: templates/giveback_project/index.html:140
+msgid "get a suggestion"
+msgstr "获取建议"
+
+#: templates/giveback_project/index.html:141
+msgid ""
+"Get started with a mini quiz and our intelligent recommendation engine will "
+"suggest a coffee specially for you! We’ve something for you even if you "
+"don’t have any brewing equipment!"
+msgstr ""
+"以小测验开始，我们的智能推荐引擎会专门为你推荐一款咖啡！即使你没有任何烹煮咖"
+"啡的设备，我们也仍然可以为你推荐一款咖啡！"
+
+#: templates/giveback_project/index.html:145
+msgid "pick your preference"
+msgstr "选择你的喜好"
+
+#: templates/giveback_project/index.html:146
+msgid ""
+"Choose whole beans, ground, or super convenient Hook drip bags! Have a "
+"Nespresso® machine? Then opt for our Shot Pods! Manage your delivery "
+"frequency and never run out of fresh coffee again!"
+msgstr ""
+"选择全豆咖啡，咖啡粉或者超级方便的Hook滤挂咖啡！有Nespresso®咖啡机？那么选择"
+"我们的咖啡胶囊！管理你的送货频率，让新鲜的咖啡源源不断！"
+
+#: templates/giveback_project/index.html:150
+msgid "relax <u>&amp;</u> enjoy"
+msgstr "放松 <u>&amp;</u> 享受"
+
+#: templates/giveback_project/index.html:151
+msgid ""
+"Your coffee is freshly sent out to you within a week of roasting, straight "
+"to your mailbox, so no missed deliveries or postoffice runs necessary! All "
+"you have to do is sit back, relax, and enjoy!"
+msgstr ""
+"你的咖啡会在刚烘焙好一周内发货，径直发往你的邮箱，所以你不会错过收货，也无需"
+"去邮局取货！你只需要坐下来，放松，然后享受你的咖啡！"
+
+#: templates/giveback_project/index.html:168
+msgid "Choose Your Free Gift"
+msgstr "选择你的免费礼物"
+
+#: templates/giveback_project/index.html:169
+msgid ""
+"Kickstart your coffee journey by picking one of these gifts with your first "
+"purchase!"
+msgstr "通过在你第一次购买时，挑选其中一个礼物来开启你的咖啡之旅！"
+
+#: templates/giveback_project/index.html:233
+msgid "About us"
+msgstr "关于我们"
+
+#: templates/giveback_project/index.html:249
+msgid "As Recommended By"
+msgstr "推荐者"
+
+#: templates/giveback_project/index.html:267
+msgid "what our customers say"
+msgstr "我们的客户"
+
+#: templates/giveback_project/index.html:292
+msgid "TRY IT TO BELIEVE IT"
+msgstr "试试看才会相信"
+
+#: templates/giveback_project/index.html:459
+#: templates/registration/profile.html:999
+#: templates/registration/profile.html:1540
+msgid "Enter the email of 2nd biggest coffee fan you know"
+msgstr "输入你认识的第二大咖啡爱好者的邮箱"
+
+#: templates/giveback_project/index.html:462
+#: templates/registration/profile.html:1002
+#: templates/registration/profile.html:1543
+msgid "Enter the email of 3rd biggest coffee fan you know"
+msgstr "输入你认识的第三大咖啡爱好者的邮箱"
+
+#: templates/giveback_project/index.html:466
+#: templates/registration/profile.html:1008
+#: templates/registration/profile.html:1548
+#, python-format
+msgid "INVITE FOR %(inv_credits)s CREDITS"
+msgstr "邀请好友获得 %(inv_credits)s 的代金券"
+
+#: templates/giveback_project/index.html:512
+msgid "Good Morning"
+msgstr ""
+
+#: templates/giveback_project/index.html:513
+msgid "How about a great cup of coffee<br/> to start your day right?"
+msgstr ""
+
+#: templates/giveback_project/index.html:514
+#: templates/giveback_project/index.html:517
+#: templates/giveback_project/index.html:520
+#, python-format
+msgid ""
+"We deliver freshly roasted coffee right to your doorstep. Choose Whole "
+"Beans, ground, drip coffee bags or 100%% Nespresso compatible pods"
+msgstr ""
+
+#: templates/giveback_project/index.html:515
+msgid "Good Afternoon"
+msgstr ""
+
+#: templates/giveback_project/index.html:516
+msgid "Feeling Tired? We feel you."
+msgstr ""
+
+#: templates/giveback_project/index.html:518
+msgid "Good Evening"
+msgstr ""
+
+#: templates/giveback_project/index.html:519
+msgid "Wind down and relax. You earned it!"
+msgstr ""
+
+#: templates/giveback_project/qr_social.html:10
+msgid "YOU ARE A STAR. THANK YOU FOR SHARING THE LOVE OF HOOK COFFEE AROUND!"
+msgstr "你是个明星。感谢你将你对Hook咖啡的爱传播给大家！"
+
+#: templates/giveback_project/qr_social.html:20
+#: templates/registration/profile.html:1053
+#: templates/registration/profile.html:1108
+msgid "Share"
+msgstr "分享"
+
+#: templates/registration/login.html:59
+msgid "Sign In"
+msgstr "登录"
+
+#: templates/registration/login.html:80
+msgid "Remember me"
+msgstr "记住我"
+
+#: templates/registration/login.html:89
+msgid "Sign in"
+msgstr "登录"
+
+#: templates/registration/login.html:92
+msgid "Login with Facebook"
+msgstr "用Facebook登录"
+
+#: templates/registration/login.html:95
+msgid "Forgot your password?"
+msgstr "忘记了你的密码？"
+
+#: templates/registration/password_reset_complete.html:20
+msgid "Password reset complete"
+msgstr "密码重置完成"
+
+#: templates/registration/password_reset_complete.html:22
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr "你的密码已设置完毕。你现在可以去登录了。"
+
+#: templates/registration/password_reset_confirm.html:21
+msgid "Enter new password"
+msgstr "输入新密码"
+
+#: templates/registration/password_reset_confirm.html:23
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr "请再次输入你的新密码，便于我们确认你是否正确地输入了密码。"
+
+#: templates/registration/password_reset_confirm.html:27
+msgid "New password"
+msgstr "新密码"
+
+#: templates/registration/password_reset_confirm.html:33
+msgid "Confirm password"
+msgstr "确认密码"
+
+#: templates/registration/password_reset_confirm.html:37
+msgid "Change my password"
+msgstr "更改我的密码"
+
+#: templates/registration/password_reset_confirm.html:42
+msgid "Password reset unsuccessful"
+msgstr "密码重置失败"
+
+#: templates/registration/password_reset_confirm.html:44
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used. Please request a new password reset."
+msgstr "密码重置链接已失效，可能是因为已被使用。请你请求一个新的密码重置。"
+
+#: templates/registration/password_reset_done.html:20
+msgid "Password reset successful"
+msgstr "密码重置成功"
+
+#: templates/registration/password_reset_done.html:21
+msgid ""
+"Please check your email. We've sent you a confirmation link for resetting "
+"you password."
+msgstr "请查看你的电子邮件。我们已向您发送重置密码的确认链接。"
+
+#: templates/registration/password_reset_done.html:22
+msgid "Go back"
+msgstr "返回"
+
+#: templates/registration/password_reset_email.html:3
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr "你会收到本邮件是因为你请求了%(site_name)s上的账户的密码重置。"
+
+#: templates/registration/password_reset_email.html:5
+msgid "Please go to the following page and choose a new password:"
+msgstr "请转到下一页，然后选择一个新的密码："
+
+#: templates/registration/password_reset_email.html:9
+msgid "Your username, in case you've forgotten:"
+msgstr "你的用户名，以防你忘记了："
+
+#: templates/registration/password_reset_email.html:11
+msgid "Thanks for using our site!"
+msgstr "感谢你使用我们的网站！"
+
+#: templates/registration/password_reset_email.html:13
+#, python-format
+msgid "The %(site_name)s team"
+msgstr " %(site_name)s团队"
+
+#: templates/registration/password_reset_form.html:20
+msgid "Password reset"
+msgstr "密码重置"
+
+#: templates/registration/password_reset_form.html:21
+msgid "Forgotten your password? Enter your email address below:"
+msgstr "忘记了你的密码？在下方输入你的电子邮件地址："
+
+#: templates/registration/password_reset_form.html:28
+msgid "Reset my password"
+msgstr "重置密码"
+
+#: templates/registration/profile.html:10
+#: templates/registration/profile.html:152
+#: templates/registration/registration_complete.html:15
+msgid "Profile"
+msgstr "个人资料"
+
+#: templates/registration/profile.html:73
+msgid "Card details updated."
+msgstr "信用卡详情已更新。"
+
+#: templates/registration/profile.html:130
+msgid "Profile Menu"
+msgstr "个人资料菜单"
+
+#: templates/registration/profile.html:139
+#: templates/registration/profile.html:179
+msgid "Bags Subscription"
+msgstr "袋装咖啡订阅"
+
+#: templates/registration/profile.html:144
+#: templates/registration/profile.html:377
+msgid "Shotpods Subscription"
+msgstr "咖啡胶囊订阅"
+
+#: templates/registration/profile.html:150
+#: templates/registration/profile.html:706
+msgid "Bags preferences"
+msgstr "袋装咖啡偏好"
+
+#: templates/registration/profile.html:151
+#: templates/registration/profile.html:811
+msgid "Shotpods preferences"
+msgstr "咖啡胶囊偏好"
+
+#: templates/registration/profile.html:153
+msgid "Billing"
+msgstr "账单"
+
+#: templates/registration/profile.html:154
+msgid "Referral"
+msgstr "推荐"
+
+#: templates/registration/profile.html:155
+msgid "History"
+msgstr "历史"
+
+#: templates/registration/profile.html:157
+msgid "Gift Credits"
+msgstr "礼品点数"
+
+#: templates/registration/profile.html:159
+msgid "Rewards"
+msgstr "奖品"
+
+#: templates/registration/profile.html:210
+#: templates/registration/profile.html:408
+msgid "Change your coffee"
+msgstr "更改你的咖啡"
+
+#: templates/registration/profile.html:228
+msgid "Package method"
+msgstr "包装方式"
+
+#: templates/registration/profile.html:229
+#: templates/registration/profile.html:428
+msgid "FREE!"
+msgstr "免费！"
+
+#: templates/registration/profile.html:237
+#: templates/registration/profile.html:440
+#: templates/registration/profile.html:1769
+#: templates/registration/profile.html:1831
+#: templates/registration/profile.html:2270
+msgid "Will be shipped on"
+msgstr "将于发货"
+
+#: templates/registration/profile.html:250
+#: templates/registration/profile.html:453
+msgid ""
+"You can't change your order since it's less than 48 hours till the shipping "
+"day"
+msgstr "你无法更改你的订单，因为现在距离发货日不到48小时"
+
+#: templates/registration/profile.html:260
+#: templates/registration/profile.html:464
+msgid "Ship tomorrow"
+msgstr "明天发货"
+
+#: templates/registration/profile.html:265
+#: templates/registration/profile.html:469
+#: templates/registration/profile.html:1445
+#: templates/registration/profile.html:1493
+msgid "Skip this delivery"
+msgstr "跳过本次发货"
+
+#: templates/registration/profile.html:270
+#: templates/registration/profile.html:474
+msgid "Change shipping date"
+msgstr "更改发货日期"
+
+#: templates/registration/profile.html:287
+#: templates/registration/profile.html:491
+msgid "Your subscription is temporarily paused. You may resume it any time."
+msgstr "您的订阅暂停. 你可以恢复它的任何时间."
+
+#: templates/registration/profile.html:297
+#: templates/registration/profile.html:501
+msgid "Have a voucher? Apply it now."
+msgstr "有优惠券? 现在就用."
+
+#: templates/registration/profile.html:305
+#: templates/registration/profile.html:509
+msgid "This voucher not found."
+msgstr "未找到此优惠券。"
+
+#: templates/registration/profile.html:310
+#: templates/registration/profile.html:514
+msgid "Your oder is pending."
+msgstr "你的订单待发货。"
+
+#: templates/registration/profile.html:321
+#: templates/registration/profile.html:524
+msgid "Other subscription preferences"
+msgstr "其他订阅偏好"
+
+#: templates/registration/profile.html:326
+#: templates/registration/profile.html:529
+#: templates/registration/profile.html:2171
+#: templates/registration/profile.html:2213
+msgid "Pause subscription for 30 days"
+msgstr "暂停订阅 30 天"
+
+#: templates/registration/profile.html:328
+#: templates/registration/profile.html:531
+#: templates/registration/profile.html:2151
+#: templates/registration/profile.html:2230
+msgid "Resume"
+msgstr "恢复"
+
+#: templates/registration/profile.html:332
+#: templates/registration/profile.html:535
+#: templates/registration/profile.html:1428
+#: templates/registration/profile.html:1476
+msgid "Unsubscribe"
+msgstr "取消订阅"
+
+#: templates/registration/profile.html:356
+#: templates/registration/profile.html:558
+msgid "YOU DON'T HAVE ANY SUBSCRIPTION YET"
+msgstr "你还没有订阅"
+
+#: templates/registration/profile.html:357
+#: templates/registration/profile.html:559
+msgid "Choose your first coffee"
+msgstr "选择你的第一个咖啡"
+
+#: templates/registration/profile.html:589
+#: templates/registration/profile.html:644
+#: templates/registration/profile.html:1049
+#: templates/registration/profile.html:1129
+msgid "Shipping date"
+msgstr "发货日期"
+
+#: templates/registration/profile.html:590
+#: templates/registration/profile.html:1050
+msgid "Coffee"
+msgstr "咖啡"
+
+#: templates/registration/profile.html:592
+msgid "Package"
+msgstr "包装方式"
+
+#: templates/registration/profile.html:604
+#: templates/registration/profile.html:657
+msgid "Pending"
+msgstr "等待中"
+
+#: templates/registration/profile.html:610
+msgid "Pods"
+msgstr "咖啡胶囊"
+
+#: templates/registration/profile.html:621
+#: templates/registration/profile.html:623
+#: templates/registration/profile.html:666
+#: templates/registration/profile.html:668
+msgid "Cancel"
+msgstr "取消"
+
+#: templates/registration/profile.html:691
+msgid "YOU DON'T HAVE ANY ONE-OFF ORDER YET"
+msgstr "你还没有任何一次性的订单"
+
+#: templates/registration/profile.html:692
+msgid "Choose your coffee"
+msgstr "选择你的咖啡"
+
+#: templates/registration/profile.html:773
+#: templates/registration/profile.html:839
+msgid "The coffee that's sent to you every time will be"
+msgstr "每次寄给你的咖啡会是"
+
+#: templates/registration/profile.html:780
+#: templates/registration/profile.html:845
+msgid "Different"
+msgstr "不同的"
+
+#: templates/registration/profile.html:788
+#: templates/registration/profile.html:852
+#: templates/registration/profile.html:900
+msgid "Save"
+msgstr "保存"
+
+#: templates/registration/profile.html:876
+msgid "PROFILE"
+msgstr "个人资料"
+
+#: templates/registration/profile.html:922
+msgid "BILLING"
+msgstr "账单"
+
+#: templates/registration/profile.html:958
+msgid "Updating card details"
+msgstr "更新信用卡详情"
+
+#: templates/registration/profile.html:980
+msgid "REFERRAL"
+msgstr "推荐"
+
+#: templates/registration/profile.html:1039
+msgid "ORDER HISTORY"
+msgstr "订购历史"
+
+#: templates/registration/profile.html:1052
+msgid "Feedback"
+msgstr "反馈"
+
+#: templates/registration/profile.html:1130
+msgid "Redemption"
+msgstr "兑换"
+
+#: templates/registration/profile.html:1131
+msgid "Beanie Points"
+msgstr "Beanie点数"
+
+#: templates/registration/profile.html:1139
+#: templates/registration/profile.html:1201
+#: templates/registration/profile.html:1203
+#: templates/registration/profile.html:1231
+#: templates/registration/profile.html:1233
+msgid "points"
+msgstr "点数"
+
+#: templates/registration/profile.html:1160
+msgid "REWARDS"
+msgstr "奖品"
+
+#: templates/registration/profile.html:1171
+#, python-format
+msgid ""
+"Hi %(first_name)s, thank you for giving back to our farmers! Now it's our "
+"turn to give back to you!"
+msgstr ""
+"%(first_name)s 你好，感谢你回馈我们的咖啡种植户！现在轮到我们回馈你了！"
+
+#: templates/registration/profile.html:1176
+#, python-format
+msgid ""
+"You have <span class=\"highlighted\"><u>%(points)s</u> beanie points</span> "
+"to redeem!"
+msgstr ""
+"你有<span class=\"highlighted\"><u>%(points)s</u> beanie点数</span>可以兑换！"
+
+#: templates/registration/profile.html:1181
+msgid "Which of this would you like to redeem?"
+msgstr "你想要兑换哪个？"
+
+#: templates/registration/profile.html:1186
+msgid "REWARDS FAQ"
+msgstr "有关奖品的常见问题解答"
+
+#: templates/registration/profile.html:1198
+#: templates/registration/profile.html:1228
+msgid "beanie points"
+msgstr "beanie点数"
+
+#: templates/registration/profile.html:1201
+#: templates/registration/profile.html:1231
+msgid "You only need"
+msgstr "你只需要"
+
+#: templates/registration/profile.html:1201
+#: templates/registration/profile.html:1231
+msgid "to get a free"
+msgstr "得到一个免费的"
+
+#: templates/registration/profile.html:1203
+#: templates/registration/profile.html:1233
+msgid "You redeem this item for"
+msgstr "你用本物品兑换"
+
+#: templates/registration/profile.html:1214
+#: templates/registration/profile.html:1244
+msgid "Redeem"
+msgstr "兑换"
+
+#: templates/registration/profile.html:1260
+msgid "Total Beanie Points Accumulated"
+msgstr "累积的Beanie总点数"
+
+#: templates/registration/profile.html:1273
+msgid "Total Beanie Points Redeemed"
+msgstr "已兑换的Beanie总点数"
+
+#: templates/registration/profile.html:1304
+#, python-format
+msgid "YOU HAVE <b>$%(amount)s</b> WORTH OF GIFT CREDITS REMAINING!"
+msgstr "你还剩下价值<b>$%(amount)s</b>的礼品点数！"
+
+#: templates/registration/profile.html:1309
+msgid "Choose Your Coffees From Here"
+msgstr "从这里选择你的咖啡"
+
+#: templates/registration/profile.html:1313
+msgid "YOU ARE OUT OF GIFT CREDITS"
+msgstr "你已经没有礼品点数了"
+
+#: templates/registration/profile.html:1314
+msgid ""
+"Get started on a subscription to continue receiving a constant stream of "
+"freshly roasted coffee delivered to you"
+msgstr "开始订阅以继续收取寄给你的源源不断的新鲜烘焙咖啡"
+
+#: templates/registration/profile.html:1316
+msgid "Get started on your first subscription"
+msgstr "开始你的第一个订阅"
+
+#: templates/registration/profile.html:1338
+#: templates/registration/profile.html:1383
+msgid "Change Schedule"
+msgstr "更改时间表"
+
+#: templates/registration/profile.html:1370
+#: templates/registration/profile.html:1415
+msgid "Close"
+msgstr "关闭"
+
+#: templates/registration/profile.html:1371
+#: templates/registration/profile.html:1416
+msgid "Save changes"
+msgstr "保存更改"
+
+#: templates/registration/profile.html:1433
+#: templates/registration/profile.html:1481
+#, python-format
+msgid "HI %(first_name)s, it is sad to see you leave."
+msgstr "%(first_name)s 你好，看到你离开我们，我们感到很难过。"
+
+#: templates/registration/profile.html:1437
+#: templates/registration/profile.html:1485
+msgid "No hard feelings, but just want to find out some reasons!"
+msgstr "别难过，"
+
+#: templates/registration/profile.html:1438
+#: templates/registration/profile.html:1486
+msgid "You don’t drink enough coffee for a subscription service?"
+msgstr "你喝的咖啡量还没有达到需要订阅服务的程度？"
+
+#: templates/registration/profile.html:1439
+#: templates/registration/profile.html:1487
+msgid ""
+"We currently have a one-off purchase feature! which allows you to grab a bag "
+"of coffee whenever you wish!"
+msgstr "我们目前有一次性一次洗功能！这让你无论何时都可以买到咖啡！"
+
+#: templates/registration/profile.html:1440
+#: templates/registration/profile.html:1488
+msgid "You do not like the coffee that have been sent to you?"
+msgstr "你不喜欢我们寄给你的咖啡吗？"
+
+#: templates/registration/profile.html:1441
+#: templates/registration/profile.html:1489
+msgid "Why not take a look at our other coffees?"
+msgstr "为什么不看看我们其他的咖啡呢？"
+
+#: templates/registration/profile.html:1442
+#: templates/registration/profile.html:1490
+msgid "Take a look at different coffees we offer"
+msgstr "看看我们提供的咖啡"
+
+#: templates/registration/profile.html:1443
+#: templates/registration/profile.html:1491
+msgid "You are going away and need a break from coffee?"
+msgstr "你即将出门远行，需要暂时停止购买咖啡？"
+
+#: templates/registration/profile.html:1445
+#: templates/registration/profile.html:1493
+msgid "or"
+msgstr "或者"
+
+#: templates/registration/profile.html:1446
+#: templates/registration/profile.html:1494
+msgid "pause your subscription for 30 days"
+msgstr "暂停你的订阅30天"
+
+#: templates/registration/profile.html:1448
+#: templates/registration/profile.html:1496
+msgid "Any other queries!"
+msgstr "任何其他疑问！"
+
+#: templates/registration/profile.html:1449
+#: templates/registration/profile.html:1497
+msgid "Please feel free to drop us an email at"
+msgstr "欢迎你随时给我们发送电子邮件，请发送到"
+
+#: templates/registration/profile.html:1458
+#: templates/registration/profile.html:1506
+msgid "Cancel Subscription"
+msgstr "取消订阅"
+
+#: templates/registration/profile.html:1732
+#, python-format
+msgid ""
+"Since it's less than 48 hours till the shipping day the recent change in "
+"your order<strong> (%(next_order)s)</strong> will be applied to your next "
+"order."
+msgstr ""
+"因为你在发货日前的48小时之内修改了你的订单，你所做的修改<strong> "
+"(%(next_order)s)</strong>会在下个订单中生效。"
+
+#: templates/registration/profile.html:1777
+#: templates/registration/profile.html:1837
+#: templates/registration/profile.html:2276
+msgid "Your subscription's shipping date has been changed."
+msgstr "你的订阅的配送日期已更改。"
+
+#: templates/registration/profile.html:1792
+#: templates/registration/profile.html:1853
+#: templates/registration/profile.html:1904
+#: templates/registration/profile.html:2173
+#: templates/registration/profile.html:2232
+#: templates/registration/profile.html:2291
+msgid ""
+"Sorry there was an error trying to update your subscription. Please try "
+"again later."
+msgstr "抱歉，在试图更新你的订阅时出现了错误。请稍后再试。"
+
+#: templates/registration/profile.html:1891
+msgid "Unsubscribe successful."
+msgstr ""
+
+#: templates/registration/profile.html:1930
+msgid "Your order cancelled successfully."
+msgstr "你的订单已成功取消。"
+
+#: templates/registration/profile.html:1942
+msgid ""
+"Sorry there was an error trying to cancel your order. Please try again later."
+msgstr "抱歉，在尝试取消你的订单时发生了错误。请稍后再试。"
+
+#: templates/registration/profile.html:1970
+#: templates/registration/profile.html:2005
+msgid "Thank you for feedback."
+msgstr "感谢您的反馈。"
+
+#: templates/registration/profile.html:1977
+#: templates/registration/profile.html:2012
+msgid "Sorry, there was an error. Please try again later."
+msgstr "抱歉，出现了错误。请稍后再试。"
+
+#: templates/registration/profile.html:2139
+msgid "Pausing"
+msgstr "暂停"
+
+#: templates/registration/profile.html:2163
+msgid ""
+"Your subscription has been paused for a month and will automatically resume "
+"on"
+msgstr "你的订阅已被暂停一个月，将会自动恢复"
+
+#: templates/registration/profile.html:2202
+msgid "Resuming"
+msgstr "恢复中"
+
+#: templates/registration/profile.html:2224
+msgid "Your subscription is now resumed."
+msgstr "您的订阅现已恢复."
+
+#: templates/registration/registration_complete.html:21
+msgid "Thanks for registration"
+msgstr "感谢注册"
+
+#: templates/registration/registration_complete.html:22
+msgid "Back to index"
+msgstr "返回索引页"
+
+#: templates/registration/registration_form.html:26
+msgid "Register"
+msgstr "注册"
+
+#: templates/taster/taster3x80g.html:152
+msgid "Your coffee will be ground"
+msgstr ""
+
+#: templates/taster/taster3x80g.html:262 templates/taster/taster5x.html:198
+msgid "TASTER PACK"
+msgstr "品尝样品"
+
+#: templates/wholesale/wholesale.html:18
+msgid "COFFEE AT THE WORKPLACE"
+msgstr "在工作场所的咖啡"
+
+#: templates/wholesale/wholesale.html:19
+msgid ""
+"We’re fuelling the country’s best companies and offices with our freshly "
+"roasted <br/> coffees, and helping build more motivated, productive and "
+"bonded teams."
+msgstr ""
+"我们正在用我们新鲜烘焙的咖啡来推动国家最好的公司和办公<br/>室, 并且帮助建立更"
+"积极, 更多产, 更团结的团队."
+
+#: templates/wholesale/wholesale.html:38
+msgid "GREAT MINDS THINK OVER COFFEE"
+msgstr "品着咖啡，思考人生"
+
+#: templates/wholesale/wholesale.html:48
+msgid ""
+"We’ll keep your team(s) happy and caffeinated by delivering our delicious "
+"freshly roasted coffees to your office regularly. No matter how big or "
+"small, we can curate a programme that best serves your office or team’s "
+"coffee needs."
+msgstr ""
+"我们会通过定期将我们新鲜烘烤的美味咖啡送到你的办公室来让你的团队保持快乐, 并"
+"且让你的身体时刻受到咖啡因的鼓舞. 无论大小, 我们都可以建立一个能最好的满足你"
+"的办公室或团队的咖啡需求的计划."
+
+#: templates/wholesale/wholesale.html:50
+msgid ""
+"In just 3 simple steps, the reality of a cafe ambience in the workplace is "
+"right at your fingertips!"
+msgstr "只需3个简单的步骤, 在工作场所拥有咖啡馆氛围就能在你指尖轻松实现!"
+
+#: templates/wholesale/wholesale.html:66
+msgid "select your plan"
+msgstr "选择你的方案"
+
+#: templates/wholesale/wholesale.html:71
+msgid "email us your preferred plan"
+msgstr "将你的最佳方案以电子邮件的形式发给我们"
+
+#: templates/wholesale/wholesale.html:76
+msgid "reap the rewards"
+msgstr "收获成果"
+
+#: templates/wholesale/wholesale.html:100
+msgid "box"
+msgstr "盒"
+
+#: templates/wholesale/wholesale.html:102
+msgid "Get a quote!"
+msgstr "获取报价"
+
+#: templates/wholesale/wholesale.html:126
+msgid "GET STARTED BY EMAILING US"
+msgstr "通过发送电子邮件给我们来开始"
+
+#: templates/wholesale/wholesale.html:174
+msgid "corporate social responsibility"
+msgstr "企业的社会责任"
+
+#: templates/wholesale/wholesale.html:175
+msgid ""
+"While we're doing our part to make a difference in the lives of our farmers "
+"and customers, your support will go a long way in helping our farmers "
+"produce more specialty-grade and sustainable coffees, and in helping our "
+"Singapore-based homegrown start-up to grow and thrive — so thank you!"
+msgstr ""
+"当我们正在做着我们的工作来改变我们的农民和客户的生活时, 你的支持会对于帮助我"
+"们的农民生产更多的精品级, 可持续咖啡大有帮助, 并且在帮助我们的新加坡本土创办"
+"的公司的发展和繁荣方面也大有帮助."
+
+#: templates/wholesale/wholesale.html:176
+msgid "FIND OUT MORE ABOUT HOOK"
+msgstr "了解更多关于HOOK的信息"
+
+#: templates/wholesale/wholesale.html:177
+msgid "SEE ALL COFFEES & FARM INFO"
+msgstr "查看所有的咖啡和农场的信息"
+
+#: templates/wholesale/wholesale.html:190
+msgid "Looking for coffees for your home instead?"
+msgstr "在为你家寻找咖啡?"
+
+#: templates/wholesale/wholesale.html:191
+msgid "Click Here"
+msgstr "点击这里"
+
+#: templates/get_started/get_started.html:1
+msgid "Stone Fruits"
+msgstr ""
+
+#: templates/get_started/get_started.html:1
+msgid "Edible Flowers"
+msgstr ""
+
+#: templates/get_started/get_started.html:1
+msgid "Citrus Lemons"
+msgstr ""
+
+#: templates/get_started/get_started.html:1
+msgid "Chocolate"
+msgstr ""
+
+#: templates/get_started/get_started.html:1
+msgid "Caramel"
+msgstr ""
+
+#: templates/get_started/get_started.html:1
+msgid "Berries"
+msgstr ""
+
+#~ msgid "for"
+#~ msgstr "为了"
+
+#~ msgid ""
+#~ "If you thought the pleasure you get from drinking our freshly roasted "
+#~ "coffees <br /> couldn’t get any better, you’re probably right. But to be "
+#~ "sure you’re doing the <br /> coffees justice, equip yourself or your "
+#~ "coffee comrades with brewing <br /> essentials and inspiring coffee "
+#~ "accessories."
+#~ msgstr ""
+#~ "如果你认为你从喝我们新鲜烘焙的咖啡中获得的乐趣不能再好了, 那你很有可能是对"
+#~ "的. <br /> 但是为了确保你有最好的咖啡体验, 用烹煮咖啡的必需品和鼓舞人心的"
+#~ "咖啡配件来装备你自己和你的咖啡伙伴."
+
+#~ msgid "Buy"
+#~ msgstr "购买"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Confirm buying"
+#~ msgstr "确认购买"
+
+#~ msgid ""
+#~ "<b>Fresher & Better Coffee</b><br/> Whole, Ground, Coffee Drip Bags,<br/> "
+#~ "or Nespresso® compatible ShotPods."
+#~ msgstr ""
+#~ "<b>更新鲜&更好的咖啡</b><br/> 全豆咖啡, 咖啡粉, 滤挂咖啡, <br/> 或者与"
+#~ "Nespresso®兼容的咖啡胶囊."
+
+#~ msgid "SCROLL DOWN"
+#~ msgstr "更新鲜&更好的咖啡"
+
+#~ msgid "Ground (%(grams)s)"
+#~ msgstr "咖啡粉 (%(grams)s)"
+
+#~ msgid "Wholebeans (%(grams)s)"
+#~ msgstr "全豆咖啡 (%(grams)s)"
+
+#~ msgid "Drip bags (%(bags)s)"
+#~ msgstr "滤挂咖啡 (%(bags)s)"
+
+#~ msgid "AVAILABLE SOON!"
+#~ msgstr "即将推出!"
+
+#, fuzzy
+#~| msgid ""
+#~| "Don’t worry about not having the right apparatus – we have something for "
+#~| "everyone regardless of your brew method."
+#~ msgid ""
+#~ "Don’t worry about not having the right apparatus — we have something for "
+#~ "everyone regardless of your brew method."
+#~ msgstr ""
+#~ "不用担心没有合适的设备 - 无论你煮咖啡的方式如何，我们都有适合你的产品."

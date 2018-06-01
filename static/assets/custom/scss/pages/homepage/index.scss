@@ -1,0 +1,221 @@
+@import "fullscreen-bg";
+@import "three-sec";
+@import "choose-gift";
+@import "three-cols";
+@import "clients";
+
+.top-banner.section {
+  display: flex;
+  align-items: center;
+
+  min-height: 510px;
+
+  .section-row {
+    text-align: left;
+  }
+
+  .greetings { position: relative; }
+
+  h1, h2, h3, h4 { color: white; }
+  h1 {
+    text-transform: uppercase;
+    margin: 0;
+  }
+  h3, h4 { margin: 0 0 $base-padding * 1.5; }
+}
+
+#home__fans1 {
+  h2, h4 { @extend .hc-text-noshadow; }
+}
+
+#home__recommended, #ws__recommended {
+  a img {
+    display: inline-block;
+    max-width: 130px;
+    max-height: 90px;
+    margin: $base-padding;
+  }
+}
+
+/* ------------------------------------------------------------------
+  Customer Reviews
+------------------------------------------------------------------- */
+#home__fb-rnr {
+  .row-grid {
+    max-width: $width-lg;
+    margin-left: $base-padding / 2;
+    margin-right: $base-padding / 2;
+  }
+
+  .fb-rating-wrapper, .fb-reviews-wrapper {
+    @extend .box;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: $base-padding / 2;
+  }
+
+  .fb-rating-wrapper {
+    background-color: white;
+    display: table;
+    border-radius: $base-border-radius;
+    margin-right: auto;
+
+    .rating__star-icon {
+      color: $color-new-primary;
+      font-size: 40px;
+    }
+
+    .rating__stars {
+      font-size: 56px;
+      line-height: 56px;
+      font-family: $font-family-2;
+    }
+
+    .rating__fb-link {
+      img { width: 30px; }
+    }
+
+    .rating, .rating__info {
+      text-align: center;
+    }
+
+    .rating {
+      padding-right: 0;
+
+      & > * {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .fb-reviews-wrapper {
+    background-color: $color-light-gray;
+    margin-top: $base-padding;
+    max-height: 320px;
+    overflow-y: auto;
+    border-radius: $base-border-radius;
+
+    .fb-review {
+      @extend .box;
+      width: 100%;
+      max-width: $width-sm;
+      background-color: white;
+      border-radius: $base-border-radius;
+      margin: $base-padding/2 auto;
+      text-align: left;
+      font-size: 12px;
+
+      .fb-review__header {
+        padding: $base-padding / 2;
+
+        .header__profile-pic {
+          background-color: $color-light-gray;
+          width: 40px;
+          height: 40px;
+          position: relative;
+          display: inline-block;
+        }
+        .header__user-info {
+          margin-left: $base-padding * 0.25;
+          display: inline-block;
+          vertical-align: top;
+
+          .fb-rating {
+            display: inline-block;
+            width: 3.6em;
+            height: 1.5em;
+            background: $color-new-secondary;
+            border-radius: $base-border-radius;
+            text-align: center;
+            color: white;
+          }
+        }
+      }
+
+      .fb-review__body {
+        padding: 0 $base-padding/2 $base-padding/2;
+      }
+    }
+  }
+
+  @media (min-width: $screen-xs) {
+    .fb-rating-wrapper {
+      border-radius: $base-border-radius * 10;
+
+      .rating, .rating__info {
+        display: table-cell;
+        vertical-align: middle;
+
+        & > * {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        .rating__fb-link { margin-top: 0; }
+      }
+
+      .rating {
+        width: 40%;
+        text-align: right;
+        padding-right: $base-padding / 2;
+      }
+      .rating__info {
+        width: 60%;
+        text-align: left;
+      }
+    }
+
+    .fb-reviews-wrapper {
+      max-width: unset;
+    }
+  }
+
+  @media (min-width: $screen-sm) {
+    .row-grid {
+      margin: $base-padding auto 0;
+    }
+
+    .fb-rating-wrapper {
+      border-radius: $base-border-radius * 20;
+      display: inline-block;
+      width: 140px;
+      height: 280px;
+      vertical-align: top;
+      margin-top: $base-padding;
+      margin-right: $base-padding / 2;
+
+      .rating { margin-top: $base-padding / 2; }
+      .rating, .rating__info {
+        width: unset;
+        text-align: center;
+        padding: 0;
+        display: block;
+
+        & > * {
+          display: block;
+        }
+      }
+
+      .rating__star-icon {
+        font-size: 80px;
+      }
+      .rating__stars {
+        font-size: 56px;
+        line-height: unset;
+      }
+
+      .rating__info {
+        .rating__fb-link { margin-top: $base-padding / 2; }
+      }
+    }
+
+    .fb-reviews-wrapper {
+      max-width: calc(100% - 160px);
+      display: inline-block;
+      margin-top: 0;
+    }
+  }
+}
+

@@ -1,0 +1,22 @@
+#cart-summary {
+  .coffee-box {
+    .cb-info {
+      padding: 0 $base-padding $base-padding;
+      &.cb-header { padding-top: $base-padding; }
+
+      p.s-h1-bold {
+        padding-top: $base-padding / 2;
+      }
+
+      .plus-minus {
+        display: flex;
+        justify-content: center;
+
+        input {
+          width: 100px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

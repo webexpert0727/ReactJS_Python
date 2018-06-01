@@ -1,0 +1,37 @@
+.order-summary {
+  @extend .box;
+
+  .summary__header, .summary__footer { padding: $base-padding / 2; }
+
+  .summary__header {
+    background-color: $color-new-primary;
+    border-radius: $base-border-radius $base-border-radius 0 0;
+  }
+
+  .summary__body {
+    .summary__item {
+      padding: $base-padding / 2;
+      &:not(:first-child) {
+        border-top: 1px solid $color-lightgray;
+      }
+
+      .item__actions {
+        margin-top: $base-padding / 2;
+
+        .item__remove { color: $color-new-text; }
+        .item__qty {
+          .fa { color: $color-new-primary; }
+        }
+      }
+    }
+  }
+
+  .summary__footer {
+    min-height: 40px;
+    text-align: right;
+
+    .summary__total {
+      margin-left: $base-padding / 2;
+    }
+  }
+}

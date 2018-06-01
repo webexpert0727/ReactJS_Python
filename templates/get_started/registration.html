@@ -1,0 +1,380 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Register For A Singapore Account' %}{% endblock %}
+
+{% block head %}
+
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+{% endcompress %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'animate.css/animate.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'seiyria-bootstrap-slider/dist/css/bootstrap-slider.css' %}" />
+
+<!-- The required Stripe lib -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="{% static 'seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+<script type="text/javascript">
+// This identifies your website in the createToken call below
+// Stripe.setPublishableKey('pk_test_kfcuJ26NVnCUweuNmZSNoCwD');
+Stripe.setPublishableKey("{{ stripe_key }}");
+
+var stripeResponseHandler = function(status, response) {
+  var $form = $('#payment-form');
+
+  if (response.error) {
+// Show the errors on the form
+$form.find('.payment-errors').text(response.error.message);
+$form.find('button').prop('disabled', false);
+$form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+$form.find('span.loading-text').addClass('hidden');
+} else {
+// token contains id, last4, and card type fa fa-spinner
+var token = response.id;
+// Insert the token into the form so it gets submitted to the server
+$form.append($('<input type="hidden" name="stripeToken" />').val(token));
+// and re-submit
+// $form.get(0).submit();
+$.ajax({
+  url: "{% url 'register_stripe' %}",
+  type: "POST",
+  data: $form.serialize(),
+  success: function(data) {
+    if (data.success !== true){
+      $.notify({
+        message: data.message
+      }, {
+        type: 'danger'
+      });
+      $form.find('button').prop('disabled', false);
+      $form.find('#submit-subs').html('Subscribe');
+      $(".loading-text").addClass("hidden");
+      $(".payment-errors").html(data.message);
+    } else {
+      $form.get(0).submit();
+// window.location.replace("/get_started/thankyou.html");
+}
+},
+});
+
+}
+};
+jQuery(function($) {
+  $('#payment-form').submit(function(e) {
+    var $form = $(this);
+// Disable the submit button to prevent repeated clicks
+$form.find('button').prop('disabled', true);
+$form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+$form.find('span.loading-text').removeClass('hidden');
+Stripe.card.createToken($form, stripeResponseHandler);
+$(".payment-errors").html("");
+// Prevent the form from submitting with the default action
+return false;
+});
+});
+
+// $('#submit-subs').click(function(){
+//   $( ".loading-icon" ).addClass('glyphicon glyphicon-refresh glyphicon-refresh-animate').delay(2000).fadeOut(2000, function(){
+//       $( ".loading-icon" ).removeClass('glyphicon glyphicon-refresh glyphicon-refresh-animate');
+//   });
+// });
+
+</script>
+
+{% endblock %}
+
+{% block content %}
+<div id="reg-page" class="container ">
+  <div class="row">
+
+    <div class="col-xs-12 col-md-8">
+      <ol class="bullet">
+        {% include "get_started/includes/login.html" %}
+        {% include "get_started/includes/subscriptions.html" %}
+
+        {% if isBottled %}
+          {% include "get_started/includes/order form (bottled).html" %}
+        {% else %}
+          {% include "get_started/includes/form.html" %}
+        {% endif %}
+      </ol>
+    </div>
+
+    <div class="col-xs-12 col-md-4">
+      {% if isBottled %}
+        {% include "get_started/includes/order details (bottled).html" %}
+      {% else %}
+        {% include "get_started/includes/order.html" %}
+      {% endif %}
+      {# {% include "get_started/includes/upsell.html" %} #}
+    </div>
+
+  </div>
+</div>
+
+<script src="{% static 'remarkable-bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/rangeslider.js/2.3.0/rangeslider.min.js"></script>
+
+<script>
+
+  var is_worldwide = "{{ is_worldwide }}";
+  var coffeeID = "{{ coffee.id }}";
+  var IS_DISCOVERY_PACK = {{ coffee.is_discovery_pack|yesno:'true,false' }};
+  var isBottled = {{ isBottled|yesno:'true,false' }};
+  var isAuthenticated = "{{ user.is_authenticated|yesno:'True,False' }}";
+  if (isAuthenticated == 'True') {
+    var brew_title = '{{ brew_title }}';
+  }
+  var show_active_subs = "{{ show_active_subs }}";
+  if (show_active_subs === "True") {
+    var active_subscriptions = "{{active_subscriptions}}";
+    active_subscriptions = $("<div/>").html(active_subscriptions).text();
+  }
+  var show_sub_details = "{{ show_sub_details }}";
+  var base_address = {{ base_address|safe }};
+  var addresses = {{ addresses|safe }};
+
+  var isNespresso = false;
+  if ( "{{ isNespresso }}" === "True")
+    isNespresso = true;
+
+</script>
+
+{% compress js %}
+  <script src="{% static 'assets/custom/js/registration.js' %}"></script>
+  <script src="{% static 'assets/custom/js/notify-defaults.js' %}"></script>
+{% endcompress %}
+
+<script>
+
+  $(document).ready(function() {
+
+    $("#brew_goal").html(brew_title);
+
+    if (brew_title) {
+      var current_brew = $('.js-choose-dropdown-menu [data-name="' + brew_title + '"]');
+      current_brew.click();
+    }
+
+    if ("{{alacarte}}" === 'True' || "{{request.session.from_preregister}}" === 'True') {
+      $('#id_one-email').removeAttr('readonly');
+    }
+
+    $("#id_two-country option[value='SG']").attr('selected', 'selected');
+    $("#fg_two-country").hide();
+
+    if ("{{alacarte}}" !== 'True') {
+
+// New shipping interval
+  $('.test_css .delivery_days label').on('click', function(e){
+    $('.test_css .delivery_days label').removeClass('active');
+    $('.another_frequency').removeClass('active');
+    $('.row.frequency').addClass('hide');
+    $(this).addClass('active');
+    interval_days = $(this).data('value');
+    reg_data['interval'] = interval_days;
+    $('.another_frequency').css('background-color', '#fff');
+  });
+
+  $('.another_frequency').on('click', function(e){
+      $(this).removeClass('selected');
+      $(this).addClass('active');
+      $(this).css('background-color', '#ffcc00');
+      $('.row.frequency').removeClass('hide');
+      var interval_days = $('.frequency input.input-number').val();
+      reg_data['interval'] = interval_days;
+  });
+
+
+  // Shipping frequency slider
+  var $freqSlider = $('input[type="range"]');
+  var $handle;
+  if (isNespresso) {
+    var days_to_coffee = days_to_pods = {
+        1: 40,
+        2: 40,
+        3: 40,
+        4: 40,
+        5: 40,
+        6: 40,
+        7: 40,
+        8: 35,
+        9: 32,
+        10: 28,
+        11: 10,
+        12: 9,
+        13: 9,
+        14: 8,
+        15: 7,
+        16: 7,
+        17: 7,
+        18: 6,
+        19: 6,
+        20: 6,
+        21: 5,
+        22: 5,
+        23: 5,
+        24: 5,
+        25: 5,
+        26: 5,
+        27: 4,
+        28: 4,
+        29: 4,
+        30: 3,
+    }
+  } else {
+    var days_to_coffee = days_to_cups = {
+        1: 35,
+        2: 32,
+        3: 30,
+        4: 27,
+        5: 22,
+        6: 18,
+        7: 16,
+        8: 14,
+        9: 12,
+        10: 11,
+        11: 10,
+        12: 9,
+        13: 9,
+        14: 8,
+        15: 7,
+        16: 7,
+        17: 7,
+        18: 6,
+        19: 6,
+        20: 6,
+        21: 5,
+        22: 5,
+        23: 5,
+        24: 5,
+        25: 5,
+        26: 5,
+        27: 4,
+        28: 4,
+        29: 4,
+        30: 3,
+    }
+  }
+
+  $freqSlider.rangeslider({
+      polyfill: false,
+      onInit: function() {
+          $handle = $('.rangeslider__handle', this.$range);
+          updateHandle($handle[0], this.value);
+          $("#frequency-days").html(this.value);
+      }
+  }).on('input', function() {
+      updateHandle($handle[0], this.value);
+      $("#frequency-days").html(this.value);
+  });
+
+  function updateHandle(el, val) {
+      el.textContent = val;
+      $("#frequency-cups").html(days_to_coffee[val]);
+      reg_data['interval'] = val;
+  }
+
+  $('input[type="range"]').rangeslider();
+  // /Shipping frequency slider
+}
+
+//Minus and plus plugin
+$('.frequency .btn-number').click(function(e){
+    e.preventDefault();
+
+    fieldName = $(this).attr('data-field');
+    type      = $(this).attr('data-type');
+    var input = $("input[name='"+fieldName+"']");
+    var currentVal = parseInt(input.val());
+
+    if (!isNaN(currentVal)) {
+        if(type == 'minus') {
+
+            if(currentVal > input.attr('min')) {
+                $('.frequency input').val(currentVal - 1).change();
+            }
+            if(parseInt(input.val()) == input.attr('min')) {
+                $(this).attr('disabled', true);
+            }
+
+        } else if(type == 'plus') {
+
+            if(currentVal < input.attr('max')) {
+
+                $('.frequency input').val(currentVal + 1).change();
+            }
+            if(parseInt(input.val()) == input.attr('max')) {
+                $(this).attr('disabled', true);
+            }
+
+        }
+    } else {
+        input.val(0);
+    }
+});
+$('.frequency .input-number').focusin(function(){
+   $(this).data('oldValue', $(this).val());
+});
+$('.frequency .input-number').change(function() {
+
+    minValue =  parseInt($(this).attr('min'));
+    maxValue =  parseInt($(this).attr('max'));
+    valueCurrent = parseInt($(this).val());
+
+    name = $(this).attr('name');
+    if(valueCurrent >= minValue) {
+        $(".frequency .btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+    } else {
+        alert('Sorry, the minimum value was reached');
+        $(this).val(minValue);
+    }
+    if(valueCurrent <= maxValue) {
+        $(".frequency .btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+    } else {
+        alert('Sorry, the maximum value was reached');
+        $(this).val(maxValue);
+    }
+    reg_data['interval'] = $(this).val();
+});
+
+// User address list toggle selected
+var $addresses = $('#reg-page__user-addresses .address-list li');
+$addresses.click(function (e) {
+  $addresses.removeClass('selected');
+  $(this).addClass('selected');
+});
+
+// Toggle credit card views
+$('#user-card__change-btn').click(function (e) {
+  e.preventDefault();
+  $('#reg-page__user-card .view-toggle').addClass('hidden');
+});
+
+$('#user-card__cancel-change, #user-card__save-change').click(function (e) {
+  e.preventDefault();
+  $('#reg-page__user-card .view-toggle').removeClass('hidden');
+});
+
+// Toggle shipping address views
+$('#user-addresses__add-btn').click(function (e) {
+  e.preventDefault();
+  $('#reg-page__user-addresses .view-toggle').addClass('hidden');
+});
+
+$('#user-addresses__cancel-add, #user-addresses__save-add').click(function (e) {
+  e.preventDefault();
+  $('#reg-page__user-addresses .view-toggle').removeClass('hidden');
+});
+
+});
+
+</script>
+
+{% endblock %}
+

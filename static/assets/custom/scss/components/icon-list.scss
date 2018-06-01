@@ -1,0 +1,24 @@
+.icon-list {
+  &.icon-list-rows {
+    .icon-list-option {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border-radius: $base-border-radius;
+
+      img {
+        width: 50px;
+        height: 50px;
+        margin: 0 $base-padding 0 $base-padding/2;
+      }
+
+      &.selected { background-color: $color-light-gray; }
+      &:hover { background-color: $color-light-gray; }
+    }
+
+    & > * {
+      margin-top: $base-padding / 2;
+      &:first-child { margin-top: 0; }
+    }
+  }
+}

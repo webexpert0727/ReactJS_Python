@@ -1,0 +1,400 @@
+body {
+  margin-bottom: 0;
+}
+
+.gear-banner {
+  width: 100%;
+  min-height: 510px;
+  margin-top: 70px;
+  background: url('/static/images/banner_gift_sets_coffee_gear.jpg') no-repeat center / cover;
+
+  @media only screen and (max-width: 767px) {
+    margin-top: 60px;
+  }
+
+  @media only screen and (max-width: 550px) {
+    background-image: url('/static/images/banner_gift_sets_coffee_gear_h.jpg');
+  }
+}
+
+.gear-banner__text {
+  margin-top: 35rem;
+  text-align: center;
+}
+
+.gear-banner--cny {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  background: url('/static/images/cny/banner_gift_sets_cny_pineapple_left.png') no-repeat left bottom,
+              url('/static/images/cny/banner_gift_sets_cny_pineapple_right.png') no-repeat right bottom,
+              url('/static/images/cny/banner_gift_sets_cny_coins_left.png') no-repeat left,
+              url('/static/images/cny/banner_gift_sets_cny_coins_right.png') no-repeat right,
+              url('/static/images/cny/banner_gift_sets_cny_bg.jpg') no-repeat center / cover;
+}
+
+.gear-banner__cny-logo {
+  width: 566px;
+  height: 319px;
+  background: url('/static/images/cny/banner_gift_sets_cny_rooster_logo.png') no-repeat center / 100%;
+}
+
+.gear-items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.gear-items-intro {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.gear-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding: 0 15px;
+
+  @media only screen and (min-width: 768px) {
+    width: 33.33333%;
+  }
+}
+
+.gear-item__name {
+  margin: 0;
+  padding: 20px 0 5px;
+  color: #735146;
+  font: bold 4.5rem 'Amatic SC', cursive;
+  text-transform: uppercase;
+}
+
+.gear-item__model {
+  color: #735146;
+  font: bold 3.5rem 'Amatic SC', cursive;
+}
+
+.gear-item__desc {
+  padding-right: 50px;
+  padding-left: 50px;
+  color: #735146;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 30px;
+}
+
+.gear-item__price {
+  display: block;
+  padding-top: 10px;
+  font-size: 30px;
+  color: #735146;
+}
+
+.gear-item__img--essential {
+  display: block;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 119px;
+  height: 121px;
+  background: url('/static/images/badge2.png') no-repeat center top;
+}
+
+
+.l-gear-item-btns {
+  margin: 20px 0 10px;
+}
+
+.btn--gear {
+  display: inline-block;
+  margin: 5px 0;
+  padding: 10px 30px;
+  border-radius: 15px;
+  font-size: 16px;
+  text-transform: uppercase;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #fff;
+  }
+}
+
+.carousel-control--gear.left,
+.carousel-control--gear.right {
+  background: transparent;
+}
+
+.carousel-control--gear.left {
+  left: 3px;
+}
+
+.carousel-control--gear.right {
+  right: 3px;
+}
+
+.carousel_gear .item_gear {
+  height: 250px;
+}
+
+.carousel_gear .item_gear--landscape {
+  height: 200px;
+}
+
+.carousel_gear .img-responsive {
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/************************************************/
+/***************      Modals      ***************/
+/************************************************/
+
+.modal > .modal-dialog {
+  position: static;
+}
+
+/***************      Confirmation Modal      ***************/
+
+.modal--gear-confirmation {
+
+  @media only screen and (max-width: 410px) {
+    .btn--gear {
+      margin: 0 auto;
+      font-size: 12px;
+    }
+  }
+}
+
+.gear-confirmation {
+  border: 8px solid #fff;
+  border-radius: 3px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.gear-confirmation__body {
+  padding: 0;
+}
+
+.gear-confirmation__header {
+  margin: 25px 0;
+}
+
+.gear-confirmation__img {
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.gear-confirmation__field-title {
+  display: block;
+  padding-bottom: 10px;
+  font: 3.5rem 'Amatic SC', cursive;
+}
+
+.gear-confirmation__packaging {
+  padding: 10px 0 20px;
+}
+
+.gear-confirmation__voucher {
+  padding-bottom: 10px;
+}
+
+.gear-confirmation__voucher-field {
+  width: 260px;
+  margin: 0 auto;
+}
+
+.gear-confirmation__txt {
+  font: 3.5rem 'Amatic SC', cursive;
+  color: #725147;
+}
+
+.gear-confirmation .gear-confirmation__form-container {
+  padding: 0;
+}
+
+.gear-color-options {
+  margin: 10px auto 15px;
+}
+
+.gear-color-options .inp-gear-color {
+  position: absolute;
+  visibility: hidden;
+}
+
+.img-gear-color-option {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border: 7px solid #eee;
+  border-radius: 50%;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.img-gear-color-option:hover,
+input:checked + .img-gear-color-option {
+  border: 7px solid #d9a52a;
+}
+
+.name-gear-color-option {
+  margin-top: 10px;
+  font: 18px 'Archer-Medium', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/***************      End Confirmation Modal      ***************/
+
+
+/***************      More Info Modal      ***************/
+
+@media all and (min-width: 768px) {
+  .modal--gear-more {
+    width: 750px;
+  }
+}
+
+.modal--gear-more .close {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  font-size: 25px;
+  z-index: 1000;
+}
+
+.gear-more-modal__body {
+  padding: 0;
+}
+
+.gear-more-modal__title {
+  font: bold 3.5rem 'Amatic SC', cursive;
+  margin: 15px 0 10px;
+}
+
+.gear-more-modal__more-info p {
+  color: #745249;
+  font: 1.6rem/1.5 "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.gear-more-modal__carousel {
+  flex-grow: 1;
+  align-self: center;
+}
+
+@media all and (min-width: 768px) {
+  .gear-more-modal__carousel .item_gear {
+    height: auto;
+  }
+}
+
+.gear-more-modal__carousel .carousel-indicators {
+  display: none;
+}
+
+.container--gears {
+  padding-top: 0px !important;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.left-col-gear {
+  flex: 1 100%;
+  padding: 20px 20px 20px 40px;
+}
+
+.right-col-gear {
+  display: flex;
+  flex: 1 100%;
+  background-color: #eb8305;
+}
+
+@media all and (min-width: 768px) {
+  .left-col-gear {
+    flex: 1.5 0 0;
+  }
+
+  .right-col-gear {
+    flex: 1 0 0;
+    border-left: 5px solid #d9a539;
+  }
+}
+
+/***************      End More Info Modal      ***************/
+
+/************************************************/
+/***************    End Modals    ***************/
+/************************************************/
+
+.c-quantity {
+  width: 150px;
+  height: 30px;
+  margin: 5px auto 15px;
+}
+
+.c-quantity__btn {
+  width: 40px;
+  height: 30px;
+  float: left;
+  text-align: center;
+}
+
+.c-quantity__btn-val {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #755248;
+  font-size: 2rem;
+  user-select: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #755248;
+    text-decoration: none;
+  }
+}
+
+.c-quantity__field {
+  width: 70px;
+  height: 30px;
+  float: left;
+}
+
+.c-quantity__input {
+  width: 70px;
+  height: 30px;
+  color: #fff;
+  background-color: #d9a52a;
+  text-align: center;
+  border: 0;
+
+  &:focus {
+    border: 0;
+  }
+}
+
+
+.btn-default:hover {
+  color: #fff;
+}
+
+.btn-primary.disabled, 
+.btn-primary[disabled],
+.btn-primary.disabled:hover, 
+.btn-primary[disabled]:hover,
+.btn-primary.disabled:focus, 
+.btn-primary[disabled]:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active {
+  background-color: #DAA62A;
+  border-color: #c89723;
+}

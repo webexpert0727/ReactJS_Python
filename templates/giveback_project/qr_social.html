@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}— {% trans 'QR Code Sharing' %}{% endblock %}
+
+{% block content %}
+<div class="c-sticker">
+  <img class="c-sticker__img" src="{{ sticker.sticker.url }}">
+  <p class="c-sticker__msg js-fb-msg">{% trans 'YOU ARE A STAR. THANK YOU FOR SHARING THE LOVE OF HOOK COFFEE AROUND!' %}</p>
+  <button class="fb-btn js-fb-share"
+    data-picture="{{ sticker.sticker.url }}"
+    data-name="{{ sticker.name }}"
+    data-description="{{ sticker.description }}"
+    data-caption="{{ sticker.caption }}"
+    data-hashtag="{{ sticker.hashtag }}"
+    data-done="{% url 'shared_sticker' %}"
+    data-order="{{ order }}"
+    data-token="{{ csrf_token }}"
+    data-msgcls="js-fb-msg">{% trans 'Share' %}</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'assets/custom/js/fb.js' %}"></script>
+{% endblock %}

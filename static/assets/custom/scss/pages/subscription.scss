@@ -1,0 +1,54 @@
+@import "eonasdan-bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker-build.scss";
+
+.coffee-details {
+  @extend .text-center;
+  background-color: $color-cream;
+  padding: 30px;
+  margin-bottom: 40px;
+  border-radius: 6px;
+
+  .img-thumbnail {
+    background: url('#') no-repeat scroll center center;
+    background-size: 100% 100%;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin-top: 10px;
+  }
+
+  .coffee-name {
+  }
+
+  .by-line {
+  }
+
+  .location {
+  }
+
+  .flavour {
+    font-style: italic;
+  }
+
+  .roast {
+
+  }
+
+  .rdate {
+  }
+}
+
+.sub-details {
+  border: 2px solid $color-peppercorn;
+  border-radius: 6px;
+  margin-bottom: 40px;
+
+  .info-head {
+    padding: 10px;
+    background-color: $color-cream;
+    border-bottom: 1px solid $color-peppercorn;
+  }
+
+  .info-body {
+  }
+}

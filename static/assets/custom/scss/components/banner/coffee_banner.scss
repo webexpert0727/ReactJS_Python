@@ -1,0 +1,28 @@
+.coffee-banner {
+  background: url(/static/images/banner9.jpg) no-repeat top center;
+  min-height: 510px;
+  width: 100%;
+  background-size: cover;
+  /*background-size: 100% 100%;*/
+  margin-top: 72px;
+  background-position: 100% 40%;
+}
+@media only screen and (max-width: 767px) {
+.coffee-banner {
+  margin-top: 60px;
+}
+}
+@media only screen and (max-width: 414px), (max-height: 414px) {
+  .coffee-banner .banner-text {
+    margin-top: 60px;
+  }
+}
+.coffee-banner .banner-text h1 {
+  font-size: 55px;
+  color: RGB(70, 40, 50) !important;
+}
+.coffee-banner .banner-text p {
+  font-size: 16px;
+  color: RGB(70, 40, 50) !important;
+}
+

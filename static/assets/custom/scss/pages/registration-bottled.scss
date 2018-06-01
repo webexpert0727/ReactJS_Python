@@ -1,0 +1,10 @@
+.btn-group-bottled {
+  display: block;
+  text-align: center;
+
+  & > .opt-interval {
+    display: block;
+    margin: 25px auto !important;
+    border-radius: 3px !important;
+  }
+}

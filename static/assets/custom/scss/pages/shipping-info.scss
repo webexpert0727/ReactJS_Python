@@ -1,0 +1,27 @@
+.shipping-info {
+  ul {
+    list-style: none;
+
+    li {
+      margin-left: -$base-padding;
+
+      &:before {
+        content: '\2022';
+        position: absolute;
+        left: $base-padding / 2;
+        font-size: 24px;
+        line-height: 20px;
+      }
+    }
+
+    @media screen and (min-width: $screen-xs) {
+      li {
+        margin: 0 0 $base-padding/2 $base-padding;
+
+        &:before {
+          left: $base-padding * 1.5;
+        }
+      }
+    }
+  }
+}

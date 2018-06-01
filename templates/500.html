@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans '500' %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+      <div class="error-wrapper">
+        <div class="img-wrapper"></div>
+
+        <h4 class="hc-text-noshadow">OOPS! There is nothing here</h4>
+
+        <div>
+          <span>Return back to</span>
+          <a href="{% url 'index' %}">Homepage</a>,
+          <a href="{% url 'coffees' %}">Coffees page</a>,
+          <a href="{% url 'nespresso' %}">ShotPods page</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

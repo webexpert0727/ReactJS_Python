@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{# {% load widget_tweaks %} #}
+{% load i18n %}
+
+{% block title %}— {% trans 'Brew Guides' %}{% endblock %}
+
+{% block meta-description %}
+    "Hook Drip Bag, V60 Dripper, French Press, Stovetop, Aeropress, Espresso, Cold Brew. Coffee, Espresso machine, Double basket, portafilter, Grinder, Tamper, Timer"
+{% endblock %}
+
+{% block head %}
+<link rel="canonical" href="https://hookcoffee.com.sg{% url 'brew_guide_list' %}" />
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+{% endcompress %}
+
+<!-- Get Social bar -->
+<script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="section bg-d">
+  <div class="section-row row-sm">
+    <h1>{% trans 'Brew Guides' %}</h1>
+    <h3>
+      {% blocktrans trimmed %}Use the guides below to help you brew that perfect cup!{% endblocktrans %}
+    </h3>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-row row-sm">
+    <ul class="brew-guides">
+      {% for brew_guide in brew_guides %}
+      <li>
+        <a class="guide {{ brew_guide.name }}" href="{{ brew_guide.get_absolute_url }}">
+          <div class="guide__img" style="background-image: url({{ brew_guide.img.url }})"></div>
+          <span class="guide-text s-h6">
+            {{ brew_guide.name }}
+          </span>
+
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+
+

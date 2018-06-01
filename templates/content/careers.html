@@ -1,0 +1,110 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{# {% load widget_tweaks %} #}
+{% load i18n %}
+
+{% block title %}— {% trans 'Careers' %}{% endblock %}
+
+{% block meta-description %}
+    "Join the Hook Team! Reasons to work with us. Open Positions. Drop your CV! CONTENT CREATOR INTERN, DESIGN GURU, DIGITAL MARKETING INTERN, HOOK POP-UP TEAM"
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}{% url 'careers' %}" />
+  {% compress css %}
+  <!-- <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/coffees-page.scss' %}" /> -->
+  <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<!-- <div class="container-fluid" id="careers-img"></div> -->
+
+<section class="section bg-d"> 
+  <div class="section-row row-sm">
+    <h1>{% trans 'Join the Hook Team!' %}</h1>
+    <h4>{% trans 'Aye, aye, Captain!' %}</h4>
+    <h4>
+      {% trans 'Come on board and join us on our simple yet important mission to make freshly roasted specialty coffee accessible to everyone to revolutionise the coffee industry.' %}
+    </h4>
+  </div>
+</section>
+
+<section class="section careers-page"> 
+  <div class="section-row row-sm">
+    <h2>{% trans 'Reasons to work with us' %}</h2>
+  </div>
+  <div class="section-row row-lg row-grid">
+    <div class="col-sm-4">
+      <p class="s-h1-s">{% trans 'An environment for Learning & Innovation' %}</p>
+      <p>{% trans 'Come exchange knowledge, skills, and ideas. We also love being creative and embrace creative ideas, even the crazy ones. Working with a team that is highly passionate and enthusiastic is bound to spark inspiration and innovation!' %}</p>
+    </div>
+    <div class="col-sm-4">
+      <p class="s-h1-s">{% trans 'Be the driver of Change & Growth' %}</p>
+      <p>{% trans 'As a key player on the team, you’ll need more than skill to affect change and make an impact. Your vision and involvement is paramount so be prepared to be part of major brainstorming and critical decision-making.' %}</p>
+    </div>
+    <div class="col-sm-4">
+      <p class="s-h1-s">{% trans 'Strike a Balance' %}</p>
+      <p>{% trans 'We strongly believe in work-life balance and know everyone has a different style of working. We’re very open and flexible, and hope you are too. You’re expected to manage your own time and work in a way that best suits you while value-adding the team.' %}</p>
+    </div>
+  </div>
+  <div class="section-row row-lg row-grid">
+    <div class="col-sm-4">
+      <p class="s-h1-s">{% trans 'Make a Difference' %}</p>
+      <p>{% trans 'Revolutionise coffee culture as we know it. Champion socially and environmentally sustainable practices. Support specialty coffee producers and communities around the world.' %}</br>{% trans 'We mean it.' %}</p>
+    </div>
+    <div class="col-sm-4">
+      <p class="s-h1-s">{% trans 'Immerse Yourself' %}</p>
+      <p>{% trans 'Looking for a steep learning curve? Hungry to learn? A hands-on kinda person? We probably hate sitting at the desk doing the same ol’ tasks everyday as much as you do and are pretty sure you’re looking at the right place to work at.' %}</p>
+    </div>
+    <div id="unli-coffee" class="col-sm-4">
+      <span>{% trans 'Oh, and did we mention <span class="span-h4"><u>unlimited coffee</u></span>?' %}</span>
+      <!--<h4>{% trans '<u>unlimited coffee</u>' %}</h4><span>{% trans '?' %}</span>-->
+    </div>
+  </div>
+</section>
+
+<section class="section careers-page">
+  <div class="section-row row-sm">
+    <h2>{% trans 'Open Positions' %}</h2>
+  </div>
+  
+  {% for career in careers %}
+  <div class="section-row row-md row-grid">
+    <div class="col-md-2">
+      <div>
+        <img src="{{career.img.url}}" alt="">
+      </div>
+    </div>
+    <div class="col-md-10">
+      <p class="s-h2-s">{{ career.title }}</p>
+      <p>{{ career.description }}</p>
+    </div>
+  </div>  
+  {% endfor %}
+</section>
+
+<section class="info-bar bg-d">
+  <div class="section-row row-lg">
+    <h4 class="clr-me-p">{% trans 'Interested?' %}</h4>
+    <p>
+      <span>
+        {% trans 'If you like what you see, email us at' %}
+        <a class="clr-me-acc-blue" href="{% url 'coffees' %}">careers@hookcoffee.com.sg</a>
+        {%trans 'to find out more.' %}
+      </span>
+    </p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

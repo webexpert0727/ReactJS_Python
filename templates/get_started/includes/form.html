@@ -1,0 +1,505 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+
+  <section id="subscription-form"
+    {% if not show_subscription_form %}
+      hidden
+    {% endif %}>
+
+    {% comment ******************************************************************************** %}
+    Subscription details
+    {% endcomment %}
+    <li>
+      {% if alacarte %}
+      <p class="s-h2-bold js-reg-step-1__title">{% trans 'Your Coffee' %}</p>
+      {% else %}
+      <p class="s-h2-bold js-reg-step-1__title">{% trans 'Your Subscription' %}</p>
+      {% endif %}
+
+      <div class="form-body">
+
+        <div id="subs-details-form" class="form-container box form-hc-spacier">
+          {% if not alacarte %}
+          <div class="form-group">
+            <label>{% trans 'I have a voucher code...' %}</label>
+
+            <form id="submit-voucher" method="POST" action="{% url 'voucher' %}">
+              {% csrf_token %}
+              <div class="form-hc-inline">
+                <input id="voucher-input-0"
+                  class="form-control voucher-input"
+                  name="voucher-name"
+                  placeholder="Enter Voucher Code"
+                  value="{{ request.session.chosen_voucher }}" type="text">
+                <input type="hidden" name="coffee-id" value="{{ coffee.id }}" />
+                <button id="js-voucher-btn-0" class="btn btn-primary-white btn-hc-xs js-voucher-btn" type="submit">
+                  {% trans 'Apply' %}
+                </button>
+                <button id="js-voucher-def-btn"
+                  class="btn btn-secondary-inv btn-hc-xs" type="button">
+                  {% trans "I don't have a code" %}
+                </button>
+              </div>
+            </form>
+
+            <span id="js-voucher-msg-0" class="help-block js-voucher-msg"></span>
+          </div>
+          {% endif %}
+
+          {% if alacarte %}
+          <div class="form-group">
+            <label>{% trans 'Choose a brewing method' %}</label>
+            <div class="icon-list icon-list-rows">
+
+              {% for brew in brew_methods %}
+                <div id="brew_{{ brew.id }}"
+                  data-value="{{ brew.id }}"
+                  data-title="{{ brew }}" class="icon-list-option opt-brew
+                  {% if brew.id == 1 %} selected {% endif %}">
+
+                  <div class="img-thumbnail"
+                    style="background: url({{ brew.img.url }})
+                    no-repeat scroll center center / 110% 110%;">
+                  </div>
+                  <p>{{ brew }}</p>
+                </div>
+              {% endfor %}
+
+            </div>
+          </div>
+          {% endif %}
+
+          {% comment %}
+          coffee package
+          {% endcomment %}
+          {% if not isNespresso %}
+              <div class="form-group">
+              <label>{% trans 'How do you want your coffee packaged?' %}</label>
+
+              <div class="icon-list icon-list-rows">
+                <div id="{{ pre_form.package.field.choices.1.0 }}"
+                  data-value="{{ pre_form.package.field.choices.1.0 }}"
+                  class="icon-list-option opt-pack
+                  {% if default_pack == 'WB' %}selected{% endif %}">
+
+                  <img src="{% static 'images/package_methods/wholebeans.png' %}" />
+                  <p>{{ pre_form.package.field.choices.1.1 }}</p>
+                </div>
+
+                <div id="{{ pre_form.package.field.choices.0.0 }}"
+                  data-value="{{ pre_form.package.field.choices.0.0 }}"
+                  class="icon-list-option opt-pack
+                  {% if default_pack == 'GR' %}selected{% endif %}">
+
+                  <img src="{% static 'images/package_methods/ground.png' %}" />
+                  <p>{{ pre_form.package.field.choices.0.1 }}</p>
+                </div>
+
+                <div id="{{ pre_form.package.field.choices.2.0 }}"
+                  data-value="{{ pre_form.package.field.choices.2.0 }}"
+                  class="icon-list-option opt-pack
+                  {% if default_pack == 'DR' %}selected{% endif %}">
+
+                  <img src="{% static 'images/package_methods/dripbag.png' %}" />
+                  <p>{{ pre_form.package.field.choices.2.1 }}</p>
+                </div>
+
+                <div id="{{ pre_form.package.field.choices.3.0 }}"
+                  data-value="{{ pre_form.package.field.choices.3.0 }}"
+                  class="icon-list-option opt-pack hide
+                  {% if default_pack == 'BB' %}selected{% endif %}">
+
+                  <img src="{% static 'images/package_methods/brew_bags.png' %}" />
+                  <p>{{ pre_form.package.field.choices.3.1 }}</p>
+                </div>
+
+              </div>
+                <div class="package_info">
+                  <p id="p_brew_goal" class="hide GR"><i>{% trans 'Your coffee will be ground for' %} <b><span id="brew_goal"></span></b>!</i></p>
+                  <p id="p_drip_bags" class="hide DR"><i>{% trans 'Your order will come in a pack of' %} <b>10 {% trans 'drip bags' %}</b>!</i></p>
+                  <p id="p_wholebeans" class="hide WB"><i>{% trans 'Your coffee will come in' %} <b>{% trans 'whole beans' %}</b>!</i></p>
+                  <p id="p_brew_bags" class="hide BB"><i>{% trans 'Your coffee will come in a pack of' %} <b>{% trans 'brew bags' %}</b>!</i></p>
+                </div>
+              </div>
+
+              <div class="form-group">
+              <label>{% trans 'How do you make your coffee?' %}</label>
+              <div class="dropdown choose-dropdown">
+                <button
+                  class="btn dropdown-toggle btn-hc btn-hc-xs btn-secondary-inv"
+                  type="button"
+                  id="addsubs-brewmethod"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="true">
+                  <div class="dropdown-item">
+                      <img class="coffee-img" data-value='0' src="{% static '/images/brew_method/dummy.png' %}" />
+                      <span> ┄┄┄┄┄┄┄┄ </span>
+                  </div>
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu js-choose-dropdown-menu" aria-labelledby="addsubs-brewmethod">
+                  {% for brew in brew_methods %}
+                    <li class="coffee-dropdown">
+                      <a class="dropdown-item opt-brew" data-value="{{ brew.id }}" data-name="{{ brew.name }}" href="#">
+                        <img class="coffee-img" src="{{ brew.img.url }}" />
+                        <span>{{ brew.name }}</span>
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+
+          {% endif %}
+
+          {% if not alacarte %}
+
+          <div class="form-group form-group-slider test_css">
+            <label>{% trans 'Tell us how often you’d like us to deliver your coffee' %}</label>
+
+                <p>A fresh bag every
+                  <span class="" id="frequency-days"></span>
+                  days is equivalent to roughly
+                  <span class="" id="frequency-cups"></span>
+                  cups of coffee a week
+                </p>
+
+                <div class="row">
+                  <div class="col-xs-10 col-xs-offset-1 frequency-slider">
+                    <input id="range-slider" type="range" min="1" max="30" step="1" value="14">
+                  </div>
+                </div>
+
+                <p>
+                  Don’t worry! You are not locked into any frequency, you can change it
+                  <br>
+                  later on or order emergency bags on your account page.
+                </p>
+
+                  {% if not coffee.is_discovery_pack %}
+                      <div class="col-xs-12" style="padding-top:20px;">
+                        <div class="btn-group" data-toggle="buttons">
+                          <label id="same" class="btn btn-default btn-hc-sm opt-diff" data-value=false>
+                            <input type="radio" /> {% trans 'Same' %}
+                          </label>
+                          <label id="different" class="btn btn-default btn-hc-sm opt-diff selected active" data-value=true title="We will send you a random&#013;selection of coffees. However &#013;occasional we might send you the &#013;same thing, so do check back to &#013;change your coffee selection!">
+                            <input type="radio" /> {% trans 'Surprise me' %}
+                          </label>
+                        </div>
+                      </div>
+                  {% endif %}
+
+            </div>
+
+
+          {% endif %}
+
+          <div class="form-footer">
+            <button id="confirm-subs" class="btn btn-secondary btn-long btn-hc btn-hc-sm">
+              {% trans 'Next' %}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </li>
+    {% comment %}
+    Subscription details
+    {% endcomment %}
+
+  <section id="address-form" hidden>
+  {% comment ******************************************************************************** %}
+  User Addresses
+  {% endcomment %}
+  <div id="reg-page__user-addresses">
+
+    <div class="panel-group"
+    id="user-addresses"
+    role="tablist"
+    aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-header">
+        <p class="s-h2-bold">{% trans 'Shipping Address' %}</p>
+
+        <a id="user-addresses__add-btn" class="view-toggle s-h1" role="button"
+        data-toggle="collapse"
+        data-parent="#user-addresses"
+        href="#user-addresses__add"
+        aria-expanded="true"
+        aria-controls="collapseOne">
+        {% trans 'ADD A NEW ADDRESS' %}
+      </a>
+    </div>
+
+    <div class="panel-row view-toggle">
+      <ul class="address-list js-address-list"></ul>
+      <div class="panel-row-footer">
+        <form id="form-add-subscription" method="POST" action="{% url 'add-subscription' %}">
+          <input type="hidden" name="coffeeID" value="{{ coffee.id }}" />
+          <button type="submit" id="confirm-address" class="btn btn-primary btn-hc btn-hc-sm">
+            {% trans 'Confirm and Pay now?' %}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="user-addresses__add"
+    class="panel-collapse collapse"
+    role="tabpanel">
+
+    {% with form=new_address_form %}
+    <form class="js-update-address" method="POST" action="{% url 'create_address' %}">
+      {% csrf_token %}
+      <div class="panel-body">
+        <p class="s-h1-bold">{% trans 'Add address' %}</p>
+
+        <div class="form-group form-group--name">
+          {{ form.name.label_tag }}
+          {% render_field form.name class+="form-control" %}
+          <span class="help-block"></span>
+        </div>
+
+        <div class="form-group form-group--recipient_name">
+          <label for="{{ form.recipient_name.id_for_label }}">{% trans 'Full name' %}</label>
+          {% render_field form.recipient_name class+="form-control" %}
+          <span class="help-block"></span>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group form-group--line1">
+              {{ form.line1.label_tag }}
+              {% render_field form.line1 class+="form-control" %}
+              <span class="help-block"></span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group form-group--line2">
+              {{ form.line2.label_tag }}
+              {% render_field form.line2 class+="form-control" %}
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group form-group--postcode">
+              {{ form.postcode.label_tag }}
+              {% render_field form.postcode class+="form-control" %}
+              <span class="help-block"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-row-footer flex-spaced-between">
+          <a class="s-h1-bold" role="button" id="acct-addr-add-cancel">
+            {% trans 'Cancel' %}
+          </a>
+
+          <button type="submit" class="btn btn-primary">
+            {% trans 'Add Address' %}
+          </button>
+        </div>
+      </div>
+    </form>
+    {% endwith %}
+
+  </div>
+</div>
+</div>
+
+</div>
+{% comment %}
+User Addresses
+{% endcomment %}
+</section>
+
+{% comment %}
+Authentication
+{% endcomment %}
+<li>
+  <p class="s-h2-bold">{% trans 'Authentication' %}</p>
+
+  <div class="form-body">
+    <div id="subs-auth-form" class="form-container box hidden">
+      <form method="POST" action="">
+        {% csrf_token %}
+
+        {% if request.session.accesstoken %}
+        <div id="fg_one-email" class="form-group">
+          <label for="id_one-email">{% trans 'Facebook account' %}</label>
+          {% render_field reg_form.email class+="form-control" readonly=readonly placeholder=reg_form.email.label %}
+          {% comment %} {{ reg_form.email.errors }} {% endcomment %}
+          <span class="help-block"></span>
+          <input type="hidden" name="one-password1" value="FACEBOOKLOGIN" />
+          <input type="hidden" name="one-password2" value="FACEBOOKLOGIN" />
+        </div>
+        {% else %}
+        <div id="fg_one-email" class="form-group">
+          <label for="id_one-email">{% trans 'Email' %}</label>
+          {% render_field reg_form.email class+="form-control" readonly=readonly placeholder=reg_form.email.label %}
+          {% comment %} {{ reg_form.email.errors }} {% endcomment %}
+          <span class="help-block"></span>
+        </div>
+
+        <div id="fg_one-password1" class="form-group">
+          <label for="id_one-password1">{% trans 'Password' %}</label>
+          {% render_field reg_form.password1 class+="form-control" %}
+          {% comment %}
+          {% render_field reg_form.password1 class+="form-control" placeholder=reg_form.password1.label %}
+          {% endcomment %}
+          {% comment %} {{ reg_form.password1.errors }} {% endcomment %}
+          <span class="help-block"></span>
+        </div>
+
+        <div id="fg_one-password2" class="form-group">
+          <label for="id_one-password2">{% trans 'Confirm Password' %}</label>
+          {% render_field reg_form.password2 class+="form-control" %}
+          {% comment %}
+          {% render_field reg_form.password2 class+="form-control" placeholder=reg_form.password2.label %}
+          {% endcomment %}
+          {% comment %} {{ reg_form.password2.errors }} {% endcomment %}
+          <span class="help-block"></span>
+        </div>
+        {% endif %}
+
+        {% url 'shop-gift-set' as next_url %}
+
+        <div class="form-group">
+          <em>{% trans 'Already registered? Log in' %} <a href="{% url 'auth_login' %}?next={% firstof next_url '/' %}">{% trans 'here' %}</a></em>
+        </div>
+
+        <div class="form-footer">
+          <button id="confirm-acct" class="btn btn-secondary btn-long btn-hc btn-hc-sm">
+            {% trans 'Next' %}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</li>
+{% comment %}
+Authentication
+{% endcomment %}
+
+{% comment %}
+Shipping details
+{% endcomment %}
+<li>
+  <p class="s-h2-bold">{% trans 'Shipping Details' %}</p>
+
+  <div class="form-body">
+    <div id="subs-ship-form" class="form-container box hidden">
+      <form method="POST" action="">
+        {% csrf_token %}
+        {% for field in cus_form.visible_fields %}
+        <div id="fg_two-{{ field.name }}" class="form-group">
+          <label for="id_two-{{ field.name }}">{{ field.label }}</label>
+          {% render_field field class+="form-control" %}&nbsp;
+          <small>{{ field.help_text }}</small>
+          {% comment %}
+          {% render_field field class+="form-control" placeholder=field.label %}
+          {% endcomment %}
+          {% comment %} {{ field.errors }} {% endcomment %}
+          <span class="help-block"></span>
+        </div>
+        {% endfor %}
+
+        <div class="form-footer">
+          <button id="confirm-ship" data-credits="false"
+          class="btn btn-secondary btn-long btn-hc btn-hc-sm">
+          {% trans 'Next' %}
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+</li>
+{% comment %}
+Shipping details
+{% endcomment %}
+
+{% comment %}
+Billing details
+{% endcomment %}
+<li>
+  <p class="s-h2-bold">
+    {% trans 'Billing Details' %}
+    <img height="30"
+    class="pull-right" src="{% static 'images/powered_by_stripe.png' %}"
+    alt="Stripe" />
+  </p>
+
+  <div class="form-body">
+    <div id="subs-bill-form" class="form-container box hidden">
+      <form id="payment-form" method="POST" action="">
+        {% csrf_token %}
+
+        <div class="form-group has-error">
+          <span class="help-block payment-errors"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="id_one-username">{% trans 'Card Number' %}</label>
+          <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+        </div>
+
+        <div class="other-card-info">
+          <div class="form-group">
+            <label for="card__cvc">{% trans 'CVC' %}</label>
+            <input id="card__cvc"
+            type="text"
+            size="4"
+            data-stripe="cvc"
+            class="form-control"
+            value=""/>
+          </div>
+
+          <div class="form-group">
+            <label for="card__exp">{% trans 'Expiration (MM/YYYY)' %}</label>
+            <div class="form-inline">
+              <input class="form-control form-expmo"
+              type="text"
+              size="2"
+              data-stripe="exp-month"
+              value=""
+              placeholder="{% trans 'MM' %}" />
+              <b> / </b>
+              <input class="form-control form-expyr"
+              type="text"
+              size="4"
+              data-stripe="exp-year"
+              value=""
+              placeholder="{% trans "YYYY" %}" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <span class="loading-text hidden">
+            {% trans "Verifying... Don't close your browser..." %}
+          </span>
+        </div>
+
+        <div class="form-footer">
+          <input id="voucher" type="hidden" name="voucher" value=""/>
+          <button id="submit-subs" type="submit" data-credits="false"
+          class="btn btn-secondary btn-long btn-hc btn-hc-sm subs-btn">
+          {% trans 'Subscribe' %}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+</li>
+{% comment %}
+Billing details
+{% endcomment %}
+</section>

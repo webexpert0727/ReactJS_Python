@@ -1,0 +1,29 @@
+{% load static %}
+{% load i18n %}
+
+<div class="sub-nav">
+  <div class="container-fluid">
+    <div class="wrapper">
+      <div class="sub-nav-title">
+        {% comment %}<h4>{% trans 'Get your coffee now!' %}</h4>{% endcomment %}
+      </div>
+
+      <div class="sub-nav-links">
+        <a href="{% url 'coffees' %}" class="link">
+          <h4>
+            <img src="{% static 'images/icons/subnav_coffee/coffee-bags.png' %}" alt="By the Bag" />
+            <span>{% trans 'By the Bag' %}</span>
+          </h4>
+        </a>
+
+        <a href="{% url 'nespresso' %}" class="link">
+          <h4>
+            <img src="{% static 'images/icons/subnav_coffee/coffee-pods.png' %}" alt="By the Pod" />
+            <span>{% trans 'By the Pod' %}</span>
+          </h4>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>

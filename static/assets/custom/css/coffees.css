@@ -1,0 +1,783 @@
+/* ------------------------------------------------------------------
+More info modal
+------------------------------------------------------------------- */
+.modal-dialog {
+    width: 750px;
+}
+
+.modal-dialog .img-thumbnail{
+    margin-top: 15px;
+}
+
+.modal-body {
+    padding: 0px;
+}
+.modal-body .close {
+  position: absolute;
+  font-size: 25px;
+  left: 15px;
+  top: 5px;
+
+  z-index: 1000;
+}
+
+.modal-dialog .text-panel,
+.modal-dialog .text-panel p {
+    color: RGB(116, 82, 73);
+    font-family: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0;
+}
+
+.modal-dialog .text-panel h2 {
+    font-weight: 700;
+    margin: 10px 0;
+    font-size: 34px;
+}
+
+.modal-dialog .text-panel h4 {
+    font-weight: 600;
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.modal.fade.ui-draggable-dragging {
+    -moz-transition: none;
+    -o-transition: none;
+    -webkit-transition: none;
+    transition: none;
+}
+
+dl {
+}
+dl dt {
+    /*padding: 0;*/
+    font-family: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+}
+dl dd {
+    /*padding: 0;*/
+    padding-bottom: 5px;
+    font-family: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+}
+dl.dl-horizontal {
+    /*padding: 0;*/
+    word-wrap: break-word;
+}
+dl.dl-horizontal dt {
+    /*padding: 0;*/
+    width: 75px;
+}
+dl.dl-horizontal dd {
+    /*padding: 0;*/
+}
+
+
+.panel-info-body {
+    height: auto;
+}
+
+.text-panel {
+    background-color: transparent;
+}
+
+.text-panel .coffee-desc {
+  max-height: 310px;
+  width: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 420px) {
+  .text-panel .coffee-desc {
+    max-height: 310px;
+    width: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  dl, dt {
+    line-height: 250%;
+    padding: 10px 0;
+  }
+  .modal-dialog .text-panel, .modal-dialog .text-panel p, dd, dl {
+    line-height: 200% !important;
+  }
+}
+
+.left-panel {
+    min-height: 540px;
+    padding: 35px 35px 15px 35px;
+    background-color: white;
+
+    border-radius: 0px;
+}
+
+.left-panel h1 {
+  margin: 0;
+}
+
+.left-panel h3 {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+
+.right-panel {
+    min-height: 540px;
+    margin-right: -30px;
+
+    background-color: RGB(32, 67, 75);
+    border-left: 5px solid RGB(217, 165, 57);
+
+}
+
+.right-panel .img-thumbnail {
+  width: 100%;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  border: 0;
+}
+
+.right-panel .text-panel {
+  display: inline-block;
+  color: RGB(249, 244, 234);
+  padding: 0;
+}
+
+
+/* Portrait tablet or bigger */
+@media screen and (min-width: 768px) {
+    .left-panel {
+      border-top-left-radius: 15px;
+      border-bottom-left-radius: 15px;
+  }
+
+  dl.dl-horizontal dd {
+      margin-left: 85px !important;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media screen and (max-width: 768px) {
+    dl.dl-horizontal dd {
+      margin-left: 0px !important;
+  }
+}
+
+/* Landscape phones and down */
+@media screen and (max-width: 775px) and (min-width: 600px) {
+
+  .right-panel .img-thumbnail {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.right-panel .text-panel {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 30px;
+    width: 40%;
+}
+}
+
+@media screen and (max-width: 775px) {
+
+    .modal-dialog {
+      width: initial;
+  }
+
+  .left-panel {
+      width: 100% !important;
+      min-height: auto;
+  }
+
+  .right-panel {
+      width: 100% !important;
+      border: 0;
+      min-height: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .right-panel .row .col-xs-6 {
+      width: 100% !important;
+      margin-bottom: 35px;
+  }
+
+  .container-fluid .row .col-xs-12 {
+    padding: 0;
+  }
+  .filter-wrapper {
+  width: 90px !important;
+  height: 80px !important;
+}
+  .nav.nav-tabs {
+    margin: 0 30px;
+  }
+  .nav-tabs>li>a>img {
+    width: 75px !important;
+    height: 75px !important;
+    margin: 10px;
+  }
+
+}
+
+
+.com-boxes.special {
+  color: white !important;
+  background-color: #1E434C !important;
+}
+.com-boxes.special h1,
+.com-boxes.special h2,
+.com-boxes.special h3,
+.com-boxes.special p,
+.com-boxes.special a,
+.com-boxes.special small,
+.com-boxes.special b,
+.com-boxes.special .btnx {
+  color: white !important;
+}
+/*.com-boxes.special a.btn.tbtn.special {
+    color: #c9961d !important;
+}*/
+/*.special .single-charge {
+    color: black !important;
+    background-color: #A9D5CE !important;
+}
+
+.element-item.special .more {
+    color: #FEF8ED !important;
+}*/
+
+
+.tbtn.special {
+    background-color: #c9961d !important;
+    border-color: #c9961d !important;
+}
+
+img.banner_special {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 90%;
+}
+
+
+#payment-form h2 {
+    font-family: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    color: #755248;
+    margin: 10px 0;
+}
+#payment-form label {
+    font-family: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #755248;
+}
+
+#payment-form .form-control {
+    font-size: 16px;
+    color: #555555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    margin-bottom: 10px;
+}
+
+#payment-form #stripe-notify {
+    text-align: center;
+}
+
+#payment-form .form-expmo {
+    width: 50px;
+}
+#payment-form .btn3 {
+  margin: 0;
+}
+#payment-form .form-expyr {
+    width: 70px;
+}
+#payment-form .form-cvc {
+    width: 70px;
+    margin-right: 70px;
+}
+#enter_credit_card .well {
+    margin-top: 35px;
+    background-color: RGB(32, 67, 75);
+    color: white;
+    font-family: 'Arvo', serif;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* ------------------------------------------------------------------
+Trial pack modal
+------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    #trialModal .modal-dialog {
+        width: 768px;
+        height: 500px;
+    }
+    #trialModal .modal-content {
+        width: 100%;
+        height: 100%;
+    }
+    #trialModal .modal-body {
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+}
+#trialModal .modal-content {
+    border-radius: 0px;
+    border: 8px solid #FFF;
+}
+#trialModal .modal-content .close {
+    font-size: 40px;
+    width: 40px;
+    opacity: 0.3;
+}
+
+#trialModal .modal-content .modal-footer {
+    padding: 15px 15px 20px;
+    bottom: 0px;
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    color: #FEF8ED;
+    border: 0;
+}
+
+#trialModal .modal-content .modal-footer span {
+    font-family: "Amatic SC", cursive;
+    font-size: 62px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    text-align: center;
+    line-height: 54px;
+    margin-bottom: 30px;
+}
+
+#trialModal .modal-content .modal-footer p {
+    color: black;
+}
+
+#trialModal .modal-content .modal-footer #register-link {
+    position: relative;
+    right: 50%;
+    transform: translateX(50%);
+    font-family: "Amatic SC", cursive;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 42px;
+    letter-spacing: 1px;
+    padding: 0 50px 10px 50px;
+    color: white;
+    background-color: #D9A52A;
+    border: 0;
+}
+
+#hi50-box {
+    font-family: "Amatic SC", cursive;
+    font-weight: 600;
+    margin-top: 10%;
+    text-align: center;
+    font-size: 80px;
+    line-height: 70px;
+}
+
+
+
+@media only screen and (max-width: 414px) and (max-height: 736px) {
+    #trialModal .modal-dialog {
+        width: 320px;
+        height: 568px;
+    }
+    #trialModal .modal-content {
+        width: 100%;
+        height: 100%;
+    }
+    #trialModal .modal-body {
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+    #trialModal .modal-content .modal-footer #register-link {
+        position: relative;
+        right: 50%;
+        transform: translateX(50%);
+        font-family: "Amatic SC", cursive;
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 42px;
+        letter-spacing: 1px;
+        color: white;
+        background-color: #D9A52A;
+        border: 0;
+        padding: 0 5px 10px 5px;
+    }
+    #hi50-box {
+        font-family: "Amatic SC", cursive;
+        font-weight: 600;
+        text-align: center;
+        margin-top: 18%;
+        font-size: 60px;
+        line-height: 60px;
+        /*color: red;*/
+    }
+}
+
+@media only screen and (max-width: 736px) and (max-height: 414px) {
+    #trialModal .modal-dialog {
+        width: 568px;
+        height: 320px;
+    }
+    #trialModal .modal-content {
+        width: 100%;
+        height: 100%;
+    }
+    #trialModal .modal-body {
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+    #trialModal .modal-content .modal-footer #register-link {
+        position: relative;
+        right: 50%;
+        transform: translateX(50%);
+        font-family: "Amatic SC", cursive;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 22px;
+        letter-spacing: 1px;
+        color: white;
+        background-color: #D9A52A;
+        border: 0;
+        padding: 0 5px 10px 5px;
+    }
+    #hi50-box {
+        font-family: "Amatic SC", cursive;
+        font-weight: 600;
+        text-align: center;
+        margin-top: 10%;
+        font-size: 40px;
+        line-height: 36px;
+        /*color: blue;*/
+    }
+}
+
+/*********** Taster Pack Modal ************/
+#modal-taster .modal-dialog {
+  width: 700px;
+}
+
+#modal-taster .modal-body {
+  height: 500px;
+  background-color: RGB(253, 247, 238);
+  padding: 20px;
+}
+
+#modal-taster h1 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+#modal-taster h2 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+#modal-taster a {
+  display: block;
+  width: 250px;
+  margin: 0 auto 25px auto;
+  color: #FFF;
+  border: 1px solid RGB(204, 171, 78);
+  border-radius: 20px;
+  background-color: RGB(204, 171, 78);
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+#modal-taster a:hover {
+  text-decoration: none;
+}
+
+#modal-taster img {
+  width: 300px;
+  height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 1px;
+  box-shadow: 5px 5px 3px #888888;
+  margin-bottom: 10px;
+}
+
+#modal-taster .close {
+  top: 12px;
+  left: 15px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 736px){
+
+  #modal-taster .modal-dialog {
+    width: 320px;
+  }
+
+  #modal-taster .modal-body {
+    height: 820px;
+  }
+
+  #modal-taster img {
+    width: 225px;
+    height: 225px;
+  }
+}
+
+.pods h1 {
+    font-size: 50px;
+    color: RGB(76, 37, 51);
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.pods p {
+    font-size: 16px;
+    color: RGB(76, 37, 51);
+}
+
+/*********** Shotpods Taster Pack Modal ************/
+#modal-shotpods-taster .modal-content {
+    background: url(/static/images/shotpods_trial.png) no-repeat center right;
+    background-size: cover;
+    width: 555px;
+    height: 555px;
+}
+
+#modal-shotpods-taster .modal-dialog {
+  width: 555px;
+}
+
+#modal-shotpods-taster .modal-body {
+  height: 555px;
+}
+
+#modal-shotpods-taster h1 {
+  position: absolute;
+  margin: 25px 0 0 115px;
+  font-family: 'Amatic SC', cursive;
+  font-size: 60px;
+  color: #DDD;
+  font-weight: 700;
+  /*margin-bottom: 20px;*/
+}
+
+#modal-shotpods-taster h2 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 28px;
+  font-weight: 700;
+  /*margin: 10px 0;*/
+}
+
+#modal-shotpods-taster a.just-link {
+  position: absolute;
+  display: block;
+  color: #DDD;
+  font-size: 18px;
+  bottom: 35px;
+  /*left: auto;*/
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+#modal-shotpods-taster a.button-like {
+  display: block;
+  font-family: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 225px;
+  color: #DDD;
+  border: 1px solid RGB(42, 66, 73);
+  border-radius: 10px;
+  background-color: RGB(42, 66, 73);
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  /*margin-top: 450px;*/
+  position: absolute;
+  bottom: 55px;
+  /*right: 25px;*/
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+#modal-shotpods-taster a:hover {
+  text-decoration: none;
+}
+
+#modal-shotpods-taster .close {
+  top: 12px;
+  left: 15px;
+  color: #FFF;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 736px){
+
+  #modal-shotpods-taster .modal-dialog {
+    margin: 100px auto;
+    width: 320px;
+  }
+
+  #modal-shotpods-taster .modal-body {
+    height: 320px;
+  }
+  #modal-shotpods-taster .modal-content {
+    width: 320px;
+    height: 320px;
+  }
+  #modal-shotpods-taster h1 {
+    font-family: 'Amatic SC', cursive;
+    margin: 15px 0 0 65px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+}
+
+#div-quantity {
+  margin: 20px 10px;
+}
+#div-quantity input {
+  line-height: 28px;
+  width: 56px;
+  font: bold 26px "Archer-Medium";
+  color: RGB(111, 80, 70);
+  border: 0;
+  text-align: center;
+}
+#div-quantity button {
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 14px;
+  text-align: center;
+  padding: 1px;
+}
+
+/**************** add to cart modal ******************/
+#modal-cart-add .form-horizontal .form-group {
+    margin-right: 0;
+    margin-left: 0;
+}
+#modal-cart-add .modal-dialog {
+  width: 750px;
+}
+
+#modal-cart-add .modal-body {
+  padding: 20px 20px 20px 20px;
+}
+
+#modal-cart-add .close {
+  position: relative;
+  float: right;
+  margin-right: 10px;
+  margin-top: -10px;
+  font-size: 35px;
+}
+
+#modal-cart-add h3 {
+  font: 28px "Amatic SC";
+  font-weight: 700;
+}
+#modal-cart-add p {
+  font-size: 14px;
+  color: RGB(111, 80, 70);
+}
+
+#modal-cart-add .img-thumbnail {
+  display: inline-block;
+  vertical-align: middle;
+  background: url('#') no-repeat scroll center center;
+  background-size: 100% 100%;
+  width: 75px !important;
+  height: 75px !important;
+  border-radius: 50%;
+  margin: 10px 10px;
+}
+
+#modal-cart-add .form-option {
+  text-align: center;
+  display: inline-block;
+}
+
+#modal-cart-add .selected .img-thumbnail {
+  border: 5px solid RGB(244, 192, 108) !important;
+  opacity: 1;
+}
+
+#modal-cart-add .unselected .img-thumbnail{
+  opacity: 0.4 !important;
+  border: 5px solid transparent !important;
+}
+
+#modal-cart-add p b {
+  display: inline-block;
+}
+
+#modal-cart-add .btn-group {
+  bottom: 0;
+  position: relative;
+  float: right;
+}
+#modal-cart-add {
+  color: RGB(111, 80, 70);
+}
+
+/*#modal-cart-add .modal-dialog .modal-content {
+  border-radius: 1px;
+  border: 8px solid #FFF;
+}
+
+.icon-list .form-option .img-thumbnail,
+#filters .brew-method .img-thumbnail {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 5px solid transparent;
+  opacity: 0.4;
+}*/
+
+.btn-cart-add {
+  padding: 8px 13px;
+  font-size: 11px;
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 3px #888;
+}
+
+#modal-cart-add #p_forgot_methods,
+#modal-cart-add #p_forgot_package,
+#modal-cart-add #p_forgot_brew {
+  color: RGB(210, 60, 60);
+}
+
+@media only screen and (max-width: 414px) {
+  #modal-cart-add .form-horizontal .form-group {
+    text-align: center;
+  }
+  #modal-cart-add .modal-dialog {
+    width: 100%;
+  }
+  #modal-cart-add .btn-group button {
+    font-size: 14px;
+  }
+}

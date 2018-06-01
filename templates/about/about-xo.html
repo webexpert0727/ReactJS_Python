@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}- {% trans 'About' %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/about.scss' %}" />
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content%}
+
+<!-- OUR STORY -->
+
+<!-- END OF OUR STORY -->
+
+<section class="container main-page-header">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+      <h1>{% trans 'Our Story' %}</h1>
+      <p>
+      {% trans 'At Hook, we want to share our love and knowledge of coffee with you, and with every cup
+      of coffee, take you on a journey from our farmers’ hands to yours.' %}
+      </p>
+      <p>
+        {% blocktrans trimmed %}
+        We source the finest sustainably grown and ethically produced beans from farms in the
+        developing world — and this is only the start of making a difference in people’s lives. We
+        tailor their roast profiles and roast them in Singapore then send them out to you within a
+        week of roasting, not to mention right to your doorstep. All you have to do is enjoy.
+        {% endblocktrans %}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-1">
+        <div id="whatwe-do" class="module-item">
+          <div class="bg-img"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-0">
+        <div class="text-panel">
+
+            <h1>{% trans 'What we do' %}</h1>
+            <p>
+              {% blocktrans trimmed %}
+              Because no one should have to worry about running out of
+              their favourite beans or stock up & settle for stale coffee
+              (we’ve been there and understand that pain), we make
+              freshly roasted specialty coffee conveniently accessible to
+              you. We’ll deliver you your coffee just the way you want it,
+              weekly or fortnightly, and straight to your mailbox!
+              {% endblocktrans %}
+              {% if not user.is_authenticated %}
+              <br>
+              {% endif %}
+            </p>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'get_started' %}" class="btn btn-primary btn-get-started btn-lg">{% trans 'GET STARTED' %}</a>
+            {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-1">
+        <div class="text-panel">
+          <h1>{% trans 'What We Believe In' %}</h1>
+
+          <div class="custom-list">
+            <ol>
+              <li>
+                <p>
+                  {% blocktrans trimmed %}
+                  We believe everyone can make their own fresh and great tasting
+                  coffee at home or at work as long as the beans are grown and
+                  processed at the best farms, and freshly roasted with love and care.
+                  That’s why we source only the finest and always send out your
+                  coffee to you <b>within 1 week* of roasting</b>. Don’t get too startled
+                  when that heavenly aroma hits you!
+                  {% endblocktrans %}
+                </p>
+              </li>
+              <li>
+                <p>
+                  {% blocktrans trimmed %}
+                  We’re big on sustainability so we’ve adopted the <b>Direct Trade</b>
+                  model to give you traceability of our coffees and ethical choices.
+                  Our farmers receive a bigger share of the final retail value and this
+                  is just one of the ways we show our appreciation for their skills and
+                  hard work as growing and processing specialty coffee is a real art.
+                  We aren’t 100% Direct Trade yet, but we’re definitely getting there.
+                  {% endblocktrans %}
+                </p>
+              </li>
+              <li>
+                <p>
+                  {% blocktrans trimmed %}
+                  Although we think you’re likely to get hooked on us, we know
+                  commitment can be a scary thing. We won’t tie you to any contract
+                  — you can edit, pause or cancel your subscription at any time, with
+                  <b>zero commitment.</b> And since change is only natural, you can
+                  update your profile so we can recommend you a coffee better
+                  suited to your needs and preferences.
+                  {% endblocktrans %}
+                </p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-0">
+        <div id="whatwe-believein" class="module-item">
+          <div class="bg-img"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="module">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-7 col-lg-offset-1">
+        <div id="coffee-lifecycle" class="module-item">
+          <div class="bg-img"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-3 col-lg-offset-0">
+        <div class="coffee-lifecycle text-panel">
+          <p>{% trans 'It takes at least 3 years for a coffee seedling to grow into a tree.' %}</p>
+          -
+          <p>{% trans 'It takes up to 4 weeks for coffee cherries to be processed, depending on the method & climate.' %}</p>
+          -
+          <p>{% trans 'It takes 8-12 minutes to roast coffee beans.' %}</p>
+          -
+          <p>{% trans 'It takes on average 1 week* for freshly roasted coffee to “degas”, which helps the beans to settle and gives you a more balanced cup. We’ll send out your coffee to you within a week of roasting and by the time you receive it, you’re all set for a perfect cup of coffee.' %}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Founders -->
+<section class="module">
+  <div id="div-founders" class="container-fluid">
+    <div class="row">
+      <h1>{% trans 'Meet the Founders' %}</h1>
+      <!-- <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-3 col-lg-offset-0"> -->
+
+      <div class="col-md-2 col-md-offset-1">
+        <div class="content-box-icon">
+          <img src="{% static 'images/ernest.png' %}" width="100%" alt="">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+          <h2 class="names">{% trans 'Ernest' %}</h2>
+          <p class="founders">
+            {% trans 'A self-proclaimed coffee geek with an intrepid & wild entrepreneurial spirit, Ernest’s ambition in life is to share his love of coffee by bringing great coffee to everyone.' %}
+            <br/>
+            <br/>
+            {% trans 'Which brew method best describes Ernest?' %}
+            {% trans 'The Espresso — He’s high energy, dynamic, bold, and can do some pretty decent latte art.' %}
+          </p>
+      </div>
+
+      <div class="col-md-2">
+        <div class="content-box-icon">
+          <img src="{% static 'images/faye.png' %}" width="100%" alt="">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+          <h2 class="names">{% trans 'Faye' %}</h2>
+          <p class="founders">
+            {% trans 'Faye is a coffeeholic who thinks specialty coffee shouldn’t just be about better coffee, but also about sustainable livelihoods and making a diff in people’s lives & the environment.' %}
+            <br/>
+            <br/>
+            {% trans 'Which brew method best describes Faye?' %}
+            {% trans 'The AeroPress — She’s all about achieving that perfect balance and works well under pressure.' %}
+          </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- /Founders -->
+
+
+<section class="module module-bottom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        {% if not user.is_authenticated %}
+        <h1>{% trans "What's Next?" %}</h1>
+        <a href="{% url 'get_started' %}" class="btn btn-primary btn-get-started">{% trans 'GET STARTED' %}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <form method="POST" action="">
+        {% csrf_token %}
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{% trans 'We are coming really soon!' %}</h4>
+        </div>
+        <div class="modal-body">
+
+        <p>{% trans 'Drop you name and email address for early bird updates!' %}</p>
+
+        <label for="inputEmail" class="sr-only">{% trans 'Name' %}</label>
+        {{ form.name|add_class:"form-control"|attr:"autofocus"|attr:"placeholder:Name"|attr:"required" }}
+        {{ form.name.errors }}
+
+        <label for="inputPassword" class="sr-only">{% trans 'Password' %}</label>
+        {{ form.email|add_class:"form-control"|attr:"placeholder:Email"|attr:"required" }}
+        {{ form.email.errors }}
+
+
+        </div>
+        <div class="modal-footer">
+        <button class="btn btn-lg btn-warning" type="submit">{% trans 'Done' %}</button>
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <!-- Trial Pack Modal -->
+  <div id="trialModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body" style="background: transparent url({% static 'images/trial-pack.jpg' %}) no-repeat scroll center center / cover ; height: 600px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="modal-footer">
+            <span class="col-xs-12">{% trans 'TASTER PACK FOR ONLY' %} <big>$7</big></span>
+            <a id="register-link" href="{% url 'trial' %}" class="btn btn-primary">{% trans "I'll take it!" %}</a>
+            <p>{% trans '* for limited time only!' %}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+$(document).ready(function(){
+
+{% if not user.is_authenticated %}
+  setTimeout(function(){
+    console.log('* timeout');
+    $("#trialModal").modal();
+  }, 50 * 1000);
+{% endif %}
+
+  if ('{{ form.email.errors }}' !== '' || '{{ form.name.errors }}' !== '') {
+    $("#btn-get-started").click();
+  }
+});
+</script>
+
+{% endblock %}

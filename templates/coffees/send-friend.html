@@ -1,0 +1,471 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Send a Friend Credits' %}{% endblock %}
+
+{% block meta-description %}
+    "choose a gift credit amount. gift the voucher. lucky recipient redeems gift. PURCHASE GIFT CREDITS."
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}{% url 'send-friend' %}" />
+
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+
+  <!-- The required Stripe lib -->
+  <script src="{% static 'assets/vendor/jquery.js' %}"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script src="{% static 'assets/vendor/bootstrap-slider.min.js' %}"></script>
+  <script src="{% static 'seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+
+  <script type="text/javascript">
+    // This identifies your website in the createToken call below
+    // Stripe.setPublishableKey('pk_test_kfcuJ26NVnCUweuNmZSNoCwD');
+    Stripe.setPublishableKey("{{ stripe_key }}");
+
+    var stripeResponseHandler = function(status, response) {
+      var $form = $('#payment-form');
+
+      if (response.error) {
+        console.log("Stripe errors: " + response.error);
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+        $form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+        // $form.find('span.loading-text').addClass('hidden');
+      } else {
+        // token contains id, last4, and card type fa fa-spinner
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // and re-submit
+        // $form.get(0).submit();
+
+        $.ajax({
+          url: "{% url 'stripe_send_friend' %}",
+          type: "POST",
+          data: $form.serialize(),
+          success: function(data) {
+            $("#buyGift").modal("hide");
+            $('.modal-backdrop').remove();
+            $("#confirm-credits-modal").modal("show");
+            // window.location.replace("/");
+          },
+        });
+
+      }
+    };
+    jQuery(function($) {
+      $('#payment-form').submit(function(e) {
+
+        var $form = $(this);
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+        $('.close').prop('disabled', true);
+        $form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+        // $form.find('span.loading-text').removeClass('hidden');
+        console.log('Before stripeResponseHandler');
+        Stripe.card.createToken($form, stripeResponseHandler);
+        // Prevent the form from submitting with the default action
+        console.log('After stripeResponseHandler');
+        return false;
+      });
+    });
+
+    // $('#submit-subs').click(function(){
+    //   $( ".loading-icon" ).addClass('glyphicon glyphicon-refresh glyphicon-refresh-animate').delay(2000).fadeOut(2000, function(){
+    //       $( ".loading-icon" ).removeClass('glyphicon glyphicon-refresh glyphicon-refresh-animate');
+    //   });
+    // });
+
+  </script>
+{% endblock %}
+
+{% block content%}
+
+<section id="voucher__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-xs text-center">
+      <h1>{% trans 'The Gift That Keeps On Giving' %}</h1>
+      <h4>{% blocktrans %}You choose how much you want to spend. The lucky recipient will choose his preferred coffee and when they like to receive them.{% endblocktrans %}</h4>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-row row-md row-grid">
+    <h2>{% trans 'How it works' %}</h2>
+  </div>
+
+  <div class="section-row row-md row-grid">
+    <ol class="bullet vouchers-bullet">
+      <li>
+        <p class="s-h3-s"><b>{% trans 'CHOOSE A GIFT CREDIT AMOUNT' %}</b></p>
+        <div class="img-wrapper">
+          <img src="{% static 'images/icons/vouchers_howitworks/howitworks1.png' %}" alt="Choose a gift credit amount" />
+        </div>
+        <p>{% trans 'Purchase any amount of gift credits you want and once your order is complete, we’ll send you a lovely printable voucher to your email. Add a personalised message if you want!' %}</p>
+      </li>
+
+      <li>
+        <p class="s-h3-s"><b>{% trans 'GIFT THE VOUCHER' %}</b></p>
+        <div class="img-wrapper">
+          <img src="{% static 'images/icons/vouchers_howitworks/howitworks2.png' %}" alt="Gift the voucher" />
+        </div>
+        <p>{% trans 'Simply forward the gift voucher to the lucky recipient via email, or print and present it personally so you get to see their smile and maybe you’ll even get a giant hug or a wet sloppy kiss!' %}</p>
+      </li>
+
+      <li>
+        <p class="s-h3-s"><b>{% trans 'LUCKY RECIPIENT REDEEMS THE GIFT' %}</b></p>
+        <div class="img-wrapper">
+          <img src="{% static 'images/icons/vouchers_howitworks/howitworks3.png' %}" alt="Recipient redeems the gift" />
+        </div>
+        <p>{% trans 'When redeeming their coffees from our website, the lucky recipient has the flexibility of choosing which coffees they’d like, how they’d like the coffees packed, and the delivery frequency.' %}</p>
+      </li>
+
+      <li>
+        <p class="s-h3-s"><b>{% trans 'RELAX AND ENJOY' %}</b></p>
+        <div class="img-wrapper">
+          <img src="{% static 'images/icons/vouchers_howitworks/howitworks4.png' %}" alt="Relax and enjoy" />
+        </div>
+        <p>{% trans 'We’ll send out their coffees within a week of roasting, straight to their mailbox, so all they have to do is relax, be thankful, and enjoy! You too, can relax - knowing it’s the perfect gift.' %}</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-row row-lg text-center">
+    <h2>{% trans 'Choose a package!' %}</h2>
+  </div>
+
+  <div class="section-row row-lg row-grid">
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="package-box pckg-lvl1">
+        <div class="cb-info cb-header">
+          <h4>{% trans 'Package A' %}</h4>
+        </div>
+
+        <div class="cb-info">
+          <p class="s-h6 pckg-price"><b>S$42.00</b></p>
+          <p>{% trans 'Equivalent to' %}</p>
+
+          <p class="s-h2"><small>3x Bags of Coffee</small></p>
+          <h6><b>{% trans 'or' %}</b></h6>
+          <p class="s-h2"><small>60 ShotPods</small></p>
+
+          <p class="pckg-bonus">
+            <small>
+              <b>{% trans '' %}</b>
+            </small>
+          </p>
+        </div>
+
+        <div class="cb-info cb-footer">
+          <button class="btn btn-hc btn-hc-sm btn-buygift"
+            data-toggle="modal"
+            data-target="#buyGift"
+            data-type="gift-lvl1">
+            {% trans 'Buy Voucher' %}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="package-box pckg-lvl2">
+        <div class="cb-info cb-header">
+          <h4>{% trans 'Package B' %}</h4>
+        </div>
+
+        <div class="cb-info">
+          <p class="s-h6 pckg-price"><b>S$84.00</b></p>
+          <p>{% trans 'Equivalent to' %}</p>
+
+          <p class="s-h2"><small>6x Bags of Coffee</small></p>
+          <h6><b>{% trans 'or' %}</b></h6>
+          <p class="s-h2"><small>120 ShotPods</small></p>
+
+          <p class="pckg-bonus">
+            <small>
+              <b>{% trans 'Free' %}</b>
+              v60 starter kit
+            </small>
+          </p>
+        </div>
+
+        <div class="cb-info cb-footer">
+          <button class="btn btn-hc btn-hc-sm btn-buygift"
+            data-toggle="modal"
+            data-target="#buyGift"
+            data-type="gift-lvl2">
+            {% trans 'Buy Voucher' %}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <div class="package-box pckg-lvl3">
+        <div class="cb-info cb-header">
+          <h4>{% trans 'Package C' %}</h4>
+        </div>
+
+        <div class="cb-info">
+          <p class="s-h6 pckg-price"><b>S$252.00</b></p>
+          <p>{% trans 'Equivalent to' %}</p>
+
+          <p class="s-h2"><small>12x Bags of Coffee</small></p>
+          <h6><b>{% trans 'or' %}</b></h6>
+          <p class="s-h2"><small>120 ShotPods</small></p>
+
+          <p class="pckg-bonus">
+            <small>
+              <b>{% trans 'Free' %}</b>
+              Hand Grinder
+            </small>
+          </p>
+        </div>
+
+        <div class="cb-info cb-footer">
+          <button class="btn btn-hc btn-hc-sm btn-buygift"
+            data-toggle="modal"
+            data-target="#buyGift"
+            data-type="gift-lvl3">
+            {% trans 'Buy Voucher' %}
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-row row-lg text-center">
+    <p><em><b>{% trans 'TAKE NOTE!'%}</b> {% trans 'Gift vouchers can only be used for redemption on a subscription programme.' %}</em></p>
+    <h4 class="hc-text-noshadow">{% trans 'or choose your own credit amount!' %}</h4>
+  </div>
+</section>
+
+{% comment %}
+<section class="gift-sec2">
+  <div class="container">
+    <h2 id="credits-href">{% trans 'PURCHASE GIFT CREDITS' %}</h2>
+    <b>{% trans 'Credit amount' %}:</b>
+    <p>
+      <input type="text" id="amount" readonly />
+    </p>
+    <small class="pull-left">{% trans 'Min.' %} $18</small> <small class="pull-right">{% trans 'Max.' %} $360</small>
+    <div class="s-o">
+      <div id="slider-range-min"></div>
+      <br />
+      <br />
+    </div>
+    <center>
+      <button name="btn" class="btn btn3" data-toggle="modal" data-target="#buyGift">&nbsp; {% trans 'Buy Credit' %} &nbsp;</button>
+    </center>
+  </div>
+  <!--container-->
+</section>
+<!--gift-sec2-->
+{% endcomment %}
+
+
+<!-- Modal Buy Credits-->
+<div class="modal modal-hc modal-form fade"
+  id="buyGift"
+  tabindex="-1"
+  data-backdrop="static"
+  role="dialog"
+  aria-labelledby="Buy gift">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="s-h2"><b>{% trans 'Purchase A Gift' %}</b></p>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <p class="s-h2-bold">{% trans 'Credit amount' %}</p>
+
+          <div class="purchase-box">
+            <div class="purchase-box__price">
+              <button id="decrement" class="btn btn-primary-inv btn-hc btn-hc-xs">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+              </button>
+
+              <p id="buyGift__price" class="s-h5"></p>
+
+              <button id="increment" class="btn btn-primary-inv btn-hc btn-hc-xs">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+
+          <form id="payment-form" method="POST" action="">
+            {% csrf_token %}
+
+            <p class="s-h2-bold">
+              {% trans 'RECIPIENT’S DETAILS – WHO’S THE GIFT FOR?' %}
+            </p>
+
+            <div class="form-group">
+              <label>{% trans 'Recipient’s name' %}</label>
+              <input type="text"
+                name="recipient_name"
+                class="form-control"
+                value="" required/>
+            </div>
+
+            <p class="s-h2-bold">
+              {% trans 'YOUR DETAILS' %}
+            </p>
+
+            <div class="form-group">
+              <label>{% trans 'Your first name' %}</label>
+              <input type="text" name="first_name" class="form-control" value="" />
+            </div>
+
+            <div class="form-group">
+              <label>{% trans 'Your last name' %}</label>
+              <input type="text" name="last_name" class="form-control" value="" />
+            </div>
+
+            <div class="form-group">
+              <label>{% trans 'Your Email' %}</label>
+              <input type="text" name="email" class="form-control" value="" />
+            </div>
+
+            <p class="s-h2-bold">
+              {% trans 'YOUR PAYMENT DETAILS' %}
+            </p>
+
+            <div class="form-group">
+              <label for="id_one-username">{% trans 'Card Number' %}</label>
+              <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+            </div>
+
+            <div class="other-card-info">
+              <div class="form-group">
+                <label for="card__cvc">{% trans 'CVC' %}</label>
+                <input id="card__cvc"
+                  type="text"
+                  size="4"
+                  data-stripe="cvc"
+                  class="form-control"
+                  value=""/>
+              </div>
+
+              <div class="form-group">
+                <label for="card__exp">{% trans 'Expiration (MM/YYYY)' %}</label>
+                <div class="form-inline">
+                  <input class="form-control form-expmo"
+                    type="text"
+                    size="2"
+                    data-stripe="exp-month"
+                    value=""
+                    placeholder="{% trans 'MM' %}" />
+                  <b> / </b>
+                  <input class="form-control form-expyr"
+                    type="text"
+                    size="4"
+                    data-stripe="exp-year"
+                    value=""
+                    placeholder="{% trans "YYYY" %}" />
+                </div>
+              </div>
+            </div>
+
+            <p class="payment-errors"></p>
+
+            <div class="form-group">
+              <input id="post_credits" type="hidden" name="post_credits" value="42"/>
+              <div id="stripe-notify" class="alert alert-info">{% trans 'We use Stripe to process your payment super securely. We never store your card details on our system and instead leave that up to Stripe (who are very, very good at it).' %}</div>
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-primary btn-hc" type="submit">
+                  {% trans 'Buy Voucher' %}
+                </button>
+                {% comment %}
+                  <button id="submit-credits-buy" type="submit"
+                    class="btn btn-primary btn-hc">
+                    <span><i class ="loading-icon"></i></span>
+                    {% trans 'PAY' %} $<span id="amount-to-pay">36</span> {% trans 'NOW' %}
+                  </button>
+                {% endcomment %}
+
+                {% comment %}
+                  <span class="loading-text hidden">{% trans 'Verifying' %}</span>
+                {% endcomment %}
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <!--modal-content-->
+  </div>
+  <!--modal-dialog-->
+</div>
+<!--modal-->
+
+
+<!-- Modal Confirmation -->
+<div class="modal fade" id="confirm-credits-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2>{% trans 'Thank you!' %}</h2>
+      </div>
+
+      <div class="modal-body">
+        <h4>{% trans 'What happens next?' %}</h4>
+        <p>
+          {% blocktrans trimmed %}
+          You will be receiving an email shortly with a lovely printable voucher containing
+          a unique code which you can forward via email or print and present it personally
+          so you get to see their smile and maybe a giant hug or a wet sloppy kiss!
+          {% endblocktrans %}
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <a href="{% url 'shop-gift-set' %}" class="btn btn-primary btn-hc">
+          {% trans 'Perfect!' %}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Modal Confirmation -->
+
+{% endblock %}
+
+{% block scripts %}
+<!-- <script src="{% static 'assets/vendor/jquery.js' %}"></script> -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="{% static 'assets/vendor/jquery.ui.touch-punch.min.js' %}"></script>
+<script>
+  $('#slider-range-min').slider();
+</script>
+<!-- <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script> -->
+<script src="{% static 'assets/custom/js/send-friend.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+.wholsale-banner {
+  background: url(/static/images/banner2.png) no-repeat center top;
+  min-height: 510px;
+  width: 100%;
+  background-size: cover;
+  margin-top: 72px;
+}
+@media only screen and (max-width: 767px) {
+  .wholsale-banner {
+    margin-top: 60px;
+  }
+}
+.wholsale-banner .banner-text {
+  margin-top: 150px;
+}
+.wholsale-banner .banner-text h1 {
+  font-size: 55px;
+  color: #735146;
+  text-transform: uppercase;
+}
+.wholsale-banner .banner-text p {
+  font-size: 16px;
+  color: #735146;
+}
+.corporate-banner {
+  background: url(/static/images/banner6.jpeg) no-repeat center center;
+  /*opacity: 0.5;*/
+  min-height: 510px;
+  width: 100%;
+  background-size: cover;
+  margin-top: -40px;
+}
+.corporate-banner h1,
+.corporate-banner p {
+  color: RGB(70, 40, 50) !important;
+}
+.corporate-banner button,
+.corporate-banner .btn {
+  margin: 25px;
+}
+.corporate-banner .banner-text {
+  margin-top: 100px;
+}

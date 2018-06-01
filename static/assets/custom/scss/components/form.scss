@@ -1,0 +1,56 @@
+.form-body {
+  margin-bottom: $base-padding*2;
+
+  .form-container { padding-top: 1px; }
+  .form-group { 
+    margin: $base-padding;
+  }
+}
+
+.form-hc-spacier {
+  .form-group {
+    margin-top: $base-padding * 2;
+  }
+}
+
+.form-group {
+  label { font-weight: normal !important; }
+}
+
+.form-hc {
+  .form-group {
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      border-radius: $base-border-radius;
+      height: 40px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+  }
+}
+
+.form-hc-inline {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & > * {
+    margin: $base-padding/2 0 0;
+    &:first-child { margin-top: 0; }
+  }
+
+  @media (min-width: $width-sm) {
+    flex-direction: row;
+
+    & > * {
+      margin: 0 0 0 $base-padding/2;
+      &:first-child { margin-left: 0; }
+    }
+  }
+}
+

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load compress %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Categories' %}{% endblock %}
+
+{% block meta-description %}"Hook Coffee Blog Categories"{% endblock %}
+
+{% block head %}
+    <link rel="canonical" href="https://{{current_domain}}{% url 'filter-posts-by-cat' %}" />
+    {% compress css %}
+        <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="sub-nav sub-nav-blog sub-nav-blog__sm">
+        <div class="container-fluid">
+            <div class="wrapper">
+                <h4 class="pull-left">
+                    THE<span class="clr-me-p">HOOK<span><span class="clr-me-s">BLOG</span>&nbsp;&nbsp;<span class="clr-me-s use-base-font">#</span>GET<span class="clr-me-p">HOOKED<span>
+                </h4>
+
+                <h4 class="pull-right">
+                  <span class="clr-me-s">Coffee Fueled</span>
+                  <span class="clr-me-p">Thoughts</span>,
+                  <span class="clr-me-p">Stories</span>, and
+                  <span class="clr-me-p">Ideas</span>
+                </h4>
+            </div>
+
+            <div class="wrapper">
+                <ul class="blog-category-links">
+                    <li>
+                        <a href="{% url 'filter-posts-by-cat' cat_slug='latest' %}">
+                            {% trans 'Latest' %}
+                        </a>
+                    </li>
+                    <li><span class="clr-me-s">&#8226;</span></li>
+
+                    {% for category in categories %}
+                        <li><a href="{% url 'filter-posts-by-cat' cat_slug=category.slug %}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="section blogpost">
+        <div class="section-row row-lg text-left">
+            <div class="blogpost-thumb">
+                <div class="post-thumb" style="background-image: url(
+                    {% if post.img %}
+                        {{ post.img.url }}
+                    {% endif %}
+                )">
+                </div>
+            </div>
+
+            <div class="blogpost-content">
+                <p class="blogpost-title">{{ post.title }}</p>
+                <p class="blogpost-date">
+                    <em>{% trans 'Posted by' %}</em>&nbsp;
+                    <b>{{ post.author }}</b>&nbsp;
+                    {% trans 'on' %}&nbsp;
+                    <b>{{ post.date_published }}</b>
+                </p>
+
+                {{ post.content|safe }}
+
+                <div class="blogpost-tags">
+                  {% for tag in post.tags.all %}
+                      <a href="{% url 'filter-posts-by-tag' tag_slug=tag.slug %}">
+                          <span class="blogpost-tag">{{ tag.name }}</span>
+                      </a>
+                  {% endfor %}
+                </div>
+
+<!--                 <div class="blogpost-share">
+                    <p class="s-h2-bold">{% trans 'Share this' %}</p>
+                    <span class="sh-fb"></span>
+                    <span class="sh-tw"></span>
+                    <span class="sh-gp"></span>
+                </div>
+
+                <div class="blogpost-prev">
+                    <p class="s-h2-bold">{% trans 'Previous post' %}</p>
+                    <a>Greetings and Merry Christmas to all!</a>
+                </div>
+
+                <div class="blogpost-next">
+                    <p class="s-h2-bold">{% trans 'Next post' %}</p>
+                    <a>Greetings and Merry Christmas to all!</a>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-d we-are-hookcoffee">
+        <div class="section-row row-lg text-left">
+            <h4>{% trans 'Hello! We are' %} <span class="clr-me-p">HookCoffee</span></h4>
+            <h6>
+                {% blocktrans %}
+                    At Hook, we want to share our love & knowledge of coffee with you, and with every cup, take you on a journey from our farmers’ hands to yours. We source the finest sustainably grown and ethically produced beans from farms around the world — and this is only the start of making a difference in people’s lives. We roast the coffees locally then send them out to you within a week of roasting so you only get the best & freshest coffees. Visit www.hookcoffee.com.sg to experience this for yourself!
+                {% endblocktrans %}
+            </h6>
+
+            <h4 class="pull-right">
+                <span class="use-base-font">#</span>MAKE<span class="clr-me-p">COFFEE</span>BETTER
+            </h4>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}

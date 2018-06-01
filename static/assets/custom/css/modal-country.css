@@ -1,0 +1,190 @@
+#modal-country .modal-dialog {
+    margin: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+#modal-country .modal-dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+#modal-country .modal-content {
+    height: 100%;
+    border-radius: 0;
+}
+
+#modal-country .modal-body {
+    text-align: center;
+    padding-top: 17%;
+    background:
+        url(/static/images/logo_label.png) 1% 1% / 10% no-repeat,
+        url(/static/images/welcome-country.jpg) no-repeat center center / cover;
+    height: 100%;
+}
+
+#modal-country .modal-body h2 {
+    color: #FFF;
+    font-size: 5em;
+    font-weight: 700;
+    margin-bottom: 7%;
+    font-family: 'DKSugaryPancake';
+}
+
+#modal-country button {
+    border: 2px solid RGB(254, 202, 47);
+    font-weight: 700;
+    font-family: "Open Sans Light";
+    font-size: 30px;
+    padding: 15px 10px;
+    margin: 0 5px;
+}
+
+#local-site {
+    background-color: RGB(254, 202, 47);
+    color: #FFF;
+}
+
+#global-site {
+    background-color: RGB(255, 255, 255);
+}
+
+#welcome-country {
+    display: inline;
+
+    border: 2px solid RGB(254, 202, 47);
+    border-radius: 0;
+    /*-webkit-appearance: none;*/
+
+    background-color: RGB(255, 255, 255);
+    font-weight: 700;
+    font-family: "Open Sans Light";
+    font-size: 24px;
+    color: #000;
+    text-align: center;
+    text-align-last: center;
+    vertical-align: middle;
+
+    padding: 15px 10px;
+    margin: 0 5px;
+    height: 64px;
+}
+
+@media only screen and (max-width: 1366px) {
+    #modal-country .modal-body h2 {
+        font-size: 4em;
+        margin-bottom: 7%;
+    }
+    #modal-country button {
+        font-size: 24px;
+    }
+    #welcome-country {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    #modal-country .modal-body h2 {
+        font-size: 3.5em;
+        margin-top: 25%;
+        margin-bottom: 15%;
+    }
+    #modal-country button {
+        font-size: 20px;
+    }
+    #welcome-country {
+        font-size: 16px;
+        padding: 5px 10px;
+        height: 54px;
+    }
+}
+
+@media only screen and (max-device-width: 1024px) and (min-device-width: 768px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+    #modal-country .modal-body h2 {
+        font-size: 3.5em;
+        margin-top: 8%;
+        margin-bottom: 5%;
+    }
+    #modal-country button {
+        font-size: 22px;
+        padding: 15px 10px;
+    }
+    #welcome-country {
+        font-size: 18px;
+        padding: 5px 10px;
+        height: 54px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #modal-country .modal-body h2 {
+        font-size: 2.2em;
+        margin-top: 45%;
+        margin-bottom: 15%;
+    }
+    #modal-country button {
+        display: inline-block;
+        font-size: 12px;
+        padding: 10px 10px;
+        margin: 5px 0;
+        width: 210px;
+    }
+    #welcome-country {
+        font-size: 12px;
+        padding: 5px 10px;
+        height: 36px;
+        margin: 5px 0;
+        width: 210px;
+    }
+    #modal-country .modal-body {
+        background:
+            url(/static/images/logo_150.png) 99% 1% / 20% no-repeat,
+            url(/static/images/welcome-country.jpg) no-repeat center center / cover;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+
+}
+
+@media only screen and (max-width: 375px) {
+    #modal-country .modal-body h2 {
+        font-size: 1.8em;
+        margin-top: 45%;
+        margin-bottom: 15%;
+    }
+    #modal-country button {
+        display: inline-block;
+        font-size: 12px;
+        padding: 10px 10px;
+        margin: 10px 0;
+    }
+    #welcome-country {
+        font-size: 10px;
+        padding: 5px 10px;
+        height: 36px;
+        margin: 10px 0;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    #modal-country .modal-body h2 {
+        font-size: 1.5em;
+        margin-top: 50%;
+        margin-bottom: 15%;
+    }
+    #modal-country button {
+        display: inline-block;
+        font-size: 12px;
+        padding: 10px 5px;
+        margin: 5px 0;
+    }
+    #welcome-country {
+        font-size: 10px;
+        padding: 5px 5px;
+        height: 36px;
+        margin: 5px 0;
+    }
+}

@@ -1,0 +1,279 @@
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:400,700);
+@import url(https://fonts.googleapis.com/css?family=Arvo:400,400italic,700,700italic);
+
+@font-face {
+    font-family: 'ArcherPro';
+    src: url('../../../fonts/archerpro-medium/ArcherPro-Medium.eot');
+    src: url('../../../fonts/archerpro-medium/ArcherPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../../../fonts/archerpro-medium/ArcherPro-Medium.woff') format('woff'),
+        url('../../../fonts/archerpro-medium/ArcherPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* Global */
+html, body {
+    font-family: 'Arvo', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+    line-height: 100%;
+}
+ul {
+    list-style: none;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+a,
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+/* Helpers */
+.no-padding {
+    padding: 0 !important;
+}
+.no-margin {
+    margin: 0 !important;
+}
+.center-float {
+    margin: 0 auto !important;
+    display: table;
+    clear: both;
+    float: none;
+}
+
+/* Typography - Helpers */
+.text-center {
+    text-align: center;
+}
+.text-left {
+    text-align: left;
+}
+.text-right {
+    text-align: right;
+}
+.text-bold {
+    font-weight: bold;
+}
+.text-bolder {
+    font-weight: bolder;
+}
+.text-underline {
+    text-decoration: underline;
+}
+.text-italic {
+    font-style: italic;
+}
+
+/* Containers */
+.wrapper {
+    margin: 10%  auto;
+    display: block;
+    float: left;
+    padding: 0;
+}
+.text-wrapper {
+    padding: 15px 0;
+    width: 100%;
+    display: block;
+    float: left;
+    margin: 0 auto;
+}
+
+/* Icon Set */
+i {
+    display: inline-block !important;
+    float: left !important;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat !important;
+    background-size: 100% !important;
+    background-position: 0 100% !important;
+    background-attachment: scroll !important;
+    position: relative;
+    top: -1px;
+    margin-right: 5px;
+}
+    i.icon-gift {
+        background: url('../../../images/gift.png');
+
+
+    }
+
+/* Sidebar */
+#sidebar {
+    padding: 0;
+    margin: 0;
+    float: left;
+}
+#sidebar h2 {
+    font-weight: 600;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-family: 'Amatic SC', sans-serif;
+}
+#sidebar ul {
+    background: #FCFCFC;
+    width: 100%;
+    padding: 0;
+    margin: 15px auto;
+    border: 0.5px solid #CCCCCC;
+}
+#sidebar ul li {
+    padding: 0;
+    margin: 0 auto;
+    width: inherit;
+}
+#sidebar ul li.bg-sidebar-tab {
+    background: #28424A;
+    color: #FFFFFF;
+}
+#sidebar ul li a {
+    color: #9E857A;
+}
+#sidebar ul li.bg-sidebar-tab,
+#sidebar ul li a {
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 20px;
+    float: left;
+    width: inherit;
+    clear: both;
+    letter-spacing: 0.25px;
+}
+#sidebar ul li a.active {
+    background: #28424A;
+}
+
+/* Content */
+#content h2,
+#content h3,
+#content h4,
+#content p {
+    color: #000000;
+}
+#content h2 {
+    font-weight: 500;
+    font-size: 2.75em;
+    text-transform: uppercase;
+    margin: 5px auto 0;
+    font-family: 'Amatic SC', sans-serif;
+}
+#content h3 {
+    background: #28424A;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 25px;
+    padding: 16px 20px;
+    float: left;
+    clear: both;
+    margin: 20px auto 0;
+    width: 100%;
+    font-family: ArcherPro;
+}
+#content h4 {
+    line-height: 150%;
+    font-weight: 500;
+    padding: 15px 0;
+    font-size: 1.4em;
+    font-family: ArcherPro;
+}
+#content h4 > a > span {
+    font-family: 'ArcherPro', sans-serif;
+    font-size: 2em;
+}
+#content a.btn-outline-inverse {
+    border: 2px solid #C29221;
+    margin: 25px auto;
+    padding: 12px 20px;
+    border-radius: 15px;
+    display: block;
+    float: left;
+    color: #000000;
+    text-transform: uppercase;
+}
+#content .site-link {
+    color: #C29221 !important;
+}
+#content .span.text-underline {
+    font-size: 20px;
+}
+#content .offer-section {
+    margin-left: -15px;
+    margin-right: -15px;
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 50px;
+}
+#content .redeem-items > .items-info {
+    /*max-height: 375px;*/
+    display: block;
+    float: left;
+    padding: 0;
+    margin: 0 auto;
+    height: 301px;
+}
+#content .redeem-items img {
+    background: #5E5E5E;
+    width: 100%;
+    /*min-height: 75px;*/
+    border-radius: 0;
+    margin: 15px auto;
+}
+#content .redeem-items p {
+    line-height: 150%;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+#content .redeem-link {
+    width: 105%;
+    float: left;
+    margin: 5px auto;
+    background: #C29221;
+    color: #000000;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 13px;
+    font-size: 15px;
+    display: block;
+    border-radius: 15px;
+    border: none;
+    line-height: 20px;
+}
+#content .redeem-link i {
+    display: inline-block;
+    float: left;
+}
+#content .points-section {
+    display: block;
+    float: left;
+    clear: both;
+    margin: 5px auto;
+    width: 100%;
+    height: auto;
+}
+#content .points-section img {
+    width: auto;
+    height: auto;
+    float: left;
+    display: inline-block;
+    max-width: 100%;
+}
+#content .points-section h3 {
+    background: transparent;
+    color: #000000;
+    text-transform: none !important;
+    margin: 0 auto 10px;
+    line-height: 130%;
+    padding: 20px 15px;
+    font-family: ArcherPro;
+    font-size: 1.8em;
+}

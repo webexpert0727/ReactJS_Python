@@ -1,0 +1,34 @@
+@import 'variables';
+@import 'helpers';
+@import 'bg-colors';
+@import 'font-face';
+@import 'transitions';
+
+// base font
+$font-family-sans-serif: $font-family-3;
+$font-size-base:         16px;
+$text-color:             $color-peppercorn;
+
+// headings
+$headings-font-family:   $font-family-2;
+$font-size-h1:           floor(($font-size-base * 3.2));
+
+// Icons
+$icon-font-path:         '~bootstrap-sass/assets/fonts/bootstrap/';
+$fa-font-path:           '~components-font-awesome/fonts/';
+
+// Colors
+$brand-primary:          $color-warm;
+$brand-success:          $color-forest;
+$brand-danger:           $color-firework;
+
+// Buttons
+$btn-default-color:      $color-warm;
+$btn-default-border:     $color-warm;
+
+// Main bootstrap
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import '~components-font-awesome/scss/font-awesome';
+@import 'base';
+@import 'navbar-custom';
+@import 'forms';

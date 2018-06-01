@@ -1,0 +1,92 @@
+#wholesale__csr.section {
+  background: url(/static/images/banner6.jpeg) no-repeat center center;
+  background-position: 100% 40%;
+  background-size: cover;
+  color: white;
+}
+
+#wholesale__top-banner {
+  &.top-banner.section {
+    background: url('/static/images/banners/wholesale-1920x.jpg') no-repeat center top;
+    background-position: 50% 50%;
+    background-size: cover;
+    padding: 7% 0;
+  }
+  h1, h2, h3 {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 200%;
+    text-transform: none !important;
+  }
+  h4 {
+    font-weight: 400;
+    font-size: 125%;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+}
+.ws_adv {
+  margin-top: 3%;
+  > div > div {
+    margin: 0;
+    padding: 0;
+
+    &:first-child {
+      padding: 0 0 0 10%;
+      text-align: left;
+      & p {
+        margin: 10px 0;
+      }
+    }
+  }
+  img {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.ws__section_2 {
+  a, a:link, a:visited, a:hover, a:active {
+    color: #333;
+    text-decoration: underline;
+  }
+}
+#ws__recommended .s-h3-bold,
+.ws__reviews .s-h3-bold,
+.ws__what_you-get .s-h3-bold,
+.ws_plans .s-h3-bold {
+  text-transform: none;
+}
+
+.ws__contact_us {
+  font-family: "HookCoffee Club", cursive;
+  color: RGB(254, 202, 47);
+  font-weight: 600;
+}
+
+.ws__contacts.bg-d-20 {
+  background-color: RGB(83, 88, 95);
+}
+
+.ws__what_you-get {
+  padding: 0 15%;
+  div>div {
+    padding: 0 12%;
+  }
+  p {
+    padding: 10px 0;
+  }
+}
+
+.ws__reviews {
+  text-align: center;
+  img {
+    width: 200px;
+    margin: 0 auto;
+  }
+  .s-h3-bold {
+    margin-bottom: 0;
+  }
+  .section-row {
+    margin-top: 0;
+  }
+}

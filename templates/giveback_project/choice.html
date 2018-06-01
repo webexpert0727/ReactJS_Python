@@ -1,0 +1,19 @@
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Country Choice' %}{% endblock %}
+
+<html>
+<head>
+  <link href="{% static 'assets/custom/css/country_choice.css' %}" rel="stylesheet"/>
+</head>
+
+<body>
+    <div id="line-choice">
+        <a href="{% url 'worldwide' %}" class="btn-choice">Worldwide</a>
+        <a href="{% url 'index' %}" class="btn-choice">Singapore</a>
+    </div>
+</body>
+</html>

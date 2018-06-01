@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{# {% load widget_tweaks %} #}
+{% load i18n %}
+
+{% block title %}— {% trans 'FAQ' %}{% endblock %}
+
+{% block meta-description %}
+    "How will my orders be delivered and when will I receive my coffee?  How flexible is Hook’s subscription service then?  Does Hook do decaffeinated coffees?"
+{% endblock %}
+
+{% block head %}
+<link rel="canonical" href="https://{{current_domain}}{% url 'faq' %}" />
+<!-- Get Social bar -->
+<script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<section class="common-heading top-header">
+    <h1>{% trans 'Frequently Asked Questions' %}</h1>
+</section>
+
+<section class="faq-sec">
+    <div class="container">
+        <div class="col-md-3 col-sm-4">
+            <aside class="sidebar">
+                <h2>{% trans 'FAQ' %}</h2>
+                <ul>
+                    {% for section in sections %}
+                    <li class="sec_{{ section.id }}"><a href="javascript:void(0);"><i class="fa fa-arrow-circle-right"></i> {{ section.name }}</a> <span style="display:block;" class="fa fa-caret-left"></span></li>
+                    {% endfor %}
+                </ul>
+            </aside>
+        </div>
+        <div class="col-md-9 col-sm-8">
+            <section class="question-sec">
+                {% for section in sections %}
+                <div class="post_section sec_{{ section.id }}">
+                    {% for post in posts %}
+                    {% if post.section == section %}
+                    <a href="javascript:void(0);"><i class="fa fa-question-circle"></i> {{ post.title }}</a>
+                    <p>{{ post.message|safe|escape|linebreaks }}</p>
+                    <div class="clearfix"></div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </section>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('.menu-icon').click(function(){
+        var hidden = $('.hemburger-menu');
+        if (hidden.hasClass('visible')){
+            hidden.animate({"left":"-300px"}, "slow").removeClass('visible');
+        } else {
+            hidden.animate({"left":"0px"}, "slow").addClass('visible');
+        }
+    });
+    $(function() {
+        $( "#slider-range-min" ).slider({
+            range: "min",
+            value: 37,
+            min: 1,
+            max: 700,
+            slide: function( event, ui ) {
+                $( "#amount" ).val( "$" + ui.value );
+            }
+        });
+        $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+    });
+
+    {% for section in sections %}
+    $('.sidebar ul li.sec_{{ section.id }}').click(function(){
+        $('.sec_{{ section.id }}').show();
+        $('.sidebar ul li.sec_{{ section.id }} span').show();
+        $('.post_section:not(.sec_{{ section.id }})').hide();
+        $('.sidebar ul li:not(.sec_{{ section.id }}) span').hide();
+    });
+    {% endfor %}
+
+    {% with sections|first as first_section %}
+    $('.sec_{{ first_section.id }}').click();
+    {% endwith %}
+
+});
+</script>
+{% endblock %}

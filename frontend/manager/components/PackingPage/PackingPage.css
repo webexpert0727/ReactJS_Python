@@ -1,0 +1,45 @@
+.title {
+  text-align: center;
+}
+
+.datePicker {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.tabs {
+  margin-top: 40px;
+
+  & li {
+    text-transform: uppercase;
+  }
+}
+
+.btnToolbar {
+  float: right;
+  margin-top: 10px;
+}
+
+.tableWrapper {
+  margin-top: 30px;
+  overflow: auto;
+}
+
+.noHaveOrders {
+  text-align: center;
+  margin-top: 70px;
+  font-style: italic;
+}
+
+.loading {
+  text-align: center;
+}
+
+.loadingOrders {
+  composes: loading;
+  margin-top: 100px;
+}
+
+.coffeeSampleDisabled {
+  color: #d0d0d0;
+}

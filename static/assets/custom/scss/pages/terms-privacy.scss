@@ -1,0 +1,88 @@
+// Navbar
+#navbar {
+  background-color: white;
+}
+
+@media (min-width: $screen-sm) {
+  #navbar {
+    min-height: 100px;
+  }
+}
+
+// ordered list
+ol.list__ordered {
+  padding: 0;
+
+  ol {
+    padding: 0;
+    margin-top: $base-padding / 2;
+  }
+
+  li {
+    margin-bottom: $base-padding;
+
+    &:before {
+      content: counters(item, ".") ". ";
+      font-weight: bold;
+    }
+  }
+
+  // Level 0
+  & > li {
+    margin-left: $base-padding * 1.5;
+    &:not(:first-child) { margin-top: $base-padding; }
+    &:before {
+      position: absolute;
+      margin-left: -$base-padding * 1.5;
+    }
+
+    // Level 1
+    & > ol {
+      & > li {
+        margin-top: $base-padding * 1.5;
+        &:before {
+          position: absolute;
+          margin-top: -$base-padding;
+        }
+
+        // Level 2
+        & > ol {
+          & > li {
+            margin-left: $base-padding;
+            margin-top: $base-padding * 1.5;
+            &:before {
+              position: absolute;
+              margin-top: -$base-padding;
+            }
+          }
+        }
+      }
+    }
+
+    @media (min-width: $screen-md) {
+      // Level 1
+      & > ol {
+        & > li {
+          margin-left: $base-padding * 2.5;
+          &:before {
+            position: absolute;
+            margin-left: -$base-padding * 2.5;
+            margin-top: unset;
+          }
+
+          // Level 2
+          & > ol {
+            & > li {
+              margin-left: $base-padding * 3;
+              &:before {
+                position: absolute;
+                margin-left: -$base-padding * 3;
+                margin-top: unset;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

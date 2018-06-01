@@ -1,0 +1,127 @@
+$base-padding:          20px;
+$base-border-radius:    4px;
+
+// User-dashboard
+$coffeeimg-bg-height-tablet: 200px;
+$coffeeimg-bg-height-normal: 150px;
+$coffeeimg-height-tablet: 300px;
+$coffeeimg-height-normal: 225px;
+$coffeeimg-width-tablet: 300px;
+$coffeeimg-width-normal: 225px;
+
+// Colors
+$color-arctic:          #B2DBD5;
+
+$color-charcoal:        #36384C;
+$color-forest:          #1E434C;
+$color-forest-dark:     #04202C;
+$color-cream:           #FEF8ED;
+$color-faded-rose:      #E38B75;
+
+$color-faded-navy:      #444C5C;
+$color-punch:           #CE5A57;
+$color-ocean-breeze:    #78A5A3;
+$color-onyx:            #1B4B5A;
+$color-firework:        #F55449;
+$color-oceanic:         #1B4B5A;
+$color-taupe:           #8E7970;
+$color-metal:           #6C5F5B;
+$color-fresh:           #649974;
+$color-robin-egg:       #A9D5CE;
+
+$color-linen:           #EAE2D6;
+$color-putty:           #E6CCB5;
+$color-latte:           #DDBC95;
+
+$color-honeysuckie:     #FCC875;
+$color-peppercorn:      #755248;
+$color-warm:            #DAA62A;
+$color-goldenafternoon: #C29545;
+
+$color-fresh:           #849974;
+$color-sage:            #A1BE95;
+
+// New colors
+$color-dark:              #333333;
+$color-dark-20:           rgba(51, 51, 51, 0.20);
+$color-dark-50:           rgba(51, 51, 51, 0.50);
+$color-dark-100:          rgba(238, 238, 238, 1);
+$color-lightgray:         rgba(251, 251, 251, 1);
+$color-new-text:          $color-dark;
+$color-new-primary:       #ffcc00; // logo yellow
+$color-new-secondary:     #5bc4bf; // logo blue
+$color-old-accent-brown:  #735146; // old brown
+$color-new-accent-green:  #00cc66; // prices green
+$color-new-accent-blue:   #0066ff; // prices blue
+$color-new-accent-purple: #cc66ff; // prices purple
+
+$color-espresso:          #ABD5CE;
+$color-stovetop:          #1F434C;
+$color-v60:               #E18B78;
+$color-french-press:      #D9A648;
+$color-aeropress:         #8D7971;
+$color-coldbrew:          #9580a0;
+
+$color-espresso-opt:      #ABD5CE;
+$color-drip-opt:          #e18b78;
+$color-aeropress-opt:     #8d7971;
+$color-french-press-opt:  #d9a648;
+$color-stove-top-opt:     #1f434c;
+$color-cold-brew-opt:     #9580a0;
+$color-none-opt:          #0e7272;
+
+$color-WB-opt:            #d9a648;
+$color-GR-opt:            #1f434c;
+$color-DR-opt:            #e18b78;
+
+$color-light-gray:        #EFEFEF;
+$color-coffee-special:    #FFFFCC;
+
+// Notification
+$color-success:						#66cc66;
+$color-danger:						#fc576b;
+
+// Social media colors
+$color-fb:                #3b5998;
+$color-tw:                #1DA1F2;
+$color-gp:                #DD4B39;
+
+// Bootstrap color override
+$brand-primary: $color-new-primary;
+$text-color:    $color-new-text;
+
+// Section
+$width-lg: 993px;
+$width-md: 768px;
+$width-sm: 610px;
+$width-xs: 480px;
+$section-padding: $base-padding * 2.5;
+
+// Screen
+$screen-xlg: 1600px;
+
+// Box
+$box-shadow: 1px 2px 3px 0px rgba(51,51,51,0.15);
+
+// Package boxes
+$color-pkg-1: $color-dark;
+$color-pkg-2: $color-new-secondary;
+$color-pkg-3: $color-new-primary;
+
+// Fonts
+$font-family-1: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-2: "HookCoffee Club", cursive;
+$font-family-3: "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-4: "Archer-Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Base font
+$font-family-sans-serif: $font-family-1;
+$font-size-base: 15px;
+$font-size-mobile-multiplier: 0.8;
+
+// Headings
+$headings-font-family:   $font-family-2;
+
+// Icon paths
+$icon-font-path:         "../../bootstrap-sass/assets/fonts/bootstrap/";
+$fa-font-path:           "../../components-font-awesome/fonts/";

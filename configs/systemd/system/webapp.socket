@@ -1,0 +1,8 @@
+[Unit]
+Description=webapp socket
+
+[Socket]
+ListenStream=/var/run/webapp/socket
+
+[Install]
+WantedBy=sockets.target

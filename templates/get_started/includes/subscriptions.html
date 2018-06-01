@@ -1,0 +1,37 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+
+<div
+  id="reg-page__active-subs"
+  {% if not show_active_subs %}
+    hidden
+  {% endif %}
+>
+  <div class="form-body">
+    <div class="form-container form-hc-spacier box">
+      <div class="form-group">
+        <form id="substitute-subscription-form" method="POST" action="{% url 'substitute-subscription' %}">
+          {% csrf_token %}
+
+          <input type="hidden" name="goal-coffee-id" value="{{ coffee.id }}">
+
+          <div class="alert alert-info">
+            {% trans 'You can choose from your active subscriptions below which you want to replace' %}
+          </div>
+
+          <div id="reg-page__active-subs__container"></div>
+
+          <div class="panel-row-footer" style="text-align: right;">
+            <a id="create-new-subscription" data-coffee-id="{{ coffee.id }}" class="pull-left">{% trans 'Create new subscription' %}</a>
+            <button type="submit" class="btn btn-primary btn-hc btn-hc-sm" disabled>{% trans 'Subscribe' %}</button>
+          </div>
+        </form>
+      </div>
+
+      <br>
+
+    </div>
+  </div>
+</div>

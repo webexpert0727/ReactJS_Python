@@ -1,0 +1,85 @@
+.blogpost {
+  .blogpost-thumb, .blogpost-content {
+    max-width: $width-xs;
+    margin: 0 auto !important;
+  }
+
+  // Thumbnail
+  .blogpost-thumb {
+    @include make-md-column(4);
+    padding: 0;
+
+    .post-thumb {
+      max-width: 100%;
+
+      min-width: 300px;
+      min-height: 480px;
+
+      background-color: transparent;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      border-radius: $base-border-radius;
+
+      @media (min-width: $width-lg) {
+        max-width: 360px;
+      }
+    }
+  }
+
+  // Content
+  .blogpost-content {
+    @include make-md-column(8);
+    padding: 0;
+
+    img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
+    & > * { margin-top: $base-padding / 2; }
+    h2 { margin: $base-padding*2 0 $base-padding; }
+    .blogpost-title, .blogpost-date { margin-top: 0; }
+
+    @media (min-width: $screen-md) {
+      max-width: 100%;
+      padding-left: $base-padding;
+    }
+
+    .blogpost-tags {
+      a:hover { text-decoration: none; }
+      .blogpost-tag {
+        display: inline-block;
+        border-radius: $base-border-radius;
+        background-color: $color-new-primary;
+        padding: $base-padding * 0.25;
+        margin-top: $base-padding * 0.25;
+      }
+    }
+
+    & > div { margin-top: $base-padding * 1.5; }
+    & > .blogpost-tags { margin-top: $base-padding; }
+    & > .blogpost-share {
+      margin-top: $base-padding * 2.5;
+
+      .sh-fb { background-color: $color-fb; }
+      .sh-tw { background-color: $color-tw; }
+      .sh-gp { background-color: $color-gp; }
+      & > span[class^='sh-'] {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    blockquote {
+      margin: $base-padding*1.5 $base-padding;
+      font-style: italic;
+      border-left: 1px solid $color-dark-50;
+    }
+  }
+}
+
+.we-are-hookcoffee {
+  h6 { max-width: $width-sm; }
+}
+

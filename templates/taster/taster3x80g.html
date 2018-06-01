@@ -1,0 +1,288 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Register For A 3x80g Taster Pack' %}{% endblock %}
+
+{% block head %}
+
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/registration.scss' %}" />
+  {% endcompress %}
+
+  <link rel="stylesheet" type="text/css" href="{% static 'animate.css/animate.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'seiyria-bootstrap-slider/dist/css/bootstrap-slider.css' %}" />
+
+  <!-- The required Stripe lib -->
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script src="{% static 'seiyria-bootstrap-slider/dist/bootstrap-slider.min.js' %}"></script>
+
+  <script type="text/javascript">
+    Stripe.setPublishableKey("{{ stripe_key }}");
+
+    var stripeResponseHandler = function(status, response) {
+      var $form = $('#payment-form');
+
+      if (response.error) {
+        console.log('Errors getting token');
+        // Show the errors on the form
+        $form.find('.payment-errors').text(response.error.message);
+        $form.find('button').prop('disabled', false);
+        $form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+        $form.find('span.loading-text').addClass('hidden');
+      } else {
+        console.log('Got the token');
+        var token = response.id;
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        $.ajax({
+          url: "{% url 'set_stripe_trial' %}",
+          type: "POST",
+          data: $form.serialize(),
+          success: function(data) {
+            if (data.success !== true){
+              console.log('Ajax has error data');
+              $.notify({
+                message: data.message
+              }, {
+                type: 'danger'
+              });
+              $form.find('button').prop('disabled', false);
+              $form.find('#submit-subs').html('Subscribe');
+              console.log(data);
+            } else {
+              console.log('Redirect to ThankYouPage');
+              $form.get(0).submit();
+            }
+          },
+        });
+
+      }
+    };
+    jQuery(function($) {
+      $('#payment-form').submit(function(e) {
+        var $form = $(this);
+        // Disable the submit button to prevent repeated clicks
+        $form.find('button').prop('disabled', true);
+        $form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+        $form.find('span.loading-text').removeClass('hidden');
+        console.log('Get stripe token');
+        Stripe.card.createToken($form, stripeResponseHandler);
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+    });
+  </script>
+
+{% endblock %}
+
+{% block content %}
+
+<!--
+Loading screen Overlay (alternative)
+<div id="loader" class="jumbotron">
+  <h4>Spinner/text here</h4>
+</div>
+-->
+
+<div id="reg-page" class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8">
+
+        <!-- Subscription details -->
+        <div class="form-body">
+          <div id="subs-details-label" class="form-label active">
+            {% if alacarte %}
+            <p><span class="num">1</span> {% trans 'Your Coffee' %}</p>
+            {% else %}
+            <p><span class="num">1</span> {% trans 'Your Subscription' %}</p>
+            {% endif %}
+          </div>
+
+          <div id="subs-details-form" class="form-container">
+
+              <div class="form-group">
+                <h3>{% trans 'Choose a brewing method' %}</h3>
+                <div class="icon-list">
+
+                {% for brew in brew_methods %}
+                  <div id="brew_{{ brew.id }}" data-value="{{ brew.id }}" data-title="{{ brew }}" class="form-option opt-brew
+                  {% if brew.id == 1 %} selected {% endif %}
+                  ">
+                      <div class="img-thumbnail"
+                    style="background: url({{ brew.img.url }})
+                    no-repeat scroll center center / 110% 110%;"></div>
+                      <p>{{ brew }}</p>
+                  </div>
+                {% endfor %}
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <h3>{% trans 'How do you want your coffee packaged?' %}</h3>
+                <div class="icon-list">
+
+                  <div id="{{ pre_form.package.field.choices.1.0 }}" data-value="{{ pre_form.package.field.choices.1.0 }}" class="form-option opt-pack {% if default_pack == 'WB' %}selected{% endif %}">
+                      <div class="img-thumbnail"
+                    style="background: url({% static 'images/package_methods/wholebeans.png' %})
+                    no-repeat scroll center center / 110% 110%;"></div>
+                      <p>{{ pre_form.package.field.choices.1.1 }}</p>
+                  </div>
+
+                  <div id="{{ pre_form.package.field.choices.0.0 }}" data-value="{{ pre_form.package.field.choices.0.0 }}" class="form-option opt-pack {% if default_pack == 'GR' %}selected{% endif %}">
+                      <div class="img-thumbnail"
+                    style="background: url({% static 'images/package_methods/ground.png' %})
+                    no-repeat scroll center center / 110% 110%;"></div>
+                      <p>{{ pre_form.package.field.choices.0.1 }}</p>
+                  </div>
+
+                  <div id="{{ pre_form.package.field.choices.2.0 }}" data-value="{{ pre_form.package.field.choices.2.0 }}" class="form-option opt-pack {% if default_pack == 'DR' %}selected{% endif %}">
+                      <div class="img-thumbnail"
+                    style="background: url({% static 'images/package_methods/dripbag.png' %})
+                    no-repeat scroll center center / 110% 110%;"></div>
+                      <p>{{ pre_form.package.field.choices.2.1 }}</p>
+                  </div>
+
+                </div>
+              </div>
+
+              <p id="p_brew_goal" class="hide"><i>{% trans 'Your coffee will be ground' %}!</i></p>
+              <p id="p_drip_bags" class="hide"><i>{% trans 'Your order will come in a pack of' %} <b>10 {% trans 'drip bags' %}</b>!</i></p>
+              <p id="p_wholebeans" class="hide"><i>{% trans 'Your coffee will come in' %} <b>{% trans 'whole beans' %}</b>!</i></p>
+
+              <button id="confirm-subs" class="btn btn-primary pull-right">{% trans 'Next' %}</button>
+          </div>
+        </div>
+
+        <div class="form-body">
+          <div id="subs-auth-label" class="form-label">
+            <p><span class="num">2</span> {% trans 'Authentication' %}</p>
+          </div>
+          <div id="subs-auth-form" class="form-container hidden">
+            <form method="POST" action="">
+              {% csrf_token %}
+
+              <div id="fg_one-email" class="form-group">
+                <label for="id_one-email">{% trans 'Email' %}</label>
+                {% render_field reg_form.email class+="form-control" placeholder=reg_form.email.label %}
+                <!-- {{ reg_form.email.errors }} -->
+                <span class="help-block"></span>
+              </div>
+
+              <div id="fg_one-password1" class="form-group">
+                <label for="id_one-password1">{% trans 'Password' %}</label>
+                {% render_field reg_form.password1 class+="form-control" placeholder=reg_form.password1.label %}
+                <!-- {{ reg_form.password1.errors }} -->
+                <span class="help-block"></span>
+              </div>
+
+              <div id="fg_one-password2" class="form-group">
+                <label for="id_one-password2">{% trans 'Confirm Password' %}</label>
+                {% render_field reg_form.password2 class+="form-control" placeholder=reg_form.password2.label %}
+                <!-- {{ reg_form.password2.errors }} -->
+                <span class="help-block"></span>
+              </div>
+
+              <button id="confirm-acct" class="btn btn-primary pull-right">{% trans 'Next' %}</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="form-body">
+          <div id="subs-ship-label" class="form-label">
+            <p><span class="num">3</span> {% trans 'Shipping Details' %}</p>
+          </div>
+          <div id="subs-ship-form" class="form-container hidden">
+            <form method="POST" action="">
+              {% csrf_token %}
+              {% for field in cus_form.visible_fields %}
+              <div id="fg_two-{{ field.name }}" class="form-group">
+                <label for="id_two-{{ field.name }}">{{ field.label }}</label>
+                {% render_field field class+="form-control" placeholder=field.label %}
+                <!-- {{ field.errors }} -->
+                <span class="help-block"></span>
+              </div>
+              {% endfor %}
+
+              <button id="confirm-ship" class="btn btn-primary pull-right">{% trans 'Next' %}</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="form-body">
+          <div id="subs-bill-label" class="form-label">
+            <p ><span class="num">4</span> {% trans 'Billing Details' %}
+              <img style="display: inline-block; vertical-align:middle; float: none; height:26px; margin-top:-3px;"class="pull-right" src="{% static 'images/stripe.png' %}" alt="Stripe"></p>
+          </div>
+
+          <div id="subs-bill-form" class="form-container hidden">
+            <form id="payment-form" method="POST" action="">
+              {% csrf_token %}
+
+              <p class="payment-errors"></p>
+
+              <div class="form-group">
+                <label for="id_one-username">{% trans 'Card Number' %}</label>
+                <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+              </div>
+
+              <div class="form-group">
+                <div class="form-inline">
+                  <label for="id_one-username">{% trans 'CVC' %}</label>
+                  <input type="text" size="4" data-stripe="cvc" class="form-control" value=""/>
+                  <label for="id_one-username">{% trans 'Expiration (MM/YYYY)' %}</label>
+                  <input class="form-control form-expmo" type="text" size="2" data-stripe="exp-month" value=""/><b> / </b>
+                  <input class="form-control form-expyr" type="text" size="4" data-stripe="exp-year" value=""/>
+                </div>
+              </div>
+
+              <div class="form-group">
+                  <input id="voucher" type="hidden" name="voucher" value=""/>
+
+                  <button type=submit id="submit-subs" class="btn btn-primary pull-right subs-btn"><span><i class ="loading-icon"></i></span> &nbsp {% trans 'Subscribe' %} &nbsp </button>
+                  <span class="loading-text hidden">{% trans "Verifying... Don't close your browser..." %}</span>
+              </div>
+            </form>
+
+            </div>
+
+          </div>
+
+
+    </div>
+
+
+    <div id="trial-box" class="col-xs-12 col-sm-4">
+      <div id="details-subs">
+
+        <div class="subscribe-coffee">
+          <h3>{% trans 'TASTER PACK' %}</h3>
+          <div>
+            <h1>$18</h1>
+            <div class="img-thumbnail" style="background: url(&quot;{% static 'images/taster3x80g.jpg' %}&quot;) no-repeat scroll center center / 100% 100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="{% static 'remarkable-bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+{% compress js %}
+  <script src="{% static 'assets/custom/js/taster3x80g.js' %}"></script>
+  <script src="{% static 'assets/custom/js/notify-defaults.js' %}"></script>
+{% endcompress %}
+
+<script>
+$(document).ready(function() {
+
+});
+</script>
+
+{% endblock %}
+

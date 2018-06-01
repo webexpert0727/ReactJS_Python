@@ -1,0 +1,84 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Thank You!' %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+  <!-- Google Code for Track sales Conversion Page -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 928721515;
+  var google_conversion_language = "en";
+  var google_conversion_format = "3";
+  var google_conversion_color = "ffffff";
+  var google_conversion_label = "wZuoCO_z0WQQ69TsugM";
+  var google_remarketing_only = false;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+  <noscript>
+  <div style="display:inline;">
+  <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/928721515/?label=wZuoCO_z0WQQ69TsugM&amp;guid=ON&amp;script=0"/>
+  </div>
+  </noscript>
+{% endblock %}
+
+{% block content %}
+
+<section id="thankyou__purchased-item" class="container">
+  <div class="row">
+
+    <div class="col-md-6 col-md-offset-3">
+      <div class="purchase-info-box">
+        <div class="cb-info cb-header">
+          {% if gear %}
+            <p>{% trans 'You have purchased' %}</p>
+            <h2>{{ gear }}</h2>
+          {% else %}
+            <span>{% trans 'You are now subscribed to' %}</span>
+            <h2>{{ coffee }}</h2>
+          {% endif %}
+        </div>
+
+        <div class="cb-img" style="background-image: url(&quot;{{ image }}&quot;)">
+        </div>
+
+        {% if not gear %}
+        <div class="cb-info">
+          <p><b>{% trans 'Thank you! We can’t wait for you to taste the freshest coffee you’ll ever make.' %}</b></p>
+          <br />
+
+          <p>
+          {% trans 'You can always log on to your profile and change your preferences at anytime. Edit, pause or cancel your subscriptions easily on your dashboard. Leave us your feedback! That’ll be really helpful while we strive to continue delivering the best coffee experience for you and make sure you’ll never run out of delicious, freshly roasted coffee.' %}
+          </p>
+        </div>
+        {% endif %}
+
+        <div class="cb-info cb-footer">
+          <a class="btn btn-primary btn-hc btn-hc-sm" href="{% url 'profile' %}">
+            {% trans 'See my subscriptions' %}
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  fbq('track', 'CompleteRegistration');
+  ga('send', 'pageview', 'reg_thankyou');
+</script>
+{% endblock %}

@@ -1,0 +1,85 @@
+.history-box {
+  @extend .box;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  .cb-img {
+    display: inline-block;
+    vertical-align: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    // background-color: $color-dark;
+    width: auto;
+    height: 200px;
+
+    &.cb-img--special {
+      margin-top: 5px;
+    }
+
+    &:not(.cb-img--special) {
+      @media (max-width: $width-sm) {
+        background-size: cover;
+      }
+    }
+  }
+
+  .cb-info {
+    display: inline-block;
+    vertical-align: top;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+
+    .cb-info-row {
+      & > a, & > button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        &:not(:first-child) { margin-top: $base-padding * 0.25; }
+      }
+    }
+  }
+
+  @media (min-width: $width-lg) {
+    .cb-img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .cb-info {
+      .cb-info-row {
+        & > a, & > button {
+          display: inline;
+          width: auto;
+        }
+
+        &:nth-child(2) {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $width-sm) {
+    flex-direction: row;
+
+    .cb-img {
+      width: 200px;
+    }
+  }
+}
+
+.history-box:not(:first-child) {
+  @media (min-width: $width-sm) {
+    .cb-img {
+      width: 200px;
+      margin-top: 5px;
+    }
+  }
+}

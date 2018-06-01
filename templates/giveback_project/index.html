@@ -1,0 +1,591 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}" />
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+  <section class="top-banner section">
+    <div class="container-fluid">
+      <div class="fullscreen-bg">
+
+        <div class="fullscreen-bg-wrapper">
+          <video loop autoplay poster="{% static 'images/landing_video_first_frame.jpg' %}" class="fullscreen-bg__video">
+            <source src="{% static 'images/landing_video_early_2018.mp4' %}" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="section-row row-sm">
+        <div class="greetings">
+          <h1 id="greeting_1st_line">{{ greeting_line1 }}</h1>
+          <h3 id="greeting_2nd_line">{{ greeting_line2 }}</h3>
+          <h4 id="greeting_3rd_line">{{ greeting_line3 }}</h4>
+          <div class="btn-group__collapsing">
+              {% if not is_worldwide and not user.is_authenticated %}
+                <a href="{% url 'get_started' %}" class="btn btn-primary btn-hc">
+                  {% trans 'GET STARTED HERE' %}
+                </a>
+              {% else %}
+                <a href="{% url 'coffees' %}" class="btn btn-primary btn-hc">
+                  {% trans 'START SHOPPING' %}
+                </a>
+              {% endif %}
+
+              <a id="learn_more" class="btn btn-hc btn-white-primary">
+                {% trans 'LEARN MORE' %}
+              </a>
+      </div>
+    </section>
+
+  <section id="how-it-works" class="section">
+    <div class="section-row row-lg row-grid">
+      <div class="col-sm-3 fyi">
+        <img alt="Choose your coffee" src="{% static 'images/icons/homepage_exp-fresh/exp-fresh-2.png' %}" />
+        <p class="s-h2-bold s-h2-s">{% trans 'Choose your coffee' %}</p>
+        <p>{% blocktrans %}or use our recommendation engine if you can<span class="use-base-font">'</span>t decide{% endblocktrans %}</p>
+      </div>
+
+      <div class="col-sm-3 fyi">
+        <img alt="Choose how you want it" src="{% static 'images/icons/homepage_exp-fresh/exp-fresh-1.png' %}" />
+        <p class="s-h2-bold s-h2-s">{% trans 'Choose how you want it' %}</p>
+        <p>{% blocktrans %}whole, ground, drip coffee bags or Nespresso<span class="registered-sign"></span> compatible pods{% endblocktrans %}</p>
+      </div>
+
+      <div class="col-sm-3 fyi">
+        <img alt="Adjust as you go" src="{% static 'images/icons/homepage_exp-fresh/exp-fresh-3.png' %}" />
+        <p class="s-h2-bold s-h2-s">{% trans 'Adjust as you go' %}</p>
+        <p>{% blocktrans %}coffee and frequency - you are in complete control{% endblocktrans %}</p>
+      </div>
+
+      <div class="col-sm-3 fyi">
+        <img alt="Improve your techniques" src="{% static 'images/icons/homepage_exp-fresh/exp-fresh-4.png' %}" />
+        <p class="s-h2-bold s-h2-s">{% trans 'Improve your techniques' %}</p>
+        <p>{% blocktrans %}and coffee knowledge with our comprehensive guides and articles{% endblocktrans %}</p>
+      </div>
+    </div>
+
+    <div class="section-row row-lg">
+      <h2>{% trans 'Experience the difference in fresh' %}</h2>
+    </div>
+
+    <div class="section-row row-lg">
+      <a href="{% url 'coffees' %}" class="btn btn-primary btn-hc">{% trans 'Try it now!' %}</a>
+    </div>
+  </section>
+
+  <section class="section bg-s">
+    <div class="section-row section-lg">
+      <h2>{% trans 'What makes us different?' %}</h2>
+    </div>
+
+    <div class="section-row row-md row-grid">
+      <div class="col-sm-4 fyi">
+        <img alt="Coffee farmers" src="{% static 'images/icons/homepage_makes-diff/makes-diff-1.png' %}" />
+        <p>{% blocktrans %}We work directly with farmers all over the world. Cutting out the middlemen means fairer and higher profits for the farmers.{% endblocktrans %}</p>
+      </div>
+
+      <div class="col-sm-4 fyi">
+        <img alt="Fresh coffee" src="{% static 'images/icons/homepage_makes-diff/makes-diff-2.png' %}" />
+        <p>{% blocktrans %}Coffee needs to be fresh. We live by that mantra. We roast and ship to you within 7 days of roasting. That’s our guarantee.{% endblocktrans %}</p>
+      </div>
+
+      <div class="col-sm-4 fyi">
+        <img alt="Always ships directly to your mailbox" src="{% static 'images/icons/homepage_makes-diff/makes-diff-3.png' %}" />
+        <p>{% blocktrans %}Enjoy free shipping directly to your mailbox always. No post office runs necessary.{% endblocktrans %}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="home__recommended" class="section filter__grayscale">
+    <div class="section-row row-lg">
+      <h2>{% trans 'As Recommended By' %}</h2>
+    </div>
+
+    <div class="section-row row-lg">
+      <a href="http://www.straitstimes.com/lifestyle/food/get-your-artisanal-caffeine-fix-home-delivered"><img src="{% static 'images/as-featured-on/The Straits Times logo.svg' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.asiaone.com/lifestyle/food/goodies-box?nopaging=1"><img src="{% static 'images/as-featured-on/Asiaone logo.png' %}" class="img-responsive" alt="Image" style="zoom:125%;"/></a>
+      <a href="{% static 'images/as-featured-on/Epicure image.jpg' %}"><img src="{% static 'images/as-featured-on/Epicure logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="{% static 'images/as-featured-on/Lian He Zao Bao image.jpg' %}"><img src="{% static 'images/as-featured-on/Lian He Zao Bao logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://thehoneycombers.com/singapore/coffee-delivery-in-singapore-hook-coffee-couriers-gourmet-blends-straight-to-your-mailbox/"><img src="{% static 'images/as-featured-on/Honey Combers logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.todayonline.com/lifestyle/fruits-manicurist-have-everything-your-doorstep"><img src="{% static 'images/as-featured-on/Today logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="javascript:void(0);"><img src="{% static 'images/as-featured-on/Expat living logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="javascript:void(0);"><img src="{% static 'images/as-featured-on/class 95 logo.jpg' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.businesstimes.com.sg/lifestyle/food-drink/prepaid-specials"><img src="{% static 'images/as-featured-on/The business times logo.png' %}" class="img-responsive" alt="Image" style="width: 320px; max-width: 90%;" /></a>
+      <a href="http://www.womensweekly.com.sg/at-home/5-food-delivery-services-singapore/"><img src="{% static 'images/as-featured-on/women\'s weekly logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.herworldplus.com/hook-coffee"><img src="{% static 'images/as-featured-on/her world logo.jpg' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.channelnewsasia.com/news/business/what-s-brewing-capsules-serve-up-competition-in-singapore-s/3460022.html"><img src="{% static 'images/as-featured-on/Channel news asia logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="https://www.techinasia.com/singapore-subscription-boxes-dead-alive"><img src="{% static 'images/as-featured-on/Tech in Asia logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://asiastyle.asia/hook-coffee-serving-legendary-coffee-through-home-delivery/"><img src="{% static 'images/as-featured-on/Asia Style logo.jpg' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.lifestyleasia.com/470917/5-drink-delivery-services-in-singapore/"><img src="{% static 'images/as-featured-on/Lifestyle Asia logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://lifestyle.toggle.sg/en/food/galleries/labour-of-love-how-3-local-f-b-power-couples-make-it-work-8838450#slideshow-1"><img src="{% static 'images/as-featured-on/toggle_sg.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.tnp.sg/news/singapore/subscription-services-show-promise"><img src="{% static 'images/as-featured-on/the_new_paper_sg.svg' %}" class="img-responsive" alt="Image" /></a>
+      <a href="http://www.tsingapore.com/article/rise-of-third-wave-coffee-culture-in-singapore"><img src="{% static 'images/as-featured-on/tsingapore.svg' %}" class="img-responsive" alt="Image" style="width: 340px; max-width: 90%;"></a>
+      {% comment %}
+      <a href="https://www.instagram.com/p/BDfHuHVtTLG/"><img src="{% static 'images/as-featured-on/Seth Lui logo.png' %}" class="img-responsive" alt="Image" /></a>
+      <a href="https://vulcanpost.com/582327/startups-offer-coffee-bean-delivery/"><img src="{% static 'images/as-featured-on/Vulcan Post logo.png' %}" class="img-responsive" alt="Image" /></a>
+      {% endcomment %}
+    </div>
+  </section>
+
+  {% if not is_worldwide %}
+  <section id="gift-section" class="section bg-p">
+    <div class="section-row row-lg">
+      <h2>{% trans 'Choose Your Free Gift' %}</h2>
+      <p class="t-h3 no-margin">{% blocktrans %}Kickstart your coffee journey by picking one of these gifts with your first purchase when you subscribe!{% endblocktrans %}</p>
+    </div>
+
+    <div class="section-row row-lg row-grid">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="shop-gift-set-box shop-gift-set-box__sm">
+          <div class="cb-img" style='background-image: url({% static 'images/icons/gifts/v60-starter-kit-480x.jpg' %})'>
+          </div>
+
+          <div class="cb-info">
+            <h4>{% trans 'V60 STARTER KIT' %}</h4>
+            <p><small>{% trans 'Hario v60' %}</small></p>
+            <p><small>{% trans 'Coffee scoop' %}</small></p>
+            <p><small>{% trans 'Filters to get you started' %}</small></p>
+          </div>
+
+          <div class="cb-info cb-footer">
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="V60STARTER">
+              <button class="btn btn-primary btn-hc btn-hc-xs btn--choose-gift" type="submit">
+                {% trans 'Choose' %}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="shop-gift-set-box shop-gift-set-box__sm">
+          <div class="cb-img" style='background-image: url({% static 'images/icons/gifts/80g-starter-480x.jpg' %})'>
+          </div>
+
+          <div class="cb-info">
+            <h4>{% trans '80G BAG' %}</h4>
+            <p><small>{% trans '1 x 80g of freshly roasted coffee' %}</small></p>
+            <p><small>{% trans 'Choose whole/ground' %}</small></p>
+          </div>
+
+          <div class="cb-info cb-footer">
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="80GSTARTER">
+              <button class="btn btn-primary btn-hc btn-hc-xs btn--choose-gift" type="submit">
+                {% trans 'Choose' %}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="shop-gift-set-box shop-gift-set-box__sm">
+          <div class="cb-img" style='background-image: url({% static 'images/icons/gifts/3x-drip-coffee-bags-480x.jpg' %})'>
+          </div>
+
+          <div class="cb-info">
+            <h4>{% trans '3 x DRIP COFFEE BAGS' %}</h4>
+            <p><small>{% trans '3 x drip coffee bags samplers' %}</small></p>
+          </div>
+
+          <div class="cb-info cb-footer">
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="DRIPSTARTER">
+              <button class="btn btn-primary btn-hc btn-hc-xs btn--choose-gift" type="submit">
+                {% trans 'Choose' %}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="shop-gift-set-box shop-gift-set-box__sm">
+          <div class="cb-img"
+            style='background-image: url({% static 'images/icons/gifts/shotpods-taster-pack-480x.jpg' %})'>
+          </div>
+
+          <div class="cb-info">
+            <h4>{% trans 'SHOTPODS BOX' %}</h4>
+            <p><small>{% trans '4 x assorted ShotPods' %}</small></p>
+          </div>
+
+          <div class="cb-info cb-footer">
+            <form method="POST" action="{% url 'get_started' %}">
+              {% csrf_token %}
+              <input type="hidden" name="chosen_voucher" value="SHOTPODSSTARTER">
+              <button class="btn btn-primary btn-hc btn-hc-xs btn--choose-gift" type="submit">
+                {% trans 'Choose' %}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% comment %}
+    <section id="home__fans1" class="section bg-d">
+      <div class="section-row section-lg">
+        <h2><span class="use-base-font">@</span>HOOKCOFFEE</h2>
+        <h2><span class="use-base-font">#</span>MAKECOFFEEBETTER</h2>
+        <h4>{% blocktrans %}See how our fans get "hooked"{% endblocktrans %}</h4>
+      </div>
+    </section>
+
+    <section id="home__fans1" class="section bg-d">
+      <div class="section-row row-lg row-grid js-insta-posts">
+
+        {% for post in instagram_posts %}
+          <div class="col-lg-4">
+            <div class="social-pc">
+              <div class="social-pc-header">
+                <div class="avatar">
+                  <a href="{{ post.data.author_url }}" target="_blank">
+                    <img width="40" height="40" src="{{ post.data.author_avatar }}" />
+                  </a>
+                </div>
+                <div class="info">
+                  <p><a href="{{ post.data.author_url }}" target="_blank">{{ post.data.author_name }}</a></p>
+                  <small class="js-created-time">{{ post.data.created_time }}</small>
+                </div>
+              </div>
+              <div class="social-pc-body">
+                <div class="post-image">
+                  <a href="{{ post.url }}" target="_blank">
+                    <img src="{{ post.data.image_url }}"/>
+                  </a>
+                </div>
+                <p>{{ post.data.text }}</p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </section>
+  {% endcomment %}
+
+  {% comment %}
+  <section id="home__fb-rnr" class="section bg-s">
+    <div class="section-row row-xs">
+      <h4 class="clr-me-w">
+        {% trans 'Still contemplating about joining the club?' %}
+      </h4>
+      <h2>
+        {% blocktrans %}
+          See how our fans got <span class="use-base-font">#</span>HOOKED!
+        {% endblocktrans %}
+      </h2>
+    </div>
+
+    <div class="section-row row-lg row-grid">
+      <div class="fb-rating-wrapper">
+        <div class="rating">
+          <p class="glyphicon glyphicon-star rating__star-icon"></p>
+          <p class="rating__stars"><b class="js-fb-overall-rating">4.4</b></p>
+        </div>
+
+        <div class="rating__info">
+          <p><i>of</i> <b>5</b> stars</p>
+          <p><small class="js-fb-rating-count">82</small> <small><span> reviews</span></small></p>
+          <a href="https://www.facebook.com/pg/hookcoffeesg/reviews/?ref=page_internal" class="rating__fb-link" target="_blank">
+            <img src="{% static 'images/icons/FB-f-Logo__blue_58.png' %}" />
+          </a>
+        </div>
+      </div>
+
+      <div class="fb-reviews-wrapper js-fb-reviews hide"></div>
+    </div>
+
+    <div class="section-row row-sm">
+      <h2>{% trans 'What our customers say' %}</h2>
+    </div>
+
+    <div class="section-row row-sm">
+      <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+        <div class="carousel-inner text-center carousel-reviews">
+          {% for review in reviews %}
+            {% if forloop.counter0 == 0 %}
+              <div class="item active">
+            {% else %}
+              <div class="item">
+            {% endif %}
+              <blockquote>
+                <p>&#8220;{{ review.message }}&#8221;</p>
+                <small>{{ review.author }}</small>
+              </blockquote>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="section-row row-sm">
+      <a href="{% url 'coffees' %}" class="btn btn-primary btn-hc">{% trans 'TRY IT TO BELIEVE IT' %}</a>
+    </div>
+    {% endcomment %}
+  </section>
+
+
+    <!-- Gift Modal -->
+    <div id="modal-gift" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+          <div class="modal-body text-center">
+
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <section class="c-choose-gift-section c-choose-gift-section_modal">
+              <h1 class="c-choose-gift__header">{% trans 'Wait! Get A Free Gift On Your First Order!' %}</h1>
+
+              <div class="c-choose-gift__item c-choose-gift__item_modal">
+                <img class="c-choose-gift__img" src="{% static 'images/v60starter_200.png' %}" />
+                <div class="c-choose-gift__name">{% trans 'V60 STARTER KIT' %}</div>
+                <ul class="c-choose-gift__list">
+                  <li class="c-choose-gift__l-item">{% trans 'Hario v60' %}</li>
+                  <li class="c-choose-gift__l-item">{% trans 'Coffee scoop' %}</li>
+                  <li class="c-choose-gift__l-item">{% trans 'Filters to get you started' %}</li>
+                </ul>
+                <form method="POST" action="{% url 'get_started' %}">
+                  {% csrf_token %}
+                  {# <a class="btn btn--choose-gift" href="?v=V60STARTER">Choose</a> #}
+                  <input type="hidden" name="chosen_voucher" value="V60STARTER">
+                  <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+                </form>
+              </div>
+
+              <div class="c-choose-gift__item c-choose-gift__item_modal">
+                <img class="c-choose-gift__img" src="{% static 'images/80gstarter_200.png' %}" />
+                <div class="c-choose-gift__name">{% trans '80G BAG' %}</div>
+                <ul class="c-choose-gift__list">
+                  <li class="c-choose-gift__l-item">{% trans '1 x 80g of freshly roasted coffee' %}</li>
+                  <li class="c-choose-gift__l-item">{% trans 'Choose whole/ground' %}</li>
+                </ul>
+                <form method="POST" action="{% url 'get_started' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="chosen_voucher" value="80GSTARTER">
+                  <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+                </form>
+              </div>
+
+              <div class="c-choose-gift__item c-choose-gift__item_modal">
+                <img class="c-choose-gift__img" src="{% static 'images/dripstarter_200.png' %}" />
+                <div class="c-choose-gift__name">{% trans '3 x DRIP COFFEE BAGS' %}</div>
+                <ul class="c-choose-gift__list c-choose-gift__list_modal">
+                  <li class="c-choose-gift__l-item">{% trans '3 x drip coffee bags samplers' %}</li>
+                </ul>
+                <form method="POST" action="{% url 'get_started' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="chosen_voucher" value="DRIPSTARTER">
+                  <button class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+                </form>
+              </div>
+
+              <div class="c-choose-gift__item c-choose-gift__item_modal">
+                <img class="c-choose-gift__img" src="{% static 'images/shotpodsstarter_200.png' %}" />
+                <div class="c-choose-gift__name">{% trans 'SHOTPODS BOX' %}</div>
+                <ul class="c-choose-gift__list c-choose-gift__list_modal">
+                  <li class="c-choose-gift__l-item">{% trans '4 x Shotpods assorted origin' %}</li>
+                </ul>
+                <form method="POST" action="{% url 'get_started' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="chosen_voucher" value="SHOTPODSSTARTER">
+                  <button id="submit-email" class="btn btn--choose-gift" type="submit">{% trans 'Choose' %}</button>
+                </form>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- /Gift Modal -->
+
+    <!-- Trial Pack Modal -->
+    <div id="trialModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          {% if popup_ids|random == '1' %}
+          <div class="modal-body" style="background: transparent url({% static 'images/V60STARTER.jpeg' %}) no-repeat scroll center right / cover; height: 600px;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-footer">
+              <a id="register-link" href="{% url 'get_started' %}" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'i want this starter kit!' %}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              <p>{% trans '* for limited time only!' %}</p>
+            </div>
+          </div>
+          {% else %}
+          <div class="modal-body" style='background: RGB(220, 201, 195);'>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 id="hi50-box">
+              {% blocktrans trimmed %}
+              new to hook?</br>
+              enter "TAKEFIVE!"
+              for <u>$5</u> off your first
+              bag!
+              {% endblocktrans %}
+            </h1>
+            <div class="modal-footer">
+              <a id="register-link" href="{% url 'get_started' %}" class="btn">{% trans 'get me hooked!' %}</a>
+            </div>
+          </div>
+          {% endif %}
+
+        </div>
+
+      </div>
+    </div>
+
+  <!-- Modal choose country -->
+  <div class="modal" id="modal-country" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+
+          <div class="overlay"></div>
+
+          <div class="logo">
+            <img src="{% static 'images/hclogo_horizontal.png' %}" alt="HookCoffee logo"/>
+          </div>
+
+          <div class="greeting" style="background-image: url({% static 'images/new-images/hola.png' %})">
+          </div>
+
+          <div class="buttons">
+            <form "country-welcome-form" method="POST" action="{% url 'choose_country' %}">
+              {% csrf_token %}
+              <input type="hidden" name="is_global" value="" />
+
+              <button id="local-site" class="btn btn-primary btn-hc">
+                {% trans 'Go to HOOK Singapore' %}
+              </button>
+
+              <h4 class="clr-me-w">or</h4>
+
+              <button id="global-site" class="btn btn-secondary btn-hc">
+                {% trans 'Choose another country' %}
+              </button>
+              {% render_field cf.country class+="form-control hide" id="welcome-country" value="AF" %}
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{% static 'moment/min/moment.min.js' %}"></script>
+<script src="{% static 'assets/custom/js/fb.js' %}"></script>
+<script src="{% static 'assets/custom/js/modal-country.js' %}"></script>
+<script>
+
+var width = $(window).width();
+var morning = 12, noon = 17;
+var $scroll_offset = 90; //125;
+
+function update_navbar() {
+  var scroll = $(window).scrollTop();
+
+  if (width <= 460) {
+    if (scroll >= 80) {
+      $(".navbar-fixed-top").removeClass("collapse").addClass("in");
+    } else {
+      $(".navbar-fixed-top").removeClass("in").addClass("collapse");
+    }
+  }
+}
+
+function update_created_time_for_insta_posts() {
+  $('.js-created-time').each(function() {
+    var $this = $(this)
+    $this.text(moment($this.text()).fromNow());
+  });
+}
+
+$(document).ready(function() {
+  var socialDataUrl = "{% url 'social_data' %}";
+  fetch_social_data(socialDataUrl);
+
+  $('[name=btn]').click(function() {
+    window.location.href = "{% url 'get_started' %}";
+  });
+
+  $(".country-select-flag").remove();
+
+  // This function hides the navbar for mobile screens less than 480px
+  // if scroll distance from top is less than 80px
+  // update_navbar();
+
+  update_created_time_for_insta_posts();
+
+  $("#learn_more").click(function() {
+    $('html,body').animate({
+      scrollTop: $("#how-it-works").offset().top - $scroll_offset
+    });
+  });
+
+
+  if ("{{ choose_country }}") {
+    // Show welcome modal window with country choice
+    $("#modal-country").modal("show");
+  } else {
+    // Show other modals
+    if (getCookie('modal-gift-sets') === "") {
+      setTimeout(function(){
+        $("#modal-gift-sets").modal();
+        setCookie('modal-gift-sets', 'true', 1);
+      }, 2 * 1000);
+    };
+  }
+
+});
+
+// $(window).scroll(update_navbar);
+
+function set_greeting() {
+  var d = new Date();
+  var hours = d.getHours();
+  if (hours < morning) {
+    $("#greeting_1st_line").html("{{ greetings.morning.0|safe }}</br>{{ greetings.morning.1|safe }}");
+      // $("#greeting_2nd_line").html("{{ greetings.morning.1|safe }}");
+      $("#greeting_3rd_line").html("{{ greetings.morning.2|safe }}");
+    } else if (hours < noon) {
+      $("#greeting_1st_line").html("{{ greetings.noon.0|safe }}</br>{{ greetings.noon.1|safe }}");
+      // $("#greeting_2nd_line").html("{{ greetings.noon.1|safe }}");
+      $("#greeting_3rd_line").html("{{ greetings.noon.2|safe }}");
+    } else {
+      $("#greeting_1st_line").html("{{ greetings.evening.0|safe }}</br>{{ greetings.evening.1|safe }}");
+      // $("#greeting_2nd_line").html("{{ greetings.evening.1|safe }}");
+      $("#greeting_3rd_line").html("{{ greetings.evening.2|safe }}");
+    };
+}
+
+set_greeting();
+
+</script>
+
+{% endblock %}

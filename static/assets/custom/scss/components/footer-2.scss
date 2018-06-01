@@ -1,0 +1,39 @@
+.footer-2 {
+  @extend .info-bar;
+  padding: $base-padding + 5;
+  text-align: left;
+
+  .section-row.row-tiny {
+    max-width: 350px; 
+  }
+
+  .spaced {
+    margin-left: $base-padding / 4;
+  }
+
+  .img-logo {
+    width: 90px;
+    height: auto;
+  }
+
+  @media (max-width: $screen-xs) {
+    .footer-2__btns {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .img-analytic {
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+      max-width: 92px;
+      max-height: 35px;
+    }
+
+    @media (min-width: $screen-md) {
+      margin-top: 0px;
+    }
+  }
+}

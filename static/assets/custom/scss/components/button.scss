@@ -1,0 +1,109 @@
+.btn-hc {
+  padding: $base-padding*0.75 $base-padding*1.5;
+  border-radius: $base-border-radius;
+
+  &.btn-primary {
+    color: $text-color;
+  }
+
+  &.btn-white-primary {
+    background-color: white;
+    border: 1px solid $color-new-primary;
+  }
+}
+
+.btn-hc-sm { padding: $base-padding/2 $base-padding; }
+.btn-hc-xs {
+  @extend .s-h1-bold;
+  padding: $base-padding*0.25 $base-padding;
+}
+
+
+button.close {
+  padding: $base-padding / 2;
+}
+
+.btn-primary-inv {
+  @include button-variant($color-new-primary, white, $color-new-primary);
+}
+.btn-primary-white {
+  @include button-variant(white, $color-new-primary, $color-new-primary);
+}
+.btn-primary-white-br {
+  @include button-variant(white, $color-new-primary, white);
+}
+.btn-secondary {
+  @include button-variant(white, $color-new-secondary, $color-new-secondary);
+}
+.btn-secondary-inv {
+  @include button-variant($color-new-secondary, white, $color-new-secondary);
+}
+
+// Voucher buttons
+.btn-lvl1 {
+  @include button-variant(white, $color-pkg-1, $color-pkg-1);
+}
+.btn-lvl2 {
+  @include button-variant(white, $color-pkg-2, $color-pkg-2);
+}
+.btn-lvl3 {
+  @include button-variant(white, $color-pkg-3, $color-pkg-3);
+}
+.btn-acc-green {
+  @include button-variant(white, $color-new-accent-green, $color-new-accent-green);
+}
+.btn-acc-blue {
+  @include button-variant(white, $color-new-accent-blue, $color-new-accent-blue);
+}
+.btn-acc-purple {
+  @include button-variant(white, $color-new-accent-purple, $color-new-accent-purple);
+}
+
+// Social media buttons
+.btn-fb {
+  @include button-variant(white, $color-fb, $color-fb);
+}
+
+// bootstrap btn-group override
+.btn-group {
+  display: flex;
+
+  & > .btn {
+    flex: 1;
+    max-width: 180px;
+    float: unset;
+    left: -3px;
+    border: 1px solid $color-light-gray;
+    box-shadow: none;
+
+    &:first-child { left: 0; }
+
+    &.selected, &.active {
+      @extend .btn-primary-white;
+      &.active { background-color: $color-new-primary; }
+    }
+  }
+}
+
+.btn-group__collapsing {
+  & > * {
+    width: 100%;
+
+    &:not(:first-child) {
+      margin-left: 0;
+      margin-top: $base-padding / 2;
+    }
+  }
+
+  @media (min-width: $screen-xs) {
+    & > * {
+      width: auto;
+      margin-top: 0;
+
+      &:not(:first-child) {
+        margin-left: $base-padding / 2;
+        margin-top: 0;
+      }
+    }
+  }
+}

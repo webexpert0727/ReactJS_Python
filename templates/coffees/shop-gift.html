@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Coffee Brewing Equipment' %}{% endblock %}
+
+{% block meta-description %}
+    "A collaboration between Hook Coffee and Atomi, this section presents a curated selection of artisanal Japanese coffee brewing equipments handmade by the finest Japanese coffee craftsman."
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://hookcoffee.com.sg{% url 'shop-gift' %}" />
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+<section class="top-banner gear-banner">
+  <div class="container">
+    <div class="gear-banner__text">
+      <p>
+        {% blocktrans trimmed %}
+        A collaboration between Hook Coffee and Atomi, this section presents<br/>
+        a curated selection of artisanal Japanese coffee brewing equipments<br/>
+        handmade by the finest Japanese coffee craftsman.
+        {% endblocktrans %}
+      </p>
+    <!--banner-text-->
+    <div class="clearfix"></div>
+    <!--clearfix-->
+    </div>
+  </div>
+  <!--container-->
+</section>
+<!--top-banner-->
+
+<div class="container container--gears">
+  <div class="gear-items">
+    {% for gear in gears %}
+    {% with images=gear.images.all %}
+      <div class="gear-item">
+        <div id="gear-carousel-{{ gear.id }}" class="carousel carousel_gear" data-interval="false">
+
+          {% if images.count > 1 %}
+            <ol class="carousel-indicators">
+              {% for img in images %}
+              <li data-target="#gear-carousel-{{ gear.id }}" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+              {% endfor %}
+            </ol>
+          {% endif %}
+
+          <div class="carousel-inner ">
+            {% for img in images %}
+              <div class="item item_gear {% if forloop.counter0 == 0 %}active{% endif %}">
+                {# <img class="img-responsive gear-item__img {% if gear.essentials %}gear-item__img--essential{% endif %}" #}
+                <img class="img-responsive gear-item__img"
+                     src="{{ img.image.url }}"
+                     alt="{{ gear.name }}" >
+              </div>
+            {% endfor %}
+          </div>
+
+          {% if images.count > 1 %}
+            <a class="left carousel-control carousel-control--gear" href="#gear-carousel-{{ gear.id }}" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">{% trans 'Previous' %}</span>
+            </a>
+            <a class="right carousel-control carousel-control--gear" href="#gear-carousel-{{ gear.id }}" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">{% trans 'Next' %}</span>
+            </a>
+          {% endif %}
+        </div>
+
+        <h1 class="gear-item__name">{{ gear.name }}</h1>
+        {# <p class="gear-item__desc">{{ gear.description }}</p> #}
+        <span class="gear-item__price">$ {{ gear.price }}</span>
+        <div class="l-gear-item-btns">
+          <a class="btn btn--gear js-buy-gear-btn {% if not gear.in_stock %}disabled{% endif %}"
+             data-gear="{{ gear.id }}"
+             data-title="{{ gear.name }}"
+             data-price="{{ gear.price }}"
+             data-colors="{{ gear.get_available_colors }}">
+            {% if gear.in_stock %}{% trans 'Purchase' %}{% else %}{% trans 'Sold out' %}{% endif %}
+          </a>
+          <a class="btn btn--gear js-more-info-btn"
+             data-gear="{{ gear.id }}"
+             data-title="{{ gear.name }}"
+             data-more="{{ gear.more_info|linebreaks }}">
+             {% trans 'More info' %}
+          </a>
+        </div>
+      </div>
+    {% endwith %}
+    {% endfor %}
+  </div>
+</div>
+
+
+<!-- Confirmation modal -->
+<div id="gear-conf-modal" class="modal fade modal--gear-confirmation" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content gear-confirmation">
+      <div class="modal-body gear-confirmation__body">
+
+        <div class="form-body">
+          <div class="form-container gear-confirmation__form-container">
+
+            <form id="confirm-form" class="form-horizontal" action="{% url 'buy_gear' %}" method="POST">
+              {% csrf_token %}
+              <h1 class="gear-confirmation__header gear-confirmation__txt">
+                {% trans 'You are one step away from receiving<br/>this awesome' %}
+                <span class="gear-confirmation__txt js-gear-title"></span>!<br/>
+                <span class="gear-confirmation__txt js-gear-has-colors">{% trans 'But first pick a colour!' %}</span>
+              </h1>
+
+              <div class="gear-color-options js-color-options "></div>
+
+              <input type="hidden" name="gear-id" value="" />
+
+              <div class="btn-group">
+                <button type="Submit" class="btn btn--gear">{% trans 'Confirm Purchase' %}</button>
+                <button class="btn btn--gear" data-dismiss="modal" style="margin-left: 1px;">{% trans 'Back' %}</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // Confirmation modal -->
+
+
+<!-- More info modal -->
+<div id="gear-more-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal--gear-more">
+    <div class="modal-content">
+      <div class="modal-body gear-more-modal__body">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="flex-container">
+          <div class="left-col-gear">
+            <h2 class="gear-more-modal__title js-gear-title"></h2>
+            <div class="gear-more-modal__more-info js-gear-more"></div>
+          </div>
+          <div class="right-col-gear">
+            <div class="gear-more-modal__carousel js-gear-carousel"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // More info modal -->
+
+{% endblock %}
+
+{% block scripts %}
+
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script>
+    var gear_id, gear_title, gear_av_color,
+        $more_gear_modal = $('#gear-more-modal'),
+        $conf_gear_modal = $('#gear-conf-modal'),
+        $gear_title_modals = $('.js-gear-title'),
+        $gear_more_modal = $('.js-gear-more'),
+        $gear_carousel_modal = $('.js-gear-carousel'),
+        $conf_inp_gear_id = $('input[name="gear-id"]'),
+        $color_options = $('.js-color-options'),
+        $invitation_to_choose_color = $('.js-gear-has-colors');
+
+    $more_gear_modal.on('hide.bs.modal', function (e) {
+      $gear_title_modals.html('');
+      $gear_more_modal.html('');
+      $gear_carousel_modal.html('');
+    });
+
+    $conf_gear_modal.on('hide.bs.modal', function (e) {
+      $gear_title_modals.html('');
+      $color_options.html('');
+    });
+
+    $('.js-buy-gear-btn').click(function(e) {
+      gear_id = $(this).data('gear');
+      gear_title = $(this).data('title');
+      gear_av_color = $(this).data('colors');
+
+      handle_invitation_to_choose_color(gear_av_color);
+
+      $gear_title_modals.html(gear_title);
+      $conf_gear_modal.modal('show');
+      $conf_inp_gear_id.val(gear_id);
+    });
+
+    $('.js-more-info-btn').click(function(e) {
+      gear_id = $(this).data('gear');
+      gear_title = $(this).data('title');
+      gear_more = $(this).data('more');
+
+      $gear_title_modals.html(gear_title);
+      $gear_more_modal.html(gear_more);
+      copy_carousel_to_modal(gear_id);
+      $more_gear_modal.modal('show');
+    });
+
+    function add_color_to_otions(el) {
+      // '<label class="gear-color-option" style="background: url(\'' + el.img + '\') no-repeat center/50%;"> '
+      var color_option = '<label> ' +
+                           '<input type="radio" name="gear-color-id" class="inp-gear-color" value="' + el.color_id + '" />' +
+                           '<img src="' + el.img + '" class="img-gear-color-option">' +
+                           '<div class="name-gear-color-option">' + el.color_name + '</div>' +
+                         '</label>';
+      $color_options.append(color_option);
+    }
+
+    function handle_invitation_to_choose_color(gear_av_color) {
+      if (gear_av_color.length > 0) {
+        $invitation_to_choose_color.show();
+        gear_av_color.forEach(add_color_to_otions);
+      } else {
+        $invitation_to_choose_color.hide();
+      }
+    }
+
+    function copy_carousel_to_modal(gear_id) {
+      var old_id = '#gear-carousel-' + gear_id,
+          new_id = '#gear-carousel-modal-' + gear_id,
+          $carousel = $(old_id).clone();
+      $carousel.attr('id', new_id.replace('#', ''));
+      $carousel.find('.carousel-indicators li').attr('data-target', new_id);
+      $carousel.find('.carousel-control').attr('href', new_id);
+      $carousel.appendTo($gear_carousel_modal);
+    }
+  </script>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+.shop-gift-set-box {
+  @extend .coffee-box;
+  border: unset;
+
+  .cb-img {
+    min-height: 225px;
+    background-size: cover;
+    border-radius: $base-border-radius $base-border-radius 0 0;
+  }
+
+  &.shop-gift-set-box__sm {
+    width: 220px;
+    min-height: 360px;
+
+    .cb-img {
+      min-height: 180px;
+    }
+
+    .cb-footer {
+      justify-content: center;
+
+      //
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  //
+  position: relative;
+
+}

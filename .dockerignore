@@ -1,0 +1,9 @@
+.git
+configs/
+htmlcov/
+components/
+node_modules/
+
+*.py[cod]
+.DS_Store
+docker-compose*.yml

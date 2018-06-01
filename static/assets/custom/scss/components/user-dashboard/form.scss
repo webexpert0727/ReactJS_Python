@@ -1,0 +1,89 @@
+.form-group {
+  label {
+    p, h1, h2, h3 {
+      margin: 0;
+    }
+  }
+  &.controls {
+    padding-top: 25px;
+  }
+}
+
+.panel {
+  .panel-body {
+    .form-body {
+      margin-bottom: 0;
+
+      .form-container {
+        padding: $base-padding;
+
+        .form-group {
+          p.header { margin: $base-padding * 1.5 0 $base-padding / 2; }
+
+          margin: 0;
+
+          &:last-child {
+            margin-bottom: 0;
+
+            .panel-row {
+              border-bottom: unset;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form-option-list {
+  .form-option {
+    display: inline-block;
+    width: 100px;
+    border-radius: $base-border-radius;
+    color: white;
+    margin: 0 $base-padding*0.25 $base-padding*0.25 0;
+    cursor: pointer;
+    opacity: 0.7;
+
+    &.selected {
+      border: 3px solid $color-new-primary;
+      opacity: 1;
+    }
+
+    // Brew methods - Preferences
+    &.Espresso-opt { background-color: $color-espresso-opt; }
+    &.Drip-opt { background-color: $color-drip-opt; }
+    &.Aeropress-opt { background-color: $color-aeropress-opt; }
+    &.French.press-opt { background-color: $color-french-press-opt; }
+    &.Stove.top-opt { background-color: $color-stove-top-opt; }
+    &.Cold.Brew-opt { background-color: $color-cold-brew-opt; }
+    &.None-opt { background-color: $color-none-opt; }
+
+    // Packaging - Preferences
+    &.WB-opt { background-color: $color-WB-opt; }
+    &.GR-opt { background-color: $color-GR-opt; }
+    &.DR-opt { background-color: $color-DR-opt; }
+
+    .form-option-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: $base-padding * 0.25;
+
+      p {
+        min-height: 42px;
+        text-align: center;
+      }
+
+      .img-thumbnail {
+        background-size: contain;
+        background-repeat: none;
+        background-color: transparent;
+        width: 80px;
+        height: 80px;
+        border: 0px;
+      }
+    }
+  }
+}

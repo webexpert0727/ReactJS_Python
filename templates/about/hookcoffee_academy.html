@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'HookCoffee Academy' %}{% endblock %}
+
+{% block meta-description %}
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://hookcoffee.com.sg{% url 'brew_guide_list' %}" />
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<section class="section bg-d">
+  <div class="section-row row-sm">
+    <h1>{% trans 'HOOK COFFEE ACADEMY' %}</h1>
+    <h4>{% trans 'This is where we break down the bizarre world of speciality coffee into content that you can easily understand so that you can brew that cup of coffee better than someone else. How about that? :)' %}</h4>
+  </div>
+</section>
+
+<section class="section is-align-left hook-academy">
+  <div class="section-row row-lg row-grid">
+
+    <!--Start of Left Collumn-->
+    <div class="col-md-6">
+
+      <div class="academy-cards-title">
+        <h2>Latest Articles</h2>
+        <span class="s-h1 fresh-off">Fresh off</span>
+        <span class="s-h2"><u>The</u><u class="clr-me-p">Hook</u><u class="clr-me-s">Blog</u></span>
+        <span class="see-all">
+          <a class="s-h2-s s-h2-bold" href="{% url 'blog' %}">
+            {% trans 'See All' %} ›
+          </a>
+        </span>
+      </div>
+
+      <!--Card 1-->
+      <div class="card-lg">
+        <div class="img-col" style="background-image: url({% static 'images/new-images/hook_coffee_blog_img.jpg' %})"></div>
+        <div class="info-col">
+          <div class="content-divider card-category">
+            <span class="s-h1">Holidays</span>
+          </div>
+          <p class="s-h3 card-title">Greetings and Merry Christmas to all!!!</p>
+          <p class="s-h1"><i>Posted by</i> <span class="s-h1-bold">Hook Coffee</span> on <span class="s-h1-bold">December 24, 2017</span></p>
+          <p class="s-h1">It’s a glorious time here at Hook Coffee. A special time. A wonderful time. Why, you ask? Well it’s Hook Coffee’s very first Christmas! Today we make merry and celebrate not only the holidays but also our fans and readers.</p>
+          <a class="btn btn-secondary"href="">Read More</a>
+        </div>
+      </div>
+
+      <!--Card 2-->
+      <div class="card-lg">
+        <div class="img-col" style="background-image: url({% static 'images/new-images/hook_coffee_blog_img.jpg' %})"></div>
+        <div class="info-col">
+          <div class="content-divider card-category">
+            <span class="s-h1">Holidays</span>
+          </div>
+          <p class="s-h3 card-title">Greetings and Merry Christmas to all!!!</p>
+          <p class="s-h1"><i>Posted by</i> <span class="s-h1-bold">Hook Coffee</span> on <span class="s-h1-bold">December 24, 2017</span></p>
+          <p class="s-h1">It’s a glorious time here at Hook Coffee. A special time. A wonderful time. Why, you ask? Well it’s Hook Coffee’s very first Christmas! Today we make merry and celebrate not only the holidays but also our fans and readers.</p>
+          <a class="btn btn-secondary"href="">Read More</a>
+        </div>
+      </div>
+
+      <!--Card 3-->
+      <div class="card-lg">
+        <div class="img-col" style="background-image: url({% static 'images/new-images/hook_coffee_blog_img.jpg' %})"></div>
+        <div class="info-col">
+          <div class="content-divider card-category">
+            <span class="s-h1">Holidays</span>
+          </div>
+          <p class="s-h3 card-title">Greetings and Merry Christmas to all!!!</p>
+          <p class="s-h1"><i>Posted by</i> <span class="s-h1-bold">Hook Coffee</span> on <span class="s-h1-bold">December 24, 2017</span></p>
+          <p class="s-h1">It’s a glorious time here at Hook Coffee. A special time. A wonderful time. Why, you ask? Well it’s Hook Coffee’s very first Christmas! Today we make merry and celebrate not only the holidays but also our fans and readers.</p>
+          <a class="btn btn-secondary"href="">Read More</a>
+        </div>
+      </div>
+    </div>
+    <!--End of Left Collum-->
+
+    <!--Start of Right Collumn-->
+    <div class="col-md-6">
+<!--       <div class="section-row row-grid">
+
+        <div class="col-lg-12">
+          <div class="brew-guides-list">
+
+            <div class="academy-guides-title">
+              <h2>Brew Guides</h2>
+            </div>
+
+            <ul class="brew-guides">
+              <li>
+                <a class="guide Espresso" href="{{ brew_guide.get_absolute_url }}">
+                  <img src="{% get_media_prefix %}espresso.png">
+                  <span class="guide-text s-h5">
+                    Espresso
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="guide V60" href="{{ brew_guide.get_absolute_url }}">
+                  <img src="{% get_media_prefix %}drip.png">
+                  <span class="guide-text s-h5">
+                    V60
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="guide Stovetop" href="{{ brew_guide.get_absolute_url }}">
+                  <img src="{% get_media_prefix %}aeropress.png">
+                  <span class="guide-text s-h5">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="guide French Press" href="{{ brew_guide.get_absolute_url }}">
+                  <img src="{% get_media_prefix %}french_press.png">
+                  <span class="guide-text s-h5">
+                    French Press
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a class="guide Stovetop" href="{{ brew_guide.get_absolute_url }}">
+                  <img src="{% get_media_prefix %}stove_top.png">
+                  <span class="guide-text s-h5">
+                    Stovetop
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                  </span>
+                </a>
+              </li>
+
+            </ul> -->
+        <div class="brew-guides-list">
+
+          <div class="academy-guides-title">
+            <h2>Brew Guides</h2>
+          </div>
+
+          <ul class="brew-guides">
+            <li>
+              <a class="guide Espresso" href="{{ brew_guide.get_absolute_url }}">
+                <img src="{% get_media_prefix %}espresso.png">
+                <span class="guide-text">
+                  Espresso
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a class="guide V60" href="{{ brew_guide.get_absolute_url }}">
+                <img src="{% get_media_prefix %}drip.png">
+                <span class="guide-text">
+                  V60
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a class="guide Aeropress" href="{{ brew_guide.get_absolute_url }}">
+                <img src="{% get_media_prefix %}aeropress.png">
+                <span class="guide-text">
+                  Aeropress
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a class="guide French Press" href="{{ brew_guide.get_absolute_url }}">
+                <img src="{% get_media_prefix %}french_press.png">
+                <span class="guide-text">
+                  French Press
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <a class="guide Aeropress" href="{{ brew_guide.get_absolute_url }}">
+                <img src="{% get_media_prefix %}stove_top.png">
+                <span class="guide-text">
+                  Stovetop
+                  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </span>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+    </div>
+    <!--End of Right Collumn-->
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+{% endblock %}

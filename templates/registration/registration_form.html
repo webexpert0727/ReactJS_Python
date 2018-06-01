@@ -1,0 +1,56 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Register' %}{% endblock %}
+
+{% block head %}
+  <!-- Custom styles for this template -->
+
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/signin-pages.scss' %}" />
+  {% endcompress %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <form class="form-signin" method="post" action="">
+          {% csrf_token %}
+
+          <h1 class="text-center">{% trans 'Register' %}</h1>
+
+          <div class="sign-in-wrapper">
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                  <label for="id_{{ field.name }}">{{ field.label }}</label>
+                  {% render_field field class+="form-control input-lg" placeholder=field.label %}
+                  {{ field.errors }}
+                </div>
+            {% endfor %}
+            <input class="btn btn-lg btn-primary btn-block" type="submit" value="{% trans 'Submit' %}" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}

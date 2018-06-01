@@ -1,0 +1,104 @@
+#rewards a.btn {
+    height: 36px;
+    border: 1px solid RGB(204, 171, 78);
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 0px;
+}
+
+#rewards .highlighted {
+    /*text-decoration: underline;*/
+    color: RGB(204, 171, 78);
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#rewards .redeem-item {
+    height: 500px;
+}
+
+#rewards .redeem-item img {
+    width: 100%;
+    border: 0;
+    margin: 15px auto;
+}
+
+#rewards p.reward-price {
+    color: RGB(204, 171, 78);
+}
+
+#rewards p.reward-remains {
+    font-style: italic;
+}
+
+#rewards p.reward-name {
+    font-weight: bolder;
+}
+
+#rewards p.reward-remains span.points-remain {
+    font-weight: bolder;
+}
+
+#rewards .row.reward-summary {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+#rewards i.icon-redeem {
+    background: url(/static/images/redeem.png);
+}
+
+.sidebar-navbar-collapse a {
+    font-family: "Archer-Bold", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: red;
+}
+
+/* SHOPPING CART crutches */
+#menu-cart {
+    position: absolute;
+    left: -200px;
+}
+
+#menu-cart button {
+    background-color: #c9961d;
+    color: #fff;
+}
+
+#menu-cart button:focus {
+    outline: none;
+}
+#btn-checkout-cart {
+    border: 0;
+}
+@media only screen and (max-width: 414px) {
+    #menu-cart {
+        position: absolute;
+        left: 0;
+    }
+    .col-xs-12 {
+        margin: 0;
+        padding: 0;
+    }
+    .panel .panel-body {
+        margin: 0;
+        padding-left: 10px;
+        padding-right: 0;
+    }
+    .panel-body th {
+        font-size: 10px;
+        margin: 0;
+        padding: 1px;
+    }
+    .panel-body a.btn {
+        font-size: 10px;
+        padding: 1px;
+        margin: 0;
+    }
+}
+
+#shopping-cart button {
+    margin-top: 15px;
+}

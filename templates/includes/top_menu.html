@@ -1,0 +1,197 @@
+{% load i18n %}
+{% load static %}
+
+<link href="{% static 'assets/custom/css/top_menu.css' %}" rel="stylesheet"/>
+<script src="{% static 'assets/custom/js/top_menu.js' %}" type="text/javascript"></script>
+
+
+<nav class="navbar navbar-default navbar-fixed-top{% if 'blog' in request.path or 'accounts' in request.path %} navbar-dark{% endif %}">
+
+  {% include "includes/top_bar.html" %}
+
+  <div class="container">
+    <div class="navbar-header">
+
+      <button aria-expanded="false" data-target="#main-menu" data-toggle="collapse" class="navbar-toggle collapsed pull-right" type="button">
+        <span class="sr-only">{% trans 'Toggle navigation' %}</span>
+        <span class="icon-bar"></span> <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        {% if 'wholesale' in request.get_full_path %}
+      <a href="{% url 'index' %}" class="navbar-brand">
+          <img src="{% static 'images/hclogo_horizontal_workplace.png' %}" height="60" alt="HookCoffee logo"/>
+      </a>
+        {% elif 'workshop' in request.get_full_path %}
+      <a href="{% url 'index' %}" class="navbar-brand">
+          <img src="{% static 'images/logos/HookCoffee_Academy_logo_brown.jpg' %}" height="60" alt="HookCoffee logo"/>
+      </a>
+        {% else %}
+      <a href="{% url 'index' %}" class="navbar-brand common-logo centered">
+          <img src="{% static 'images/logos/default-2017.png' %}" height="60" alt="HookCoffee logo" />
+      </a>
+        {% endif %}
+    </div>
+
+    <div id="main-menu" class="collapse navbar-collapse">
+
+      <ul class="nav navbar-nav main-navbar-nav pull-right">
+
+        <li>
+          <a href="{% url 'wholesale' %}">{% trans 'Hook At Work' %}</a>
+        </li>
+
+        <!-- Shop -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" role="button" id="nav-dd-shop" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% trans 'Shop' %}
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="nav-dd-shop">
+
+            <li class="dropdown-submenu">
+              <a class="submenu" tabindex="-1" href="#">
+                {% trans 'Coffees' %}
+              </a>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{% url 'coffees' %}">
+                    <img src="{% static 'images/icons/subnav_coffee/coffee-bags.png' %}"
+                      alt="By the Bag" /> {% trans 'By the Bag' %}
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'nespresso' %}">
+                    <img src="{% static 'images/icons/subnav_coffee/coffee-pods.png' %}"
+                      alt="By the Pod" /> {% trans 'By the Pod' %}
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="dropdown-submenu">
+              <a class="submenu" tabindex="-1" href="#">
+                {% trans 'Gears' %}
+              </a>
+
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{% url 'gears_essentials' %}">
+                    <img src="{% static 'images/icons/subnav_gears/gear-essentials.png' %}"
+                      alt="Essentials" /> {% trans 'Essentials' %}
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'gears_machines' %}">
+                    <img src="{% static 'images/icons/subnav_gears/gear-machines.png' %}"
+                      alt="Machines" /> {% trans 'Machines' %}
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Vouchers -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" role="button" id="nav-dd-gifts" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% trans 'Gifts' %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="nav-dd-shop">
+            <li><a href="{% url 'shop-gift-set' %}">{% trans 'Gift Sets' %}</a></li>
+            <li><a href="{% url 'send-friend' %}">{% trans 'Vouchers' %}</a></li>
+          </ul>
+        </li>
+
+        <!-- Learn -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" role="button" id="nav-dd-learn" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% trans 'Learn' %}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="nav-dd-shop">
+            <li><a href="{% url 'about' %}">{% trans 'About us' %}</a></li>
+            <li><a href="{% url 'brew_guide_list' %}">{% trans 'Brew Guides' %}</a></li>
+            <!--<li><a href="{% url 'hookcoffee_academy'%}">{% trans 'HookCoffee Academy' %}</a></li>-->
+            <li><a href="{% url 'blog' %}">{% trans 'Blog' %}</a></li>
+            <li><a href="{% url 'Workshops' %}">{% trans 'Workshops' %}</a></li>
+          </ul>
+        </li>
+
+        {% comment %}
+        <!-- Language -->
+        <li class="dropdown">
+          <form name="change_lang" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="full_path" type="hidden" value="{{ request.get_full_path }}" />
+            <input name="next" type="hidden" value="{{ redirect_to }}" />
+            <input name="language" type="hidden"/>
+          </form>
+
+          <a href="#" class="change-lang-link dropdown-toggle" role="button" id="languages-dropdown-menu" data-target="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% get_current_language as LANGUAGE_CODE %}
+            {{ LANGUAGE_CODE|language_name_local }}
+          </a>
+
+          <ul class="lang-list dropdown-menu" aria-labelledby="languages-dropdown-menu">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <li class="{% if language.code == LANGUAGE_CODE %}active{% endif %}">
+              <a class="js-change-lang lang-link" data-lang="{{ language.code }}" href="#">{{ language.name_local }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endcomment %}
+
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'profile' %}">{{ user.email }}</a></li>
+          <li><a href="{% url 'auth_logout' %}?next={% url 'index' %}">{% trans 'Logout' %}</a></li>
+        {% else %}
+          <li><a href="{% url 'auth_login' %}">{% trans 'Login' %}</a></li>
+
+          {% if not is_worldwide %}
+            <li><a class="btn btn-primary btn-hc" href="{% url 'get_started' %}">{% trans 'GET STARTED HERE' %}</a></li>
+          {% else %}
+            <li>
+              <a class="btn btn-primary btn-hc">
+                {% trans 'Signup' %}
+              </a>
+            </li>
+          {% endif %}
+        {% endif %}
+
+        {% if not no_cart %}
+          <li id="shopping-cart" class="dropdown shopcart-summary"></li>
+        {% endif %}
+
+      </ul>
+    </div>
+    <!--navbar-collapse-->
+  </div>
+  <!--container-fluid-->
+
+</nav>
+
+<div class="clearfix"></div>
+
+
+{% block scripts %}
+<!-- <script>
+  {% if 'wholesale' not in request.get_full_path %}
+    $('.navbar-fixed-top .navbar-brand').css('position', 'absolute').css('z-index', 5).css('margin-top', '-80px');
+  {% endif %}
+</script> -->
+{% endblock %}
+                               {% comment %}
+***************************AVAILABLE CONDITIONS*********************************
+
+{% if is_worldwide %}user is not from Singapore{% endif %}
+{% if pagename == 'profile' %}this is profile page{% endif %}
+{% if pagename == 'old dashboard' %}this is old dashboard page{% endif %}
+{% if pagename == 'blog' %}this is blog page{% endif %}
+{% if 'blog' in request.path %}this is one of blog pages{% endif %}
+{% if 'accounts' in request.path %}this is one of accounts pages{% endif %}
+
+********************************************************************************
+                             {% endcomment %}

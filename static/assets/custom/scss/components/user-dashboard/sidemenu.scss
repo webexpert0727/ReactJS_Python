@@ -1,0 +1,75 @@
+.sidemenu {
+  // Top and height attributes at main.scss
+  color: white;
+  position: initial;
+  min-width: initial;
+
+  background-color: $color-dark;
+  overflow-y: auto;
+  max-width: initial;
+  padding: $base-padding;
+  padding-right: 0px;
+
+  @media (min-width: $screen-sm) {
+    position: fixed;
+    max-width: 200px;
+  }
+
+  .s-h1-bold { margin-top: $base-padding; }
+  .offer.panel {
+    margin: $base-padding / 2;
+    margin-left: 0;
+    color: $color-dark;
+    h4 { @extend .hc-text-noshadow; }
+
+    @media (min-width: $screen-sm) {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.sidemenu-underline {
+  a {
+    padding-left: $base-padding / 2 !important;
+    height: $base-padding * 2 !important;
+    background-color: transparent !important;
+    border-bottom: none !important;
+    color: $color-light-gray;
+  }
+
+  & a:hover {
+    color: white;
+  }
+
+  &.active a {
+    color: $color-warm !important;
+    opacity: 1;
+  }
+
+  &.active:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    width: 147px;
+    border-bottom: 5px solid $color-warm !important;
+  }
+
+  i {
+    width: $base-padding;
+  }
+
+  @media only screen and (max-width: $screen-sm) {
+    &.active:after {
+      border-bottom: none !important;
+    }
+
+    & {
+      border-bottom: 5px solid transparent !important;
+    }
+    &.active {
+      border-bottom: 5px solid $color-warm !important;
+    }
+  }
+}

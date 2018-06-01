@@ -1,0 +1,82 @@
+.three-sec img {
+  margin-bottom: 8px;
+}
+.three-sec .col-sm-4 {
+  position: relative;
+}
+.three-sec i {
+  position: absolute;
+  background: url(/static/images/arrow.png) no-repeat center top;
+  width: 49px;
+  height: 56px;
+  right: -30px;
+  top: 5px;
+}
+.three-sec h2 {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  color: #735146;
+}
+.three-sec h2 u {
+  text-decoration: none;
+  vertical-align: -3px;
+}
+.three-sec p {
+  font-size: 16px;
+  line-height: 18px;
+  color: #735146;
+  display: block;
+  padding: 20px 25px;
+}
+.three-sec button {
+  display: inline-block;
+  background-color: #D9A52A;
+  border: none;
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 18px;
+  padding: 9px 12px;
+  border-radius: 15px;
+  margin: 25px 0 50px 0;
+}
+.three-sec button:hover, .three-sec button:active, .three-sec button:focus {
+  background-color: #c9961d;
+  color: #FFF;
+}
+
+.tmp-sec a {
+}
+.tmp-sec .col-sm-4 {
+  position: relative;
+}
+.tmp-sec .col-md-4 {
+  position: relative;
+  text-align: center;
+  height: 300px;
+}
+.tmp-sec #tmp-1 {
+  background: url("/static/images/img1.png") no-repeat center center;
+  background-size: cover;
+}
+.tmp-sec #tmp-2 {
+  background: url("/static/images/img2.png") no-repeat center center;
+  background-size: cover;
+}
+.tmp-sec #tmp-3 {
+  background: url("/static/images/img3.png") no-repeat center center;
+  background-size: cover;
+}
+.tmp-sec a:hover {
+  opacity: 0.5;
+}
+.tmp-sec p {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+
+  color: #FFF;
+  font-size: 45px;
+  text-shadow: 3px 1px 3px #000;
+  font-weight: bold;
+}

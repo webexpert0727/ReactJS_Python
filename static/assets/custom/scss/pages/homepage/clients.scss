@@ -1,0 +1,25 @@
+.clients {
+  display: block;
+  position: relative;
+  padding-bottom: 25px;
+}
+.clients a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.clients img,
+.clients_hotels img {
+  max-width: 200px;
+  height: auto;
+  margin: 10px 15px;
+}
+@media only screen and (max-width: 1440px) {
+  .clients img {
+    max-width: 110px;
+    height: auto;
+  }
+  .clients_hotels img {
+    max-width: 150px;
+  }
+}
+

@@ -1,0 +1,44 @@
+.voyager-series {
+
+  img {
+    overflow: hidden;
+    border-radius: $base-border-radius;
+  }
+
+  a:hover, a:focus {
+    color: white;
+  }
+
+  .voyager-box {
+    @extend .box;
+    width: 100%;
+    min-width: 280px;
+    max-width: 360px;
+    border: 1px solid $color-dark-20;
+
+    .cb-info {
+      &.cb-header {
+        padding: $base-padding * 1.5;
+        & > * { &:nth-child(2) { margin-left: 5px; } }
+      }
+      &.cb-body {
+        &, & > h2 { height: 280px; }
+
+        h2 {
+          line-height: 280px;
+          background-color: $color-dark-20;
+          color: white;
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+
+        background-size: cover;
+        background-position: 50% 50%;
+        text-align: center;
+      }
+    }
+  }
+
+}

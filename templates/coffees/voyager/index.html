@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}- {% trans 'Voyager' %}{% endblock %}
+
+{% block head %}
+{% compress css %}
+  <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+{% endcompress %}
+{% endblock %}
+
+{% block content%}
+
+{% include "coffees/subnav.html" %}
+
+  <section class="section is-banner-lg bg-d">
+    <div class="section-row row-sm">
+      <h1>{% trans 'VOYAGER SERIES' %}</h1>
+      <a class="btn btn-primary btn-hc" href="#">LEARN MORE</a>
+    </div>
+  </section>
+
+  <section class="section is-align-left voyager-series">
+    <div class="section-row row-md row-grid">
+
+      <div class="col-sm-6">
+        <a class="s-h3" href="{% url 'drip_coffee_bags' %}">
+          <div class="voyager-box">
+            <div class="cb-info cb-body"
+              style="background-image: url({% static 'images/story1.png' %})">
+              <h2>{% trans 'dripbag coffee bag' %}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-sm-6">
+        <a class="s-h3" href="{% url 'perfectly_ground' %}">
+          <div class="voyager-box">
+            <div class="cb-info cb-body"
+              style="background-image: url({% static 'images/story1.png' %})">
+              <h2>{% trans 'perfectly ground' %}</h2>
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+<!-- Trial Pack Modal -->
+  <div id="trialModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+      <div class="modal-content">
+        {% if popup_ids|random == '1' %}
+          <div class="modal-body" style="background: transparent url({% static 'images/V60STARTER.jpeg' %}) no-repeat scroll center right / cover; height: 600px;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-footer">
+              <a id="register-link" href="{% url 'get_started' %}" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'i want this starter kit!' %}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              <p>{% trans '* for limited time only!' %}</p>
+            </div>
+          </div>
+        {% else %}
+          <div class="modal-body" style='background: RGB(220, 201, 195);'>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 id="hi50-box">
+              {% blocktrans trimmed %}
+              new to hook?</br>
+              enter "TAKEFIVE!"
+              for <u>$5</u> off your first
+              bag!
+              {% endblocktrans %}
+            </h1>
+            <div class="modal-footer">
+              <a id="register-link" href="{% url 'get_started' %}" class="btn">{% trans 'get me hooked!' %}</a>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    $(document).ready(function(){
+
+      $('[name=btn]').click(function() {
+        window.location.href = "{% url 'get_started' %}"
+      });
+
+      $('.menu-icon').click(function(){
+        var hidden = $('.hemburger-menu');
+        if (hidden.hasClass('visible')){
+          hidden.animate({"left":"-300px"}, "slow").removeClass('visible');
+        } else {
+          hidden.animate({"left":"0px"}, "slow").addClass('visible');
+        }
+      });
+
+      // {% if not user.is_authenticated %}
+      setTimeout(function(){
+        $("#modal-gift-sets").modal();
+      }, 50 * 100);
+      // {% endif %}
+
+      if ('{{ form.email.errors }}' !== '' || '{{ form.name.errors }}' !== '') {
+        $("#btn-get-started").click();
+      }
+    });
+  </script>
+
+{% endblock %}

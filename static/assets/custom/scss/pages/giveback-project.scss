@@ -1,0 +1,410 @@
+/* ------------------------------------------------------------------
+General Styles
+------------------------------------------------------------------ */
+// body > .container-fluid {
+//   padding-top: 0px !important;
+// }
+
+.shadow {
+  color: white;
+  text-align: center;
+  text-shadow: 0px 0px 7px rgba(0, 0, 0, 1);
+}
+
+body {
+  // margin-bottom: 241px;
+  // background-color: $color-cream;
+}
+
+/* ------------------------------------------------------------------
+Hookcoffee frontpage
+------------------------------------------------------------------- */
+.module {
+  padding: 0 0;
+  margin: 40px 0;
+  background-color: $color-cream;
+}
+
+#main-header {
+  display: block;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  color: white;
+  padding-top: 120px;
+  padding-bottom: 120px;
+
+  //background: url('/static/images/hook-bg-72.jpg') no-repeat center center;
+  //opacity: 0.52;
+  //filter: alpha(opacity=52); /* For IE8 and earlier */
+
+  @extend .text-center;
+  //background-attachment: scroll;
+  //background-size: cover;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media screen and (min-width: $screen-lg) {
+    background-attachment: fixed;
+
+  }
+
+  @media only screen and (max-width: 415px) and (max-height: 750px) {
+      //background: url('/static/images/hook-bg-72-small.jpg') no-repeat left center;
+      //background-size: 415px 750px;
+
+      #btn-find-out-more {
+        display: block;
+        margin: 10px 0px 0px 0px;
+
+      }
+
+      #main-title {
+        margin-top: 20px;
+      }
+    }
+
+  @media only screen and (max-width: 400px) and (max-height: 600px) {
+    display: block;
+
+    height: 105vh;
+
+
+    h1 {
+      margin-bottom: 0 !important;
+    }
+
+    #btn-get-started {
+      margin-top: 0;
+    }
+
+    p {
+      padding: 0;
+    }
+  }
+
+  #btn-get-started {
+    margin-top: 10px;
+  }
+
+  h1 {
+    font-size: 50px;
+    color: RGB(115,81,72);
+    margin-bottom: 0;
+
+    @media screen and (min-width: $screen-sm) {
+      font-size: 60px;
+
+    }
+
+    @media screen and (min-width: $screen-md) {
+      font-size: 80px;
+    }
+
+    @media screen and (min-width: $screen-lg) {
+      font-size: 70px;
+    }
+  }
+
+  p {
+    font-family: $font-family-1;
+    font-size: 14px;
+    padding: 0px 14%;
+
+    @media screen and (min-width: $screen-sm) {
+      font-size: 18px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    padding-top: 15%;
+  }
+}
+
+#main-header::after {
+
+  content: "";
+  background: url('/static/images/hook-bg-72.jpg') no-repeat center center;
+  opacity: 0.9;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+
+  background-attachment: scroll;
+  background-size: cover;
+
+
+}
+
+#main-header-logo {
+  width: 200px;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: $screen-sm) {
+    margin-bottom: 10px;
+  }
+}
+
+
+#our-story-image {
+  height: 100%;
+  background: url('/static/images/story.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+#our-coffee-image {
+  height: 100%;
+  background: url('/static/images/coffee.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+#ethical-choices-image {
+  height: 100%;
+  background: url('/static/images/ethical-choices2.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+/* ------------------------------------------------------------------
+For How It Works
+------------------------------------------------------------------- */
+// .content-box {
+//   text-align: center;
+//   margin: 25px 0;
+//   max-width: 400px;
+//   margin: 0 auto;
+//   padding: 10px;
+// }
+// 
+// .content-box-icon {
+//   font-size: 42px;
+//   color: #111;
+// }
+
+/* Alt content box */
+
+.alt-content-box {
+  position: relative;
+  padding-left: 55px;
+  margin: 25px 0;
+}
+
+.alt-content-box-icon {
+  position: absolute;
+  height: 38px;
+  width: 38px;
+  left: 0;
+  top: 0;
+  text-align: center;
+  line-height: 38px;
+  font-size: 28px;
+  color: #111;
+}
+
+.alt-content-box-title {
+  margin: 0 0 18px;
+}
+
+/* ------------------------------------------------------------------
+Trial pack modal
+------------------------------------------------------------------- */
+#trialModal {
+  .modal-dialog {
+
+    @media (min-width: $screen-sm) {
+      width: 768px;
+    }
+
+    .modal-content {
+      border-radius: 0px;
+      border: 8px solid #FFF;
+
+      .close {
+        font-size: 40px;
+        width: 40px;
+        opacity: 0.3;
+      }
+
+      .modal-footer {
+        padding: 15px 15px 20px;
+        bottom: 0px;
+        position: absolute;
+        right: 0px;
+        left: 0px;
+        color: #FEF8ED;
+        border: 0;
+
+        span {
+          font-family: 'Archer-Bold';
+          font-size: 62px;
+
+          text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+
+          text-align: center;
+          line-height: 54px;
+          margin-bottom: 30px;
+        }
+
+        p {
+          color: black;
+        }
+
+        #register-link {
+          position: relative;
+          right: 50%;
+          transform: translateX(50%);
+
+          font-family: "Amatic-Bold", cursive;
+
+          font-size: 40px;
+          font-weight: 900;
+          line-height: 42px;
+          letter-spacing: 1px;
+          //width: 240px;
+          padding: 0 50px 10px 50px;
+
+          @media only screen and (max-width: 415px) and (max-height: 750px) {
+            padding: 0 5px 10px 5px;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+#hi50-box {
+  margin-top: 10%;
+  text-align: center;
+  font-size: 80px;
+  line-height: 70px;
+
+  @media only screen and (max-width: 415px) and (max-height: 750px) {
+    margin-top: 18%;
+    font-size: 60px;
+    line-height: 60px;
+
+  }
+
+}
+
+#mission {
+  margin-top: 40px;
+  color: RGB(115,81,72);
+}
+
+
+/* ------------------------------------------------------------------
+AS FEATURED ON
+------------------------------------------------------------------- */
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+}
+/* The controlsy */
+.carousel-control {
+  left: -12px;
+    height: 40px;
+  width: 40px;
+    background: none repeat scroll 0 0 #222222;
+    border: 4px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    margin-top: 90px;
+}
+.carousel-control.right {
+  right: -12px;
+}
+/* The indicators */
+.carousel-indicators {
+  right: 50%;
+  top: auto;
+  bottom: -10px;
+  margin-right: -19px;
+}
+/* The colour of the indicators */
+.carousel-indicators li {
+  background: #cecece;
+}
+.carousel-indicators .active {
+  background: #428bca;
+}
+
+.thumbnail {
+  border: 0;
+  height: 150px;
+
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+
+  background-color: transparent;
+}
+
+.featured-div {
+  padding: 0px;
+}
+
+img.desaturate {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+// How it works Bookmark
+a.top {
+  position: relative;
+  top:-100px;
+  display: block;
+  height: 0;
+  width:0;
+}
+
+#btn-find-out-more {
+  margin-top: 10px;
+  border-radius: 15px;
+  margin-left: 20px;
+  //opacity: 0.4;
+  //filter: alpha(opacity=40); /* For IE8 and earlier */
+  background: rgba(255,255,255,0.4);
+}
+
+#btn-find-out-about-us {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  margin-left: 20px;
+}
+
+.nav > li > a:not(.btn):hover,
+.nav > li > a:not(.btn):focus, {
+  // background-color: transparent;
+
+  .navbar-white & {
+    //color: $color-forest !important;
+    color: white !important;
+  }
+
+  .navbar-custom:not(.navbar-white) & {
+    //color: white !important;
+    color: RGB(114, 81, 73) !important;
+  }
+}
+
+#how-it-works-section {
+  border-top: 40px solid $color-cream;
+  margin-top: 0;
+}
+
+#how-it-works {
+  //margin-top: 20px;
+}

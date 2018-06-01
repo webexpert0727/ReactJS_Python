@@ -1,0 +1,67 @@
+.divider {
+  border-bottom: 1px solid $color-dark-20;
+  content: " ";
+  position: relative;
+  z-index: 1;
+  height: 0;
+  text-align: center;
+
+  span {
+    background: white;
+    position: relative;
+    top: -8px;
+    padding: 0 $base-padding / 2;
+  }
+}
+
+.content-divider {
+  @extend .divider;
+
+  span { 
+    color: $color-dark-50;
+    text-transform: none;
+    font-style: italic;
+    font-weight: 200;
+  }
+}
+
+.section-divider {
+  @extend .divider;
+
+  @media screen and (max-width: $width-lg) {
+    max-width: $width-xs;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: $width-xs) {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  & > div {
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+
+    & > * {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .divider-title {
+      top: -16px;
+      font-family: $font-family-2;
+      font-size: 24px;
+      
+      padding-left: 0;
+    }
+
+    .see-all {
+      height: 15px;
+      top: -7px;
+      font-family: $font-family-1;
+      font-size: 10px;
+    }
+  }
+
+  .glyphicon { font-size: 15px; }
+}

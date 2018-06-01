@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+{% load i18n %}
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Hook Coffee Singapore {% block title %}{% endblock %}</title>
+    <meta name="description"
+        content={% block meta-description %}
+            "We deliver specialty coffee, sourced from the world’s best farms and hand-roasted locally in Singapore. Your fresh and delicious coffee is sent out to you within a week of roasting, just the way you want it, and straight to your mailbox!"
+            {% endblock %}>
+    <meta name="keywords"
+    content="hook coffee, hook coffee singapore, healthy, sustainable, ethical, fresh, freshly brewed, freshly roasted, specialty coffee, gourmet, delivery, deliver, mail, convenient, convenience, delicious, great tasting, single origin, origin, organic, arabica, singapore">
+    <meta name="author" content="">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicons/apple-touch-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicons/apple-touch-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicons/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicons/apple-touch-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicons/apple-touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicons/apple-touch-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicons/apple-touch-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicons/apple-touch-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon-180x180.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicons/base_favicon.ico' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-32x32.png' %}" sizes="32x32" >
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-96x96.png' %}" sizes="96x96">
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-192x192.png' %}" sizes="192x192">
+
+    <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="{% static 'favicons/mstile-144x144.png' %}">
+    <meta name="msapplication-config" content="{% static 'favicons/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    {% render_bundle 'app' 'css' %}
+
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Heap analytics -->
+<script type="text/javascript">
+window.heap = window.heap || [], heap.load = function (e, t) {
+    window.heap.appid = e, window.heap.config = t = t || {};
+    var n = t.forceSSL || "https:" === document.location.protocol, a = document.createElement("script");
+    a.type = "text/javascript", a.async = !0, a.src = (n ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap-" + e + ".js";
+    var o = document.getElementsByTagName("script")[0];
+    o.parentNode.insertBefore(a, o);
+    for (var r = function (e) {
+        return function () {
+            heap.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+        }
+    }, p = ["clearEventProperties", "identify", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)heap[p[c]] = r(p[c])
+};
+heap.load("2757493293");
+</script>
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-71545429-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+<!-- Twitter universal website tag code -->
+<script>
+  !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+  },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+  a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+  // Insert Twitter Pixel ID and Standard Event data below
+  twq('init','nxyzc');
+  twq('track','PageView');
+</script>
+<!-- End Twitter universal website tag code -->
+
+{% include "includes/sentry.html" %}
+
+{% block pixel %}
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+        document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1581259845537433');
+    fbq('track', "PageView");
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=1581259845537433&ev=PageView&noscript=1"
+        />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    {% endblock %}
+
+    <script>
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length,c.length);
+            }
+        }
+        return "";
+    }
+    </script>
+
+    <script src="{% static 'assets/vendor/jquery.js' %}"></script>
+    <script type="text/javascript">
+      setTimeout(function(){var a=document.createElement("script");
+      var b=document.getElementsByTagName("script")[0];
+      a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0067/2197.js?"+Math.floor(new Date().getTime()/3600000);
+      a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+    </script>
+
+    <script type="text/javascript" src="//assets.shopisty.com/js/bot.widget.js"></script>
+    <script src="https://2f5c6d2533f64579a84479c9e24a5adf.js.ubembed.com/" async></script>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/4538830.js"></script>
+    <!-- End of HubSpot Embed Code -->
+
+    {% block head %}{% endblock %}
+
+
+</head>
+
+<body>
+
+  {% include "includes/top_menu.html" %}
+
+  {% block content %}{% endblock %}
+
+  {# include "includes/modal_gift_sets.html" #}
+
+  <section id="footer" class="section">
+    <div class="container-fluid">
+      <div class="section-row row-lg row-grid">
+
+        <div class="col-xs-offset-1"></div>
+        <div class="col-sm-2 col-sm-offset-1">
+          <ul>
+            <li><p>{% trans 'Basics' %}</p></li>
+            <li><a href="{% url 'index' %}">{% trans 'Home Page' %}</a></li>
+            <li><a href="{% url 'about' %}">{% trans 'Our Story' %}</a></li>
+            <li><a href="{% url 'get_started' %}">{% trans 'Get Started' %}</a></li>
+            <li><a href="{% url 'profile' %}">{% trans 'Your Account' %}</a></li>
+            <li><a href="{% url 'blog' %}">{% trans 'The Hook Blog' %}</a></li>
+            {% comment %}<li><a href="http://support.hookcoffee.com.sg/">{% trans 'FAQ' %}</a></li>{% endcomment %}
+          </ul>
+        </div>
+
+        <div class="col-sm-2">
+          <ul>
+            <li><p>{% trans 'Shop' %}</p></li>
+            <li><a href="{% url 'coffees' %}">{% trans 'Coffee by the Bag' %}</a></li>
+            <li><a href="{% url 'nespresso' %}">{% trans 'Coffee by the Pod' %}</a></li>
+            <li><a href="{% url 'wholesale' %}">{% trans 'Coffee for the Office' %}</a></li>
+            <li><a href="{% url 'gears_essentials' %}">{% trans 'Essentials' %}</a></li>
+            <li><a href="{% url 'gears_machines' %}">{% trans 'Machines' %}</a></li>
+            <li><a href="{% url 'shop-gift-set' %}">{% trans 'Gift sets' %}</a></li>
+            <li><a href="{% url 'send-friend' %}">{% trans 'Gift credits' %}</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-2">
+          <ul>
+            <li><p><a href="{% url 'brew_guide_list' %}">{% trans 'Brew Guides' %}</a></p></li>
+            <li><a href="https://www.youtube.com/watch?v=s1DCQxfTWp8" target="_blank">{% trans 'Hook Drip Bag' %}</a></li>
+            <li><a href="/brew-guides/v60/" target="_blank">{% trans 'V60 Dripper' %}</a></li>
+            <li><a href="/brew-guides/french-press/" target="_blank">{% trans 'French Press' %}</a></li>
+            <li><a href="/brew-guides/stovetop/" target="_blank">{% trans 'Stovetop' %}</a></li>
+            <li><a href="/brew-guides/aeropress/" target="_blank">{% trans 'Aeropress' %}</a></li>
+            <li><a href="/brew-guides/espresso/" target="_blank">{% trans 'Espresso' %}</a></li>
+            {# <li><a href="/brew-guides/coldbrew/" target="_blank">{% trans 'Cold Brew' %}</a></li> #}
+          </ul>
+        </div>
+
+        <div class="col-sm-2">
+          <ul>
+            <li><p>{% trans 'Social' %}</p></li>
+            <li><a href="https://www.facebook.com/hookcoffeesg" target="_blank">Facebook</a></li>
+            <li><a href="https://www.instagram.com/hook_coffee/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/company/10527428">LinkedIn</a></li>
+            <li><a href="https://www.youtube.com/channel/UCY8KoIHOQlpwrD-F_lWO3Cg">YouTube</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-2">
+          <ul>
+            <li><p>{% trans 'Our Company' %}</p></li>
+            <li><a href="{% url 'careers' %}">{% trans 'Careers' %}</a></li>
+
+            <li><p>{% trans 'Contacts' %}</p></li>
+            <li><a href="mailto:hola@hookcoffee.com.sg">{% trans 'E-mail' %}</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--container-->
+  {% comment %}
+  <section id="copyrights" class="section bg-d">
+    <div class="section-row row-lg">
+      <div class="cr-wrapper">
+        <div class="cr">
+          <img src="{% static 'images/hclogo_horizontal.png' %}" height="50" alt="HookCoffee logo"/>
+          <small>{% trans 'COPYRIGHT' %} &copy; 2016 HOOK COFFEE</small>
+          <a href="{% url 'privacy' %}">{% trans 'Terms & Privacy' %}</a>
+        </div>
+
+        <a id="copyrights__heap-analytics" href="https://heapanalytics.com/?utm_source=badge"><img src="//heapanalytics.com/img/badge.png" alt="Heap | Mobile and Web Analytics" style="width:78px; height:30px;" class="ls"/></a>
+      </div>
+    </div>
+  </div>
+  {% endcomment %}
+  <section class="footer-2 bg-d">
+    <div class="section-row row-tiny">
+      <img class="img-logo" src="{% static 'images/new-images/hc_logo.png' %}" alt="">
+      <div>
+        <h4>{% trans 'The freshest coffee you will ever make!' %}</h4>
+
+        <div class="footer-2__btns">
+          <a class="s-h1" href="#">{% trans '&#169 Hook Coffee' %}</a>
+          <a class="s-h1 spaced" href="http://support.hookcoffee.com.sg/">{% trans 'faq' %}</a>
+          <span>
+            <a href="mailto:hola@hookcoffee.com.sg">
+              <i class="fa fa-lg fa-envelope spaced"></i>
+            </a>
+            <a href="https://www.facebook.com/hookcoffeesg">
+              <i class="fa fa-lg fa-facebook-square"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/10527428?trk=prof-exp-company-name">
+              <i class="fa fa-lg fa-linkedin-square"></i>
+            </a>
+            <a href="https://www.instagram.com/hook_coffee/">
+              <i class="fa fa-lg fa-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UCY8KoIHOQlpwrD-F_lWO3Cg">
+              <i class="fa fa-lg fa-youtube-square"></i>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="section-row row-lg img-analytic">
+      <img src="//heapanalytics.com/img/badge.png" alt="">
+    </div>
+  </section>
+
+  <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+  <script src="{% static 'isotope/dist/isotope.pkgd.min.js' %}"></script>
+  <script src="{% url 'jsi18n' %}"></script>
+  <script src="{% static 'assets/custom/js/base.js' %}"></script>
+  {% render_bundle 'vendor' 'js' %}
+  {% render_bundle 'app' 'js' %}
+  {# <!-- while the file is not exists --> {% render_bundle 'common' 'js' %} #}
+
+  <!-- Google Code for Remarketing Tag -->
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 928721515;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+  </script>
+
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+
+  <noscript>
+    <div style="display:inline;">
+      <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/928721515/?value=0&amp;guid=ON&amp;script=0"/>
+    </div>
+  </noscript>
+
+  {% include "includes/intercom.html" %}
+
+  {% block scripts %}{% endblock %}
+
+                               {% comment %}
+***************************AVAILABLE CONDITIONS*********************************
+
+{% if is_worldwide %}user is not from Singapore{% endif %}
+{% if pagename == 'profile' %}this is profile page{% endif %}
+{% if pagename == 'old dashboard' %}this is old dashboard page{% endif %}
+{% if pagename == 'blog' %}this is blog page{% endif %}
+{% if 'blog' in request.path %}this is one of blog pages{% endif %}
+{% if 'accounts' in request.path %}this is one of accounts pages{% endif %}
+
+********************************************************************************
+                             {% endcomment %}
+
+</body>
+
+</html>

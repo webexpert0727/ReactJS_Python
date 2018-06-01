@@ -1,0 +1,17 @@
+from .base import *  # noqa
+
+DEBUG = False
+
+WEBPACK_LOADER['DEFAULT']['CACHE'] = True
+WEBPACK_LOADER['MANAGER']['CACHE'] = True
+
+'''
+#SSLIFY_DISABLE = True
+#SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+'''
+
+ROADBULL_SERVER = 'cds.roadbull.com'
+ROADBULL_USERNAME = 'hookcoffee'
+ROADBULL_PASSWORD = 'password'

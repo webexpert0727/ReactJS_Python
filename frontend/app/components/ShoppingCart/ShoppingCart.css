@@ -1,0 +1,9 @@
+#shopping-cart ul button {
+  display: inline-block;
+}
+
+.glyphicon + .tooltip.left > .tooltip-inner {
+    background-color: #000;
+    color: #FFF;
+    border: 1px solid #333;
+}

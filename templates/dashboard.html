@@ -1,0 +1,1221 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}- {% trans "Dashboard" %}{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}{% url 'dashboard' %}" />
+  <script src="https://checkout.stripe.com/checkout.js"></script>
+
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <form id="js-process-form-qr" action="{% url 'update_order_status' %}" method="POST">
+          {# {% csrf_token %} #}
+          <div class="form-group form-inline" style="padding: 15px 25px; background-color: #f9f9f9;">
+            <label>Enter the barcode for order processing</label>
+            <input name="order-id" placeholder="@12345" type="text" autofocus>
+            <input name="tracking-number" value="" type="hidden" />
+            <input name="coffee-sample-id" value="" type="hidden" />
+            <button type="submit" class="btn btn-warning btn-process">Process</button>
+          </div>
+          <div id="errbox" class="alert alert-danger" style="display: none; word-wrap: break-word;"></div>
+          <span id="pdfdoc"></span>
+        </form>
+      </div>
+    </div>
+
+    <div style="margin-left:50px;">
+      {% for part in labels_by_parts %}
+      {# <!-- get labels by parts (separated files) --> #}
+      <form method="POST" action="{% url 'print_all_labels' %}" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="special" value="" />
+        <input type="hidden" name="part" value="{{part}}" />
+        <button type="submit" class="btn btn-default btn-xs">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print Labels [{{part}}]
+        </button>
+      </form>
+      {% endfor %}
+
+      <form method="POST" action="{% url 'print_all_labels' %}" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="special" value="" />
+        <input type="hidden" name="part" value="0" />
+        <button type="submit" class="btn btn-default btn-xs">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print All Labels
+        </button>
+      </form>
+      <form method="POST" action="{% url 'print_all_labels' %}" style="display:inline;">
+        {% csrf_token %}
+        <input type="hidden" name="special" value="1" />
+        <input type="hidden" name="part" value="0" />
+        <button type="submit" class="btn btn-default btn-xs">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print Special Labels
+        </button>
+      </form>
+      <form method="POST" action="{% url 'print_all_addresses' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-default btn-xs">
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print Addresses
+        </button>
+      </form>
+      <form action="" method="POST" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="coffee-from" value="" />
+        <input type="hidden" name="coffee-to" value="" />
+        <input name="do-switch-coffee" class="btn btn-danger btn-xs" value="Running out of Coffee" style="display: inline;"/>
+      </form>
+      <span class="pull-right" style="color:RED; margin-right:50px;">{{ error }}</span>
+    </div>
+
+  <div id="loc_glob_tabs" class="container-fluid">
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#local-orders">Local orders</a></li>
+      <li><a data-toggle="tab" href="#worldwide-orders">Global orders</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="local-orders" class="tab-pane fade in active">
+
+  <!-- Gear items -->
+  {% if orders_gear %}
+    <div class="row">
+      <div class="col-md-12">
+        <h3 style="margin-left:50px;"><caption>Gear orders to be shipped tomorrow</caption></h3>
+
+        <div class="orders-table-wrapper">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Account number</th>
+                  <th>Username/Email</th>
+                  <th>Order</th>
+                  <th>Label</th>
+                  <th>Address</th>
+                  <th>Created</th>
+                  <th>Shipping date</th>
+                  <th>Status</th>
+                  <th>Checkout</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for gear_order in orders_gear %}
+                <tr id="order_{{ gear_order.id }}" data-isgear="true">
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ gear_order.customer.stripe_id }}</td>
+                  <td>{{ gear_order.customer }}</td>
+                  <td>{{ gear_order.gear.name }}</td>
+                  <td>
+                    <form method="POST" action="{% url 'print_label' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="gear-order-id" value="{{ gear_order.id }}"/>
+                      <button type="submit" class="btn btn-default btn-xs" id="order_{{ gear_order.id }}">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                      </button>
+                    </form>
+                  </td>
+                  <td>
+                    <form method="POST" action="{% url 'print_address' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="gear-order-id" value="{{ gear_order.id }}"/>
+                      <button type="submit" class="btn btn-default btn-xs btn-print-address" id="order_{{ gear_order.id }}">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                      </button>
+                    </form>
+                  </td>
+                  <td>{{ gear_order.date }}</td>
+                  <td>{{ gear_order.shipping_date }}</td>
+                  <td>{{ gear_order.get_status_display }}</td>
+                  <td>
+                    <form class="js-process-form" method="POST" action="">
+                      {% csrf_token %}
+                      <div class="form-inline text-left">
+                        <div class="form-group">
+                          <input type="hidden" name="order-id" value="@G{{ gear_order.id }}" />
+                          <button class="form-control btn btn-warning btn-process" type="submit">Process</button>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    {% if gear_order.details %}
+                      <span id="details-order-{{ gear_order.id }}">
+                        {% for key, value in gear_order.details.items %}
+                          {{ key }}: {{ value }}<br/>
+                        {% endfor %}
+                      </span>
+                    {% endif %}
+
+                    <div id="details-order-coffees-hasnt-tried-{{ gear_order.id }}" class="hide">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Coffee</th>
+                            <th>Send as a sample</th>
+                          </tr>
+                        </thead>
+                        {% with coffee_samples=gear_order.customer.received_coffee_samples.all %}
+                          {% for coffee in gear_order.customer.get_coffees_hasnt_tried %}
+                            <tr {% if coffee in coffee_samples %}style="color: #ccc"{% endif %}>
+                              <td>{{ coffee }}</td>
+                              <td><input type="radio" name="coffee_sample" value="{{ coffee.id }}" {% if coffee in coffee_samples %}disabled{% endif %}/></td>
+                            </tr>
+                          {% endfor %}
+                        {% endwith %}
+                      </table>
+                    </div>
+
+                    <div id="details-order-history-{{ gear_order.id }}" class="hide">
+                      <table class="table table-hover">
+                        <tr>
+                          <th>#</th><th>Coffee</th><th>Brew Method</th><th>Packaging method</th><th>Created</th><th>Shipping date</th><th>Status</th>
+                        </tr>
+                        {% for order in gear_order.customer.gearorders.all %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ order.coffee }}</td>
+                          <td>{{ order.brew }}</td>
+                          <td>{{ order.get_package_display }}</td>
+                          <td>{{ order.date }}</td>
+                          <td>{{ order.shipping_date }}</td>
+                          <td>{{ order.get_status_display }}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <!-- /Gear items -->
+
+<!-- Redemption items -->
+{% if redemptions %}
+  <div class="row">
+    <div class="col-md-12">
+      <h3 style="margin-left:50px;"><caption>Redemption items to be shipped tomorrow</caption></h3>
+
+      <div class="orders-table-wrapper">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Username/Email</th>
+                <th>Merchandise</th>
+                <th>Address</th>
+                <th>Created</th>
+                <th>Shipping date</th>
+                <th>Process</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for redemption in redemptions %}
+              <tr id="order_{{ redemption.id }}">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ redemption.user }}</td>
+                <td>{{ redemption.item }}</td>
+                <td>
+                  <form method="POST" action="/print_address/">
+                    {% csrf_token %}
+                    <input type="hidden" name="redemption" value="{{ redemption.id }}"/>
+                    <button type="submit" class="btn btn-default btn-xs btn-print-address" id="order_{{ redemption.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+                <td>{{ redemption.added }}</td>
+                <td>{{ redemption.shipping_date }}</td>
+                <td>
+                  <form class="process-form" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-inline text-left">
+                      <div class="form-group">
+                        <input type="hidden" name="redemption-id" value={{ redemption.id }} />
+                        <button class="form-control btn btn-warning btn-process" type="submit">Process</button>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+<!-- /Redemption items -->
+
+  <div class="row">
+    <div class="col-m-12">
+      <!-- Coffee orders -->
+      {% if orders %}
+
+      <div class="col-m-12">
+        <h3 style="margin:25px 0px 0px 50px;"><caption>Coffee Bags to be shipped tomorrow</caption></h3>
+      </div>
+
+      <div class="orders-table-wrapper">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Account number</th>
+                <th>Username/Email</th>
+                <th>Coffee</th>
+                <th>Brew Method</th>
+                <th>Packaging method</th>
+                <th>Label</th>
+                <th>Address</th>
+                <th>Created</th>
+                <th>Shipping date</th>
+                <th>Status</th>
+                <th>Checkout</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+              <tr id="order_{{ order.id }}" data-isgear="false">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ order.customer.stripe_id }}</td>
+                <td class="td-customer">{{ order.customer }}</td>
+                <td class="td-product">{{ order.coffee }}</td>
+                <td class="td-brew">{% firstof order.brew "brew_method" %}</td>
+                <td class="td-package">{% firstof order.get_package_display "packaging_method" %}</td>
+                <td>
+                  <form method="POST" action="{% url 'print_label' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ order.id }}"/>
+                    <button type="submit" class="btn btn-default btn-xs" id="order_{{ order.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+                <td>
+                  <form method="POST" action="{% url 'print_address' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ order.id }}"/>
+                    <button type="submit" class="btn btn-default btn-xs btn-print-address" id="order_{{ order.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.shipping_date }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td>
+                  <form class="js-process-form" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-inline text-right">
+                      <div class="form-group">
+                        <input type="hidden" name="order-id" value="@{{ order.id }}" />
+                        <button class="form-control btn btn-warning btn-process" type="submit">Process</button>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+                <td class="td-address" hidden>
+                  {{ order.customer.line1 }}
+                  {{ order.customer.line2 }}
+                  {{ order.customer.state }}
+                  {{ order.customer.postcode }}
+                </td>
+                <td>
+
+                  <div id="details-order-{{ order.id }}">
+                    {% if order.voucher and order.voucher.name in gift_vouchers %}
+                      <span>Don't forget the gift! [{{ order.voucher.name }}]</span><br/><br/>
+                    {% endif %}
+                    {% if order.details %}
+                      {% for key, value in order.details.items %}
+                        <span>{{ key }}: {{ value }}</span>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+
+                  <div id="details-order-coffees-hasnt-tried-{{ order.id }}" class="hide">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Coffee</th>
+                          <th>Send as a sample</th>
+                        </tr>
+                      </thead>
+                      {% with coffee_samples=order.customer.received_coffee_samples.all %}
+                        {% for coffee in order.customer.get_coffees_hasnt_tried %}
+                          <tr {% if coffee in coffee_samples %}style="color: #ccc"{% endif %}>
+                            <td>{{ coffee }}</td>
+                            <td><input type="radio" name="coffee_sample" value="{{ coffee.id }}" {% if coffee in coffee_samples %}disabled{% endif %}/></td>
+                          </tr>
+                        {% endfor %}
+                      {% endwith %}
+                    </table>
+                  </div>
+
+                  <div id="details-order-history-{{ order.id }}" class="hide">
+                    <table class="table table-hover">
+                      <tr>
+                        <th>#</th><th>Coffee</th><th>Brew Method</th><th>Packaging method</th><th>Created</th><th>Shipping date</th><th>Status</th>
+                      </tr>
+                      {% for cus_order in order.customer.orders.all %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ cus_order.coffee }}</td>
+                        <td>{{ cus_order.brew }}</td>
+                        <td>{{ cus_order.get_package_display }}</td>
+                        <td>{{ cus_order.date }}</td>
+                        <td>{{ cus_order.shipping_date }}</td>
+                        <td>{{ cus_order.get_status_display }}</td>
+                      </tr>
+                      {% endfor %}
+                    </table>
+                  </div>
+
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+      <!-- /orders -->
+
+      <!-- pods -->
+      {% if orders_pods %}
+      <div class="col-m-12">
+        <h3 style="margin-left:50px;"><caption>Nespresso<span class="registered-sign"></span> Pods to be shipped tomorrow</caption></h3>
+      </div>
+
+      <div class="orders-table-wrapper">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Account number</th>
+                <th>Username/Email</th>
+                <th>Coffee</th>
+                <th>Label</th>
+                <th>Address</th>
+                <th>Created</th>
+                <th>Shipping date</th>
+                <th>Status</th>
+                <th>Checkout</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for order in orders_pods %}
+              <tr id="order_{{ order.id }}" data-isgear="false">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ order.customer.stripe_id }}</td>
+                <td class="td-customer">{{ order.customer }}</td>
+                <td class="td-product">{{ order.coffee }}</td>
+                <td>
+                  <form method="POST" action="{% url 'print_label' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ order.id }}"/>
+                    <button type="submit" class="btn btn-default btn-xs" id="order_{{ order.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+                <td>
+                  <form method="POST" action="{% url 'print_address' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ order.id }}"/>
+                    <button type="submit" class="btn btn-default btn-xs btn-print-address" id="order_{{ order.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.shipping_date }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td>
+                  <form class="js-process-form" method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-inline text-right">
+                      <div class="form-group">
+                        <input type="hidden" name="order-id" value="@{{ order.id }}" />
+                        <button class="form-control btn btn-warning btn-process" type="submit">Process</button>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+                <td class="td-address" hidden>
+                  {{ order.customer.line1 }}
+                  {{ order.customer.line2 }}
+                  {{ order.customer.state }}
+                  {{ order.customer.postcode }}
+                </td>
+                <td>
+
+                  <div id="details-order-{{ order.id }}">
+                    {% if order.voucher and order.voucher.name in gift_vouchers %}
+                      <span>Don't forget the gift! [{{ order.voucher.name }}]</span><br/><br/>
+                    {% endif %}
+                    {% if order.details %}
+                      {% for detail in order.details %}
+                        <span>{{ detail }}</span>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+
+                  <div id="details-order-coffees-hasnt-tried-{{ order.id }}" class="hide">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Coffee</th>
+                          <th>Send as a sample</th>
+                        </tr>
+                      </thead>
+                      {% with coffee_samples=order.customer.received_coffee_samples.all %}
+                        {% for coffee in order.customer.get_coffees_hasnt_tried %}
+                          <tr {% if coffee in coffee_samples %}style="color: #ccc"{% endif %}>
+                            <td>{{ coffee }}</td>
+                            <td><input type="radio" name="coffee_sample" value="{{ coffee.id }}" {% if coffee in coffee_samples %}disabled{% endif %}/></td>
+                          </tr>
+                        {% endfor %}
+                      {% endwith %}
+                    </table>
+                  </div>
+
+                  <div id="details-order-history-{{ order.id }}" class="hide">
+                    <table class="table table-hover">
+                      <tr>
+                        <th>#</th><th>Coffee</th><th>Brew Method</th><th>Packaging method</th><th>Created</th><th>Shipping date</th><th>Status</th>
+                      </tr>
+                      {% for cus_order in order.customer.orders.all %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ cus_order.coffee }}</td>
+                        <td>{{ cus_order.brew }}</td>
+                        <td>{{ cus_order.get_package_display }}</td>
+                        <td>{{ cus_order.date }}</td>
+                        <td>{{ cus_order.shipping_date }}</td>
+                        <td>{{ cus_order.get_status_display }}</td>
+                      </tr>
+                      {% endfor %}
+                    </table>
+                  </div>
+
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+      <!-- /pods -->
+    </div>
+  </div>
+
+  </div>
+  <!-- -------------------------------------------------------------------- -->
+  <div id="worldwide-orders" class="tab-pane fade">
+
+  <div class="row">
+    <div class="col-m-12">
+
+<!-- Gear items -->
+  {% if worldwide_orders_gear %}
+    <div class="row">
+      <div class="col-md-12">
+        <h3 style="margin-left:50px;"><caption>Gear orders to be shipped tomorrow</caption></h3>
+
+        <div class="orders-table-wrapper">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Account number</th>
+                  <th>Username/Email</th>
+                  <th>Order</th>
+                  <th>Label</th>
+                  <th>Address</th>
+                  <th>Created</th>
+                  <th>Shipping date</th>
+                  <th>Status</th>
+                  <th>Checkout</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for gear_order in worldwide_orders_gear %}
+                <tr id="order_{{ gear_order.id }}" data-isgear="true">
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ gear_order.customer.stripe_id }}</td>
+                  <td>{{ gear_order.customer }}</td>
+                  <td>{{ gear_order.gear.name }}</td>
+                  <td>
+                    <form method="POST" action="{% url 'print_label' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="gear-order-id" value="{{ gear_order.id }}"/>
+                      <button type="submit" class="btn btn-default btn-xs" id="order_{{ gear_order.id }}">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                      </button>
+                    </form>
+                  </td>
+                  <td>
+                    <form method="POST" action="{% url 'print_address' %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="gear-order-id" value="{{ gear_order.id }}"/>
+                      <button type="submit" class="btn btn-default btn-xs btn-print-address" id="order_{{ gear_order.id }}">
+                        <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                      </button>
+                    </form>
+                  </td>
+                  <td>{{ gear_order.date }}</td>
+                  <td>{{ gear_order.shipping_date }}</td>
+                  <td>{{ gear_order.get_status_display }}</td>
+                  <td>
+                    <form class="js-process-form" method="POST" action="">
+                      {% csrf_token %}
+                      <div class="form-inline text-left">
+                        <div class="form-group">
+                          <input type="hidden" name="order-id" value="@G{{ gear_order.id }}" />
+                          <button class="form-control btn btn-warning btn-process" type="submit">Process</button>
+                        </div>
+                      </div>
+                    </form>
+                  </td>
+                  <td>
+                    {% if gear_order.details %}
+                      <span id="details-order-{{ gear_order.id }}">
+                        {% for key, value in gear_order.details.items %}
+                          {{ key }}: {{ value }}<br/>
+                        {% endfor %}
+                      </span>
+                    {% endif %}
+
+                    <div id="details-order-coffees-hasnt-tried-{{ gear_order.id }}" class="hide">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Coffee</th>
+                            <th>Send as a sample</th>
+                          </tr>
+                        </thead>
+                        {% with coffee_samples=gear_order.customer.received_coffee_samples.all %}
+                          {% for coffee in gear_order.customer.get_coffees_hasnt_tried %}
+                            <tr {% if coffee in coffee_samples %}style="color: #ccc"{% endif %}>
+                              <td>{{ coffee }}</td>
+                              <td><input type="radio" name="coffee_sample" value="{{ coffee.id }}" {% if coffee in coffee_samples %}disabled{% endif %}/></td>
+                            </tr>
+                          {% endfor %}
+                        {% endwith %}
+                      </table>
+                    </div>
+
+                    <div id="details-order-history-{{ gear_order.id }}" class="hide">
+                      <table class="table table-hover">
+                        <tr>
+                          <th>#</th><th>Coffee</th><th>Brew Method</th><th>Packaging method</th><th>Created</th><th>Shipping date</th><th>Status</th>
+                        </tr>
+                        {% for order in gear_order.customer.orders.all %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ order.coffee }}</td>
+                          <td>{{ order.brew }}</td>
+                          <td>{{ order.get_package_display }}</td>
+                          <td>{{ order.date }}</td>
+                          <td>{{ order.shipping_date }}</td>
+                          <td>{{ order.get_status_display }}</td>
+                        </tr>
+                        {% endfor %}
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  <!-- /Gear items -->
+
+      <!-- worldwide bags -->
+      {% if worldwide_orders %}
+      <div class="col-m-12">
+        <h3 style="margin-left:50px;"><caption>Worldwide bags to be shipped tomorrow</caption></h3>
+      </div>
+
+      <div class="orders-table-wrapper">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Stripe</th>
+                <th>Username/Email</th>
+                <th>Country</th>
+                <th>Coffee bags</th>
+                <th>Shipping date</th>
+                <th>Labels</th>
+                <th>Address</th>
+                <th>Process</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for k, v in worldwide_bags_customers.items %}
+              <tr id="order_{{ v.0.id }}">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ k.stripe_id }}</td>
+                <td>{{ k }}</td>
+                <td>{{ k.get_country_display }}</td>
+                <td>
+                  {% for order in v %}
+                    <p>{{ order.coffee.name }}</p>
+                  {% endfor %}
+                </td>
+                <td>{{ v.0.shipping_date }}</td>
+
+                <td>
+                  <form method="POST" action="/print_all_labels/">
+                    {% csrf_token %}
+                    <input type="hidden" name="customer" value="{{ k.id }}"/>
+                    <input type="hidden" name="special" value="" />
+                    <input type="hidden" name="part" value="0" />
+                    <button type="submit" class="btn btn-default btn-xs" id="order_{{ order.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+
+                <td>
+                  <form method="POST" action="/print_address/">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ v.0.id }}"/>
+                    <button type="submit" class="btn btn-default btn-xs btn-print-address" id="order_{{ v.0.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+
+                <td>
+                  <form method="POST" action="/process_global_orders/">
+                    {% csrf_token %}
+                    <div class="form-inline text-right">
+                      <div class="form-group">
+                        <input type="hidden" name="customer" value="{{ k.id }}" />
+                        <button class="form-control btn btn-warning btn-process" type="submit">Process</button>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+      <!-- /worldwide bags -->
+
+      <!-- worldwide pods -->
+<!--       {% if worldwide_orders_pods %}
+      <div class="col-m-12">
+        <h3 style="margin-left:50px;"><caption>Worldwide Nespresso to be shipped tomorrow</caption></h3>
+      </div>
+
+      <div class="orders-table-wrapper">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Stripe</th>
+                <th>Username/Email</th>
+                <th>Country</th>
+                <th>Coffee bags</th>
+                <th>Shipping date</th>
+                <th>Labels</th>
+                <th>Address</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for k, v in worldwide_pods_customers.items %}
+              <tr id="order_{{ v.0.id }}">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ k.stripe_id }}</td>
+                <td>{{ k }}</td>
+                <td>{{ k.get_country_display }}</td>
+                <td>
+                  {% for order in v %}
+                    <p>{{ order.coffee.name }}</p>
+                  {% endfor %}
+                </td>
+                <td>{{ v.0.shipping_date }}</td>
+
+                <td>
+                  <form method="POST" action="/print_all_labels/">
+                    {% csrf_token %}
+                    <input type="hidden" name="customer" value="{{ k.id }}"/>
+                    <input type="hidden" name="special" value="" />
+                    <input type="hidden" name="part" value="0" />
+                    <button type="submit" class="btn btn-default btn-xs" id="order_{{ order.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+
+                <td>
+                  <form method="POST" action="/print_address/">
+                    {% csrf_token %}
+                    <input type="hidden" name="order" value="{{ v.0.id }}"/>
+                    <button type="submit" class="btn btn-default btn-xs btn-print-address" id="order_{{ v.0.id }}">
+                      <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print
+                    </button>
+                  </form>
+                </td>
+
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {% endif %} -->
+      <!-- /worldwide pods -->
+    </div>
+  </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="row">
+    <div class="col-m-12">
+
+    <!-- orders -->
+
+    <!-- pods -->
+
+    <!-- worldwide orders and pods -->
+
+    </div>
+  </div>
+
+</div>
+
+
+<div id="switch-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">Running out of:</h3>
+          </div>
+          <div class="panel-body">
+            <div id="coffees-from-list" class="btn-group" data-toggle="buttons">
+            {% for c1 in coffees_all %}
+              <label class="btn btn-primary">
+                <input type="radio" name="options1" value="{{ c1.id }}" autocomplete="off">{{ c1.name }}
+              </label>
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">Switch coffee to:</h3>
+          </div>
+          <div class="panel-body">
+            <div id="coffees-to-list" class="btn-group" data-toggle="buttons">
+            {% for c2 in coffees_active %}
+              <label class="btn btn-primary">
+                <input type="radio" name="options2" value="{{ c2.id }}" autocomplete="off">{{ c2.name }}
+              </label>
+            {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <form action="" method="POST">
+          {% csrf_token %}
+          <a id="submit-switch" class="btn btn-primary">CONFIRM SWITCHING</a>
+        </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div id="coffee-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">Order details</h3>
+          </div>
+          <div class="panel-body">
+            <div class="order-details-modal"></div>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Coffees which the customer hasn't tried before</h3>
+          </div>
+          <div class="panel-body">
+            <div class="coffees-hasnt-tried-modal"></div>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Customer Order History</h3>
+          </div>
+          <div class="panel-body">
+            <div class="order-history-modal"></div>
+          </div>
+          <div class="panel-footer">
+            Please press escape on keyboard to close this modal window.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="gear-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">Enter tracking number</h3>
+          </div>
+          <div class="panel-body">
+            <input id="tracking-code-field-modal" placeholder="SG000000000SG" type="text">
+            <button id="tracking-code-submit" type="button" class="btn btn-warning btn-process">Submit</button>
+          </div>
+        </div>
+
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">Order details</h3>
+          </div>
+          <div class="panel-body">
+            <div class="order-details-modal"></div>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Coffees which the customer hasn't tried before</h3>
+          </div>
+          <div class="panel-body">
+            <div class="coffees-hasnt-tried-modal"></div>
+          </div>
+        </div>
+
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Customer Order History</h3>
+          </div>
+          <div class="panel-body">
+            <div class="order-history-modal"></div>
+          </div>
+          <div class="panel-footer">
+            Please enter tracking number to processed the order.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  var ids = []
+
+  {% for order in orders %}
+    ids.push('{{ order.id }}');
+  {% endfor %}
+  console.log(ids);
+
+
+  $( document ).ready(function() {
+
+    {% for m in messages %}
+      console.log("messages", "{{ m }}");
+      if ("{{ m }}" === "activate worldwide tab") {
+        $("a[href='#worldwide-orders']").tab("show");
+      };
+    {% endfor %}
+
+    $(".process-form").submit(function(e) {
+      e.preventDefault();
+      var $form = $(this);
+      $('.btn-process').prop('disabled', true);
+      $form.get(0).submit();
+    });
+
+    $('.btn-print-address').on('click', function() {
+      var orderId = $(this).prop('id');
+
+      if ($('tr#' + orderId).hasClass('cross-out')) {
+        $('tr#' + orderId).removeClass('cross-out');
+        $(this).removeClass('btn-success')
+          .addClass('btn-default');
+      } else {
+        $('tr#' + orderId).addClass('cross-out');
+        $(this).removeClass('btn-default')
+          .addClass('btn-success');
+      }
+    });
+
+  });
+
+
+  $('input[name="do-switch-coffee"]').on('click', function(e){
+    var $form = $(this).closest('form');
+    e.preventDefault();
+
+    $('#switch-modal').modal()
+        .one('click', '#submit-switch', function (e) {
+            var from_val = $('#coffees-from-list input:radio:checked').val();
+            var to_val = $('#coffees-to-list input:radio:checked').val();
+            console.log('from', from_val);
+            console.log('to', to_val);
+
+            $("input[name='coffee-from']").val(from_val);
+            $("input[name='coffee-to']").val(to_val);
+            $form.trigger('submit');
+        });
+      });
+
+
+  var $qr_form = $('#js-process-form-qr'),
+      $order_form = $('.js-process-form'),
+      $errbox = $('#errbox'),
+      $pdfdoc = $('#pdfdoc'),
+      $gear_modal = $('#gear-modal'),
+      $coffee_modal = $('#coffee-modal'),
+      $order_details_modal = $('.order-details-modal'),
+      $order_history_modal = $('.order-history-modal'),
+      $coffees_hasnt_tried_modal = $('.coffees-hasnt-tried-modal'),
+      $tracking_code_field_modal = $('#tracking-code-field-modal'),
+      $tracking_code_submit = $('#tracking-code-submit'),
+      $qr_form_order_id_inp = $qr_form.find("input[name='order-id']"),
+      $qr_form_tracking_number_inp = $qr_form.find("input[name='tracking-number']"),
+      $qr_form_coffee_sample_inp = $qr_form.find("input[name='coffee-sample-id']");
+
+  function print_new_pdf(pdfdoc, data) {
+    var file = new Blob([data], {type: 'application/pdf'}),
+        link = window.URL.createObjectURL(file),
+        iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = link;
+    pdfdoc.append(iframe);
+    iframe.focus();
+    iframe.contentWindow.print();
+  }
+  function get_order_id(form) {
+    var field_val = form.find('input[name="order-id"]').val();
+    var link = field_val.match(/@G?(\d+)\//);
+    var order_id;
+    if (link !== null) {
+      // https://hookcoffee.com.sg/qr-social/@600/ => ['@600/', '600'] => 600
+      // https://hookcoffee.com.sg/qr-social/@G600/ => ['@G600/', '600'] => 600
+      order_id = link.pop();
+    } else {
+      // @600 => 600  || @G600 => 600
+      order_id = field_val.replace(/@G?/, '');
+    }
+    return order_id;
+  }
+  function mark_failed(order_id) {
+    $('tr#order_' + order_id).css('background-color', '#ffc8c8');
+  }
+  function remove_successful(order_id) {
+    $('tr#order_' + order_id).remove();
+  }
+  function focus_on_scanner_field(form) {
+    form.find('input[name="order-id"]').val('').focus();
+  }
+  function update_error(errbox, err) {
+    if (typeof err === 'undefined') {
+      errbox.text('').hide();
+    } else {
+      errbox.text(err).show();
+    }
+  }
+  function is_gear_order(order_id) {
+    return ($('tr#order_' + order_id).data('isgear') === true);
+  }
+  function show_coffee_modal(order_id) {
+    var order_details = $('#details-order-' + order_id).html(),
+        order_history = $('#details-order-history-' + order_id).html(),
+        coffees_hasnt_tried = $('#details-order-coffees-hasnt-tried-' + order_id).html();
+    $order_details_modal.html(order_details);
+    $coffees_hasnt_tried_modal.html(coffees_hasnt_tried);
+    $order_history_modal.html(order_history);
+    $coffee_modal.modal('show');
+  }
+  function show_gear_modal(order_id) {
+    var order_details = $('#details-order-' + order_id).html(),
+        order_history = $('#details-order-history-' + order_id).html(),
+        coffees_hasnt_tried = $('#details-order-coffees-hasnt-tried-' + order_id).html();
+    $order_details_modal.html(order_details);
+    $coffees_hasnt_tried_modal.html(coffees_hasnt_tried);
+    $order_history_modal.html(order_history);
+    $gear_modal.modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+  }
+  function tracking_code_is_valid() {
+    if ($tracking_code_field_modal.val() === '') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  function clear_tracking_code_field() {
+    $qr_form_tracking_number_inp.val('');
+  }
+  function clear_sample_coffee_field() {
+    $qr_form_coffee_sample_inp.val('');
+  }
+
+  $tracking_code_submit.click(function(e) {
+    if (tracking_code_is_valid()) {
+      $gear_modal.modal('hide');
+    }
+  })
+
+
+  $order_form.submit(function(e) {
+    e.preventDefault();
+    var order_id = $(this).find('input[name="order-id"]').val();
+    $qr_form_order_id_inp.val(order_id);
+    $qr_form.submit();
+  });
+
+  $qr_form.submit(function(e) {
+    e.preventDefault();
+    var order_id = get_order_id($qr_form);
+    if (is_gear_order(order_id)) {
+      show_gear_modal(order_id);
+    } else {
+      show_coffee_modal(order_id);
+    }
+  });
+
+  $gear_modal.on('shown.bs.modal', function(e) {
+    $tracking_code_field_modal.val('').focus();
+    $gear_modal.find('input[name="coffee_sample"]:radio').change(function() {
+      var coffee_sample_id = $gear_modal.find("input[name='coffee_sample']:checked").val();
+      $qr_form_coffee_sample_inp.val(coffee_sample_id);
+    });
+
+  })
+  $gear_modal.on('hidden.bs.modal', function(e) {
+    $order_details_modal.html('');
+    $coffees_hasnt_tried_modal.html('');
+    $order_history_modal.html('');
+    $qr_form_tracking_number_inp.val($tracking_code_field_modal.val());
+    // when modal would be closed we continue order processing
+    process_order();
+  })
+  $coffee_modal.on('shown.bs.modal', function(e) {
+    $coffee_modal.find('input[name="coffee_sample"]:radio').change(function() {
+      var coffee_sample_id = $coffee_modal.find("input[name='coffee_sample']:checked").val();
+      $qr_form_coffee_sample_inp.val(coffee_sample_id);
+    });
+  });
+
+  $coffee_modal.on('hidden.bs.modal', function(e) {
+    $order_details_modal.html('');
+    $coffees_hasnt_tried_modal.html('');
+    $order_history_modal.html('');
+    // when modal would be closed we continue order processing
+    process_order();
+  })
+
+
+  function process_order() {
+    var form = $qr_form,
+        orderID = get_order_id(form);
+    $.ajax({
+      type: 'POST',
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function (data, status) {
+        console.log('Received PDF!');
+        update_error($errbox);
+        print_new_pdf($pdfdoc, data);
+        // pdfdoc.empty();
+        remove_successful(orderID);
+      },
+      error: function(jqXHR, status, err) {
+        console.log('Error:', err, jqXHR.responseText);
+        update_error($errbox, jqXHR.responseText);
+        mark_failed(orderID);
+      },
+      complete: function(jqXHR, status) {
+        console.log('Complete! Status:', status);
+        focus_on_scanner_field(form);
+        clear_tracking_code_field(form);
+        clear_sample_coffee_field(form);
+      }
+    });
+  }
+
+</script>
+
+{% endblock %}

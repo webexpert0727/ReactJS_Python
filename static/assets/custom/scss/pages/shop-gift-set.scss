@@ -1,0 +1,11 @@
+#shop-gift-set__top-banner.top-banner.section {
+  background: url('/static/images/banners/gift-sets-2017.jpg') no-repeat center center;
+  background-position: 50% 60%;
+  background-size: cover;
+}
+
+@media (max-width: 414px) {
+    #shop-gift-set__top-banner.top-banner.section {
+        background-position: 30% 0%;
+    }
+}

@@ -1,0 +1,153 @@
+{% load i18n %}
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="We deliver specialty coffee, sourced from the world’s best farms and hand-roasted locally in Singapore. Your fresh and delicious coffee is sent out to you within a week of roasting, just the way you want it, and straight to your mailbox!">
+    <meta name="keywords" content="hook coffee, hook coffee singapore, healthy, sustainable, ethical, fresh, freshly brewed, freshly roasted, specialty coffee, gourmet, delivery, deliver, mail, convenient, convenience, delicious, great tasting, single origin, origin, organic, arabica, singapore">
+    <meta name="author" content="">
+
+    <title>Hook Coffee Singapore — {% trans 'Amazing 2016 in review' %}</title>
+
+    <link href="{% static 'assets/vendor/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'favicons/apple-touch-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'favicons/apple-touch-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'favicons/apple-touch-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'favicons/apple-touch-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'favicons/apple-touch-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'favicons/apple-touch-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'favicons/apple-touch-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'favicons/apple-touch-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon-180x180.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicons/base_favicon.ico' %}">
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-32x32.png' %}" sizes="32x32" >
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-96x96.png' %}" sizes="96x96">
+    <link rel="icon" type="image/png" href="{% static 'favicons/favicon-192x192.png' %}" sizes="192x192">
+
+    <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="{% static 'favicons/mstile-144x144.png' %}">
+    <meta name="msapplication-config" content="{% static 'favicons/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+
+    {# Load JQuery first #}
+    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+
+    {% compress css %}
+      <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/amazing_2016.scss' %}" />
+    {% endcompress %}
+
+    <!-- Heap analytics -->
+    <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var n=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(n?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(a,o);for(var r=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=r(p[c])};
+    heap.load("2757493293");
+  </script>
+
+  <!-- Google Analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-71545429-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+      fbq('init', '1581259845537433');
+      fbq('track', "PageView");
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1581259845537433&ev=PageView&noscript=1"
+      />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <script>
+      function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+      }
+
+      function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+          }
+        }
+        return "";
+      }
+    </script>
+
+  </head>
+
+<body>
+
+  <div class="amazing-slides">
+    <img class="amazing-slides__item" src="{% static 'images/promo_amazing_2016/amazing_2016_img_1_1920.png' %}">
+    <img class="amazing-slides__item" src="{% static 'images/promo_amazing_2016/amazing_2016_img_2_1920.gif' %}">
+    <img class="amazing-slides__item" src="{% static 'images/promo_amazing_2016/amazing_2016_img_3_1920.gif' %}">
+    <img class="amazing-slides__item" src="{% static 'images/promo_amazing_2016/amazing_2016_img_4_1920.gif' %}">
+    <img class="amazing-slides__item" src="{% static 'images/promo_amazing_2016/amazing_2016_img_5_1920.gif' %}">
+    <img class="amazing-slides__item" src="{% static 'images/promo_amazing_2016/amazing_2016_img_6_1920.gif' %}">
+  </div>
+  <div class="amazing-year">
+    <h1 class="amazing-year__thanks">{% trans 'Thank you!' %}</h1>
+    <p class="amazing-year__head">{% trans 'for embracing our achievements with us, it has been a pleasure.' %}</p>
+    <p class="amazing-year__body">
+      {% if '/2016/1' in request.path %}
+        {% blocktrans trimmed %}
+        To express our heartfelt gratitude,<br/>
+        on this special day, join us on our mission to<br/>
+        #makecoffeebetter and get your first<br/>
+        bag of coffee absolutely <b>FREE</b>.<br/>
+        (Just cover shipping cost)
+        {% endblocktrans %}
+      {% else %}
+        {% blocktrans trimmed %}
+        To express our heartfelt gratitude,<br/>
+        here is <b>17% off</b> your next order<br/>
+        to kickstart 2017.
+        {% endblocktrans %}
+      {% endif %}
+    </p>
+    <p class="amazing-year__pre-voucher">Use code:</p>
+
+    {% if '/2016/1' in request.path %}
+      <a href="{% url 'get_started' %}" class="amazing-year__voucher">HOOKED17</a>
+    {% else %}
+      <a href="{% url 'profile' %}" class="amazing-year__voucher">2017</a>
+    {% endif %}
+
+    <a href="{% url 'index' %}">
+      <img class="amazing-year__logo" src="{% static 'images/site-logo.png' %}">
+    </a>
+  </div>
+
+</body>
+</html>

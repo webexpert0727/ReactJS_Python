@@ -1,0 +1,219 @@
+/* ------------------------------------------------------------------
+About page
+------------------------------------------------------------------- */
+#about__top-banner.top-banner.section {
+  background: url('/static/images/banners/about-1920x.jpg') no-repeat center center;
+  background-position: 50% 40%;
+  background-size: cover;
+}
+
+.text-panel {
+  height: auto;
+  padding: 30px 30px;
+  @media screen and (min-width: $screen-md) {
+    padding: 40px 30px;
+  }
+
+  h1 {
+    margin-top: 0px;
+  }
+}
+
+.module {
+  padding: 0 0;
+  h1 {
+    margin-top: 0px;
+    margin-bottom: 11px;
+  }
+
+  .module-item {
+    background-color: white;
+  }
+}
+
+.module .row {
+  margin-bottom: 20px;
+}
+
+.module img {
+  max-width: 175px;
+  margin-top: 20px;
+}
+
+.module-item {
+
+  & .bg-img {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  &#whatwe-do {
+    height: 450px;
+
+    .bg-img {
+      background: url('/static/images/about-1.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+  }
+
+  &#whatwe-believein {
+    height: 725px !important;
+
+    .bg-img {
+      background: url('/static/images/about-2.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+  }
+
+  &#coffee-lifecycle {
+    height: 550px !important;
+
+    .bg-img {
+      background: url('/static/images/about-3.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------
+Custom List for about page
+------------------------------------------------------------------- */
+.custom-list ol {
+  font-size: 36px;
+  line-height: 1.6;
+  list-style-type: none;
+  counter-reset: section;
+  margin-left: 3rem;
+}
+.custom-list li {
+  counter-increment: section;
+  margin-top: 2rem;
+}
+.custom-list h2 {
+  margin-left: 20px;
+}
+.custom-list p {
+  margin-left: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+.custom-list li:before {
+  content: counters(section,"");
+  /*border: 2px solid #000;*/
+  border-radius: 100%;
+  display: inline-block;
+  float: left;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  margin-left: -5rem;
+  margin-right: 1rem;
+  background: #FBDDC1;
+  color: #8c7266;
+  margin-top: 34px;
+}
+
+@media screen and (max-width: $screen-md) {
+  .custom-list ol {
+    margin-left: 1rem;
+    padding-left: 0.75rem;
+    font-size: 28px;
+
+    li:before {
+      width: 45px;
+      height: 45px;
+      margin-top: 30px;
+      margin-left: -4.5rem;
+      line-height: 4rem;
+    }
+  }
+}
+/* ------------------------------------------------------------------
+Trial pack modal
+------------------------------------------------------------------- */
+#trialModal {
+  .modal-dialog {
+
+    @media (min-width: $screen-sm) {
+      width: 900px;
+    }
+
+    .modal-content {
+      border-radius: 0px;
+      border: 8px solid #FFF;
+
+      .close {
+        font-size: 40px;
+        width: 40px;
+        opacity: 0.3;
+      }
+
+      .modal-footer {
+        padding: 15px 15px 20px;
+        bottom: 0px;
+        position: absolute;
+        right: 0px;
+        left: 0px;
+        color: #FEF8ED;
+        border: 0;
+
+        span {
+          font-family: 'Archer-Bold';
+          font-size: 62px;
+
+          text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+
+          text-align: center;
+          line-height: 54px;
+          margin-bottom: 130px;
+        }
+
+        #register-link {
+          position: relative;
+          right: 50%;
+          transform: translateX(50%);
+
+          font-size: 36px;
+          line-height: 42px;
+          width: 240px;
+          padding: 10px 0px;
+        }
+      }
+    }
+  }
+}
+
+#div-founders {
+  background-color: RGB(235,227,217);
+  margin-top: -20px;
+  margin-bottom: 0;
+}
+
+.founders {
+  text-align: justify;
+}
+
+.names {
+  text-align: left;
+}
+
+// New SCSS
+.section.about-page {
+  img {width: 100%;}
+
+  .section-row.founder {
+    img {
+      margin-bottom: 15px;
+      width: 150px;
+      height: 150px;
+    }
+
+    p {text-align: left;}
+  }
+}

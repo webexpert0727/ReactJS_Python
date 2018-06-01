@@ -1,0 +1,949 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load coffees_extras %}
+
+{% block title %}— {% trans 'Our Nespresso Pods' %}{% endblock %}
+
+{% block meta-description %}
+    "Freshly roasted to precision and hermetically sealed to preserve the coffees’ freshness, Hook’s Shot-Pods contain some of our best and most beloved coffees, developed to work perfectly with your Nespresso® machine. "
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}{% url 'nespresso' %}" />
+
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+  <script>
+    Stripe.setPublishableKey("{{ stripe_key }}");
+  </script>
+{% endblock %}
+
+{% block content %}
+
+{% include "coffees/subnav.html" %}
+
+<section id="shotpods__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-sm text-center">
+      <h1>{% trans 'ShotPods' %}</h1>
+    </div>
+
+    <div class="section-row row-sm text-center">
+      <h4>
+        {% blocktrans %}
+          Freshly roasted to precision and hermetically sealed to preserve the coffees’ freshness, Hook’s Shot-Pods contain some of our best and most beloved coffees, developed to work perfectly with your Nespresso<span class="registered-sign"></span> machine.
+        {% endblocktrans %}
+      </h4>
+    </div>
+
+    <div class="section-row row-sm text-center">
+      <h4>{% trans 'Now, you can enjoy the same fresh and great tasting coffees from Hook at the touch of a button.' %}</h4>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="section-row row-xs">
+    <p>{% trans 'ShotPods are delivered to you in sets of 20.' %}</p>
+  </div>
+</section>
+
+<section class="section">
+<div class="section-row row-lg">
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="one">
+
+      {% comment %}
+      Start -> isotope
+      {% endcomment %}
+      <div class="isotope">
+
+        <div class="section-row row-lg row-grid">
+        {% for c in special_coffee_list %}
+        {% comment %}
+        Start -> special coffee element-item
+        {% endcomment %}
+        <div class="col-xs-12 col-sm-6 col-md-4 element-item
+          {% for pc in c.brew_method.all %}
+            {{ pc.name.split|join:'_' }}
+          {% endfor %}" data-category="">
+
+          {% comment %}
+          Start -> coffee box
+          {% endcomment %}
+          <div class="coffee-box special-coffee">
+            <div class="cb-info cb-header">
+              <h4>{{ c.name }}</h4>
+              <small>
+                <i class="fa fa-map-marker"></i>
+                {{ c.region }}, {{ c.get_country_display }}
+              </small>
+            </div>
+
+            <div class="cb-img"
+              style='background-image: url({{ c.img.url }})'>
+            </div>
+
+            <div class="cb-info">
+              <p class="c-taste">
+                <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+              </p>
+              <p class="c-bdisplay"><em>Roast profile:</em> {{ c.get_body_display }}</p>
+              <p class="c-bdisplay"><em>Acidity: {{ c.acidity }}</em></p>
+              <p class="c-bdisplay"><em>Intensity: {{ c.intensity }}/12</em></p>
+
+            </div>
+
+            {% comment %}
+            Start -> special coffee footer
+            {% endcomment %}
+            <div class="cb-info cb-footer">
+              <div class="c-price">
+                <p class="s-h2">From S${{ c.amount|floatformat:2 }}</p>
+                <p><small>(Free P&P)</small></p>
+              </div>
+              <button name="btn"
+                class="btn btnx btn-primary btn-hc btn-hc-sm"
+                data-toggle="modal"
+                data-target="#moreinfo-modal{{c.id}}"
+                style="display: block;">
+                {% trans 'More Info' %}
+              </button>
+            </div>
+            {% comment %}
+            End -> special coffee footer
+            {% endcomment %}
+
+          </div>
+          {% comment %}
+          End -> special coffee
+          {% endcomment %}
+        {% endfor %}
+        </div>
+
+
+        <div class="section-row row-lg row-grid">
+        {% for c in coffee_list %}
+          {% if c.mode == True and c.unavailable == False or c.mode == False and c.unavailable == True %}
+            {% comment %}
+            Start -> regular coffee element-item
+            {% endcomment %}
+            <div class="col-xs-12 col-sm-6 col-md-4 element-item
+              {% for pc in c.brew_method.all %}
+                {{ pc.name.split|join:'_' }}
+              {% endfor %}" data-category="">
+
+              {% comment %}
+              Start -> coffee box
+              {% endcomment %}
+              <div class="coffee-box">
+                <div class="cb-info cb-header">
+                  <h4>{{ c.name }}</h4>
+                  <small>
+                    <i class="fa fa-map-marker"></i>
+                    {{ c.region }}, {{ c.get_country_display }}
+                  </small>
+                </div>
+
+                <div class="cb-img"
+                  style='background-image: url({{ c.img.url }})'>
+                </div>
+
+                <div class="cb-info">
+                  <p class="c-taste">
+                    <em>{% trans 'Hints of'%}<br/><strong>{{ c.taste }}</strong></em>
+                  </p>
+                  <p class="c-bdisplay"><em>Roast profile:</em> {{ c.get_body_display }}</p>
+                  <p class="c-bdisplay"><em>Acidity: {{ c.acidity }}</em></p>
+                  <p class="c-bdisplay"><em>Intensity: {{ c.intensity }}/12</em></p>
+
+                </div>
+
+                {% comment %}
+                Start -> special coffee footer
+                {% endcomment %}
+                <div class="cb-info cb-footer">
+                  <div class="c-price">
+                    <p class="s-h2">From S${{ c.amount|floatformat:2 }}</p>
+                    <p><small>(Free P&P)</small></p>
+                  </div>
+
+                  <button name="btn"
+                    class="btn btnx btn-primary btn-hc btn-hc-sm"
+                    data-toggle="modal"
+                    data-target="#moreinfo-modal{{c.id}}"
+                    style="display: block;">
+                    {% trans 'More Info' %}
+                  </button>
+                </div>
+              </div>
+              {% comment %}
+              End -> coffee box
+              {% endcomment %}
+
+            </div>
+            {% comment %}
+            End -> regular coffee element-item
+            {% endcomment %}
+          {% endif %}
+        {% endfor %}
+        </div>
+
+      </div>
+      {% comment %}
+      End -> isotope
+      {% endcomment %}
+
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section bg-d info-bar">
+  <div class="section-row row-lg">
+    <h4 class="clr-me-p">
+      {% trans 'Looking for Nespresso compatible pods for the office?' %}
+    </h4>
+    <a href="{% url 'wholesale' %}"
+      class="btn btn-primary btn-hc btn-hc-sm">
+      {% trans 'Click here' %}
+    </a>
+  </div>
+</section>
+
+{% comment %}
+<section class="section bg-d info-bar">
+  <div class="section-row row-lg">
+    <h4 class="clr-me-p">{% trans 'What makes our ShotPods different?' %}</h4>
+    <a href="http://support.hookcoffee.com.sg/"
+      class="btn btn-primary btn-hc btn-hc-sm">
+      {% trans 'SHOTPODS FAQ' %}
+    </a>
+  </div>
+</section>
+{% endcomment %}
+
+<section class="section">
+  <div class="section-row row-lg">
+    <h3>{% trans 'Our ShotPods can also be found at these awesome hotels.'%}</h3>
+
+    <div class="clients clients_hotels text-center">
+      <a href="http://www.naumihotel.com/">
+        <img src="{% static 'images/hotel_logo_naumi.png' %}" class="img-responsive" />
+      </a>
+      <a href="http://www.unlistedcollection.com/">
+        <img src="{% static 'images/hotel_logo_unlisted_collection.png' %}"
+          class="img-responsive" />
+      </a>
+      <a href="http://www.newmajestichotel.com/">
+        <img src="{% static 'images/hotel_logo_majestic.png' %}" class="img-responsive" />
+      </a>
+      <a href="http://www.hotel1929.com/">
+        <img src="{% static 'images/hotel_logo_1929.png' %}" class="img-responsive" />
+      </a>
+      <a href="http://wanderlusthotel.com/">
+        <img src="{% static 'images/hotel_logo_wanderlust.png' %}" class="img-responsive" />
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Modal windows -->
+
+<!-- Modal for coffee details -->
+{% for c in coffee_list %}
+  {% if c.mode == True and c.unavailable == False or c.mode == False and c.unavailable == True %}
+    <!-- Modal -->
+    <div id="moreinfo-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__regular fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-hc-title">
+              <h3>{{c.name}}</h3>
+              <p>{{c.maker}}</p>
+            </div>
+          </div>
+
+          <div class="modal-img-bg"
+            style="background-image: url(&quot;{{ c.img.url }}&quot;)">
+
+            {% if c.mode == True and c.unavailable == False %}
+              {% if not is_worldwide %}
+                <div class="purchase-box">
+                  <p class="s-h1-bold">{% trans 'Subscribe and Save' %}</p>
+
+                  <div>
+                    <p class="s-h2">S${{ c.amount|floatformat:2 }}</p>
+                    <p><small>(Free P&P)</small></p>
+                  </div>
+
+                    <!--
+                    User who has been registered without credit card but with credits by a friend
+                    goes out of credits and should provide credit card details
+                    -->
+                    {% if out_of_credits %}
+                      <a data-toggle="modal" data-target="#enter_credit_card" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+                    {% else %}
+                      <!-- Authenticated -->
+                      {% if user.is_authenticated %}
+                      <a href="{% url 'preregister' coffee_id=c.id isNespresso=True isOneoff=False %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+                        <!-- Not authenticated -->
+                      {% else %}
+                        <a href="{% url 'preregister' coffee_id=c.id isNespresso=True isOneoff=False %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+                      {% endif %}
+                    {% endif %}
+                </div>
+
+              {% else %}
+                </br></br></br></br>
+              {% endif %}
+
+                <div class="purchase-box">
+                  <p class="s-h1-bold">{% trans 'Order a One-off' %}</p>
+
+                  <div class="purchase-box__price">
+                    <div>
+                      <p class="s-h2">S${{ c.amount_one_off|floatformat:2 }}</p>
+                      <p><small>(Free P&P)</small></p>
+                    </div>
+
+                    <div id="pbox-oneoff-quantity__{{c.id}}" class="plus-minus" data-id="{{ c.id }}">will be replaced with React</div>
+                  </div>
+
+                  <div class="btn-add-pods-placement" data-id="{{ c.id }}"></div>
+                </div>
+
+              {% if is_worldwide %}
+                </br></br></br></br>
+              {% endif %}
+            {% endif %}
+
+            {% if c.mode == False and c.unavailable == True %}
+              </br></br></br></br>
+              <div class="purchase-box centered">
+                <p class="s-h1-bold">{% trans 'Temporary unavailable' %}</p>
+              </div>
+              </br></br></br></br>
+            {% endif %}
+
+          </div>
+
+          <div class="modal-body">
+            <div class="modal-body-section__sm">
+              <table class="modal-short-info">
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Country' %}</td>
+                  <td class="modal-val">{{c.get_country_display}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Producer' %}</td>
+                  <td class="modal-val">{{c.maker}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Altitude' %}</td>
+                  <td class="modal-val">{{c.altitude}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Varietal' %}</td>
+                  <td class="modal-val">{{c.varietal}}</td>
+                </tr>
+
+                <tr>
+                  <td class="modal-inf s-h1-bold">{% trans 'Processes' %}</td>
+                  <td class="modal-val">{{c.process}}</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="modal-body-section__sm">
+              <h4>{% trans 'How this coffee will taste like?' %}</h4>
+              <p>{{c.more_taste|safe}}</p>
+            </div>
+
+            {% farm c as farm_photos %}
+            {% if farm_photos %}
+              <div class="modal-body-section__sm">
+                <h4>{% trans 'More information about the farm' %}</h4>
+              </div>
+            </div>
+
+            <div id="cof__carousel{{c.id}}"
+              class="carousel slide box-carousel"
+              data-interval="false"
+              data-ride="carousel">
+              <ol class="carousel-indicators">
+                {% farm c as farm_photos %}
+                {% for x in farm_photos %}
+                  <li
+                    data-target="#cof__carousel{{c.id}}"
+                    data-slide-to="{{ forloop.counter0 }}"
+                    {% if forloop.counter0 == 0 %}
+                      class="active"
+                    {% endif %}
+                  ></li>
+                {% endfor %}
+              </ol>
+
+              <div class="carousel-inner" role="listbox">
+                {% farm c as farm_photos %}
+                {% for x in farm_photos %}
+                  <div
+                    class="
+                      item
+                      {% if forloop.counter0 == 0 %}
+                      active
+                      {% endif %}
+                    ">
+                    <img src="{{ x }}" alt="">
+                  </div>
+                {% endfor %}
+              </div>
+
+              <a class="left carousel-control"
+                href="#cof__carousel{{c.id}}" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">{% trans 'Previous' %}</span>
+              </a>
+
+              <a class="right carousel-control"
+                href="#cof__carousel{{c.id}}" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">{% trans 'Next' %}</span>
+              </a>
+            </div>
+          {% else %}
+            </div>
+          {% endif %}
+
+          <div class="modal-body">
+            <div class="modal-body-section__sm">
+              <h4>{% blocktrans %}More info about the coffee's origins{% endblocktrans %}</h4>
+              <p>{{c.description|linebreaks}}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+
+<!-- Modal for special coffee details -->
+{% for c in special_coffee_list %}
+<div id="moreinfo-modal{{c.id}}" class="modal modal-hc modal-hc-coffee__special fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{c.name}}</h3>
+          <p>{{c.maker}}</p>
+        </div>
+      </div>
+
+      <div class="modal-img-bg"
+        style="background-image: url(&quot;{{ c.img.url }}&quot;)">
+
+        {% if not is_worldwide and user.is_authenticated %}
+          <div class="purchase-box">
+            <p class="s-h1-bold">{% trans 'Subscribe and Save' %}</p>
+
+            <div>
+              <p class="s-h2">S${{ c.amount|floatformat:2 }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <!--
+            User who has been registered without credit card but with credits by a friend
+            goes out of credits and should provide credit card details
+            -->
+            {% if out_of_credits %}
+              <a data-toggle="modal" data-target="#enter_credit_card" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% else %}
+              <a href="{% url 'preregister' coffee_id=c.id isNespresso=True isOneoff=False %}" class="btn btn-primary-white btn-hc btn-hc-xs">{% trans 'SUBSCRIBE' %}</a>
+            {% endif %}
+          </div>
+
+        {% else %}
+          </br></br></br>
+        {% endif %}
+
+        <div class="purchase-box">
+          <p class="s-h1-bold">{% trans 'Order a One-off' %}</p>
+
+          <div class="purchase-box__price">
+            <div>
+              <p class="s-h2">S${{ c.amount_one_off|floatformat:2 }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <div id="pbox-oneoff-quantity__{{c.id}}" class="plus-minus" data-id="{{ c.id }}">will be replaced with React</div>
+          </div>
+
+          <div class="btn-add-pods-placement" data-id="{{ c.id }}"></div>
+        </div>
+
+        </br>
+
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <table class="modal-short-info">
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Country' %}</td>
+              <td class="modal-val">{{c.get_country_display}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Producer' %}</td>
+              <td class="modal-val">{{c.maker}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Altitude' %}</td>
+              <td class="modal-val">{{c.altitude}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Varietal' %}</td>
+              <td class="modal-val">{{c.varietal}}</td>
+            </tr>
+
+            <tr>
+              <td class="modal-inf s-h1-bold">{% trans 'Processes' %}</td>
+              <td class="modal-val">{{c.process}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="modal-body-section__sm">
+          <h4>{% trans 'How this coffee will taste like?' %}</h4>
+          <p>{{c.more_taste|safe}}</p>
+        </div>
+
+        {% farm c as farm_photos %}
+        {% if farm_photos %}
+          <div class="modal-body-section__sm">
+            <h4>{% trans 'More information about the farm' %}</h4>
+          </div>
+        </div>
+
+        <div id="cof__carousel{{c.id}}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% farm c as farm_photos %}
+            {% for x in farm_photos %}
+              <li
+                data-target="#cof__carousel{{c.id}}"
+                data-slide-to="{{ forloop.counter0 }}"
+                {% if forloop.counter0 == 0 %}
+                  class="active"
+                {% endif %}
+              ></li>
+            {% endfor %}
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            {% farm c as farm_photos %}
+            {% for x in farm_photos %}
+              <div
+                class="
+                  item
+                  {% if forloop.counter0 == 0 %}
+                  active
+                  {% endif %}
+                ">
+                <img src="{{ x }}" alt="">
+              </div>
+            {% endfor %}
+          </div>
+
+          <a class="left carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Previous' %}</span>
+          </a>
+
+          <a class="right carousel-control"
+            href="#cof__carousel{{c.id}}" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">{% trans 'Next' %}</span>
+          </a>
+        </div>
+      {% else%}
+        </div>
+      {% endif %}
+
+      <div class="modal-body">
+        <div class="modal-body-section__sm">
+          <p>{{c.description|linebreaks}}</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+<!-- Enter credit card Modal -->
+<div id="enter_credit_card" class="modal modal-hc modal-form fade" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="s-h2"><b>{% trans 'Credit Card Details' %}</b></p>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-body">
+          <div class="modal-body-section__sm">
+            <div class="alert alert-info">
+              {% trans 'Almost there! Please enter your credit card details' %}
+            </div>
+
+            <form id="payment-form" method="POST" action="{% url 'set_stripe_credits' %}">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <label>{% trans 'Card Number' %}</label>
+                <input type="text" size="20" data-stripe="number" class="form-control" value=""/>
+              </div>
+
+              <div class="other-card-info">
+                <div class="form-group">
+                  <label for="card__cvc">{% trans 'CVC' %}</label>
+                  <input id="card__cvc"
+                    type="text"
+                    size="4"
+                    data-stripe="cvc"
+                    class="form-control"
+                    value=""/>
+                </div>
+
+                <div class="form-group">
+                  <label for="card__exp">{% trans 'Expiration (MM/YYYY)' %}</label>
+                  <div class="form-inline">
+                    <input id="card__exp"
+                      class="form-control form-expmo"
+                      type="text"
+                      size="2"
+                      data-stripe="exp-month"
+                      value=""
+                      placeholder="{% trans 'MM' %}" />
+                    <b> / </b>
+                    <input class="form-control form-expyr"
+                      type="text"
+                      size="4"
+                      data-stripe="exp-year"
+                      value=""
+                      placeholder="{% trans "YYYY" %}" />
+                  </div>
+                </div>
+              </div>
+
+              <p class="payment-errors"></p>
+
+              <div class="form-group">
+                <input id="post_credits" type="hidden" name="post_credits" value="42"/>
+                <div id="stripe-notify" class="alert alert-info">{% trans 'We use Stripe to process your payment super securely. We never store your card details on our system and instead leave that up to Stripe (who are very, very good at it).' %}</div>
+                </div>
+
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-hc">
+                    <span><i class ="loading-icon"></i></span>
+                    &nbsp {% trans 'Submit' %} &nbsp
+                  </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Enter credit card Modal -->
+
+
+<!-- Taster Pack Modal -->
+  <div id="modal-shotpods-taster" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+          <div class="modal-body text-center">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1>{% trans 'shotpods taster pack' %}</h1>
+            <a class="button-like" href="{% url 'trial' which='shotpods' %}">{% trans 'TRY FOR JUST $5!' %}</a>
+            <a class="just-link" href="{% url 'get_started' %}"><u>{% trans 'No thanks! I would like a full box.' %}</u></a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+
+    $(document).ready(function(){
+
+          var stripeResponseHandler = function(status, response) {
+          var $form = $('#payment-form');
+
+          if (response.error) {
+            // Show the errors on the form
+            $form.find('.payment-errors').text(response.error.message);
+            $form.find('button').prop('disabled', false);
+            $form.find('i.loading-icon').removeClass('fa fa-refresh fa-spin');
+          } else {
+            // token contains id, last4, and card type fa fa-spinner
+            var token = response.id;
+            // Insert the token into the form so it gets submitted to the server
+            $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+            // and re-submit
+            $form.get(0).submit();
+          //   $.ajax({
+          //     url: '/register/set_stripe/',
+          //     type: "POST",
+          //     data: $form.serialize(),
+          //     success: function(data) {
+          //       if (data.success !== true){
+          //         $.notify({
+          //           message: data.message
+          //         }, {
+          //           type: 'danger'
+          //         });
+          //         $form.find('button').prop('disabled', false);
+          //         $form.find('#submit-subs').html('Subscribe');
+          //         console.log(data);
+          //       } else {
+          //         console.log('Redirect to ThankYouPage');
+          //         // $form.get(0).submit();
+
+          //         // window.location.replace("/get_started/thankyou.html");
+          //       }
+          //     },
+          //   });
+
+          }
+        };
+
+      $('#payment-form').submit(function(e) {
+            var $form = $(this);
+            // Disable the submit button to prevent repeated clicks
+            $form.find('button').prop('disabled', true);
+            $form.find('i.loading-icon').addClass('fa fa-refresh fa-spin');
+            Stripe.card.createToken($form, stripeResponseHandler);
+            // Prevent the form from submitting with the default action
+            return false;
+          });
+
+      $(".add-pods-to-cart").click(function() {
+
+        var new_item = {
+          'coffee_id': $(this).attr("id"),
+          'coffee_name': $(this).attr("coffee-name"),
+          'brew_method': $(this).attr("brew-method"),
+          'package_method': "PODS",
+          'price': $(this).attr("price"),
+          'quantity': 1,
+        };
+
+
+        if (localStorage.getItem("cart")) {
+          var updated = false;
+          var cart_list = JSON.parse(localStorage.getItem("cart"));
+
+          $.each(cart_list, function(i, cart_item) {
+            if (cart_item.coffee_id == new_item.coffee_id
+                && cart_item.brew_method == new_item.brew_method
+                && cart_item.package_method == new_item.package_method) {
+              cart_item.quantity = parseInt(cart_item.quantity) + parseInt(new_item.quantity);
+              updated = true;
+
+              $("#cart-" + new_item.coffee_id + new_item.brew_method + new_item.package_method + " .item-quantity").val(cart_item.quantity);
+              $("#cart-" + new_item.coffee_id + new_item.brew_method + new_item.package_method + " .cart-price").text("$" + cart_item.price * cart_item.quantity);
+              console.log("[√] quantity updated");
+            };
+          });
+          if (!updated) {
+            cart_list.push(new_item);
+
+            $("#menu-cart")
+            .prepend(
+              $("<li>").attr("id", "cart-" + new_item.coffee_id + new_item.brew_method + new_item.package_method)
+              .append(
+                $("<div>")
+                .append(
+                  $("<a>").append(new_item.coffee_name)
+                  .append(
+                    $("<block>")
+                    .append(
+                      $("<input>").attr("name", "coffee_id").attr("value", new_item.coffee_id)
+                      .attr("type", "hidden"))
+                    .append(
+                      $("<input>").attr("name", "coffee_name").attr("value", new_item.coffee_name)
+                      .attr("type", "hidden"))
+                    .append(
+                      $("<input>").attr("name", "brew_method").attr("value", new_item.brew_method)
+                      .attr("type", "hidden"))
+                    .append(
+                      $("<input>").attr("name", "package_method").attr("value", new_item.package_method)
+                      .attr("type", "hidden"))
+                    .append(
+                      $("<input>").attr("name", "price").attr("value", new_item.price)
+                      .attr("type", "hidden"))
+
+                    .append(
+                      $("<button>").attr("class", "btn btn-default btn-cart-down")
+                      .append(
+                        $("<span>").attr("class", "glyphicon glyphicon-chevron-down")))
+                    .append(
+                      $("<input>").addClass("item-quantity").attr("value", new_item.quantity).attr("readonly", "readonly"))
+                    .append(
+                      $("<button>").attr("class", "btn btn-default btn-cart-up")
+                      .append(
+                        $("<span>").attr("class", "glyphicon glyphicon-chevron-up")))
+                    .append(
+                      $("<button>").attr("class", "btn btn-default btn-cart-remove")
+                      .append(
+                        $("<span>").attr("class", "glyphicon glyphicon-remove")))
+                      )
+                  ) // a
+                ) // div
+                .append(
+                  $("<div>").attr("class", "cart-details")
+                  .append(
+                    $("<span>").attr("class", "cart-package").append(package_mapper[new_item.package_method]))
+                  .append(
+                    $("<span>").attr("class", "cart-price").append("$" + new_item.price * new_item.quantity))
+                ) // div
+              )
+          };
+        } else {
+          var cart_list = [];
+          cart_list.push(new_item);
+
+          $("#menu-cart")
+          .prepend(
+            $("<li>").attr("id", "cart-" + new_item.coffee_id + new_item.brew_method + new_item.package_method)
+            .append(
+              $("<div>")
+              .append(
+                $("<a>").append(new_item.coffee_name)
+                .append(
+                  $("<block>")
+                  .append(
+                    $("<input>").attr("name", "coffee_id").attr("value", new_item.coffee_id)
+                    .attr("type", "hidden"))
+                  .append(
+                    $("<input>").attr("name", "coffee_name").attr("value", new_item.coffee_name)
+                    .attr("type", "hidden"))
+                  .append(
+                    $("<input>").attr("name", "brew_method").attr("value", new_item.brew_method)
+                    .attr("type", "hidden"))
+                  .append(
+                    $("<input>").attr("name", "package_method").attr("value", new_item.package_method)
+                    .attr("type", "hidden"))
+                  .append(
+                    $("<input>").attr("name", "price").attr("value", new_item.price)
+                    .attr("type", "hidden"))
+
+                  .append(
+                    $("<button>").attr("class", "btn btn-default btn-cart-down")
+                    .append(
+                      $("<span>").attr("class", "glyphicon glyphicon-chevron-down")))
+                  .append(
+                    $("<input>").addClass("item-quantity").attr("value", new_item.quantity).attr("readonly", "readonly"))
+                  .append(
+                    $("<button>").attr("class", "btn btn-default btn-cart-up")
+                    .append(
+                      $("<span>").attr("class", "glyphicon glyphicon-chevron-up")))
+                  .append(
+                    $("<button>").attr("class", "btn btn-default btn-cart-remove")
+                    .append(
+                      $("<span>").attr("class", "glyphicon glyphicon-remove")))
+                    )
+                ) // a
+              ) // div
+              .append(
+                $("<div>").attr("class", "cart-details")
+                .append(
+                  $("<span>").attr("class", "cart-package").append(package_mapper[new_item.package_method]))
+                .append(
+                  $("<span>").attr("class", "cart-price").append("$" + new_item.price * new_item.quantity))
+              ) // div
+            )
+        };
+
+        localStorage.setItem("cart", JSON.stringify(cart_list));
+
+        $("#btn-checkout-cart").attr('disabled', false);
+        $(".navbar-fixed-top #shopping-cart").addClass("open");
+
+        return false;
+      });
+    });
+  </script>
+
+  <script src="{% static 'assets/vendor/isotope.pkgd.min.js' %}" type="text/javascript"></script>
+
+  <!-- Isotope integration -->
+  <script>
+  if (window.location.hash) {
+      $(window.location.hash).modal('show');
+    }
+    window.onload = function() {
+      var $container = $('.isotope').isotope({
+        itemSelector: '.element-item',
+        layoutMode: 'masonry',
+        percentPosition: true,
+        filter: ':not(.no-equipments)',
+        fitRows: {
+          gutter: '.gutter-sizer'
+        }
+      });
+
+      $('.brew-method').on('click', function() {
+
+        $('.brew-method').removeClass('selected');
+        $(this).addClass('selected');
+
+        var filterValue = $( this ).attr('data-filter');
+        $container.isotope({ filter: filterValue });
+        console.log('filterValue: ' + filterValue);
+      });
+    };
+  </script>
+
+  {% compress js %}
+    {# <script src="{% static 'assets/custom/js/modal-dropdown.js' %}"></script> #}
+  {% endcompress %}
+
+{% endblock %}

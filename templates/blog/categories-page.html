@@ -1,0 +1,27 @@
+{% load el_pagination_tags %}
+{% lazy_paginate 4,6 posts %}
+
+{% for post in posts %}
+    <div class="col-md-6">
+        <div class="card-lg">
+            <div class="img-col" style="background-image: url(
+                {% if post.img %}
+                    {{ post.img.url }}
+                {% endif %}
+            )"></div>
+            <div class="info-col">
+                <div class="content-divider card-category">
+                    <span class="s-h1">{% firstof post.category "Uncategorized" %}</span>
+                </div>
+                <p class="s-h3 card-title">{{ post.title }}</p>
+                <p class="s-h1"><i>Posted by</i> <span class="s-h1-bold">{{ post.author }}</span> on <span class="s-h1-bold">{{ post.date_published }}</span></p>
+                <p class="s-h1 card-content">{{ post.preview|safe }}</p>
+                <a class="btn btn-secondary" href="{% url 'get-post' slug=post.slug %}">Read More</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+{% show_more %}

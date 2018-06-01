@@ -1,0 +1,56 @@
+.gear-confirmation__txt {
+  font-family: "HookCoffee Club", cursive;
+  font-weight: 500;
+  font-size: 160%;
+}
+
+.gear-confirmation__header {
+  font-size: 185%;
+}
+
+#js-add-gift-address {
+  .form-group {
+    margin: 0;
+    text-align: left;
+    color: #523127;
+    }
+  .btn--gear {
+    color: #FFF !important;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .gear-confirmation__txt {
+    margin: 2px;
+    font-size: 125%;
+  }
+  .gear-confirmation__header {
+   font-size: 150%;
+  }
+  #js-add-gift-address {
+  .form-group {
+      label, input, p {
+        font-size: 80%;
+      }
+      input {
+        height: 25px;
+      }
+    }
+  }
+}
+
+
+
+#gear-conf-modal {
+  /* allow scrolling on mobiles */
+   -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+.form-group--note textarea {
+  resize: none;
+}
+
+.black-friday-border {
+  border: 3px solid RGB(254, 218, 114);
+}

@@ -1,0 +1,398 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Coffee Brewing Equipment Sets' %}{% endblock %}
+
+{% block meta-description %}
+    "W-huat a better way to welcome the Year of the Rooster with these limited edition gift sets!"
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://hookcoffee.com.sg{% url 'shop-gift-set' %}" />
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<section id="shop-gift-set__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-md text-center">
+      <h2>
+        {% blocktrans trimmed %}
+        </br>
+        Good Coffee Makes People Happy
+        </br>
+        </br>
+        {% endblocktrans %}
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-row row-lg row-grid flex-grid">
+    {% for gear in gears %}
+    {% with images=gear.images.all %}
+      <div class="item-col">
+        <div class="shop-gift-set-box">
+
+          {% for img in images %}
+            <div class="cb-img"
+              style='background-image: url({{ img.image.url }})'>
+            </div>
+          {% endfor %}
+
+          <div class="cb-info">
+            <h4>{{ gear.name }}</h4>
+            <p><small>{{ gear.model }}</small></p>
+            <p><small>{{ gear.description|linebreaksbr }}</small></p>
+          </div>
+
+          <div class="cb-info cb-footer">
+            <div class="c-price">
+              <p class="s-h2">{{ gear.price }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <a class="btn btn-primary btn-hc btn-hc-sm"
+               data-target="#moreinfo-modal{{gear.id}}"
+               data-toggle="modal">
+               {% trans 'More info' %}
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endwith %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section bg-d info-bar bar-lg">
+  <div class="section-row row-lg">
+    <p class="clr-me-w">
+    {% blocktrans %}For corporate wholesale gifts enquiry, drop us a line at <small><a class="clr-me-acc-blue" href="mailto:hola@hookcoffee.com.sg?subject=Gifts" title="Email Support">hola@hookcoffee.com.sg</a></small>!{% endblocktrans %}
+    </p>
+  </div>
+</section>
+
+<!-- Confirmation modal -->
+<div id="gear-conf-modal" class="modal fade modal--gear-confirmation" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content gear-confirmation">
+      <div class="modal-body gear-confirmation__body">
+
+        <div class="form-body">
+          <div class="form-container gear-confirmation__form-container">
+
+            <form id="confirm-form" class="form-horizontal" action="{% url 'buy_gear' %}" method="POST">
+              {% csrf_token %}
+              <h1 class="gear-confirmation__header gear-confirmation__txt">
+                {% trans 'You are one step away from<br/>getting this amazing gift set!' %}
+              </h1>
+
+              <div class="gear-confirmation__img">
+                <img class="img-responsive gear-item__img js-gear-img" src="">
+              </div>
+              <h1 class="gear-item__name js-gear-title"></h1>
+
+              <div class="gear-confirmation__qty">
+                <span class="gear-confirmation__field-title">{% trans 'Quantity' %}</span>
+                <div class="c-quantity">
+                  <div class="c-quantity__btn">
+                    <a class="c-quantity__btn-val js-qty-btn" role="button" data-operator="-1">-</a>
+                  </div>
+                  <div class="c-quantity__field">
+                    <input type="text" class="c-quantity__input js-qty-inp" name="quantity" value="1" />
+                  </div>
+                  <div class="c-quantity__btn">
+                    <a class="c-quantity__btn-val js-qty-btn" role="button" data-operator="1">+</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="gear-confirmation__packaging">
+                <span class="gear-confirmation__field-title">{% trans 'How do you want your coffee packaged?' %}</span>
+                <div class="btn-group" data-toggle="buttons">
+
+                  <label id="js-btn-wholebeans" class="btn btn-default active js-packaging">
+                    <input type="radio" name="packaging" value="1" checked>{% trans 'Wholebeans' %}
+                  </label>
+
+                  <div class="btn-group">
+                    <label id="js-btn-ground" class="btn btn-default js-packaging">
+                      <input type="radio" name="packaging" value="2">{% trans 'Ground' %}
+                    </label>
+
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      {% for brew in brew_methods %}
+                      <li><a href="#" class="js-brew-method" data-brewid="{{ brew.id }}">{{ brew.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="gear-confirmation__voucher">
+                <div class="gear-confirmation__voucher-field">
+                  <div class="input-group">
+                    <input id="voucher-input" class="form-control" name="voucher-name" placeholder="{% trans 'Enter Voucher Code' %}" value="" type="text">
+                    <span class="input-group-btn">
+                      <button id="js-voucher-btn" class="btn btn-primary" type="button">{% trans 'Apply' %}</button>
+                    </span>
+                  </div>
+                </div>
+                <span id="js-voucher-msg" class="help-block"></span>
+              </div>
+
+              <input type="hidden" name="gear-id" value="" />
+              <input type="hidden" name="brew-method-id" value="0" />
+
+              <div class="btn-group">
+                <button type="Submit" class="btn btn--gear">{% trans 'Confirm Purchase' %}</button>
+                <button class="btn btn--gear" data-dismiss="modal" style="margin-left: 1px;">{% trans 'Back' %}</button>
+              </div>
+
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- // Confirmation modal -->
+
+{% for gear in gears %}
+{% with images=gear.images.all %}
+<div id="moreinfo-modal{{gear.id}}" class="modal modal-hc fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{gear.name}}</h3>
+        </div>
+      </div>
+
+      {% for img in images %}
+        <div class="modal-img-bg img-bg-contain"
+          style='background-image: url({{ img.image.url }})'>
+        </div>
+      {% endfor %}
+
+      <div class="modal-body">
+        <div class="row modal-body-section__sm">
+          <div class="col-xs-12 col-sm-8">
+            <p>{{ gear.more_info|linebreaks }}</p>
+          </div>
+
+
+          <div class="col-xs-12 col-sm-4">
+            <div class="purchase-box">
+              <div class="purchase-box__price">
+                <div>
+                  <p class="s-h2">S${{ gear.price }}</p>
+                  <p><small>(Free P&P)</small></p>
+                </div>
+
+                <div id="gear-oneoff-quantity__{{ gear.id }}" class="plus-minus" data-id="{{ gear.id }}">will be replaced with React</div>
+              </div>
+
+              <div class="btn-add-gear-placement" data-id="{{ gear.id }}"></div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endwith %}
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    if (window.location.hash) {
+      $(window.location.hash).modal('show');
+    }
+
+    var gear_id, gear_img, gear_title, gear_av_color,
+        gear_allow_packaging,
+        $more_gear_modal = $('#gear-more-modal'),
+        $conf_gear_modal = $('#gear-conf-modal'),
+        $conf_gear_voucher_msg = $('#js-voucher-msg'),
+        $conf_gear_voucher_inp = $('#voucher-input'),
+        $conf_gear_voucher_btn = $('#js-voucher-btn'),
+        $gear_img_modal = $('.js-gear-img'),
+        $gear_title_modals = $('.js-gear-title'),
+        $gear_more_modal = $('.js-gear-more'),
+        $gear_carousel_modal = $('.js-gear-carousel'),
+        $conf_inp_gear_id = $('input[name="gear-id"]'),
+        $conf_inp_brew_method_id = $('input[name="brew-method-id"]'),
+        $color_options = $('.js-color-options'),
+        $invitation_to_choose_color = $('.js-gear-has-colors'),
+        $conf_btn_wholebeans = $('#js-btn-wholebeans'),
+        $conf_btn_ground = $('#js-btn-ground'),
+        $packaging_choice_block = $('.gear-confirmation__packaging');
+
+    $conf_gear_voucher_btn.click(apply_voucher);
+
+    $more_gear_modal.on('hide.bs.modal', function (e) {
+      $gear_title_modals.html('');
+      $gear_more_modal.html('');
+      $gear_carousel_modal.html('');
+    });
+
+    $conf_gear_modal.on('hide.bs.modal', function (e) {
+      $gear_title_modals.html('');
+      $gear_img_modal.attr('src', '');
+      $color_options.html('');
+      $conf_inp_brew_method_id.val('0');
+      $conf_gear_voucher_inp.val('');
+      $conf_gear_voucher_msg.html('');
+      $conf_gear_voucher_inp.prop('disabled', false);
+      $conf_gear_voucher_btn.prop('disabled', false);
+    });
+
+    $('.js-buy-gear-btn').click(function(e) {
+      gear_id = $(this).data('gear');
+      gear_img = $(this).data('img');
+      gear_title = $(this).data('title');
+      gear_av_color = $(this).data('colors');
+      gear_allow_packaging = $(this).data('allowpackaging');
+
+      if (gear_allow_packaging) {
+        $packaging_choice_block.show();
+      } else {
+        $packaging_choice_block.hide();
+      }
+
+      handle_invitation_to_choose_color(gear_av_color);
+
+      $gear_title_modals.html(gear_title);
+      $gear_img_modal.attr('src', gear_img);
+      $conf_gear_modal.modal('show');
+      $conf_inp_gear_id.val(gear_id);
+    });
+
+    $('.js-more-info-btn').click(function(e) {
+      gear_id = $(this).data('gear');
+      gear_title = $(this).data('title');
+      gear_more = $(this).data('more');
+
+      $gear_title_modals.html(gear_title);
+      $gear_more_modal.html(gear_more);
+      copy_carousel_to_modal(gear_id);
+      $more_gear_modal.modal('show');
+    });
+
+    $('.js-qty-btn').on('click', function () {
+      var $btn = $(this),
+          $inp = $('.js-qty-inp');
+      $inp.val(function(i, val) {
+        return +val + (1 * +$btn.data('operator'));
+      });
+      console.log('final:', $inp.val());
+    });
+
+    $('.js-brew-method').click(function (e) {
+      e.preventDefault();
+      $(this).parent().siblings('li').removeClass('active');
+      $(this).parent().addClass('active');
+
+      $conf_btn_wholebeans.removeClass('active');
+      $conf_btn_ground.addClass('active');
+      $conf_btn_wholebeans.find('input:radio').prop('checked', false);
+      $conf_btn_ground.find('input:radio').prop('checked', true);
+
+      var brew_method_id = $(this).data('brewid');
+      $conf_inp_brew_method_id.val(brew_method_id);
+    });
+
+    $conf_btn_wholebeans.click(function (e) {
+      $conf_inp_brew_method_id.val('0');
+    });
+
+
+    function add_color_to_otions(el) {
+      // '<label class="gear-color-option" style="background: url(\'' + el.img + '\') no-repeat center/50%;"> '
+      var color_option = '<label> ' +
+                           '<input type="radio" name="gear-color-id" class="inp-gear-color" value="' + el.color_id + '" />' +
+                           '<img src="' + el.img + '" class="img-gear-color-option">' +
+                           '<div class="name-gear-color-option">' + el.color_name + '</div>' +
+                         '</label>';
+      $color_options.append(color_option);
+    }
+
+    function handle_invitation_to_choose_color(gear_av_color) {
+      if (gear_av_color.length > 0) {
+        $invitation_to_choose_color.show();
+        gear_av_color.forEach(add_color_to_otions);
+      } else {
+        $invitation_to_choose_color.hide();
+      }
+    }
+
+    function copy_carousel_to_modal(gear_id) {
+      var old_id = '#gear-carousel-' + gear_id,
+          new_id = '#gear-carousel-modal-' + gear_id,
+          $carousel = $(old_id).clone();
+      $carousel.attr('id', new_id.replace('#', ''));
+      $carousel.find('.carousel-indicators li').attr('data-target', new_id);
+      $carousel.find('.carousel-control').attr('href', new_id);
+      $carousel.appendTo($gear_carousel_modal);
+    }
+
+    function apply_voucher(e) {
+      e.preventDefault();
+      $conf_gear_voucher_btn.html('<i class="fa fa-refresh fa-spin"></i> ' + gettext('Applying'));
+      $conf_gear_voucher_btn.prop('disabled', true);
+
+      $.ajax({
+        url: "{% url 'gift-sets-voucher' %}",
+        type: 'POST',
+        data: {
+          'voucher-name': $conf_gear_voucher_inp.val(),
+          'csrfmiddlewaretoken': "{{ csrf_token }}",
+        },
+        success: function(data) {
+          console.log('data:', data);
+          if (data.found) {
+            $conf_gear_voucher_msg.html(gettext('Awesome! You get ' + data.discount + ' off your order!'));
+            $conf_gear_voucher_inp.prop('disabled', true);
+            $conf_gear_voucher_btn.html(gettext('Applied'));
+          } else {
+            $conf_gear_voucher_msg.html(gettext('Your voucher code could not be found.'));
+            $conf_gear_voucher_btn.prop('disabled', false);
+            $conf_gear_voucher_btn.html(gettext('Apply'));
+          }
+        },
+        error: function() {
+          $conf_gear_voucher_btn.prop('disabled', false);
+          $conf_gear_voucher_msg.html(gettext('Sorry there was an error trying to update your subscription. Please try again later.'));
+        }
+      });
+    }
+
+  </script>
+
+{% endblock %}

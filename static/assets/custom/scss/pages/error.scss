@@ -1,0 +1,16 @@
+.error-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .img-wrapper {
+    background: url(/static/images/gift-icon4.png) no-repeat top center;
+    background-size: contain;
+    margin-bottom: $base-padding;
+    width: 100px;
+    height: 100px;
+  }
+
+  h4 { margin-bottom: $base-padding / 2; }
+}

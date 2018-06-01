@@ -1,0 +1,44 @@
+.carousel {
+  &.box-carousel {
+    margin: 0 auto;
+    padding: $base-padding * 0.25;
+    min-height: 150px;
+    background-color: $color-dark;
+
+    .carousel-inner {
+      .item img {
+        width: auto;
+        max-height: 480px;
+        margin: 0 auto;
+      }
+    }
+
+    .carousel-control.right {
+      right: 0;
+      margin-right: $base-padding / 2;
+      .glyphicon { padding-left: 8px; }
+    }
+    .carousel-control.left {
+      left: 0;
+      margin-left: $base-padding / 2;
+      .glyphicon { padding-right: 8px; }
+    }
+    .carousel-control.right,
+    .carousel-control.left {
+      margin-top: unset;
+      top: calc(50% - 20px);
+      border: unset;
+
+      .glyphicon {
+        font-size: 20px !important;
+      }
+    }
+
+    .carousel-indicators li {
+      background-color: white;
+      border: unset;
+
+      &.active { background-color: $color-new-secondary; }
+    }
+  }
+}

@@ -1,0 +1,241 @@
+#join-header {
+    margin-top: 60px;
+    text-align: center;
+    background-color: RGB(254, 248, 238);
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#careers-img {
+    margin-top: 60px;
+    background-image: url('/static/images/careers.jpg');
+    //width: 100%;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+#our-mission {
+    margin-top: -100px;
+}
+
+#open-roles {
+    margin-top: -120px;
+    margin-bottom: 50px;
+}
+
+#reasons-to-work-container {
+    position: relative;
+    padding-top: 0;
+}
+
+#reasons-to-work-white {
+    height: 280px;
+    background-color: RGB(235, 227, 218);
+}
+
+#reasons-to-work-blue {
+    height: 281px;
+    background-color: RGB(184, 220, 215);
+}
+
+#reasons-to-work-header {
+    //height: 280px;
+    background-color: RGB(235, 227, 218);
+    text-align: center;
+    padding-top: 0;
+}
+
+#reasons-to-work-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left:auto;
+    margin-right:auto;
+
+    width: 513px;
+    height: 561px;
+
+    background-image: url('/static/images/reasons-to-work.png');
+
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.reasons {
+    position: absolute;
+    font-family: "Amatic-Bold", cursive;
+    font-size: 28px;
+    line-height: 1;
+    text-align: center;
+    width: 250px;
+    //height: 50px;
+
+    z-index: 30;
+
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+        width: 100%;
+        height: 100%;
+        //text-transform: uppercase;
+    }
+
+}
+
+#reasons-driver {
+    top: 3%;
+    left: 15%;
+}
+    #reasons-driver:hover {
+        #reasons-driver-details {
+            display: block;
+        }
+    }
+
+#reasons-environment {
+    top: 10%;
+    right: 25%;
+}
+    #reasons-environment:hover {
+        #reasons-environment-details {
+            display: block;
+        }
+    }
+
+#reasons-difference {
+    top: 55%;
+    right: 20%;
+    width: 350px;
+}
+    #reasons-difference:hover {
+        #reasons-difference-details {
+            display: block;
+        }
+    }
+
+
+#reasons-balance {
+    top: 50%;
+    left: 15%;
+    width: 350px;
+}
+    #reasons-balance:hover {
+        #reasons-balance-details {
+            display: block;
+        }
+    }
+
+#reasons-impress {
+    top: 75%;
+    left: 25%;
+    width: 350px;
+}
+    #reasons-impress:hover {
+        #reasons-impress-details {
+            display: block;
+        }
+    }
+
+#reasons-unlimited {
+    top: 80%;
+    right: 15%;
+}
+
+.details {
+    display: none;
+
+    position: absolute;
+    margin-top: 15px;
+    width: 250px;
+    height: 200px;
+
+    text-align: center;
+    font-family: 'Archer';
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+#reasons-balance-details {
+   width: 350px;
+}
+
+#reasons-impress-details {
+   width: 350px;
+}
+
+#reasons-difference-details {
+   width: 350px;
+}
+
+.coffee-details {
+    border: 0;
+}
+
+.coffee-details p {
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+#myCanvas {
+    //position: absolute;
+    //left: 0;
+    //top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.reasons-small {
+    margin-bottom: 20px;
+
+    span {
+        font-family: "Amatic-Bold", cursive;
+        font-size: 28px;
+        line-height: 1;
+        text-align: justify;
+    }
+}
+
+.details-small {
+}
+
+// New SCSS
+
+.section.careers-page {
+
+    p {text-align: left;}
+    img {
+        width: 75px;
+        height: 75px;
+        margin-top: $base-padding;
+    }
+
+    .s-h1, .s-h2 {margin-bottom: $base-padding/2;}
+
+    @media (max-width: $screen-sm) {
+        .section-row.row-grid > * {
+            margin-top: $base-padding/2;
+        }
+    } 
+
+    #unli-coffee {
+        padding: 3.334em 4em;
+
+        span {
+            font-size: 22px;
+            text-align: center;
+            font-family: $font-family-2;
+            line-height: 0px;
+        }
+
+        .span-h4 {
+            font-size: 28px;
+            color: $color-new-primary;
+        }
+    }
+}

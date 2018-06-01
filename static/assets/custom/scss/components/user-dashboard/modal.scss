@@ -1,0 +1,324 @@
+
+.modal-body {
+  td {
+    border-top: 0px !important 
+  }
+  
+  ul {
+    border-bottom: 1px solid rgba(0,0,0,0.1)
+  }
+
+  .modal-table {
+    border: 1px solid rgba(0,0,0,0.1)
+  }
+}
+
+.modal-dialog {
+  p, h1, h2, h3 {
+    @extend .hc-text-noshadow;
+  }
+
+  .close {
+    font-size: 45px;
+    margin-top: -15px;
+  }
+
+  .modal-header {
+    border: 0px;
+
+    .brewrecipe-name {
+      padding: $base-padding;
+      padding-left: $base-padding * 3;
+    }
+
+    .coffeeimg-wrapper {
+      position: absolute;
+      right: $base-padding * 3;
+      top: -($base-padding * 3);
+      background-color: $color-light-gray;
+      // border-radius: 100%;
+
+      width: 200px;
+      height: 200px;
+    }
+
+    @media only screen and (max-width: $screen-xs) {
+      .brewrecipe-name {
+        padding: 0;
+      }
+    }
+
+    @media only screen and (max-width: $screen-md) {
+      margin-bottom: 0px !important;
+
+      .coffeeimg-wrapper {
+        position: initial !important;
+      }
+    }
+
+    @media only screen and (max-width: $screen-md) {
+      & > .row > div {
+        display: flex;
+        justify-content: center;
+      }
+
+      .brewrecipe-name {
+        padding: unset;
+      }
+
+      .coffeeimg-wrapper {
+        width: 300px !important;
+        height: 300px !important;
+      }
+    }
+
+    @media only screen and (max-width: $screen-xs) {
+      .coffeeimg-wrapper {
+        width: 200px !important;
+        height: 200px !important;
+      }
+    }
+  }
+  /* end of .modal-header */
+
+  .modal-body {
+    &.modal-body-wider-spaces {
+      .modal-row {
+        margin-bottom: $base-padding * 2 !important;
+      }
+
+      h1, h2, h3 {
+        margin: 0 0 8px !important;
+        text-align: center;
+      }
+
+      .btn-hero {
+        margin-top: $base-padding / 2;
+      }
+    }
+
+    .tab-content {
+      margin-bottom: 0;
+    }
+
+    // Override bootstrap
+    .nav-pills > li + li { margin-left: unset; }
+    .nav-justified > li > a, .nav-tabs.nav-justified > li > a { margin-bottom: unset; }
+    //
+
+    ul.nav.nav-pills li {
+      a {
+        border-radius: 0;
+        padding: 10px 15px;
+        border-bottom: none;
+      }
+    }
+
+    .brewrecipe-info {
+      @extend .bordered-bottom;
+
+      padding-bottom: $base-padding !important;
+      margin-bottom: $base-padding;
+
+      .brewrecipe-info-wrapper {
+        @include make-xs-column(12);
+        @include make-md-column(8);
+
+        padding: 0;
+
+        .info-col {
+          @include make-xs-column(6);
+          @include make-sm-column(3);
+
+          @media (max-width: $screen-sm) {
+            &:nth-child(3), &:nth-child(4) {
+              margin-top: $base-padding / 2;
+            }
+          }
+        }
+      }
+
+      & > div {
+        padding: 0;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      @media only screen and (min-width: $screen-md) {
+        padding: 0 ($base-padding * 3) $base-padding !important;
+      }
+    }
+
+    .modal-body-footer {
+      margin-top: 40px;
+      margin-left: -15px;
+      margin-right: -15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+      &.align-buttons-right {
+        text-align: right;
+        button {
+          margin-right: $base-padding / 2 !important;
+        }
+
+        button:last-child {
+          margin-right: $base-padding;
+        }
+      }
+    }
+
+    .modal-row {
+      // @extend .flex-centered-row;
+
+      margin-bottom: $base-padding;
+
+      @media only screen and (min-width: $screen-md) {
+        margin-left: $base-padding * 3 !important;
+        margin-right: $base-padding * 3 !important;
+      }
+
+      p, h1, h2, h3 {
+        margin: 0;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      &.modal-row-header {
+        margin-bottom: $base-padding * 2;
+      }
+
+      &.modal-row-hero {
+        p {
+          max-width: 360px;
+        }
+
+        input[type="text"] {
+          margin-left: $base-padding;
+          width: 90%;
+        }
+      }
+
+      &.modal-row-spaced-between {
+        @extend .flex-spaced-between;
+      }
+
+      &.modal-row-vertical {
+        flex-direction: column;
+      }
+
+      &.step {
+        .step-label {
+          background: $color-warm;
+          width: 40px;
+          height: 37px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          margin-right: $base-padding;
+
+          label {
+            margin-bottom: 0;
+
+            color: white;
+          }
+        }
+      }
+
+      &.modal-table {
+        @extend .flex-centered-col;
+
+        margin: $base-padding * 1.5;
+
+        .table {
+          margin-bottom: 0;
+
+          .media {
+            .media-body, .media-right {
+              vertical-align: middle;
+
+              p {
+                text-align: left;
+              }
+
+              .btn-brewrecipe {
+                line-height: 1em;
+              }
+            }
+          }
+        }
+      }
+
+      &.modal-row-footer {
+        @extend .bordered-top;
+      }
+    }
+  }
+  /* end of .modal-body */
+
+  .modal-footer {
+    @extend .bordered-top;
+    padding: $base-padding $base-padding;
+
+    @media (min-width: $screen-sm) {
+      padding: $base-padding $base-padding*3;
+    }
+
+    .modal-footer-share {
+      img {
+        width: 35px;
+        height: 35px;
+      }
+
+      .sh-fb { background-color: $color-fb; }
+      .sh-tw { background-color: $color-tw; }
+      .sh-gp { background-color: $color-gp; }
+    }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .modal-dialog {
+    margin: -1px;
+  }
+
+  .step-label {
+    height: 34px !important;
+  }
+}
+
+.bordered-top {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bordered-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#md-orderdetails {
+  .coffeeimg-wrapper {
+    position: unset;
+    margin: $base-padding*2 auto;
+    right: unset;
+    top: unset;
+    width: 240px;
+    height: 240px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: #fff;
+
+    @media (min-width: $screen-md) {
+      margin: 0 auto;
+    }
+  }
+
+
+  p.s-h1-bold { margin-top: $base-padding * 0.75; }
+  .order-btns { margin-top: $base-padding; }
+}

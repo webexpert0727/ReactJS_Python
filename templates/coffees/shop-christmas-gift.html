@@ -1,0 +1,733 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Coffee Brewing Equipment Sets' %}{% endblock %}
+
+{% block meta-description %}
+"W-huat a better way to welcome the Year of the Rooster with these limited edition gift sets!"
+{% endblock %}
+
+{% block head %}
+<link rel="canonical" href="https://hookcoffee.com.sg{% url 'shop-gift-set' %}" />
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+{% endcompress %}
+<!-- Get Social bar -->
+<script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<section id="shop-gift-set__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-md text-center">
+      <h1>
+        {% blocktrans trimmed %}
+        </br>
+          CNY GIFT SET
+        </br>
+        </br>
+        {% endblocktrans %}
+      </h1>
+</div>
+</div>
+</section>
+
+<section class="section">
+  {% if is_still_black_friday %}
+    <h2>{{ sale_announcement }}</h2>
+  {% endif %}
+
+  {% if cny_gear %}
+  <!-- The Hook Coffee Advent Calendar -->
+  <div class="section-row row-lg row-grid flex-grid">
+    {% with images=cny_gear.images.all %}
+    <div class="item-col">
+      <div class="shop-gift-set-box
+        {% if is_still_black_friday %}
+          black-friday-border
+        {% endif %}
+      ">
+
+        <div class="cb-img"
+        style='background-image: url({{ images.0.image.url }})'>
+      </div>
+
+      <div class="cb-info">
+        <h4>{{ cny_gear.name }}</h4>
+        <p><small>{{ cny_gear.model }}</small></p>
+        <p><small>{{ cny_gear.description|linebreaksbr }}</small></p>
+      </div>
+
+      <div class="cb-info cb-footer">
+        <div class="c-price">
+          {% if is_still_black_friday %}
+            <strike style='color:red'>
+              <p class="s-h2" style='color:black'>${{ old_price }}</p>
+            </strike>
+          {% endif %}
+          <p class="s-h2">{{ cny_gear.price }}</p>
+
+
+          <p><small>(Free P&P)</small></p>
+        </div>
+
+        <a class="btn btn-primary btn-hc btn-hc-sm"
+        data-target="#moreinfo-modal{{cny_gear.id}}"
+        data-toggle="modal">
+        {% trans 'More info' %}
+      </a>
+    </div>
+
+    {% if is_still_black_friday %}
+      <p><b>{{ sets_remaining }} sets remaining</b></p>
+      <p style='color:red'><b>{{ hours_left }} hours left</b></p>
+    {% endif %}
+
+    <br/>
+
+    </div>
+  </div>
+  {% endwith %}
+  </div>
+  <!-- // The Hook Coffee Advent Calendar -->
+{% endif %}
+
+<div class="section-row row-lg row-grid flex-grid">
+  {% for gear in gears %}
+  {% with images=gear.images.all %}
+  <div class="item-col">
+    <div class="shop-gift-set-box">
+
+      <div class="cb-img"
+      style='background-image: url({{ images.0.image.url }})'>
+    </div>
+
+    <div class="cb-info">
+      <h4>{{ gear.name }}</h4>
+      <p><small>{{ gear.model }}</small></p>
+      <p><small>{{ gear.description|linebreaksbr }}</small></p>
+    </div>
+
+    <div class="cb-info cb-footer">
+      <div class="c-price">
+        <p class="s-h2">{{ gear.price }}</p>
+        <p><small>(Free P&P)</small></p>
+      </div>
+
+      <a class="btn btn-primary btn-hc btn-hc-sm"
+      data-target="#moreinfo-modal{{gear.id}}"
+      data-toggle="modal">
+      {% trans 'More info' %}
+    </a>
+  </div>
+</div>
+</div>
+{% endwith %}
+{% endfor %}
+</div>
+</section>
+
+<section class="section bg-d info-bar bar-lg">
+  <div class="section-row row-lg">
+    <p class="clr-me-w">
+      {% blocktrans %}For corporate wholesale gifts enquiry, drop us a line at <small><a class="clr-me-acc-blue" href="mailto:hola@hookcoffee.com.sg?subject=Gifts" title="Email Support">hola@hookcoffee.com.sg</a></small>!{% endblocktrans %}
+    </p>
+  </div>
+</section>
+
+<!-- Confirmation modal -->
+<div id="gear-conf-modal" class="modal fade modal--gear-confirmation" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content gear-confirmation">
+      <div class="modal-body gear-confirmation__body">
+
+        <div class="form-body">
+          <div class="form-container gear-confirmation__form-container">
+
+            <!-- Gift address form -->
+            <h1 class="gear-confirmation__header gear-confirmation__txt">
+              {% trans 'Who is this gift for?' %}
+            </h1>
+
+            <p class="gear-confirmation__txt">{% trans 'We will send the gift directly to your friend' %}</p>
+
+            {% with form=new_gift_address_form %}
+            <form id="js-add-gift-address" method="POST" action="{% url 'buy_gear' %}">
+              {% csrf_token %}
+              <div class="panel-body">
+
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group form-group--recipient_first_name">
+                      <label for="{{ form.recipient_first_name.id_for_label }}">{% trans 'First name' %}</label>
+                      {% render_field form.recipient_first_name class+="form-control" %}
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group form-group--recipient_last_name">
+                      <label for="{{ form.recipient_last_name.id_for_label }}">{% trans 'Last name' %}</label>
+                      {% render_field form.recipient_last_name class+="form-control" %}
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group form-group--line1">
+                      {{ form.line1.label_tag }}
+                      {% render_field form.line1 class+="form-control"  %}
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group form-group--line2">
+                      {{ form.line2.label_tag }}
+                      {% render_field form.line2 class+="form-control" %}
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group form-group--unit_number">
+                      {{ form.unit_number.label_tag }}
+                      {% render_field form.unit_number class+="form-control" %}
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group form-group--postcode">
+                      {{ form.postcode.label_tag }}
+                      {% render_field form.postcode class+="form-control" %}
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                </div>
+
+<!--                 <div class="form-group form-group--note">
+                  <label for="id_note">Note (optional):</label>
+                  {% render_field form.note class+="form-control" %}
+                  <p>{{ form.note.help_text }}</p>
+                  <span class="help-block"></span>
+                </div> -->
+
+                <div class="form-group">
+                  <!-- Calendar -->
+                  <!-- <div class="container"> -->
+                    <br />
+                    <p><b>Select your preferred dispatch date.</b></p>
+                    <br />
+                    <p>Delivery will take place 3-5 working days from dispatch date. Fulfilment of all christmas gift set orders will be through courier delivery, tracking number will be provided. <b>Take note that gift sets will not be delivered to mailboxes.</b></p>
+                    <br />
+                    <div class="row">
+                      <div class='col-sm-6'>
+                        <div class="form-group">
+                          <div class='input-group date' id='datetimepicker'>
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                    <!-- // Calendar -->
+                  </div>
+
+                </div>
+
+                <input type="hidden" name="gear-id" value="" />
+
+                <div class="">
+                  <button type="submit" class="btn btn--gear btn-primary btn-hc btn-hc-sm">{% trans 'Confirm and Ship' %}</button>
+                  <button class="btn btn--gear btn-primary btn-hc btn-hc-sm backBtn" data-dismiss="modal">{% trans 'Back' %}</button>
+                </div>
+              </form>
+
+
+              {% endwith %}
+              <!-- // Gift address form -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- // Confirmation modal -->
+
+
+  <!-- First set more info modal -->
+  {% if cny_gear %}
+    {% with images=cny_gear.images.all %}
+    <div id="moreinfo-modal{{ cny_gear.id }}" class="modal modal-hc fade" tabindex="-1" role="dialog" data-gear-id="{{ cny_gear.id }}">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-hc-title">
+              <h3>{{cny_gear.name}}</h3>
+            </div>
+          </div>
+
+          <!-- calendar photo slider -->
+          <div id="cof__carousel{{cny_gear.id}}"
+          class="carousel slide box-carousel"
+          data-interval="false"
+          data-ride="carousel">
+          <ol class="carousel-indicators">
+            {% for x in images %}
+            <li
+            data-target="#cof__carousel{{cny_gear.id}}"
+            data-slide-to="{{ forloop.counter0 }}"
+            {% if forloop.counter0 == 0 %}
+            class="active"
+            {% endif %}
+            ></li>
+            {% endfor %}
+          </ol>
+
+          <div class="carousel-inner" role="listbox">
+            {% for x in images %}
+            <div
+            class="
+            item
+            {% if forloop.counter0 == 0 %}
+            active
+            {% endif %}
+            ">
+            <img src="{{ x.image.url }}" alt="">
+          </div>
+          {% endfor %}
+        </div>
+
+        <a class="left carousel-control"
+        href="#cof__carousel{{cny_gear.id}}" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">{% trans 'Previous' %}</span>
+      </a>
+
+      <a class="right carousel-control"
+      href="#cof__carousel{{cny_gear.id}}" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">{% trans 'Next' %}</span>
+    </a>
+  </div>
+  <!-- // calendar photo slider -->
+
+  <div class="modal-body">
+    <div class="row modal-body-section__sm">
+      <div class="col-xs-12 col-sm-8">
+        <p>{{ cny_gear.more_info|safe|linebreaks }}</p>
+      </div>
+
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="purchase-box">
+          <div class="purchase-box__price">
+            <div>
+              <p class="s-h2">S${{ cny_gear.price }}</p>
+              <p><small>(Free P&P)</small></p>
+            </div>
+
+            <div id="gear-oneoff-quantity__{{ cny_gear.id }}" class="plus-minus" data-id="{{ cny_gear.id }}">will be replaced with React</div>
+          </div>
+
+          {% if user.is_authenticated %}
+          <a class="btn btn-primary-white btn-hc btn-hc-xs buyAsGiftBtn" href="#">
+            {% trans 'BUY AS GIFT' %}
+            <span class="glyphicon glyphicon-info-sign pull-right" aria-hidden="true"
+            data-toggle="tooltip" data-placement="left" title=" By using the BUY AS GIFT feature, we will send the gift directly to your friend with a customised gift note. This feature does not work for multiple order"></span>
+          </a>
+          {% else %}
+            <a class="btn btn-primary-white btn-hc btn-hc-xs"
+                href="{% url 'preregister_gear' gear_id=cny_gear.id gear_qty=1 gear_color_id=1 %}"
+            >
+              {% trans 'BUY AS GIFT' %}
+            <span class="glyphicon glyphicon-info-sign pull-right" aria-hidden="true"
+                data-toggle="tooltip" data-placement="left" title=" By using the BUY AS GIFT feature, we will send the gift directly to your friend with a customised gift note. This feature does not work for multiple order"></span>
+            </a>
+        {% endif %}
+
+        <div class="btn-add-gear-placement" data-id="{{ cny_gear.id }}"></div>
+
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  </div>
+  </div>
+  </div>
+  {% endwith %}
+{% endif %}
+<!-- // First set more info modal -->
+
+{% for gear in gears %}
+{% with images=gear.images.all %}
+<div id="moreinfo-modal{{ gear.id }}" class="modal modal-hc fade" tabindex="-1" role="dialog" data-gear-id="{{ gear.id }}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-hc-title">
+          <h3>{{gear.name}}</h3>
+        </div>
+      </div>
+
+      <!-- gear photo slider -->
+      <div id="cof__carousel{{gear.id}}"
+      class="carousel slide box-carousel"
+      data-interval="false"
+      data-ride="carousel">
+      <ol class="carousel-indicators">
+        {% for x in images %}
+        <li
+        data-target="#cof__carousel{{gear.id}}"
+        data-slide-to="{{ forloop.counter0 }}"
+        {% if forloop.counter0 == 0 %}
+        class="active"
+        {% endif %}
+        ></li>
+        {% endfor %}
+      </ol>
+
+      <div class="carousel-inner" role="listbox">
+        {% for x in images %}
+        <div
+        class="
+        item
+        {% if forloop.counter0 == 0 %}
+        active
+        {% endif %}
+        ">
+        <img src="{{ x.image.url }}" alt="">
+      </div>
+      {% endfor %}
+    </div>
+
+    <a class="left carousel-control"
+    href="#cof__carousel{{gear.id}}" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">{% trans 'Previous' %}</span>
+  </a>
+
+  <a class="right carousel-control"
+  href="#cof__carousel{{gear.id}}" role="button" data-slide="next">
+  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  <span class="sr-only">{% trans 'Next' %}</span>
+</a>
+</div>
+<!-- // gear photo slider -->
+
+<div class="modal-body">
+  <div class="row modal-body-section__sm">
+    <div class="col-xs-12 col-sm-8">
+      <p>{{ gear.more_info|safe|linebreaks }}</p>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-4">
+      <div class="purchase-box">
+        <div class="purchase-box__price">
+          <div>
+            <p class="s-h2">S${{ gear.price }}</p>
+            <p><small>(Free P&P)</small></p>
+          </div>
+
+          <div id="gear-oneoff-quantity__{{ gear.id }}" class="plus-minus" data-id="{{ gear.id }}">will be replaced with React</div>
+        </div>
+
+        {% if user.is_authenticated %}
+          <a class="btn btn-primary-white btn-hc btn-hc-xs buyAsGiftBtn" href="#">
+            {% trans 'BUY AS GIFT' %}
+            <span class="glyphicon glyphicon-info-sign pull-right" aria-hidden="true"
+            data-toggle="tooltip" data-placement="left" title=" By using the BUY AS GIFT feature, we will send the gift directly to your friend with a customised gift note. This feature does not work for multiple order"></span>
+          </a>
+        {% else %}
+          <a class="btn btn-primary-white btn-hc btn-hc-xs"
+              href="{% url 'preregister_gear' gear_id=gear.id gear_qty=1 gear_color_id=1 %}"
+          >
+            {% trans 'BUY AS GIFT' %}
+          <span class="glyphicon glyphicon-info-sign pull-right" aria-hidden="true"
+              data-toggle="tooltip" data-placement="left" title=" By using the BUY AS GIFT feature, we will send the gift directly to your friend with a customised gift note. This feature does not work for multiple order"></span>
+          </a>
+      {% endif %}
+
+      <div class="btn-add-gear-placement" data-id="{{ gear.id }}"></div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+{% endwith %}
+{% endfor %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+
+  if (window.location.hash) {
+    $(window.location.hash).modal('show');
+  }
+
+
+  var gear_id, gear_img, gear_title, gear_av_color,
+  gear_allow_packaging,
+  $more_gear_modal = $('#gear-more-modal'),
+  $conf_gear_modal = $('#gear-conf-modal'),
+  $conf_gear_voucher_msg = $('#js-voucher-msg'),
+  $conf_gear_voucher_inp = $('#voucher-input'),
+  $conf_gear_voucher_btn = $('#js-voucher-btn'),
+  $gear_img_modal = $('.js-gear-img'),
+  $gear_title_modals = $('.js-gear-title'),
+  $gear_more_modal = $('.js-gear-more'),
+  $gear_carousel_modal = $('.js-gear-carousel'),
+  $conf_inp_gear_id = $('input[name="gear-id"]'),
+  $conf_inp_brew_method_id = $('input[name="brew-method-id"]'),
+  $color_options = $('.js-color-options'),
+  $invitation_to_choose_color = $('.js-gear-has-colors'),
+  $conf_btn_wholebeans = $('#js-btn-wholebeans'),
+  $conf_btn_ground = $('#js-btn-ground'),
+  $packaging_choice_block = $('.gear-confirmation__packaging');
+
+  $conf_gear_voucher_btn.click(apply_voucher);
+
+  $more_gear_modal.on('hide.bs.modal', function (e) {
+    $gear_title_modals.html('');
+    $gear_more_modal.html('');
+    $gear_carousel_modal.html('');
+  });
+
+  $conf_gear_modal.on('hide.bs.modal', function (e) {
+    $gear_title_modals.html('');
+    $gear_img_modal.attr('src', '');
+    $color_options.html('');
+    $conf_inp_brew_method_id.val('0');
+    $conf_gear_voucher_inp.val('');
+    $conf_gear_voucher_msg.html('');
+    $conf_gear_voucher_inp.prop('disabled', false);
+    $conf_gear_voucher_btn.prop('disabled', false);
+  });
+
+  $('.buyAsGiftBtn').click(function(e) {
+    var $btn = $(this),
+    gear_id = $btn.closest('.modal').data('gear-id');
+    $conf_gear_modal.find('input[name="gear-id"]').val(gear_id);
+    $('.modal.in').modal('hide');
+    $conf_gear_modal.modal('show');
+  });
+
+  $('.js-more-info-btn').click(function(e) {
+    gear_id = $(this).data('gear');
+    gear_title = $(this).data('title');
+    gear_more = $(this).data('more');
+
+    $gear_title_modals.html(gear_title);
+    $gear_more_modal.html(gear_more);
+    copy_carousel_to_modal(gear_id);
+    $more_gear_modal.modal('show');
+  });
+
+  $('.js-qty-btn').on('click', function () {
+    var $btn = $(this),
+    $inp = $('.js-qty-inp');
+    $inp.val(function(i, val) {
+      return +val + (1 * +$btn.data('operator'));
+    });
+    console.log('final:', $inp.val());
+  });
+
+  $('.js-brew-method').click(function (e) {
+    e.preventDefault();
+    $(this).parent().siblings('li').removeClass('active');
+    $(this).parent().addClass('active');
+
+    $conf_btn_wholebeans.removeClass('active');
+    $conf_btn_ground.addClass('active');
+    $conf_btn_wholebeans.find('input:radio').prop('checked', false);
+    $conf_btn_ground.find('input:radio').prop('checked', true);
+
+    var brew_method_id = $(this).data('brewid');
+    $conf_inp_brew_method_id.val(brew_method_id);
+  });
+
+  $conf_btn_wholebeans.click(function (e) {
+    $conf_inp_brew_method_id.val('0');
+  });
+
+
+  function add_color_to_otions(el) {
+// '<label class="gear-color-option" style="background: url(\'' + el.img + '\') no-repeat center/50%;"> '
+var color_option = '<label> ' +
+'<input type="radio" name="gear-color-id" class="inp-gear-color" value="' + el.color_id + '" />' +
+'<img src="' + el.img + '" class="img-gear-color-option">' +
+'<div class="name-gear-color-option">' + el.color_name + '</div>' +
+'</label>';
+$color_options.append(color_option);
+}
+
+function handle_invitation_to_choose_color(gear_av_color) {
+  if (gear_av_color.length > 0) {
+    $invitation_to_choose_color.show();
+    gear_av_color.forEach(add_color_to_otions);
+  } else {
+    $invitation_to_choose_color.hide();
+  }
+}
+
+function copy_carousel_to_modal(gear_id) {
+  var old_id = '#gear-carousel-' + gear_id,
+  new_id = '#gear-carousel-modal-' + gear_id,
+  $carousel = $(old_id).clone();
+  $carousel.attr('id', new_id.replace('#', ''));
+  $carousel.find('.carousel-indicators li').attr('data-target', new_id);
+  $carousel.find('.carousel-control').attr('href', new_id);
+  $carousel.appendTo($gear_carousel_modal);
+}
+
+function apply_voucher(e) {
+  e.preventDefault();
+  $conf_gear_voucher_btn.html('<i class="fa fa-refresh fa-spin"></i> ' + gettext('Applying'));
+  $conf_gear_voucher_btn.prop('disabled', true);
+
+  $.ajax({
+    url: "{% url 'gift-sets-voucher' %}",
+    type: 'POST',
+    data: {
+      'voucher-name': $conf_gear_voucher_inp.val(),
+      'csrfmiddlewaretoken': "{{ csrf_token }}",
+    },
+    success: function(data) {
+      console.log('data:', data);
+      if (data.found) {
+        $conf_gear_voucher_msg.html(gettext('Awesome! You get ' + data.discount + ' off your order!'));
+        $conf_gear_voucher_inp.prop('disabled', true);
+        $conf_gear_voucher_btn.html(gettext('Applied'));
+      } else {
+        $conf_gear_voucher_msg.html(gettext('Your voucher code could not be found.'));
+        $conf_gear_voucher_btn.prop('disabled', false);
+        $conf_gear_voucher_btn.html(gettext('Apply'));
+      }
+    },
+    error: function() {
+      $conf_gear_voucher_btn.prop('disabled', false);
+      $conf_gear_voucher_msg.html(gettext('Sorry there was an error trying to update your subscription. Please try again later.'));
+    }
+  });
+}
+
+
+$('#js-add-gift-address').submit(function(event){
+  event.preventDefault();
+
+  var $form = $(this),
+  $btn= $form.find('[type="submit"]'),
+  $backBtn = $form.find('.backBtn'),
+  chosen_date = $('#datetimepicker').data('DateTimePicker').date();
+
+  $btn.prop('disabled', true);
+  $backBtn.prop('disabled', true);
+
+// create gift address
+$.ajax({
+  url: "{% url 'create_gift_address' %}",
+  type: 'POST',
+  headers: {
+    'X-CSRF-TOKEN': $form.find('input[name="csrfmiddlewaretoken"]').val(),
+  },
+  data: $form.serialize(),
+  success: function(data) {
+    if (data.success) {
+// update csrf token for another ajax request
+$form.find('input[name="csrfmiddlewaretoken"]').val(data.token);
+$form.append('<input type="hidden" name="address-id" value="' + data.address.id + '" />')
+$form.append('<input type="hidden" name="note" value="' + data.note + '" />')
+
+// create gear order
+$.ajax({
+  url: "{% url 'buy_gear' %}",
+  type: 'POST',
+  headers: {
+    'X-CSRF-TOKEN': $form.find('input[name="csrfmiddlewaretoken"]').val(),
+  },
+  data: $form.serialize() + '&chosen_date=' + chosen_date.format('DD/MM/YYYY'),
+  success: function(data) {
+// redirect to dashboard
+window.location.href = "/accounts/profile/";
+}
+});
+
+
+} else {
+  console.log("FAILED", data);
+
+// clear previous error
+$('.form-group').removeClass('has-warning');
+$('.form-group .help-block').html('');
+
+var errors = data.errors;
+for (err in errors) {
+  if (errors.hasOwnProperty(err)) {
+    var fg = $('.form-group--' + err);
+    var err_msg = errors[err][0];
+
+    fg.addClass('has-warning');
+    fg.find('.help-block').html(err_msg);
+  }
+}
+$btn.prop('disabled', false);
+$backBtn.prop('disabled', false);
+}
+}
+
+}); // ajax outer
+});
+
+// create_gift_address
+</script>
+<script src="{% static 'remarkable-bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+<script src="{% static 'moment/min/moment.min.js' %}"></script>
+<script src="{% static 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker').datetimepicker({
+      format: 'DD/MM/YYYY',
+      viewMode: 'months',
+      minDate: "1/15/2018",
+      // maxDate: "12/18/2017",
+      defaultDate: "1/29/2018",
+      daysOfWeekDisabled: [0, 6],
+    });
+  });
+</script>
+{% endblock %}

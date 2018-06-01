@@ -1,0 +1,568 @@
+/* LANDING PAGE */
+
+.index-hl-banner {
+  position: relative;
+  width: 700px;
+  margin: 72px auto;
+  text-align: center;
+  /*background-color: rgba(255, 255, 255, .7); */
+}
+@media only screen and (max-width: 767px) {
+  .index-hl-banner {
+    margin: 60px auto 0;
+  }
+}
+@media only screen and (max-width: 460px) {
+  .index-hl-banner {
+    width: 100%;
+    margin: 0 auto;
+    background-color: transparent;
+  }
+}
+.index-hl-banner__logo {
+  margin: 65px 0 30px;
+}
+@media only screen and (max-width: 460px) {
+  .index-hl-banner__logo {
+    width: 100px;
+  }
+}
+.index-hl-banner__info {
+  /*margin-bottom: 40px;*/
+  margin-bottom: 10px;
+  font: 25px "Archer-Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #234e57;
+}
+@media only screen and (max-width: 460px) {
+  .index-hl-banner__info {
+    /*margin-bottom: 50px;*/
+    font-size: 22px;
+    color: #fff;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .index-hl-banner__info {
+    /*margin-bottom: 30px;*/
+    font-size: 20px;
+  }
+}
+.index-hl-banner__discount {
+  margin-bottom: 15px;
+}
+@media only screen and (max-width: 460px) {
+  .index-hl-banner__discount {
+    margin: 0 -15px 10px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, .7);
+  }
+}
+.index-hl-banner__discount-main {
+  color: #234e57;
+}
+.discount-main__from {
+  display: block;
+  font: 18px "Arboria-Light", serif;
+  line-height: 0;
+}
+.discount-main__cost {
+  position: relative;
+  font: 60px "Arboria-Book", serif;
+}
+.discount-main__currency {
+  position: absolute;
+  top: 7px;
+  left: -15px;
+  font: 20px "Arboria-Book", serif;
+}
+.discount-main__shipping {
+  display: block;
+  font: 18px "Arboria-Light", serif;
+  line-height: 0;
+}
+.index-hl-banner__btn {
+  margin: 25px 10px;
+  padding: 15px 20px;
+  display: inline-block;
+  font: bold 22px "Arboria-Book", sans-serif;
+  color: #fff;
+  text-decoration: none;
+  background-color: #d9a52a;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 460px) {
+  .index-hl-banner__btn {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .index-hl-banner__btn {
+    font-size: 10px;
+    margin: 25px 1px;
+    padding: 12px 10px;
+  }
+}
+.index-hl-banner__btn:hover,
+.index-hl-banner__btn:active,
+.index-hl-banner__btn:focus {
+  background-color: #c9961d;
+  color: #fff;
+  text-decoration: none;
+}
+.index-hl-banner__btn2 {
+  margin: 25px 10px;
+  padding: 15px 20px;
+  display: inline-block;
+  font: bold 22px "Arboria-Book", sans-serif;
+  color: #d9a52a;
+  text-decoration: none;
+  border: 2px solid #d9a52a;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 460px) {
+  .index-hl-banner__btn2 {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .index-hl-banner__btn2 {
+    font-size: 10px;
+    margin: 25px 1px;
+    padding: 12px 10px;
+  }
+}
+.index-hl-banner__btn2:hover,
+.index-hl-banner__btn2:active,
+.index-hl-banner__btn2:focus {
+  color: #c9961d;
+  border: 2px solid #c9961d;
+  text-decoration: none;
+}
+.index-hl-banner__discount-5-off {
+  position: absolute;
+  left: -1%;
+  bottom: -10%;
+  width: 140px;
+  height: 140px;
+  background-image: url("/static/images/5off_low.png");
+  background-size: cover;
+  z-index: 1;
+}
+@media only screen and (min-width: 461px) and (max-width: 600px) {
+  .index-hl-banner__discount-5-off {
+    overflow: visible;
+    left: 86%;
+    bottom: -5%;
+    width: 90px;
+    height: 90px;
+    z-index: 1;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .index-hl-banner__discount-5-off {
+    left: 40%;
+    bottom: -7%;
+    width: 70px;
+    height: 70px;
+    background-size: 70px;
+    z-index: 1;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .index-hl-banner__discount-5-off {
+    left: 39%;
+    bottom: -6%;
+    width: 60px;
+    height: 60px;
+    background-size: 60px;
+    z-index: 1;
+  }
+}
+
+.top-banner .gift-banner{
+  margin-top: 100px;
+}
+.top-banner.landing {
+  margin-top: 100px;
+  position: relative;
+  min-height: 100vh;
+}
+.banner-text img#logo-pod {
+  display: block;
+  max-width: 150px;
+  margin: -35px auto 0 auto;
+}
+@media only screen and (max-height: 900px) and (max-width: 1440px) {
+  .banner-text img#logo-pod {
+    margin-top: -50px;
+    max-width: 150px;
+  }
+}
+@media screen and (max-height: 768px) and (max-width: 1366px) {
+  .banner-text img#logo-pod {
+      margin-top: -50px;
+      max-width: 150px;
+  }
+  .banner-text button,
+  .banner-text .btn {
+      font-size: 14px !important;
+      margin: 14px 0;
+  }
+}
+@media only screen and (max-height: 768px) and (max-width: 1024px) {
+    .banner-text img#logo-pod {
+        margin-top: -55px;
+        max-width: 150px;
+    }
+    .banner-text button,
+    .banner-text .btn {
+        font-size: 14px !important;
+        margin: 14px 0;
+    }
+}
+/* Mobile portrait */
+@media screen and (max-width: 460px) {
+  .top-banner.landing .landing-wrapper {
+    background-color: rgba(64, 64, 64, .6);
+    height: 100vh;
+  }
+}
+/* fix VH units for ios 7 and older devices */
+@media screen and (device-width: 320px) and (device-height: 480px) and (orientation:portrait) {
+  .top-banner.landing,
+  .top-banner.landing .landing-wrapper {
+    min-height: 100%;
+    height: 480px;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 480px) and (orientation:landscape) {
+  .top-banner.landing,
+  .top-banner.landing .landing-wrapper {
+    min-height: 100%;
+    height: auto;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 568px) and (orientation:portrait) {
+  .top-banner.landing,
+  .top-banner.landing .landing-wrapper {
+    min-height: 100%;
+    height: 568px;
+  }
+}
+@media screen and (device-width: 320px) and (device-height: 568px) and (orientation:landscape) {
+  .top-banner.landing,
+  .top-banner.landing .landing-wrapper {
+    min-height: 100%;
+    height: auto;
+  }
+}
+/* Mobile landscape */
+@media screen and (max-height: 414px) {
+  .images-pods {
+    display: inline;
+  }
+}
+
+.gift-banner {
+  background: url(/static/images/banner3.png) no-repeat center right;
+  min-height: 510px;
+  width: 100%;
+  background-size: cover;
+  /*background-size: 100% 100%;*/
+  margin-top: 72px;
+  background-position: 100% 65%;
+}
+@media only screen and (max-width: 767px) {
+  .gift-banner {
+    margin-top: 60px;
+  }
+}
+
+.b5 {
+  background: url(/static/images/banner5.png) no-repeat center center;
+  min-height: 510px;
+  width: 100%;
+  background-size: cover;
+  /*background-size: 100% 100%;*/
+  margin-top: 72px;
+}
+@media only screen and (max-width: 767px) {
+  .b5 {
+    margin-top: 60px;
+  }
+}
+.gift-banner .banner-text h1 {
+  font-size: 55px;
+  color: #735146;
+}
+.gift-banner .banner-text p {
+  font-size: 16px;
+  color: #735146;
+}
+
+.banner-text {
+  position: relative;
+  display: block;
+  margin-top: 125px;
+}
+.banner-text h1 {
+  color: #4C2432;
+  font-size: 80px;
+  line-height: 75px;
+  font-weight: bold;
+  /*margin-top: 100px;*/
+}
+.banner-text h1 span {
+  color: RGB(114, 81, 71);
+  font-size: 55px;
+  line-height: 75px;
+  /*font-weight: 200;*/
+  font-family: 'Amatic SC', cursive;
+  position: absolute;
+  top: 5px;
+}
+.banner-text p {
+  color: #4C2432;
+  display: block;
+  padding: 15px 0;
+  font-size: 20px;
+  line-height: 27px;
+}
+.banner-text button,
+.banner-text .btn {
+  display: inline-block;
+  padding: 10px 30px;
+  background-color: #D9A52A;
+  border: none;
+  color: #FFF;
+  font-size: 18px;
+  font-weight: normal;
+  border-radius: 15px;
+  margin: 20px 0;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.banner-text button:hover, .banner-text button:active, .banner-text button:focus {
+  background-color: #c9961d;
+  color: #FFF;
+}
+.banner-text small {
+  color: #D9A52A;
+}
+.banner-text a {
+  font-weight: bold;
+  color: #D9A52A;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+.banner-text a i {
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 415px) {
+  .banner-text {
+      margin-top: 5%;
+  }
+  .banner-text h1 {
+      font-size: 50px;
+      line-height: 45px;
+  }
+  .banner-text p {
+      font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .banner-text {
+      margin-top: 0px;
+  }
+  .banner-text h1 {
+      font-size: 35px;
+      line-height: 30px;
+  }
+  .banner-text p {
+      font-size: 12px;
+  }
+}
+@media only screen and (max-height: 414px) {
+  .banner-text {
+      margin-top: -20px;
+  }
+  .banner-text h1 {
+      font-size: 35px;
+      line-height: 30px;
+  }
+  .banner-text p {
+      font-size: 12px;
+  }
+  button,
+  .btn {
+      font-size: 12px !important;
+      margin: 10px !important;
+  }
+}
+
+/********************************** Variable Greeting with Video on Landing page *********************************/
+
+#greeting_1st_line {
+  /*font-family: "DKSugaryPancake";*/
+  font-family: "HookCoffee Club";
+  /*font-size: 4.5em;*/
+  font-size: 6em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #FFF;
+  text-shadow: 2px 1px 2px #000;
+
+  margin-top: 1em;
+}
+#greeting_2nd_line {
+  /*font-family: "Open Sans Light";*/
+  font-family: "HookCoffee Club";
+  /*font-size: 2em;*/
+  font-size: 3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #FFF;
+  text-shadow: 1px 1px #333;
+
+  margin-top: 1em;
+}
+#greeting_3rd_line {
+  /*font-family: "Open Sans Regular";*/
+  font-family: "HookCoffee Club";
+  /*font-size: 2em;*/
+  font-size: 2.5em;
+  font-weight: normal;
+  color: #FFF;
+  text-shadow: 1px 1px #333;
+  letter-spacing: 0.1em;
+
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+.greetings {
+  text-align: left;
+}
+/* Macbook Air 11 */
+@media only screen and (max-width: 1366px) {
+  .index-hl-banner__discount-5-off {
+    left: 22%;
+    bottom: -15%;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+  }
+  #greeting_1st_line {
+    font-size: 4.2em;
+    margin-top: 0.6em;
+  }
+  #greeting_2nd_line {
+    font-size: 2.5em;
+    margin-top: 1em;
+  }
+  #greeting_3rd_line {
+    font-size: 2.2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+/* ----------- iPad mini ----------- */
+/* Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .index-hl-banner__discount-5-off {
+    left: 5%;
+    bottom: -10%;
+    width: 120px;
+    height: 120px;
+    z-index: 1;
+  }
+  #greeting_1st_line {
+    font-size: 3.5em;
+    margin-top: 1.2em;
+  }
+  #greeting_2nd_line {
+    font-size: 2.5em;
+    margin-top: 2em;
+  }
+  #greeting_3rd_line {
+    font-size: 1.9em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+  .greetings {
+    padding: 0 5em;
+  }
+}
+
+/* Landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  .index-hl-banner__discount-5-off {
+    left: 15%;
+    bottom: -10%;
+    width: 120px;
+    height: 120px;
+  }
+  #greeting_1st_line {
+    font-size: 3.8em;
+  }
+  #greeting_2nd_line {
+    font-size: 2em;
+  }
+  #greeting_3rd_line {
+    font-size: 1.8em;
+  }
+  .greetings {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .index-hl-banner__discount-5-off {
+    left: 0;
+    bottom: -7%;
+    width: 70px;
+    height: 70px;
+  }
+  #greeting_1st_line {
+    font-size: 2.5em;
+    margin-top: 2em;
+  }
+  #greeting_2nd_line {
+    font-size: 1.7em;
+  }
+  #greeting_3rd_line {
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .index-hl-banner__discount-5-off {
+    left: 1%;
+    bottom: -5%;
+    width: 60px;
+    height: 60px;
+  }
+  #greeting_1st_line {
+    font-size: 2em;
+    margin-top: 0.8em;
+  }
+  #greeting_2nd_line {
+    font-size: 1.6em;
+  }
+  #greeting_3rd_line {
+    font-size: 1.4em;
+    margin-bottom: 0.8em;
+  }
+}
+
+#learn_more:hover {
+  cursor: pointer;
+}
+
+/********************************** /Variable Greeting with Video on Landing page *********************************/
+

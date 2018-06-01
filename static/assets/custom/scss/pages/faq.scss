@@ -1,0 +1,134 @@
+.faq-wrapper {
+  margin-bottom: 120px;
+
+  .qa-wrapper {
+    .question {
+    }
+    .answer {
+    }
+  }
+}
+
+#faq-title {
+	margin: 0;
+	margin-bottom: 22px;
+
+	text-align: center;
+}
+
+#faq-tabs {
+	font-size: 14px;
+	border: 0;
+
+	.navbar-faq {
+		padding: 0;
+	}
+
+	&.navbar .nav {
+	    margin: 0;
+	    display: table;
+	    width: 100%;
+	}
+
+	&.navbar .nav li {
+    display: table-cell;
+    width: auto;
+    float: none;
+   	vertical-align: middle;
+    text-align: center;
+
+    font-family: 'Archer-Bold', sans-serif;
+    text-transform: uppercase;
+
+    @media (max-width: $screen-sm) {
+    	display: initial;
+    }
+
+    &.active, &.active > a {
+    	background-color: $color-forest !important;
+    	color: white !important;
+    }
+	}
+
+	#navbar-faq {
+		padding: 0;
+	}
+}
+
+#faq-content {
+	.panel-faq {
+		margin-bottom: 10px;
+		border-radius: 0;
+		border: 0;
+		border-bottom: 1px solid $color-warm;
+
+		.panel-heading {
+			padding: 10px 0;
+		}
+		.panel-body {
+			padding-top: 0;
+		}
+
+		a {
+			font-family: 'Archer-Bold', sans-serif;
+			font-size: 18px;
+			padding: 0;
+			margin: 0;
+		}
+	}
+}
+
+/* ------------------------------------------------------------------
+Trial pack modal
+------------------------------------------------------------------- */
+#trialModal {
+  .modal-dialog {
+
+    @media (min-width: $screen-sm) {
+      width: 900px;
+    }
+
+    .modal-content {
+      border-radius: 0px;
+      border: 8px solid #FFF;
+
+      .close {
+        font-size: 40px;
+        width: 40px;
+        opacity: 0.3;
+      }
+
+      .modal-footer {
+        padding: 15px 15px 20px;
+        bottom: 0px;
+        position: absolute;
+        right: 0px;
+        left: 0px;
+        color: #FEF8ED;
+        border: 0;
+
+        span {
+          font-family: 'Archer-Bold';
+          font-size: 62px;
+
+          text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+
+          text-align: center;
+          line-height: 54px;
+          margin-bottom: 30px;
+        }
+
+        #register-link {
+          position: relative;
+          right: 50%;
+          transform: translateX(50%);
+
+          font-size: 36px;
+          line-height: 42px;
+          width: 240px;
+          padding: 10px 0px;
+        }
+      }
+    }
+  }
+}

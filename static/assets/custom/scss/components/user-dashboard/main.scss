@@ -1,0 +1,72 @@
+a {
+  outline-style: none !important;
+
+  .not-active {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.footer {
+  display: none;
+}
+
+.page-container {
+  @include container-fixed();
+
+  padding: 0px !important;
+
+  .tab-pane {
+    min-height: calc(100vh - 137px);
+  }
+}
+
+.content-pane {
+  position: relative;
+  padding: $base-padding;
+
+  @media (min-width: $screen-sm) {
+    max-width: $screen-lg;
+    width: calc(100vw - 200px);
+    left: 200px;
+  }
+
+  @media (min-width: $screen-xlg) {
+    left: unset;
+    margin: 0 auto;
+  }
+}
+
+.accordion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  outline: 0px none;
+}
+
+.page-title {
+  @extend .page-title-margin;
+
+  margin: 0 13px !important;
+  margin-left: 0 !important;
+}
+
+.page-title-margin {
+  margin-bottom: $base-padding * 1.5 !important;
+
+  &.single {
+    margin-bottom: 35px !important;
+  }
+}
+
+.panel table {
+  th {
+    font-weight: normal;
+    vertical-align: middle !important;
+  }
+}
+
+.warning--order-declined {
+  padding: 5px 5px 5px 0;
+  color: $color-danger;
+}

@@ -1,0 +1,92 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+
+<ul class="bullet ul-bullet">
+  <li>
+    {% if alacarte %}
+      <p class="s-h2-bold">{% trans 'One-off' %}</p>
+    {% else %}
+      <p class="s-h2-bold">{% trans 'Subscribe to' %}</p>
+    {% endif %}
+
+    <div id="details-subs">
+      <div class="cb-info cb-header">
+        <h4>{{ coffee.name }}</h4>
+        <p><small>by {{ coffee.maker }}</small></p>
+        <p><small>{{pref}}</small></p>
+      </div>
+
+      <div class="cb-info cb-body">
+        <div class="inf-md">
+          <p>
+            <small>
+              <i class="fa fa-map-marker"></i>
+              {{ coffee.region }}, {{ coffee.country }}
+            </small>
+          </p>
+        </div>
+
+        <div class="inf-md">
+          <p><em>{% blocktrans %}Hint's of{% endblocktrans %} <b>{{ coffee.taste }}</b></em></p>
+        </div>
+
+        <div class="inf-md">
+          <p>{{ coffee.get_body_display }}</p>
+        </div>
+
+        {% if not isNespresso %}
+          <div class="inf-md">
+            <p class="s-h2"><small>{% trans 'Roasted on' %}</small></p>
+            <p class="s-h2"><b>{{ coffee.roasted_on }}</b></p>
+          </div>
+
+        {% endif %}
+
+        <div class="inf-md">
+          <p class="s-h2"><small>{% trans 'Price for current pack' %}</small></p>
+          <p class="s-h5"><b>S$<span id="price-current">{{ price }}</span></b></p>
+        </div>
+
+        <div class="inf-md">
+          <p class="s-h2" id="qty"></p>
+        </div>
+
+        <div class="cb-info cb-footer">
+          {% comment %}
+          <h3>Price for subsequent packs: <span id="price-subsequent">{{ coffee.amount }}</span> SGD</h3>
+          {% endcomment %}
+
+          {% comment %}
+          <form method="POST" action="">
+            {% csrf_token %}
+            <div class="voucher-wrapper row">
+              <div class="form-inline">
+                <div class="form-group">
+                  <label for="voucher-input">Voucher</label>
+                  <input type="hidden" name="coffee" value="{{ coffee.id }}"/>
+                  <input id="voucher-input" class="form-control" name="voucher-name" type="text" size="32" placeholder="Voucher name" value=""/>
+                  <button id="submit-voucher" class="btn btn-primary pull-right">Apply</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
+
+    <div id="details-subs">
+      <div class="cb-info cb-header center">
+        <h4>Estimated delivery date</h4>
+        <br />
+        <div class="inf-md">your order is expected to be delivered between</div>
+        <p class="s-h2"><b>{{ estimated_date }}</b></p>
+        <br />
+        <p>All orders are shipped using Singapore post standard mail and will go directly to your mailbox. There might be uncontrollable delivery delays</p>
+      </div>
+    </div>
+
+  </li>
+</ul>

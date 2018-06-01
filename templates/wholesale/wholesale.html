@@ -1,0 +1,478 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Coffee At The Workplace' %}{% endblock %}
+
+{% block meta-description %}
+    "COFFEE AT THE WORKPLACE. We’ll keep your team(s) happy and caffeinated by delivering our delicious freshly roasted coffees to your office regularly."
+{% endblock %}
+
+{% block head %}
+  <link rel="canonical" href="https://{{current_domain}}{% url 'wholesale' %}" />
+
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<section id="wholesale__top-banner" class="top-banner section">
+  <div class="container-fluid">
+    <div class="section-row row-sm text-center">
+      <h1>{% trans 'Re-Imagine Coffee at your workplace' %}</h1>
+    </div>
+
+    <div class="section-row row-sm text-center">
+      <h4>{% blocktrans trimmed %}We are fuelling the country’s best companies and offices with our freshly roasted coffees, and helping build more motivated, productive and bonded teams.{% endblocktrans %}</h4>
+    </div>
+<!--
+    <div class="section-row row-sm text-center">
+      <h4 class="clr-me-p">
+        <a href="#find-out-more">
+          {% trans 'find out more' %}<br />
+          <i class="fa fa-angle-down"></i>
+        </a>
+      </h4>
+    </div>
+ -->
+  </div>
+</section>
+
+<section class="section ws__section_2">
+  <!-- <span id="find-out-more" class="section-pagelink-target"></span> -->
+
+  <div class="section-row row-md">
+    <h2>{% trans 'Coffee at the workplace' %}</h2>
+  </div>
+
+  <div class="section-row row-md">
+    <p><a href="https://hookcoffee.com.sg/blog/hook-coffee-for-work-it-is-more-affordable-that-you-think">{% trans "It's more affordable than you think" %}</a></p>
+  </div>
+
+  <div class="container ws_adv">
+    <div class="row">
+      <div class="col-md-6">
+        <p class=""><b>
+          Commitment to Freshness and Quality
+        </b></p>
+        <p class="">
+          Hook’s coffees are sourced from the world’s best farms and are specialty grade 80 and above, and are freshly roasted locally in Singapore.
+        </p>
+        <p class=""><b>
+          Coffee with a heart
+        </b></p>
+        <p class="">
+          We source our coffees sustainably and liv by that mantra, to give our farmers a much better deal. We don't pass on that cost to you. It is simply our personal reward to the farmers
+        </p>
+        <p class=""><b>
+          Local Brand with a Name you can Trust
+        </b></p>
+        <p class="">
+          Hook Coffee’ is a homegrown brand and the biggest and fastest growing coffee online service in Singapore
+        </p>
+      </div>
+      <div class="col-md-6">
+        <img class="img-responsive" src="{% static 'images/workplace-machine.jpg' %}" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="ws__recommended" class="section">
+
+  <p class="s-h3-bold">{% trans 'Our Customers includes:' %}</p>
+
+  <div class="section-row row-lg">
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/airbnb logo.png' %}" class="img-responsive" alt="AirBNB" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/GRAB.png' %}" class="img-responsive" alt="Grab" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/worldpay logo.png' %}" class="img-responsive" alt="WorldPay" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/mullen lowe logo.png' %}" class="img-responsive" alt="Mullen" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/HIRED logo.png' %}" class="img-responsive" alt="Hired" /></a>
+<!--
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/ocbc logo.png' %}" class="img-responsive" alt="Image" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/atomi logo.png' %}" class="img-responsive" alt="Image" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/books actually logo.png' %}" class="img-responsive" alt="Image" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/UOB logo.png' %}" class="img-responsive" alt="Image" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/google logo.png' %}" class="img-responsive" alt="Image" /></a>
+    <a href="javascript:void(0);"><img src="{% static 'images/corporates-served/facebook logo.png' %}" class="img-responsive" alt="Image" /></a>
+ -->
+  </div>
+</section>
+
+{% if reviews %}
+  <section class="section ws__reviews">
+    <p class="s-h3-bold">{% trans 'What our customer say:' %}</p>
+
+      <div class="section-row row-sm">
+        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+          <div class="carousel-inner text-center carousel-reviews">
+            {% for review in reviews %}
+              {% if forloop.counter0 == 0 %}
+                <div class="item active">
+              {% else %}
+                <div class="item">
+              {% endif %}
+                {% if review.logo %}
+                  <img src={{ review.logo.url }} />
+                {% endif %}
+                <blockquote>
+                  <p>&#8220;{{ review.message }}&#8221;</p>
+                  <small>{{ review.author }}</small>
+                </blockquote>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+  <!--
+      <div class="section-row row-sm">
+        <a href="{% url 'coffees' %}" class="btn btn-primary btn-hc">{% trans 'TRY IT TO BELIEVE IT' %}</a>
+      </div>
+   -->
+  </section>
+{% endif %}
+
+<section class="section ws__what_you-get">
+  <p class="s-h3-bold">{% trans 'What you get?' %}</p>
+    <div class="row">
+      <div class="col-md-6">
+        <p><b>Bespoke plans</b></p>
+        <p>We take the time to understand the needs of your machine, and we recommend a plan most suited for your needs.</p>
+      </div>
+      <div class="col-md-6">
+        <p><b>Freshly delivered</b></p>
+        <p>Coffee should be FRESH, and we live by that mantra. We will ensure a consistent delivery of freshly roasted coffee to your office, simply just to make your office happier.</p>
+      </div>
+    </div>
+
+</section>
+
+
+
+<section class="section ws_plans">
+
+  <p class="s-h3-bold">{% trans 'Offices without a coffee machine' %}</p>
+
+  <div class="section-row row-lg row-grid flex-grid">
+    {% for plan in plans %}
+      {% if plan.office_type != "W" %}
+        <div class="item-col">
+          <div class="whsale-box">
+            <div class="cb-info cb-header">
+              <p class="s-h3-bold">{{ plan.name }}</p>
+              <p><i>{{ plan.goal_1 }}</i></p>
+            </div>
+
+            <div class="cb-img" style='background-image: url({{ plan.img.url }})'>
+            </div>
+
+            <div class="cb-info">
+              {% if plan.goal_2 %}
+                <p><small>{{ plan.goal_2 }}</small></p>
+              {% endif %}
+              {% if plan.goal_2_note %}
+                <p>({{ plan.goal_2_note }})</p>
+              {% endif %}
+            </div>
+
+            <ul>
+              <li>
+                <p>{{ plan.description_1 }}</p>
+              </li>
+              {% if plan.description_2 or plan.description_2_note %}
+                <li>
+                  {% if plan.description_2 %}
+                    <p>{{ plan.description_2 }}</p>
+                  {% endif %}
+                  {% if plan.description_2_note %}
+                    <p>({{ plan.description_2_note }})</p>
+                  {% endif %}
+                </li>
+              {% endif %}
+            </ul>
+
+            <div class="cb-info cb-footer">
+              <p><small>{{ plan.comments }}</small></p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section ws_plans">
+
+  <p class="s-h3-bold">{% trans 'Offices with a coffee machine' %}</p>
+
+  <div class="section-row row-lg row-grid flex-grid">
+    {% for plan in plans %}
+      {% if plan.office_type != "WO" %}
+        <div class="item-col">
+          <div class="whsale-box">
+            <div class="cb-info cb-header">
+              <p class="s-h3-bold">{{ plan.name }}</p>
+              <p><i>{{ plan.goal_1 }}</i></p>
+            </div>
+
+            <div class="cb-img" style='background-image: url({{ plan.img.url }})'>
+            </div>
+
+            <div class="cb-info">
+              <p><small>{{ plan.goal_2 }}</small></p>
+              {% if plan.goal_2_note %}
+                <p>({{ plan.goal_2_note }})</p>
+              {% endif %}
+            </div>
+
+            <ul>
+              <li>
+                <p>{{ plan.description_1 }}</p>
+              </li>
+              <li>
+                <p>{{ plan.description_2 }}</p>
+                <p>
+                  {% if plan.description_2_note %}
+                    ({{ plan.description_2_note }})
+                  {% endif %}
+                </p>
+              </li>
+            </ul>
+
+            <div class="cb-info cb-footer">
+              <p><small>{{ plan.comments }}</small></p>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-row row-md">
+    <h3>{% trans 'Get started by emailing us' %}</h3>
+  </div>
+
+  <div class="section-row row-sm text-left js-page-form">
+    <form class="form-hc js-wholesale-form" method="POST" action="">
+      {% csrf_token %}
+
+      <div class="form-group form-group--name">
+        {{ form.name.label_tag }}
+        {% render_field form.name class+="form-control" %}
+        <span class="help-block"></span>
+      </div>
+
+      <div class="form-group form-group--company_name">
+        {{ form.company_name.label_tag }}
+        {% render_field form.company_name class+="form-control" %}
+        <span class="help-block"></span>
+      </div>
+
+      <div class="form-group form-group--email">
+        {{ form.email.label_tag }}
+        {% render_field form.email class+="form-control" %}
+        <span class="help-block"></span>
+      </div>
+
+      <div class="form-group form-group--contact_number">
+        {{ form.contact_number.label_tag }}
+        {% render_field form.contact_number class+="form-control" %}
+        <span class="help-block"></span>
+      </div>
+
+      <div class="form-group">
+        <label>{% trans 'Type of Business' %}</label>
+      </div>
+      <div class="form-group form-group--business">
+        {% for radio in form.business %}
+          <label for="{{ radio.id_for_label }}" class="radio-inline">
+            {{ radio.tag }}
+            {{ radio.choice_label }}
+          </label>
+        {% endfor %}
+        <span class="help-block"></span>
+      </div>
+
+      <div class="form-group form-group--comment">
+        {{ form.comment.label_tag }}
+        {% render_field form.comment class+="form-control" %}
+        <span class="help-block"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-hc btn-hc-sm pull-right">
+        {% trans 'Submit' %}
+      </button>
+    </form>
+
+  </div>
+
+  <div class="section-row row-md js-success-response hide">
+    <h3>{% trans 'Thank you! We will reply to you soon!' %}</h3>
+  </div>
+
+</section>
+
+{% comment %}
+<section class="contact-sec text-center">
+  <div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 col-sm-12">
+      <h1>need a coffee vendor for your<br />
+        corporate event or party? </h1>
+      <p>We’ve had our pop-ups at International Business Park, Changi Business Park, Galaxis @ 1 Fusionopolis, Singapore Management University, DNV GL, the German Centre and many more exciting venues! Beyond bringing the hustle & bustle, we fill the air with the aroma of our freshly roasted coffees and with the sound of laughter from tremendously satisfied patrons. </p>
+      <button name="btn" class="btn btn3">&nbsp; Contact Us &nbsp;</button>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</section> -->
+
+<section class="corporate">
+  <div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 col-sm-12">
+      <h1>corporate social responsibility </h1>
+      <p>While we're doing our part to make a difference in the lives of our farmers and customers, your support will go a long way in helping our farmers produce more specialty-grade and sustainable coffees, and in helping our Singapore-based homegrown start-up to grow and thrive — so thank you!</p>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="clearfix"></div>
+    <div class="col-sm-6"> <img src="{% static 'images/corp.png' %}" alt="Image" class="img-responsive" />
+      <button name="btn" class="btn btn4">FIND OUT MORE ABOUT HOOK</button>
+    </div>
+    <div class="col-sm-6"> <img src="{% static 'images/corp.png' %}" alt="Image" class="img-responsive" />
+      <button name="btn" class="btn btn4">SEE ALL COFFEES &amp; FARM INFO</button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div class="clearfix"></div>
+</section>
+{% endcomment %}
+
+<section class="section bg-d-20 info-bar ws__contacts">
+  <!-- <div class="section-row row-lg"> -->
+  <div class="section-row">
+<!--
+    <h4 class="clr-me-p">{% trans 'Looking for coffees for your home instead?' %}</h4>
+    <a href="{% url 'coffees' %}"
+      class="btn btn-primary btn-hc btn-hc-sm">
+      {% trans 'Click Here' %}
+    </a>
+-->
+    <h2 class="ws__contact_us">
+      Fancy having a chat about workplace plans?
+      </br>
+      Contact us at  65–96259741
+    </h2>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<!-- <script src="{% static 'assets/vendor/jquery.js' %}"></script> -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!-- <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script> -->
+<script>
+$(document).ready(function(){
+    $('.menu-icon').click(function(){
+    var hidden = $('.hemburger-menu');
+    if (hidden.hasClass('visible')){
+        hidden.animate({"left":"-300px"}, "slow").removeClass('visible');
+    } else {
+        hidden.animate({"left":"0px"}, "slow").addClass('visible');
+    }
+    });
+	$(function() {
+    $( "#slider-range-min" ).slider({
+      range: "min",
+      value: 37,
+      min: 1,
+      max: 700,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range-min" ).slider( "value" ) );
+  });
+});
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+     //>=, not <=
+    if (scroll >= 80) {
+        //clearHeader, not clearheader - caps H
+        $(".navbar-fixed-top").addClass("nt2");
+    }
+	else{
+        $(".navbar-fixed-top").removeClass("nt2");
+	}
+}); //missing );
+
+$('.js-wholesale-form').submit(submitWholesaleForm);
+
+function submitWholesaleForm(e) {
+  e.preventDefault();
+  var $form = $(this).closest('form'),
+      $submitBtn = $form.find('button[type="submit"]');
+
+  $submitBtn
+    .prop('disabled', true)
+    .html('<i class="fa fa-refresh fa-spin"></i>  ' + "{% trans 'Sending' %}");
+
+  $.ajax({
+    url: $form.attr('action'),
+    type: $form.attr('method'),
+    data: $form.serialize(),
+
+    success: function(data) {
+      $form.find('.form-group').removeClass('has-warning');
+      $form.find('.form-group .help-block').html('');
+
+      if (data.success) {
+        $('.js-page-form').addClass('hide');
+        $('.js-success-response').removeClass('hide');
+      } else {
+        var errors = data.errors;
+
+        for (err in errors) {
+          if (errors.hasOwnProperty(err)) {
+            var fg = $('.form-group--' + err);
+            var err_msg = errors[err][0];
+            fg.addClass('has-warning');
+            fg.find('.help-block').html(err_msg);
+          }
+        }
+      }
+    },
+    error: function(data) {
+      $.notify({
+        message: "{% trans 'Sorry there was an error trying to send your message. Please try again later.' %}"
+      }, {
+        type: 'danger'
+      });
+    },
+    complete: function(jqXHR, status) {
+      $submitBtn
+        .prop('disabled', false)
+        .html("{% trans 'Submit' %}");
+    },
+  });
+}
+
+</script>
+
+<script src="{% static 'remarkable-bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+<script src="{% static 'assets/custom/js/notify-defaults.js' %}"></script>
+{% endblock %}

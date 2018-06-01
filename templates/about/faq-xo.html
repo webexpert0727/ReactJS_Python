@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{# {% load widget_tweaks %} #}
+{% load i18n %}
+
+{% block title %}— {% trans 'FAQ' %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+  <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/faq.scss' %}" />
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <h1 id="faq-title">{% trans 'Frequently Asked Questions' %}</h1>
+
+  <!-- Nav tabs -->
+  <div id="faq-tabs" class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-faq">
+        <span class="sr-only">{% trans 'Toggle navigation' %}</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <span class="visible-xs navbar-brand">Frequently Asked Questions</span> -->
+    </div>
+    <div id="navbar-faq" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav" role="tablist">
+      {% for section in sections %}
+        <li>
+          <a href="#sec_{{ section.id }}" aria-controls="{{ section.id }}" role="tab" data-toggle="pill">{{ section.name }}</a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tab panes -->
+  <div id="faq-content" class="tab-content">
+  {% for section in sections %}
+    <div role="tabpanel" class="tab-pane fade" id="sec_{{ section.id }}">
+    {% for post in posts %}
+      {% if post.section == section %}
+      <div class="panel panel-faq">
+        <div class="panel-heading" role="button" data-toggle="collapse" data-parent="sec_{{ section.id }}" href="#ans_{{ section.id }}_{{ post.id }}" aria-expanded="true" aria-controls="ans_{{ section.id }}_{{ post.id }}">
+          <div class="panel-title">
+            <a>{{ post.title }}</a>
+          </div>
+        </div>
+        <div id="ans_{{ section.id }}_{{ post.id }}" class="panel-collapse collapse">
+          <div class="panel-body">
+            {{ post.message|safe|escape|linebreaks }}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  {% endfor %}
+  </div>
+  <!-- end Tab panes -->
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  window.onload = function() {
+    $('#navbar-faq ul li:first-child').addClass('in active');
+    $('#faq-content .tab-pane:first-child').addClass('in active');
+  }
+</script>
+{% endblock %}

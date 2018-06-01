@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load compress %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Blog' %}{% endblock %}
+
+{% block meta-description %}"Hook Coffee Blog"{% endblock %}
+
+{% block head %}
+    <link rel="canonical" href="https://{{current_domain}}{% url 'blog' %}" />
+    <link rel="canonical" href="https://hookcoffee.com.sg{% url 'brew_guide_list' %}" />
+    {% compress css %}
+        <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+<section class="section is-align-left bg-d blog-page is-banner-xs">
+    <div class="section-row row-banner row-lg row-grid">
+        <div class="col-md-4">
+            <div class="blog-header-title">
+                <h4>
+                    <span class="clr-me-w">{% trans 'Coffee Fueled' %}</span>
+                    <span class="clr-me-p">{% trans 'Thoughts' %}</span><span class="clr-me-w">,</span>
+                    <br/>
+                    <span class="clr-me-p">{% trans 'Stories' %}</span><span class="clr-me-w">,</span>
+                    <span class="clr-me-w">{% trans 'and' %}</span>
+                    <span class="clr-me-p">{% trans 'Ideas' %}</span>
+                </h4>
+                <h1>
+                    <a href="{% url 'blog' %}">
+                        <span class="clr-me-w">{% trans 'THE' %}</span><span class="clr-me-p">{% trans 'HOOK' %}</span><span class="clr-me-s">{% trans 'BLOG' %}</span>
+                    </a>
+                </h1>
+                <h2>
+                    <span class="use-base-font clr-me-s">&#35</span><span class="clr-me-w">{% trans 'GET' %}</span><span class="clr-me-p">{% trans 'HOOKED' %}</span>
+                </h2>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-xl">
+                <div class="col-xxs">
+                    <div class="img-col"
+                        style="background-image: url(
+                            {% if latest_posts.0.img %}
+                                {{ latest_posts.0.img.url }}
+                            {% endif %}
+                        )"></div>
+                </div>
+                <div class="info-col">
+                    <div class="card-category">
+                        <span class="s-h3 clr-me-g-100 category-left">{% trans 'Latest Post' %}</span><span class="s-h2 clr-me-g-100 category-right">{% firstof latest_posts.0.category "Uncategorized" %}</span>
+                    </div>
+                    <h4>{{ latest_posts.0.title }}</h4>
+                    <p class="s-h1"><i>Posted by</i> <span class="clr-me-s s-h1-bold">{{ latest_posts.0.author }}</span> on <span class="s-h1-bold">{{ latest_posts.0.date_published }}</span></p>
+                    <p class="s-h1">{{ latest_posts.0.preview|safe }}</p>
+                    <a class="btn btn-secondary" href="{% url 'get-post' slug=latest_posts.0.slug %}">{% trans 'Read More' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-row row-lg row-banner">
+        <div class="col-md-12">
+            <div class="sub-nav-blog sub-nav-blog__sm">
+                <div class="wrapper">
+                    <ul class="blog-category-links">
+                        <li>
+                        <a href="{% url 'filter-posts-by-cat' cat_slug='latest' %}">
+                            {% trans 'Latest' %}
+                        </a>
+                        </li>
+                        <li><span class="clr-me-s">&#8226;</span></li>
+                        {% for category in categories %}
+                            <li><a href="{% url 'filter-posts-by-cat' cat_slug=category.slug %}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section blog-page is-align-left">
+    <!--Start of Newest Row-->
+    <div class="section-row row-lg">
+        <div class="section-divider">
+            <div>
+                <span class="clr-me-d divider-title">Latest</span>
+                <span class="see-all">
+                  <a href="{% url 'filter-posts-by-cat' cat_slug='latest' %}" class="clr-me-s">
+                    {% trans 'See All' %} ›
+                  </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="section-row row-latest row-lg row-grid">
+        <div class="col-md-6">
+            <div class="card-lg">
+                <div class="img-col"
+                    style="background-image: url(
+                        {% if latest_posts.1.img %}
+                            {{ latest_posts.1.img.url }}
+                        {% endif %}
+                    )"></div>
+                <div class="info-col">
+                    <div class="content-divider card-category">
+                        <span class="s-h1">{% firstof latest_posts.1.category "Uncategorized" %}</span>
+                    </div>
+                    <p class="s-h3 card-title">{{ latest_posts.1.title }}</p>
+                    <p class="s-h1"><i>Posted by</i> <span class="s-h1-bold">{{ latest_posts.1.author }}</span> on <span class="s-h1-bold">{{ latest_posts.1.date_published }}</span></p>
+                    <p class="s-h1 card-content">{{ latest_posts.1.preview|safe }}</p>
+                    <a class="btn btn-secondary" href="{% url 'get-post' slug=latest_posts.1.slug %}">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card-lg">
+                <div class="img-col"
+                    style="background-image: url(
+                        {% if latest_posts.2.img %}
+                            {{ latest_posts.2.img.url }}
+                        {% endif %}
+                )"></div>
+                <div class="info-col">
+                    <div class="content-divider card-category">
+                        <span class="s-h1">{% firstof latest_posts.2.category "Uncategorized" %}</span>
+                    </div>
+                    <p class="s-h3 card-title">{{ latest_posts.2.title }}</p>
+                    <p class="s-h1"><i>Posted by</i> <span class="s-h1-bold">{{ latest_posts.2.author }}</span> on <span class="s-h1-bold">{{ latest_posts.2.date_published }}</span></p>
+                    <p class="s-h1 card-content">{{ latest_posts.2.preview|safe }}</p>
+                    <a class="btn btn-secondary" href="{% url 'get-post' slug=latest_posts.2.slug %}">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Newest Row-->
+
+    <!--Start of edit-->
+    <div class="section-row row-lg row-grid row-blogs">
+        <!--Start of clmn left-->
+        <div class="col-md-8 blog-col-left">
+            {% for category, posts in latest_posts_in_category.items %}
+                <div class="section-row row-lg row-grid">
+                    <div class="section-divider">
+                        <div>
+                            <span class="clr-me-d divider-title">{% firstof category.name "Uncategorized" %}</span>
+                            <span class="clr-me-s see-all"><a class="clr-me-s" href="{% url 'filter-posts-by-cat' cat_slug=category.slug %}">{% trans 'See All' %} ›</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-row card-flat-container row-lg row-grid">
+                    <div class="col-left">
+                        <div class="card-sm">
+                            <div class="img-col"
+                                style="background-image: url(
+                                    {% if posts.0.img %}
+                                        {{ posts.0.img.url }}
+                                    {% endif %}
+                                )"></div>
+                            <div class="info-col">
+                                <p class="date">{{ posts.0.date_published }}</b></p>
+                                <a class="title" href="{% url 'get-post' slug=posts.0.slug %}"><p>{{ posts.0.title }}</p></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-right">
+                        {% for post in posts|slice:"1:" %}
+                            <div class="card-flat">
+                                <div class="info-col">
+                                    <span class="glyphicon glyphicon-chevron-right clr-me-s" aria-hidden="true"></span>
+                                    <div class="info-group">
+                                        <a href="{% url 'get-post' slug=post.slug %}"><p class="s-h2 clr-me-d">{{ post.title }}</p></a>
+                                        <p class="date">{{ post.date_published }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!--end of clmn left-->
+
+        <!--Start of clmn right-->
+        <div class="col-md-4 blog-col-right">
+            <div class="section-row row-lg row-grid">
+                <div class="section-divider">
+                    <div>
+                        <span class="clr-me-d divider-title">{% trans 'Brew Guides' %}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="section-row row-lg row-grid">
+                <ul class="brew-guides">
+                    <li>
+                        <a class="guide Espresso" href="/brew-guides/espresso/">
+                            <div class="guide__img" style="background-image: url({% get_media_prefix %}espresso.png)"></div>
+                            <span class="guide-text s-h6">
+                                Espresso
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="guide V60" href="/brew-guides/v60/">
+                            <div class="guide__img" style="background-image: url({% get_media_prefix %}drip.png)"></div>
+                            <span class="guide-text s-h6">
+                                V60
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="guide Stovetop" href="/brew-guides/stovetop/">
+                            <div class="guide__img" style="background-image: url({% get_media_prefix %}stove_top.png)"></div>
+                            <span class="guide-text s-h6">
+                                Stovetop
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="guide French Press" href="/brew-guides/french-press/">
+                            <div class="guide__img" style="background-image: url({% get_media_prefix %}french_press.png)"></div>
+                            <span class="guide-text s-h6">
+                                French Press
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="guide Aeropress" href="/brew-guides/aeropress/">
+                            <div class="guide__img" style="background-image: url({% get_media_prefix %}aeropress.png)"></div>
+                            <span class="guide-text s-h6">
+                                Aeropress
+                            </span>
+                        </a>
+                    </li>
+                    {% comment %}
+                    <li>
+                        <a class="guide Cold Brew" href="/brew-guides/coldbrew/">
+                            <div class="guide__img" style="background-image: url({% get_media_prefix %}coldbrewicon_-_purple-01-01.png)"></div>
+                            <span class="guide-text s-h6">
+                                Cold Brew
+                            </span>
+                        </a>
+                    </li>
+                    {% endcomment %}
+                </ul>
+            </div>
+        </div>
+        <!--end of clmn right-->
+    </div>
+    <!--End of edit-->
+
+</section>
+
+<section class="section bg-d we-are-hookcoffee">
+    <div class="section-row row-lg text-left">
+        <h4>{% trans 'Hello! We are' %} <span class="clr-me-p">HookCoffee</span></h4>
+        <h6>
+            {% blocktrans %}
+                At Hook, we want to share our love & knowledge of coffee with you, and with every cup, take you on a journey from our farmers’ hands to yours. We source the finest sustainably grown and ethically produced beans from farms around the world — and this is only the start of making a difference in people’s lives. We roast the coffees locally then send them out to you within a week of roasting so you only get the best & freshest coffees. Visit www.hookcoffee.com.sg to experience this for yourself!
+            {% endblocktrans %}
+        </h6>
+
+        <h4 class="pull-right">
+            <span class="use-base-font">#</span>MAKE<span class="clr-me-p">COFFEE</span>BETTER
+        </h4>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}{% endblock %}

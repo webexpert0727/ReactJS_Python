@@ -1,0 +1,95 @@
+.form-body {
+  margin-bottom: 30px;
+  /*border: 1px solid $color-peppercorn;*/
+  border-radius: 4px;
+
+  .form-label {
+    height: 40px;
+    padding: 10px;
+    .num {
+      @extend .text-center;
+      height: 20px;
+      width: 20px;
+      display: inline-block;
+      border-radius: 50%;
+      background-color: $color-warm;
+    }
+    background-color: $color-forest;
+    color: $color-cream;
+  }
+
+  .form-container {
+    /*background-color: $color-cream;*/
+    padding: 20px;
+
+    .form-option {
+      display: inline-block;
+      text-align: center;
+      box-sizing: initial;
+      margin: 5px;
+
+      img {
+        display: block;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: $color-cream;
+        border: 5px solid transparent;
+      }
+    }
+
+    .form-option.selected {
+      img {
+        border: 5px solid $color-warm;
+      }
+    }
+
+    .form-group {
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.end-buttons {
+  margin-bottom: 40px;
+}
+
+.icon-list .form-option,
+#filters .brew-method {
+  .img-thumbnail {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+
+    border: 5px solid transparent;
+    opacity: 0.4;
+    @media screen and (max-width: $screen-xs) {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  &.selected {
+    .img-thumbnail {
+      border: 5px solid $color-honeysuckie;
+      opacity: 1 !important;
+    }
+  }
+}
+
+/* Override btn toggle, active, open, focus, and hover */
+.open > .btn-primary.dropdown-toggle,
+.btn-primary:hover {
+  background-color: $color-honeysuckie;
+  border-color: $color-warm;
+}
+
+// Nasty work-around for button default
+.btn-default:active, .btn-default.active, .btn-default.active:hover {
+  background-color: $color-warm;
+  border-color: $color-warm;
+  color: white;
+  box-shadow: initial;
+}

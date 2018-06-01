@@ -1,0 +1,249 @@
+.card {
+  position: relative;
+  margin: 0 auto $base-padding;
+
+  p {
+    overflow: hidden;
+    text-transform: none;
+  }
+
+  .img-col {
+    overflow: hidden;
+    border-radius: $base-border-radius;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+  }
+}
+
+.card-lg {
+  @extend .card;
+  @media screen and (min-width: $width-lg) { margin: 0 0 $base-padding }
+  width: 465px;
+  font-size: 0;
+
+  @media screen and (max-width: $width-xs) {
+    width: 100%;
+    margin-bottom: $base-padding * 2.5;
+  }
+
+  & > * {
+    vertical-align: top;
+    display: inline-block;
+  }
+
+  .img-col {
+    width: 180px;
+    height: 260px;
+
+    @media screen and (max-width: $width-xs) {
+      width: 100%;
+      height: 320px;
+    }
+  }
+
+  .info-col {
+    width: 275px;
+    margin: $base-padding / 2 0px 0px $base-padding / 2;
+
+    @media screen and (max-width: $width-xs) {
+      width: auto;
+      margin: $base-padding / 2 0 0;
+    }
+    
+    & > * { margin-bottom: $base-padding / 2;}
+    .card-category { margin-bottom: 12.5px; }
+    .card-title { 
+      max-height: 50px;
+      margin-bottom: 0;
+    }
+
+    .btn {
+      width: 135px;
+      height: 30px;
+      margin-bottom: 0;
+      line-height: 1;
+    }
+  }
+}
+
+.card-sm {
+  @extend .card;
+  width: 180px;
+  height: auto;
+  margin-bottom: 0;
+
+  @media screen and (max-width: $width-lg) {
+    max-width: $width-xs;
+    width: 100%;
+  } 
+
+  .img-col {
+    height: 235px;
+
+    @media screen and (max-width: $width-md) { height: 320px; } 
+  }
+
+  .info-col {
+    height: 50px;
+    margin: 5px 0 0;
+    overflow: hidden;
+
+    @media screen and (max-width: $width-md) { height: auto; }
+
+    & > * { color: $color-dark; }
+    
+    .date {
+      font-size: 10px;
+      font-weight: 200;
+    }
+
+    .title { font-size: 14px; }
+  }
+}
+
+.card-flat {
+  @extend .card;
+  width: 100%;
+  height: 75px;
+  font-size: 0;
+  margin-bottom: $base-padding / 2;
+
+  @media screen and (max-width: $width-lg) { 
+    max-width: $width-xs;
+    height: auto; 
+  }
+
+  @media screen and (max-width: $width-xs) { width: 100% }
+
+  & > * {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    display: inline-block;
+
+    // @media screen and (max-width: $width-lg) { width: 100%; }
+  }
+
+  // .img-col {
+  //   border-radius: 0 $base-border-radius $base-border-radius 0;
+
+  //   @media screen and (max-width: $width-lg) {
+  //     height: 120px;
+  //     border-radius: 0 0 $base-border-radius $base-border-radius;
+  //   }
+  // }
+
+  .info-col {
+    border-radius: $base-border-radius;
+    background-color: $color-light-gray;
+
+    @media screen and (max-width: $width-lg) {
+      height: auto;
+    }
+
+    .glyphicon {
+      font-size: 24px;
+      position: absolute;
+      top: 25px;
+      left: 15px;
+
+      @media screen and (max-width: $width-xs) { display: none; }
+    }
+
+    .info-group {
+      position: relative;
+      max-width: 270px;
+      margin: $base-padding auto;
+      overflow: hidden;
+      white-space: nowrap;
+      
+      // @media screen and (max-width: $width-lg) {
+      //   max-width: none;
+      //   margin: 0;
+      //   padding: $base-padding;
+      //   white-space: normal;
+      // } 
+
+      .date {
+        font-size: 10px;
+        font-weight: 200;
+      }
+    }
+    
+  }
+}
+
+.card-xl {
+  @extend .card;
+  width: 610px;
+  font-size: 0;
+
+  @media screen and (max-width: $screen-sm) { width: 100%; }
+
+  & > * {
+    vertical-align: top;
+    display: inline-block;
+
+    @media screen and (max-width: $screen-sm) { display: block; }
+  }
+
+  .col-xxs {
+    width: 240px;
+
+    @media screen and (max-width: $screen-sm) {
+      width: 100%;
+    }
+
+    .img-col {
+      width: 240px;
+      height: 320px;
+
+      @media screen and (max-width: $screen-sm) { margin: 0 auto; }
+    }
+  }
+
+  .info-col {
+    max-width: 350px;
+    margin: $base-padding * 1.5 0 0 $base-padding;
+
+    @media screen and (max-width: $screen-sm) {
+      max-width: 480px;
+      height: auto;
+      margin: $base-padding / 2 auto;
+    }
+
+    & > * {
+      @extend .hc-text-noshadow;
+      margin-bottom: $base-padding / 2;
+      font-family: $font-family-1;
+    }
+
+    .card-category {
+      position: relative;
+
+      span {
+        text-transform: none;
+        font-weight: 200;
+        font-style: italic; 
+      }
+
+      .category-left { position: absolute; }
+
+      .category-right {
+        display: flex;
+        justify-content: flex-end;
+        line-height: 25px; 
+      }
+    }
+
+    .btn {
+      width: 180px;
+      height: 40px;
+      margin-bottom: 0;
+      line-height: 25px;
+    }
+
+  }
+}

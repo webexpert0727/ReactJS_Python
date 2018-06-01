@@ -1,0 +1,65 @@
+$main-color: #f0d330;
+
+.amazing-slides__item {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.amazing-year {
+  padding: 20px;
+  color: #000;
+  font: 16px 'Arboria-Book', 'Helvetica Neue', Helvetica, Arial, serif;
+  text-align: center;
+}
+
+.amazing-year__thanks {
+  margin: 40px 0 20px;
+  color: $main-color;
+  font: 5em 'DKButterflyBall', 'DKSugaryPancake', 'Amatic-Bold', serif;
+  text-transform: uppercase;
+}
+
+.amazing-year__head {
+  margin-bottom: 40px;
+  color: #707070;
+}
+
+.amazing-year__body {
+  margin-bottom: 40px;
+  font-size: 1.2em;
+
+  b {
+    font-family: 'Arboria-Bold', 'Helvetica Neue', Helvetica, Arial, serif;
+  }
+}
+
+.amazing-year__pre-voucher {
+  margin-bottom: 10px;
+  font: italic 1.4em 'Arboria-Bold', 'Helvetica Neue', Helvetica, Arial, serif;
+}
+
+.amazing-year__voucher {
+  display: inline-block;
+  margin: 0 auto 40px;
+  padding: 5px 15px;
+  color: #fff;
+  font: 2.5em 'Arboria-Bold', 'Helvetica Neue', Helvetica, Arial, serif;
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: $main-color;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #e0a600;
+  }
+}
+
+.amazing-year__logo {
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+}

@@ -1,0 +1,2 @@
+frontend/manager/components/*
+!frontend/manager/components/PackingPage

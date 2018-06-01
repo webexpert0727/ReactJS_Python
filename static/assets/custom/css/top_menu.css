@@ -1,0 +1,117 @@
+/*********** Shopping cart ***************/
+#menu-cart {
+  width: 375px;
+  padding: 5px;
+  background-color: #fff7ed;
+}
+#menu-cart block {
+  display: inline-block;
+  float: right;
+}
+#menu-cart li a {
+  display: inline-block;
+  width: 100%;
+  padding: 5px 10px;
+  color: RGB(111, 80, 70);
+  /*color: #FFF;*/
+  /*background-color: white;*/
+  /*background-color: #c9961d;*/
+  background-color: #fff7ed;
+}
+  #menu-cart a:hover {
+    /*background-color: RGB(255, 247, 238);*/
+    cursor: default;
+    text-decoration: none;
+  }
+#menu-cart input {
+  display: inline-block;
+  width: 24px;
+  text-align: center;
+  color: RGB(111, 80, 70);
+  background-color: #fff7ed;
+}
+#menu-cart .item-quantity {
+  border: 0;
+}
+#menu-cart button {
+  font: normal 8px "Archer-Medium";
+  padding: 5px;
+  margin: 0 1px;
+}
+#li-checkout-cart {
+  text-align: center;
+}
+#btn-checkout-cart {
+  font: bold 18px "ArcherPro-Medium" !important;
+  width: 100%;
+  background-color: #1E434C !important;
+  color: #FFF !important;
+  margin: 10px 0;
+}
+#btn-checkout-cart:hover {
+  background-color: #1F484F !important;
+  cursor: pointer !important;
+}
+#menu-cart li {
+  border: 1px solid #efe7dd;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.cart-details {
+  padding: 5px 10px;
+}
+.cart-details span {
+  font: 12px 'Arvo', serif;
+  color: RGB(110, 80, 70);
+}
+span.cart-package {
+  color: RGB(130, 100, 90);
+}
+span.cart-price {
+  float: right;
+  font-size: 14px;
+}
+
+#btn-cart {
+  font: 18px 'Archer-Medium', serif;
+  text-transform: uppercase;
+  padding: 7px 7px;
+  margin: 20px 0 0 0;
+  color: #fff;
+  background-color: #d9a52a;
+}
+#btn-cart:hover, #btn-cart:focus, #btn-cart:active, #btn-cart.active,
+.open .dropdown-toggle#btn-cart {
+  color: white;
+  background-color: #c9961d;
+}
+
+@media only screen and (max-width: 414px) {
+  #menu-cart {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    background-color: #fff7ed;
+    border-radius: 5px;
+  }
+}
+
+.navbar-fixed-top .navbar-brand.common-logo {
+    position: absolute;
+    z-index: 5;
+  }
+
+.navbar-fixed-top .navbar-brand.common-logo img {
+    margin-top: -11px;
+    height: 75px;
+}
+
+@media only screen and (max-width: 767px) {
+  .navbar-fixed-top .navbar-brand.common-logo {
+  }
+  .navbar-fixed-top .navbar-brand.common-logo img {
+    margin-top: 2px;
+    height: 50px;
+  }
+}

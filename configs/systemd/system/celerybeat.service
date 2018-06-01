@@ -1,0 +1,25 @@
+[Unit]
+Description=webapp celerybeat
+After=network.target celery.service
+
+[Service]
+Type=forking
+User=admin
+Group=webapp
+EnvironmentFile=/webapp/giveback_project/.env
+WorkingDirectory=/webapp/giveback_project
+ExecStartPre=/bin/mkdir -p /var/run/celerybeat
+ExecStartPre=/bin/chown admin:webapp /var/run/celerybeat
+ExecStart=/bin/sh -c '${CELERY_BIN} \
+    beat -A ${CELERY_APP} \
+    --detach \
+    --pidfile=${CELERYBEATD_PID_FILE} \
+    --logfile=${CELERYBEATD_LOG_FILE} \
+    --loglevel=${CELERYD_LOG_LEVEL} \
+    --schedule=${CELERYBEATD_SHEDULE_FILE}'
+ExecStop=/bin/systemctl kill celerybeat.service
+RemainAfterExit=yes
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

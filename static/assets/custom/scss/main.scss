@@ -1,0 +1,32 @@
+body {
+  margin-top: 65px;
+
+  .sidemenu {
+    height: auto;
+
+    @media (min-width: $screen-sm) {
+      height: calc(100vh - 150px);
+    }
+  }
+
+  & > .container, & > .container-fluid {
+    min-height: calc(75vh - 100px);
+    margin-top: $base-padding;
+    margin-bottom: $base-padding*3;
+  }
+
+  @media (min-width: $width-md) {
+    margin-top: 100px;
+
+    & > .container, & > .container-fluid {
+      min-height: calc(75vh - 135px);
+      margin-top: $base-padding*2;
+      margin-bottom: $base-padding*5;
+    }
+  }
+
+  iframe[name=google_conversion_frame] {
+    height: 0;
+    position: absolute;
+  }
+}

@@ -1,0 +1,44 @@
+.social-pc {
+  @extend .box;
+  padding: $base-padding / 2;
+  max-width: 320px;
+  text-align: left;
+  background-color: white;
+  color: $text-color;
+  margin-bottom: $base-padding;
+  
+  .social-pc-header {
+    @extend .flex-start-center;
+    padding-bottom: $base-padding / 2;
+
+    .avatar {
+      background-color: $color-light-gray;
+      width: 40px;
+      height: 40px;
+    }
+
+    .info {
+      @extend .flex-start-center;
+      p { font-weight: bold; }
+      a { color: black; }
+      small { font-weight: 200; }
+      & > * { margin: 0 $base-padding/2; }
+    }
+
+  }
+
+  .social-pc-body {
+    .post-image {
+      background-color: $color-light-gray;
+      width: 100%;
+      max-width: 300px;
+      min-height: 200px;
+      margin-bottom: $base-padding / 2;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (min-width: $screen-lg) { margin-bottom: 0; }
+}

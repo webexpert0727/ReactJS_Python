@@ -1,0 +1,20 @@
+[Unit]
+Description=webapp redis
+After=network.target
+
+[Service]
+Type=forking
+PIDFile=/var/run/redis/pid
+User=redis
+Group=redis
+EnvironmentFile=/webapp/giveback_project/.env
+ExecStartPre=/bin/mkdir -p /var/run/redis
+ExecStartPre=/bin/chown redis:redis /var/run/redis
+ExecStart= /usr/local/bin/redis-server /etc/redis/redis.conf
+ExecStop=/usr/local/bin/redis-cli shutdown
+ExecReload=/bin/kill -USR2 $MAINPID
+Restart=always
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

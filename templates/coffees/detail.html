@@ -1,0 +1,137 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}- {% trans 'Order Details' %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+  {% endcompress %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="purchase-info-box">
+        <div class="cb-info cb-header">
+          <h2>{{coffee.name}}</h2>
+          <span>
+            <i class="fa fa-map-marker"></i>
+            {{ coffee.region }}
+          </span>
+        </div>
+
+        <div class="cb-img" style='background-image: url({{ coffee.img.url }})'>
+        </div>
+
+        <div class="cb-info">
+          {{coffee.more_taste|linebreaks}}
+        </div>
+
+        <div class="cb-info cb-footer">
+          {% if user.is_authenticated %}
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="coffee-id" value="{{ coffee.id }}" />
+            <input type="hidden" name="isNespresso" value="{{ isNespresso }}" />
+            <a href="{% url 'coffees' %}" class="btn btn-primary-inv btn-hc-sm">{% trans 'Back' %}</a>
+            {% if subscribe == True %}
+              <input name="subscription" class="btn btn-primary btn-hc-sm" type="submit" value="{% trans 'CONFIRM SUBSCRIPTION' %}"/>
+            {% else %}
+              {% if isNespresso %}
+                <input name="one-off" type="submit" class="btn btn-primary btn-hc-sm" value="{% trans 'CONFIRM ONE-OFF' %}"/>
+              {% else %}
+                <input name="one-off" class="btn btn-primary btn-hc-sm" data-toggle="modal" data-target="#modal-one-off" value="{% trans 'CONFIRM ONE-OFF' %}"/>
+              {% endif %}
+            {% endif %}
+            <!-- <input name="a_la_carte" class="btn btn-primary" type="submit" value="A LA CARTE"/> -->
+          </form>
+          {% else %}
+            <a href="{% url 'auth_login' %}?next={% firstof request.path '/' %}" class="btn btn-primary btn-hc-sm">{% trans 'Log in' %}</a>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- One-off modal -->
+<div id="modal-one-off" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+
+            <div class="form-body">
+              <div class="form-container">
+                <form class="form-horizontal" action="" method="POST">
+
+                  {% csrf_token %}
+
+                  <div class="form-group form-group-lg">
+                    <h3>{% trans 'Brew method' %}</h3>
+
+                    <div class="icon-list">
+                        {% for brew in brew_methods %}
+                        <div id="brew_{{ brew }}" data-value="{{ brew.id }}" data-title="{{ brew.name }}" class="form-option opt-brew pref-option
+                        {% if brew.id == current_brew.id %}selected{% endif %}">
+                          <div class="img-thumbnail" style="background: url(&quot;{{ brew.img.url }}&quot;) no-repeat scroll center center / 110% 110%;"></div>
+                          <p>{{ brew.name }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <h3>{% trans 'How do you want your coffee packaged for this order?' %}</h3>
+
+                    <div class="icon-list">
+                      {% for key, value in preferences_form.package.field.choices %}
+                      <div id="pack_{{ key }}" data-value="{{ key }}" class="form-option opt-pack pref-option
+                      {% if key == current_package %}selected{% endif %}
+                      ">
+                        <div class="img-thumbnail" style="background: url(&quot;{% static 'images/package_methods/' %}{% if key == 'GR' %}ground{% elif key == 'WB' %}wholebeans{% elif key == 'DR' %}dripbag{% endif %}.png&quot;) no-repeat scroll center center / 110% 110%;"></div>
+                        <p>{{ value }}</p>
+                      </div>
+                      {% endfor%}
+                    </div>
+                  </div>
+
+                  <p id="p_brew_goal" class="hide"><i>{% trans 'Your coffee will be ground for' %} <b><span id="brew_goal"></span></b>!</i></p>
+                  <p id="p_drip_bags" class="hide"><i>{% trans 'Your order will come in a pack of' %} <b>10 {% trans 'drip bags' %}</b>!</i></p>
+                  <p id="p_wholebeans" class="hide"><i>{% trans 'Your coffee will come in' %} <b>{% trans 'whole beans' %}</b>!</i></p>
+
+                  <input type="hidden" name="coffee-id" value="{{ coffee.id }}" />
+                  <input type="hidden" name="brew-method" value="{{ current_brew.id }}" />
+                  <input type="hidden" name="package-method" value="{{ current_package }}" />
+
+                  <div class="btn-group pull-right">
+                    <button name="one-off" type="submit" class="btn btn-primary">{% trans 'Confirm' %}</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-left: 1px;">{% trans 'Back' %}</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+  <script>
+    var brew_method = "{{ current_brew.name }}";
+    var package_method = "{{ current_package }}";
+  </script>
+
+  <script src="{% static 'assets/custom/js/coffees.js' %}" type="text/javascript"></script>
+{% endblock %}

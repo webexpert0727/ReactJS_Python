@@ -1,0 +1,123 @@
+#notif-wrapper {
+  position: fixed;
+  z-index: 2147483647;
+
+  top: 120px;
+  right: $base-padding;
+
+  width: 60px;
+  height: 60px;
+
+  color: white;
+
+  .notif-header {
+    background-color: $color-dark;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    position: absolute;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+    width: 100%;
+
+    p { display: none; }
+    &:hover { cursor: pointer; }
+
+    i.fa, p { line-height: 60px; }
+    i.fa {
+      width: 60px;
+      text-align: center;
+    }
+    .notif-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background-color: $color-danger;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 12px;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.27) !important;
+    }
+  }
+  .notif-body {
+    display: none;
+    position: relative;
+    top: 60px;
+    background-color: white;
+
+    .notif-item {
+      padding: $base-padding / 2;
+      color: $color-new-text;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid $color-light-gray;
+      }
+
+      &.success { border-left: $base-padding/2 solid $color-success; }
+      &.danger { border-left: $base-padding/2 solid $color-danger; }
+      .notif-time { text-align: right; }
+    }
+  }
+
+  &.open {
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: unset;
+    width: 100%;
+    height: auto;
+    border-radius: $base-border-radius;
+    box-shadow: 0 65px 80px rgba(0, 0, 0, 0.16);
+
+    .notif-header {
+      padding-left: $base-padding / 2;
+      border-radius: $base-border-radius $base-border-radius 0 0;
+      p { display: inline-block; }
+
+      .notif-badge {
+        display: none;
+      }
+    }
+    .notif-body {
+      display: block;
+      overflow-y: auto;
+      max-height: calc(100vh - 60px);
+
+      border-radius: 0 0 $base-border-radius $base-border-radius;
+      .notif-item:last-child {
+        border-radius: 0 0 $base-border-radius $base-border-radius;
+      }
+    }
+  }
+
+	
+  @media (min-width: $screen-xs) {
+    top: 120px;
+
+    &.open {
+      top: 120px;
+      right: 20px;
+      left: unset;
+      width: 320px;
+
+      .notif-body {
+        height: calc(100vh - 280px);
+      }
+    }
+  }
+
+  @media (min-width: $screen-sm) {
+    top: 155px;
+    &.open {
+      top: 155px;
+
+      .notif-body {
+        height: calc(100vh - 320px);
+      }
+    }
+  }
+
+}

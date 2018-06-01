@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load compress %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Categories' %}{% endblock %}
+
+{% block meta-description %}"Hook Coffee Blog Categories"{% endblock %}
+
+{% block head %}
+    <link rel="canonical" href="https://{{current_domain}}{% url 'filter-posts-by-cat' %}" />
+    {% compress css %}
+        <link href="{% static 'assets/custom/scss/index.scss' %}" rel="stylesheet" type="text/x-scss"/>
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+
+<section class="section is-align-left bg-d is-banner-xs blog-categories">
+    <div class="section-row row-lg categories-header">
+        <div class="header-txt-left">
+            <h4>
+            <a href="{% url 'blog' %}">
+                <span class="clr-me-w">{% trans 'THE' %}</span><span class="clr-me-p">{% trans 'HOOK' %}</span><span class="clr-me-s">{% trans 'BLOG' %}</span>
+            </a>
+            <span class="use-base-font clr-me-s">&#35</span><span class="clr-me-w">{% trans 'GET' %}</span><span class="clr-me-p">{% trans 'HOOKED' %}</span>
+        </h4>
+        </div>
+        <div class="header-txt-right">
+            <h4>
+                <span class="clr-me-s">{% trans 'Coffee Fueled' %}</span>
+                <span class="clr-me-p">{% trans 'Thoughts' %}</span><span class="clr-me-w">,</span>
+                <span class="clr-me-p">{% trans 'Stories' %}</span><span class="clr-me-w">,</span>
+                <span class="clr-me-w">{% trans 'and' %}</span>
+                <span class="clr-me-p">{% trans 'Ideas' %}</span>
+            </h4>
+        </div>
+    </div>
+    <div class="section-row row-lg">
+        <div class="sub-nav-blog sub-nav-blog__sm">
+            <div class="wrapper">
+                <ul class="blog-category-links">
+                    <li><a href="{% url 'filter-posts-by-cat' cat_slug='latest' %}">{% trans 'Latest' %}</a></li>
+                    <li><span class="clr-me-s">&#8226;</span></li>
+                    {% for category in categories %}
+                        <li><a href="{% url 'filter-posts-by-cat' cat_slug=category.slug %}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section is-align-left blog-categories">
+    <div class="section-row row-lg row-grid categories-row-left-0">
+        <div class="col-md-12"><h3 class="category-title">{{ category }}</h3></div>
+        {% include page_template %}
+    </div>
+</section>
+
+{% block js %}
+    {{ block.super }}
+    <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+    <script>
+        $.endlessPaginate({
+            onCompleted: function(context, fragment) {
+                $(".endless_more").css("display", "none");
+            },
+        });
+    </script>
+{% endblock %}
+
+<section class="section bg-d we-are-hookcoffee">
+    <div class="section-row row-lg text-left">
+        <h4>{% trans 'Hello! We are' %} <span class="clr-me-p">HookCoffee</span></h4>
+        <h6>
+            {% blocktrans %}
+                At Hook, we want to share our love & knowledge of coffee with you, and with every cup, take you on a journey from our farmers’ hands to yours. We source the finest sustainably grown and ethically produced beans from farms around the world — and this is only the start of making a difference in people’s lives. We roast the coffees locally then send them out to you within a week of roasting so you only get the best & freshest coffees. Visit www.hookcoffee.com.sg to experience this for yourself!
+            {% endblocktrans %}
+        </h6>
+
+        <h4 class="pull-right">
+            <span class="use-base-font">#</span>MAKE<span class="clr-me-p">COFFEE</span>BETTER
+        </h4>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'assets/custom/js/blog.js' %}" type="text/javascript"></script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base-xo.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Thanks For Your Order!' %}{% endblock %}
+
+{% block head %}
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/thankyou.scss' %}" />
+  {% endcompress %}
+  <!-- Google Code for Track sales Conversion Page -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 928721515;
+  var google_conversion_language = "en";
+  var google_conversion_format = "3";
+  var google_conversion_color = "ffffff";
+  var google_conversion_label = "wZuoCO_z0WQQ69TsugM";
+  var google_remarketing_only = false;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+  <noscript>
+  <div style="display:inline;">
+  <img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/928721515/?label=wZuoCO_z0WQQ69TsugM&amp;guid=ON&amp;script=0"/>
+  </div>
+  </noscript>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+      <div class="thank-you-wrapper">
+        <div class="coffee-img">
+          <div class="img-thumbnail" style="background: url(&quot;{{ image }}&quot;) no-repeat scroll center center / 100% 100%;"></div>
+        </div>
+        <h3>Payment for ${{ overall_cost }} succeed</h3>
+        <!-- <h1>details</h1> -->
+
+        <h2>Thank you! We can’t wait for you to taste the freshest coffee you’ll ever make.</h2>
+        <p>
+        </br> Leave us your feedback! That’ll be really helpful while we strive to continue delivering the best coffee experience for you and make sure you’ll never run out of delicious, freshly roasted coffee.
+        </p>
+
+        <a class="btn btn-primary" href="{% url 'profile' %}">Go to my dashboard</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  fbq('track', 'CompleteRegistration');
+  fbq('track', 'Purchase', {value: '{{ overall_price }}', currency: 'SGD'});
+  ga('send', 'pageview', 'reg_thankyou');
+  twq('track', 'Purchase', {value:{{ overall_price }}, currency:'SGD'});
+</script>
+
+<script>
+  window.onload = function(){
+    localStorage.removeItem("cart");
+  };
+</script>
+{% endblock %}

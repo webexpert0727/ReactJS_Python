@@ -1,0 +1,432 @@
+{% extends "base.html" %}
+
+{% load compress %}
+{% load static %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}— {% trans 'Index Page' %}{% endblock %}
+
+{% block head %}
+
+  {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'assets/custom/scss/index.scss' %}" />
+  {% endcompress %}
+
+  <!-- Get Social bar -->
+  <script type="text/javascript">(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = '//api.at.getsocial.io/widget/v1/gs_async.js?id=b4240f'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+{% endblock %}
+
+{% block content%}
+
+  <!-- HERO/MAIN -->
+  <section id="main-header">
+    <div class="container">
+
+    <img id="main-header-logo" src="{% static 'images/site-logo.png' %}" alt="HookCoffee">
+
+
+      <div class="row" id="main-title">
+        <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+          <h1>{% trans 'THE FRESHEST COFFEE YOU EVER MADE' %}</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+
+          <p id="mission" style="margin-left:5px;margin-right:5px;">{% trans 'Freshly roasted, sustainably sourced specialty coffee, whole, ground or in coffee drip bags delivered to you as you need it.' %}</p>
+        </br>
+
+          {% if not user.is_authenticated %}
+          <a id="btn-get-started" href="{% url 'get_started' %}" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'TRY!' %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+          <a id="btn-find-out-more" href="#how-it-works" class="btn btn-default btn-lg">{% trans 'FIND OUT MORE' %}</a>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of MAIN -->
+
+
+  <!-- How It Works -->
+  <section class="module" id="how-it-works-section">
+    <div class="container">
+      <a id="how-it-works" name="how-it-works" class="top"></a>
+      <h1>{% trans 'How it Works' %}</h1>
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <div class="row">
+          <div class="col-xs-10 col-sm-4 col-xs-offset-1 col-sm-offset-0">
+            <div class="content-box">
+              <div class="content-box-icon">
+                <img src="{% static 'images/ss1.png' %}" width="100" alt="">
+              </div>
+              <h2>{% trans 'Getting to know you' %}</h2>
+
+              <hr><!-- MARGIN -->
+
+              <p>
+              {% trans 'Get stared with a mini quiz and our intelligent recommendation engine will suggest a coffee specially for you! We’ve something for you even if you don’t have any brewing equipment!' %}
+              </p>
+            </div>
+          </div>
+          <!-- /CONTENT BOX -->
+
+          <!-- CONTENT BOX -->
+          <div class="col-xs-10 col-sm-4 col-xs-offset-1 col-sm-offset-0">
+            <div class="content-box">
+              <div class="content-box-icon" width="100">
+                <img src="{% static 'images/ss2.png' %}" width="80" alt="" style="margin-bottom:20px">
+              </div>
+              <h2>{% trans 'Pick your preference' %}</h2>
+              <hr><!-- MARGIN -->
+              <div class="content-box-text font-alt">
+                <p>
+                {% trans 'Choose whole beans, ground or our super convenient coffee drip bags! Manage your own delivery frequency using our coffee calculator so you’ll never run out of freshly roasted coffee!' %}
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- /CONTENT BOX -->
+
+          <!-- CONTENT BOX -->
+          <div class="col-xs-10 col-sm-4 col-xs-offset-1 col-sm-offset-0">
+            <div class="content-box">
+              <div class="content-box-icon">
+                <img src="{% static 'images/ss3.png' %}" width="100" alt="">
+              </div>
+              <h2>{% trans 'Sit Back, Relax, Enjoy' %}</h2>
+              <hr><!-- MARGIN -->
+              <div class="content-box-text font-alt">
+                <p>
+                {% trans 'Your coffee is freshly sent out to you within a week of roasting, straight to your mailbox, so missed deliveries or postoffice runs necessary! All you have to do is sit back, relax, and enjoy!' %}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+          <a id="btn-find-out-about-us" href="{% url 'about' %}" class="btn btn-primary btn-lg">FIND OUT MORE</a>
+
+    </div>
+
+  </section>
+  <!-- /How it works -->
+
+  <!-- Our Story -->
+  <section class="module">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-1">
+          <div class="module-item image-panel">
+            <div id="our-story-image"></div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-0">
+          <div class="module-item text-panel">
+            <h1>{% trans 'Our Story' %}</h1>
+
+            <p>
+            {% blocktrans trimmed %}
+            At Hook, we want to share our love and
+            knowledge of coffee with you, and with
+            every cup of coffee, take you on a journey
+            from our farmers’ hands to yours.
+            {% endblocktrans %}
+            </br>
+            </br>
+            {% blocktrans trimmed %}
+            We source the finest sustainably grown
+            and ethically produced beans from farms
+            in the developing world — and this is
+            only the start of making a difference in
+            people’s lives. We tailor their roast
+            profiles and roast them in Singapore and
+            send them to you within a week of
+            roasting, not to mention right to your
+            doorstep. All you have to do is enjoy.
+            {% endblocktrans %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+  <!-- /Our story -->
+
+  <!-- Coffees -->
+  <section class="module">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-1">
+          <div class="module-item text-panel">
+            <h1>{% trans 'Our Coffees' %}</h1>
+
+            <p>
+            {% blocktrans trimmed %}
+            Sustainably grown and ethically
+            produced, lovingly roasted and
+            caringly packed, then sent to your
+            doorstep within a week of roasting.
+            These are the steps we take to make
+            a difference in your lives and the
+            lives of our farmers.
+            {% endblocktrans %}
+            </p>
+            <p>
+            {% blocktrans trimmed %}
+            Don’t worry about not having the
+            right apparatus - we have
+            something for everyone regardless
+            of your brew method.
+            {% endblocktrans %}
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
+          <div class="module-item image-panel">
+            <div id="our-coffee-image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <hr class="divider" style="height: 10px"> -->
+  <!-- DIVIDER -->
+
+  <!-- Ethical Choices -->
+  <section class="module">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-1">
+          <div class="module-item image-panel">
+            <div id="ethical-choices-image"></div>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-0">
+          <div class="module-item text-panel">
+            <h1>{% trans 'Ethical Choices' %}</h1>
+
+            <p>
+            {% blocktrans trimmed %}
+            Have you ever wondered about the exact origins of
+            your coffee? We’ve adopted the Direct Trade
+            model so you’ll have traceability of our coffees and
+            ethical choices.
+            {% endblocktrans %}
+            </p>
+            <p>
+            {% blocktrans trimmed %}
+            At the same time, our farmers receive a bigger
+            share of the final retail value. This is just one of the
+            ways we show our appreciation for their skills and
+            hard work because growing and processing
+            specialty coffee is a real art.
+            {% endblocktrans %}
+            </p>
+            <p>
+            {% blocktrans trimmed %}
+            To be honest, we are not 100% Direct Trade yet,
+            but we’re definitely getting there.
+            {% endblocktrans %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Ethical Choices -->
+
+  <!-- As Featured on -->
+  <!-- <div class="row" style="margin-top: -10px;"> -->
+    <div class="col-md-12" style="background-color: RGB(236,229,218);">
+    <h1 class="text-center">{% trans 'As featured on' %}</h1>
+    <br/>
+      <div id="Carousel" class="carousel slide">
+
+  <!--<ol class="carousel-indicators">
+      <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+      <li data-target="#Carousel" data-slide-to="1"></li>
+      <li data-target="#Carousel" data-slide-to="2"></li>
+  </ol> -->
+
+        <div class="carousel-inner">
+          <div class="item active">
+
+
+            <div class="row">
+
+              <div class="col-md-1"></div>
+
+              <div class="col-md-10">
+
+                <div class="col-md-3 featured-div"><a href="http://www.straitstimes.com/lifestyle/food/get-your-artisanal-caffeine-fix-home-delivered" class="thumbnail"><img src="{% static 'images/st.png' %}" alt="Image" class=" featured-img" style="max-width:500px;zoom: 40%;"></a></div>
+
+                <div class="col-md-3 featured-div"><a href="http://thehoneycombers.com/singapore/coffee-delivery-in-singapore-hook-coffee-couriers-gourmet-blends-straight-to-your-mailbox/" class="thumbnail"><img src="{% static 'images/honeycombers.png' %}" alt="Image" class="featured-img" style="max-width:300px;"></a></div>
+
+                <div class="col-md-3 featured-div"><a href="" class="thumbnail"><img src="{% static 'images/class95.png' %}" alt="Image" class="featured-img" style="max-width:300px; zoom:55%;"></a></div>
+
+                <div class="col-md-3 featured-div"><a href="http://iie.smu.edu.sg/stnews_acestartupsgrant_hookcoffee" class="thumbnail"><img src="{% static 'images/smu.png' %}" alt="Image" class="featured-img" style="max-width:300px; min-width: 250px; zoom:110%;"></a></div>
+
+
+              </div>
+
+              <div class="col-md-1"></div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+        <!-- <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a> -->
+        <!-- <a data-slide="next" href="#Carousel" class="right carousel-control">›</a> -->
+      </div>
+    </div>
+  <!-- </div> -->
+  <!-- /As Featured on -->
+
+  <!-- Reviews -->
+  {% if reviews %}
+  <div class="col-md-12" data-wow-delay="0.2s">
+    <h1 class="text-center">{% trans 'What our customers say' %}</h1>
+    <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+      <!-- Bottom Carousel Indicators -->
+<!--  <ol class="carousel-indicators">
+      <li data-target="#quote-carousel" data-slide-to="0" class="active"><img class="img-responsive " src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="">
+      </li>
+      <li data-target="#quote-carousel" data-slide-to="1"><img class="img-responsive" src="https://s3.amazonaws.com/uifaces/faces/twitter/rssems/128.jpg" alt="">
+      </li>
+      <li data-target="#quote-carousel" data-slide-to="2"><img class="img-responsive" src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg" alt="">
+      </li>
+  </ol> -->
+
+      <div class="carousel-inner text-center carousel-reviews">
+        {% for review in reviews %}
+          {% if forloop.counter0 == 0 %}
+            <div class="item active">
+          {% else %}
+            <div class="item">
+          {% endif %}
+          <blockquote>
+            <div class="row">
+              <div class="col-sm-8 col-sm-offset-2">
+                <p>&#8220;{{ review.message }}&#8221;</p>
+                <small>{{ review.author }}</small>
+              </div>
+            </div>
+          </blockquote>
+          </div>
+        {% endfor %}
+
+      <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+      <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+      </div>
+
+    </div>
+  </div>
+  {% endif %}
+  <!-- Reviews -->
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <form method="POST" action="">
+        {% csrf_token %}
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">{% trans 'We are coming really soon!' %}</h4>
+        </div>
+        <div class="modal-body">
+
+        <p>{% trans 'Drop you name and email address for early bird updates!' %}</p>
+
+        <label for="inputEmail" class="sr-only">{% trans 'Name' %}</label>
+        {{ form.name|add_class:"form-control"|attr:"autofocus"|attr:"placeholder:Name"|attr:"required" }}
+        {{ form.name.errors }}
+
+        <label for="inputPassword" class="sr-only">{% trans 'Password' %}</label>
+        {{ form.email|add_class:"form-control"|attr:"placeholder:Email"|attr:"required" }}
+        {{ form.email.errors }}
+
+
+        </div>
+        <div class="modal-footer">
+        <button class="btn btn-lg btn-warning" type="submit">{% trans 'Done' %}</button>
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+  <!-- Trial Pack Modal -->
+  <div id="trialModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        {% if popup_ids|random == '1' %}
+          <div class="modal-body" style="background: transparent url({% static 'images/V60STARTER.jpeg' %}) no-repeat scroll center right / cover; height: 600px;">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-footer">
+              <a id="register-link" href="{% url 'get_started' %}" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'i want this starter kit!' %}&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              <p>{% trans '* for limited time only!' %}</p>
+            </div>
+          </div>
+        {% else if popup_ids|random == '2' %}
+          <div class="modal-body" style='background: RGB(220, 201, 195); height: 500px;'>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h1 id="hi50-box">{% trans 'new to hook?</br>here is 50% off your first bag!</br>use voucher code: Hi50!' %}</h1>
+            <div class="modal-footer">
+              <a id="register-link" href="{% url 'get_started' %}" class="btn btn2">get me hooked!</a>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="{% static 'assets/custom/js/navbar-transparent.js' %}"></script>
+
+{% if not user.is_authenticated %}
+  <script>
+  $(document).ready(function(){
+
+    setTimeout(function(){
+      console.log('* timeout');
+      $("#trialModal").modal();
+    }, 8 * 1000);
+
+    $('#Carousel').carousel({
+        interval: 5000
+    });
+
+  $(".img-featured")
+    .mouseenter(function() {
+      $(this).removeClass('desaturate');
+    })
+    .mouseleave(function() {
+      $(this).addClass('desaturate');
+    });
+
+
+  });
+  </script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,154 @@
+version: "3"
+services:
+  sentry-postgres:
+    image: postgres:9.6
+    container_name: hook_sentry_postgres
+    restart: on-failure:10
+    env_file: .env
+    environment:
+      - POSTGRES_DB=${SENTRY_DB_NAME}
+      - POSTGRES_USER=${SENTRY_DB_USER}
+      - POSTGRES_PASSWORD=${SENTRY_DB_PASSWORD}
+    volumes:
+      - sentry_postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  sentry-redis:
+    image: redis:3.2
+    container_name: hook_sentry_redis
+    command: redis-server
+    restart: on-failure:10
+    env_file: .env
+    volumes:
+      - sentry_redis_data:/var/lib/redis
+    networks:
+      - backend
+
+  sentry-cron:
+    image: sentry:8.17
+    container_name: hook_sentry_cron
+    command: sentry run cron
+    restart: on-failure:10
+    env_file: .env
+    environment:
+      # to prevent using django settings for sentry
+      - CELERY_BROKER_URL=
+    depends_on:
+      - sentry-postgres
+      - sentry-redis
+    links:
+      - sentry-postgres
+      - sentry-redis
+    networks:
+      - backend
+
+  sentry-worker:
+    image: sentry:8.17
+    container_name: hook_sentry_worker
+    command: sentry run worker
+    restart: on-failure:10
+    env_file: .env
+    environment:
+      # to prevent using django settings for sentry
+      - CELERY_BROKER_URL=
+    depends_on:
+      - sentry-postgres
+      - sentry-redis
+    links:
+      - sentry-postgres
+      - sentry-redis
+    networks:
+      - backend
+
+  sentry:
+    build: ./services/sentry
+    container_name: hook_sentry
+    restart: on-failure:10
+    env_file: .env
+    environment:
+      # to prevent using django settings for sentry
+      - CELERY_BROKER_URL=
+    volumes:
+      - sentry_files_data:/var/lib/sentry/files
+    depends_on:
+      - sentry-postgres
+      - sentry-redis
+    links:
+      - sentry-postgres
+      - sentry-redis
+    ports:
+      - 9000:9000
+    networks:
+      - frontend
+      - backend
+
+  influxdb:
+    image: influxdb:1.3.1
+    container_name: hook_influxdb
+    restart: on-failure:10
+    env_file: .env
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - backend
+    ports:
+      - 8086:8086
+
+  telegraf:
+    image: telegraf:1.3.5
+    container_name: hook_telegraf
+    hostname: production
+    restart: on-failure:10
+    env_file: .env
+    environment:
+      - HOST_SYS=/rootfs/sys
+      - HOST_ETC=/rootfs/etc
+      - HOST_PROC=/rootfs/proc
+    volumes:
+     - ./services/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+     - /sys:/rootfs/sys:ro
+     - /etc:/rootfs/etc:ro
+     - /proc:/rootfs/proc:ro
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    extra_hosts:
+      - dockerhost:172.17.0.1
+    networks:
+      - backend
+
+  grafana:
+    image: grafana/grafana:4.4.1
+    container_name: hook_grafana
+    restart: on-failure:10
+    env_file: .env
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    ports:
+      - 3000:3000
+    networks:
+      - frontend
+      - backend
+
+
+volumes:
+  pg_data:
+  redis_data:
+  grafana_data:
+  influxdb_data:
+  sentry_postgres_data:
+  sentry_redis_data:
+  sentry_files_data:
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge

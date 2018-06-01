@@ -1,0 +1,19 @@
+.whsale-box {
+  @extend .coffee-box;
+  border: unset;
+
+  .cb-img {
+    background-size: contain;
+  }
+
+  .cb-info.cb-footer {
+    padding: $base-padding;
+  }
+
+  ul {
+    margin: $base-padding $base-padding 0 0;
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 12px;
+  }
+}

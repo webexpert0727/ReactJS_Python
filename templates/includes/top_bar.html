@@ -1,0 +1,26 @@
+{% load i18n %}
+{% load static %}
+
+{% if top_bar.visible %}
+    <div class="news-bar">
+        {% if top_bar.button_text %}
+            <span class="news-bar__text">{{ top_bar.block_text }}</span>
+            <a class="btn btn-primary news-bar__btn" href="{{ top_bar.link }}">{{ top_bar.button_text }}</a>
+        {% else %}
+            <a class="news-bar__link" href="{{ top_bar.link }}">{{ top_bar.block_text }}</a>
+        {% endif %}
+    </div>
+{% endif %}
+
+                               {% comment %}
+***************************AVAILABLE CONDITIONS*********************************
+
+{% if is_worldwide %}user is not from Singapore{% endif %}
+{% if pagename == 'profile' %}this is profile page{% endif %}
+{% if pagename == 'old dashboard' %}this is old dashboard page{% endif %}
+{% if pagename == 'blog' %}this is blog page{% endif %}
+{% if 'blog' in request.path %}this is one of blog pages{% endif %}
+{% if 'accounts' in request.path %}this is one of accounts pages{% endif %}
+
+********************************************************************************
+                             {% endcomment %}
