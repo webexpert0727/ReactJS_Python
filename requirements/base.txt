@@ -10,7 +10,7 @@ chardet==3.0.4
 click==6.7
 configparser==3.5.0
 contextlib2==0.5.5
-cryptography==2.0.2
+cryptography==3.2
 decorator==4.1.2
 Django==1.10.7
 django-admin-sortable==2.1
