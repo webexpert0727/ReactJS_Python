@@ -38,7 +38,7 @@
     "datatables.net-bs": "^2.1.1",
     "extract-text-webpack-plugin": "2.1.2",
     "file-loader": "^0.11.2",
-    "highcharts": "^5.0.12",
+    "highcharts": "^9.0.0",
     "highcharts-export-csv": "^1.4.8",
     "highcharts-exporting": "^0.1.2",
     "jquery": "^3.1.1",
