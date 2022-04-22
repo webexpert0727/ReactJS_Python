@@ -75,7 +75,7 @@ pycparser==2.18
 Pygments==2.2.0
 PyJWT==1.5.2
 pyOpenSSL==17.0.0
-PyPDF2==1.26.0
+PyPDF2==1.27.5
 python-dateutil==2.6.0
 python-dotenv==0.6.4
 python-intercom==2.1.1
