@@ -53,7 +53,7 @@ libsass==0.12.3
 lxml==3.8.0
 mailchimp==2.0.9
 mandrill==1.0.57
-numpy==1.13.0
+numpy==1.22.0
 oauth2client==4.1.0
 oauthlib==2.0.2
 olefile==0.44
